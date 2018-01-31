@@ -1,15 +1,15 @@
-<channel version="3.5.0">
-  <id>77261f59-e897-4ed9-b744-da704d54f077</id>
+<channel version="3.5.1">
+  <id>f8adb5e6-546c-45fc-886f-babb5ddfb052</id>
   <nextMetaDataId>4</nextMetaDataId>
   <name>Eden_to_NCHS_v26</name>
   <description></description>
-  <revision>1</revision>
-  <sourceConnector version="3.5.0">
+  <revision>7</revision>
+  <sourceConnector version="3.5.1">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
-    <properties class="com.mirth.connect.connectors.jdbc.DatabaseReceiverProperties" version="3.5.0">
+    <properties class="com.mirth.connect.connectors.jdbc.DatabaseReceiverProperties" version="3.5.1">
       <pluginProperties/>
-      <pollConnectorProperties version="3.5.0">
+      <pollConnectorProperties version="3.5.1">
         <pollingType>INTERVAL</pollingType>
         <pollOnStart>true</pollOnStart>
         <pollingFrequency>5000</pollingFrequency>
@@ -36,7 +36,7 @@
           <endingMinute>0</endingMinute>
         </pollConnectorPropertiesAdvanced>
       </pollConnectorProperties>
-      <sourceConnectorProperties version="3.5.0">
+      <sourceConnectorProperties version="3.5.1">
         <responseVariable>None</responseVariable>
         <respondAfterProcessing>true</respondAfterProcessing>
         <processBatch>false</processBatch>
@@ -50,71 +50,146 @@
         </resourceIds>
         <queueBufferSize>1000</queueBufferSize>
       </sourceConnectorProperties>
-      <driver>com.mysql.jdbc.Driver</driver>
-      <url>jdbc:mysql://localhost/eden</url>
-      <username>root</username>
-      <password>admin</password>
-      <select>SELECT edenmaster.StateFileNumber AS hl7_export_StateFileNumber, 
-        edenmaster.MRN AS hl7_export_MRN, 
-	   edenmaster.DeceasedLast AS hl7_export_DeceasedLast, 
-	   edenmaster.DeceasedFirst AS hl7_export_DeceasedFirst, 
-	   edenmaster.DeceasedMiddle AS hl7_export_DeceasedMiddle, 
-	   edenmaster.DeceasedSuffix AS hl7_export_DeceasedSuffix, 
-	   edenmaster.SSN AS hl7_export_SSN, 
-	   edenmaster.Gender AS hl7_export_Gender, 
-	   edenmaster.BirthCity AS hl7_export_BirthCity, 
-	   edenmaster.BirthCounty AS hl7_export_BirthCounty, 
-	   edenmaster.BirthState AS hl7_export_BirthState, 
-	   edenmaster.BirthCountry AS hl7_export_BirthCountry, 
-	   edenmaster.BirthCCYY AS hl7_export_BirthCCYY, 
-	   edenmaster.BirthMM AS hl7_export_BirthMM, 
-	   edenmaster.BirthDD AS hl7_export_BirthDD, 
-	   edenmaster.RaceWhite AS hl7_export_RaceWhite, 
-	   edenmaster.RaceBlack AS hl7_export_RaceBlack, 
-	   edenmaster.RaceAmIndian AS hl7_export_RaceAmIndian, 
-	   edenmaster.RaceTribeSpec AS hl7_export_RaceTribeSpec, 
-	   edenmaster.RaceChinese AS hl7_export_RaceChinese, 
-	   edenmaster.RaceJapanese AS hl7_export_RaceJapanese, 
-	   edenmaster.RaceHawaiian AS hl7_export_RaceHawaiian, 
-	   edenmaster.RaceFilipino AS hl7_export_RaceFilipino, 
-	   edenmaster.RaceOtherAsian AS hl7_export_RaceOtherAsian, 
-	   edenmaster.RaceAsianSpec AS hl7_export_RaceAsianSpec, 
-	   edenmaster.RaceAsianIndian AS hl7_export_RaceAsianIndian, 
-	   edenmaster.RaceKorean AS hl7_export_RaceKorean, 
-	   edenmaster.RaceSamoan AS hl7_export_RaceSamoan, 
-	   edenmaster.RaceVietnamese AS hl7_export_RaceVietnamese, 
-	   edenmaster.RaceGuamanian AS hl7_export_RaceGuamanian, 
-	   edenmaster.RacePacIslander AS hl7_export_RacePacIslander, 
-	   edenmaster.RaceOther AS hl7_export_RaceOther, 
-	   edenmaster.RaceUnknown AS hl7_export_RaceUnknown, 
-	   edenmaster.Education AS hl7_export_Education, 
-	   edenmaster.Occupation AS hl7_export_Occupation, 
-	   edenmaster.Industry AS hl7_export_Industry, 
-	   edenmaster.ArmedForces AS hl7_export_ArmedForces, 
-	   edenmaster.Pregnant AS hl7_export_Pregnant, 
-	   edenmaster.ResStreetAddress1 AS hl7_export_ResStreetAddress1, 
-	   edenmaster.ResStreetAddress2 AS hl7_export_ResStreetAddress2, 
-	   edenmaster.ResCity AS hl7_export_ResCity, 
-	   edenmaster.ResCounty AS hl7_export_ResCounty, 
-	   edenmaster.ResState AS hl7_export_ResState, 
-	   edenmaster.ResCountry AS hl7_export_ResCountry, 
-	   edenmaster.ResZip5 AS hl7_export_ResZip5, 
-	   edenmaster.ResInCityLimits AS hl7_export_ResInCityLimits, 
-	   edenmaster.DeathCCYY AS hl7_export_DeathCCYY, 
-	   edenmaster.DeathMM AS hl7_export_DeathMM, 
-	   edenmaster.DeathDD AS hl7_export_DeathDD, 
-	   edenmaster.FoundDate AS hl7_export_FoundDate, 
-	   edenmaster.TimeOfDeathHH AS hl7_export_TimeOfDeathHH, 
-	   edenmaster.TimeOfDeathMM AS hl7_export_TimeOfDeathMM, 
-	   edenmaster.FoundTime AS hl7_export_FoundTime, 
-	   edenmaster.PlaceOfDeath AS hl7_export_PlaceOfDeath, 
-	   edenmaster.FacilityName AS hl7_export_FacilityName, 
-	   edenmaster.NursingHomeName AS hl7_export_NursingHomeName, 
-	   edenmaster.POD_OtherSpec AS hl7_export_POD_OtherSpec, 
-	   edenmaster.NonFacilityLocation AS hl7_export_NonFacilityLocation, 
-	   edenmaster.CountyOfDeath AS hl7_export_CountyOfDeath, 
-	   edenmaster.CityOfDeath AS edenmaster_CityOfDeath, edenmaster.CertifierFullName AS hl7_export_CertifierFullName, edenmaster.CertifierSignCCYY AS hl7_export_CertifierSignCCYY, edenmaster.CertifierSignMM AS hl7_export_CertifierSignMM, edenmaster.CertifierSignDD AS hl7_export_CertifierSignDD, edenmaster.CertifierAddress1 AS hl7_export_CertifierAddress1, edenmaster.CertifierAddress2 AS hl7_export_CertifierAddress2, edenmaster.CertifierCity AS hl7_export_CertifierCity, edenmaster.CertifierState AS hl7_export_CertifierState, edenmaster.CertifierCountry AS hl7_export_CertifierCountry, edenmaster.CertifierZip5 AS hl7_export_CertifierZip5, edenmaster.ME_Contacted AS hl7_export_ME_Contacted, edenmaster.AutopsyDone AS hl7_export_AutopsyDone, edenmaster.AutopsyAvailable AS hl7_export_AutopsyAvailable, edenmaster.LastSeenCCYY AS hl7_export_LastSeenCCYY, edenmaster.LastSeenMM AS hl7_export_LastSeenMM, edenmaster.LastSeenDD AS hl7_export_LastSeenDD, edenmaster.DaysLastSeenToDeath AS hl7_export_DaysLastSeenToDeath, edenmaster.ImmediateCause AS hl7_export_ImmediateCause, edenmaster.ImmediateInterval AS hl7_export_ImmediateInterval, edenmaster.ImmediateIntervalUnit AS ImmediateIntervalUnit, edenmaster.AdditionalCause1 AS hl7_export_AdditionalCause1, edenmaster.AdditionalInterval1 AS hl7_export_AdditionalInterval1, edenmaster.AdditionalIntervalUnit1 AS AdditionalIntervalUnit1, edenmaster.AdditionalCause2 AS hl7_export_AdditionalCause2, edenmaster.AdditionalInterval2 AS hl7_export_AdditionalInterval2, edenmaster.AdditionalIntervalUnit2 AS AdditionalIntervalUnit2, edenmaster.UnderlyingCause AS hl7_export_UnderlyingCause, edenmaster.UnderlyingInterval AS hl7_export_UnderlyingInterval, edenmaster.UnderlyingIntervalUnit AS UnderlyingIntervalUnit, edenmaster.OtherConditions AS hl7_export_OtherConditions, edenmaster.MannerOfDeath AS hl7_export_MannerOfDeath, edenmaster.Tobacco AS hl7_export_Tobacco, edenmaster.Injury AS hl7_export_Injury, edenmaster.InjuryCCYY AS hl7_export_InjuryCCYY, edenmaster.InjuryMM AS hl7_export_InjuryMM, edenmaster.InjuryDD AS hl7_export_InjuryDD, edenmaster.InjuryTimeHH AS hl7_export_InjuryTimeHH, edenmaster.InjuryTimeMM AS hl7_export_InjuryTimeMM, edenmaster.InjuryStreet AS hl7_export_InjuryStreet, edenmaster.InjuryCity AS hl7_export_InjuryCity, edenmaster.InjuryCounty AS hl7_export_InjuryCounty, edenmaster.InjuryState AS hl7_export_InjuryState, edenmaster.InjuryCountry AS hl7_export_InjuryCountry, edenmaster.InjuryPlace AS hl7_export_InjuryPlace, edenmaster.InjuryAtWork AS hl7_export_InjuryAtWork, edenmaster.InjuryMotorVehicle AS hl7_export_InjuryMotorVehicle, edenmaster.InjuryMotorSpec AS hl7_export_InjuryMotorSpec, edenmaster.InjuryDescription1 AS hl7_export_InjuryDescription1, edenmaster.InjuryDescription2 AS hl7_export_InjuryDescription2, edenmaster.MasterStatus AS hl7_export_MasterStatus, edenmaster.DropPaperDate AS hl7_export_DropPaperDate, edenmaster.RegisteredCCYY AS hl7_export_registeredccyy, edenmaster.RegisteredMM AS hl7_export_registeredmm, edenmaster.RegisteredDD AS hl7_export_RegisteredDD, edenmaster.MaritalStatus AS hl7_export_MaritalStatus, edenmaster.HispanicOrigin AS hl7_export_hispanicOrigin, edenmaster.AgeInYears AS hl7_export_AgeInYears, edenmaster.AgeInMonths AS hl7_export_AgeInMonths, edenmaster.AgeInDays AS hl7_export_AgeInDays, edenmaster.AgeInHours AS hl7_export_AgeInHours, edenmaster.AgeInMinutes as hl7_export_AgeInMinutes, edenmaster.BirthStateFileNumber AS hl7_export_BirthStateFileNumber, edenmaster.FatherLast AS hl7_export_FatherLast, edenmaster.DispositionBurial as hl7_export_DispositionBurial, edenmaster.DispositionCremation as hl7_export_dispositioncremation, edenmaster.DispositionEntombment as hl7_export_dispositionentombment, edenmaster.DispositionRemoval as hl7_export_dispositionremoval, edenmaster.DispositionOther as hl7_export_dispositionother, edenmaster.ME_CaseNumber as hl7_export_MEcasenumber, edenmaster.ResCityFips as hl7_export_ResCityFips, edenmaster.ResCountyFips as hl7_export_ResCountyFips, edenmaster.ResStateFips as hl7_export_ResStateFips, edenmaster.ResCountryFips as hl7_export_ResCountryFips, edenmaster.BirthStateFips as hl7_export_BirthStateFips, edenmaster.BirthCountryFips as hl7_export_birthcountryfips
-FROM edenmaster WHERE hl7Send = 0 Limit 1
+      <driver>net.sourceforge.jtds.jdbc.Driver</driver>
+      <url>jdbc:jtds:sqlserver://RHUMPHRYS-A1641:1433/connectathon</url>
+      <username>ray</username>
+      <password>mss</password>
+      <select>SELECT TOP 1 rtrim(edenmaster.StateFileNumber)  AS hl7_export_StateFileNumber, 
+       rtrim(edenmaster.MRN)  AS hl7_export_MRN, 
+	  rtrim(edenmaster.DeceasedLast)  AS hl7_export_DeceasedLast, 
+	  rtrim(edenmaster.DeceasedFirst)  AS hl7_export_DeceasedFirst, 
+	  rtrim(edenmaster.DeceasedMiddle)  AS hl7_export_DeceasedMiddle, 
+	  rtrim(edenmaster.DeceasedSuffix)  AS hl7_export_DeceasedSuffix, 
+	  rtrim(edenmaster.SSN)  AS hl7_export_SSN, 
+	  rtrim(edenmaster.Gender)  AS hl7_export_Gender, 
+	  rtrim(edenmaster.BirthCity)  AS hl7_export_BirthCity, 
+	  rtrim(edenmaster.BirthCounty)  AS hl7_export_BirthCounty, 
+	  rtrim(edenmaster.BirthState)  AS hl7_export_BirthState, 
+	  rtrim(edenmaster.BirthCountry)  AS hl7_export_BirthCountry, 
+	  rtrim(edenmaster.BirthCCYY)  AS hl7_export_BirthCCYY, 
+	  rtrim(edenmaster.BirthMM)  AS hl7_export_BirthMM, 
+	  rtrim(edenmaster.BirthDD)  AS hl7_export_BirthDD, 
+	  rtrim(edenmaster.RaceWhite)  AS hl7_export_RaceWhite, 
+	  rtrim(edenmaster.RaceBlack)  AS hl7_export_RaceBlack, 
+	  rtrim(edenmaster.RaceAmIndian)  AS hl7_export_RaceAmIndian, 
+	  rtrim(edenmaster.RaceTribeSpec)  AS hl7_export_RaceTribeSpec, 
+	  rtrim(edenmaster.RaceChinese)  AS hl7_export_RaceChinese, 
+	  rtrim(edenmaster.RaceJapanese)  AS hl7_export_RaceJapanese, 
+	  rtrim(edenmaster.RaceHawaiian)  AS hl7_export_RaceHawaiian, 
+	  rtrim(edenmaster.RaceFilipino)  AS hl7_export_RaceFilipino, 
+	  rtrim(edenmaster.RaceOtherAsian)  AS hl7_export_RaceOtherAsian, 
+	  rtrim(edenmaster.RaceAsianSpec)  AS hl7_export_RaceAsianSpec, 
+	  rtrim(edenmaster.RaceAsianIndian)  AS hl7_export_RaceAsianIndian, 
+	  rtrim(edenmaster.RaceKorean)  AS hl7_export_RaceKorean, 
+	  rtrim(edenmaster.RaceSamoan)  AS hl7_export_RaceSamoan, 
+	  rtrim(edenmaster.RaceVietnamese)  AS hl7_export_RaceVietnamese, 
+	  rtrim(edenmaster.RaceGuamanian)  AS hl7_export_RaceGuamanian, 
+	  rtrim(edenmaster.RacePacIslander)  AS hl7_export_RacePacIslander, 
+	  rtrim(edenmaster.RaceOther)  AS hl7_export_RaceOther, 
+	  rtrim(edenmaster.RaceUnknown)  AS hl7_export_RaceUnknown, 
+	  rtrim(edenmaster.Education)  AS hl7_export_Education, 
+	  rtrim(edenmaster.Occupation)  AS hl7_export_Occupation, 
+	  rtrim(edenmaster.Industry)  AS hl7_export_Industry, 
+	  rtrim(edenmaster.ArmedForces)  AS hl7_export_ArmedForces, 
+	  rtrim(edenmaster.Pregnant)  AS hl7_export_Pregnant, 
+	  rtrim(edenmaster.ResStreetAddress1)  AS hl7_export_ResStreetAddress1, 
+	  rtrim(edenmaster.ResStreetAddress2)  AS hl7_export_ResStreetAddress2, 
+	  rtrim(edenmaster.ResCity)  AS hl7_export_ResCity, 
+	  rtrim(edenmaster.ResCounty)  AS hl7_export_ResCounty, 
+	  rtrim(edenmaster.ResState)  AS hl7_export_ResState, 
+	  rtrim(edenmaster.ResCountry)  AS hl7_export_ResCountry, 
+	  rtrim(edenmaster.ResZip5)  AS hl7_export_ResZip5, 
+	  rtrim(edenmaster.ResInCityLimits)  AS hl7_export_ResInCityLimits, 
+	  rtrim(edenmaster.DeathCCYY)  AS hl7_export_DeathCCYY, 
+	  rtrim(edenmaster.DeathMM)  AS hl7_export_DeathMM, 
+	  rtrim(edenmaster.DeathDD)  AS hl7_export_DeathDD, 
+	  rtrim(edenmaster.FoundDate)  AS hl7_export_FoundDate, 
+	  rtrim(edenmaster.TimeOfDeathHH)  AS hl7_export_TimeOfDeathHH, 
+	  rtrim(edenmaster.TimeOfDeathMM)  AS hl7_export_TimeOfDeathMM, 
+	  rtrim(edenmaster.FoundTime)  AS hl7_export_FoundTime, 
+	  rtrim(edenmaster.PlaceOfDeath)  AS hl7_export_PlaceOfDeath, 
+	  rtrim(edenmaster.FacilityName)  AS hl7_export_FacilityName, 
+	  rtrim(edenmaster.NursingHomeName)  AS hl7_export_NursingHomeName, 
+	  rtrim(edenmaster.POD_OtherSpec)  AS hl7_export_POD_OtherSpec, 
+	  rtrim(edenmaster.NonFacilityLocation)  AS hl7_export_NonFacilityLocation, 
+	  rtrim(edenmaster.CountyOfDeath)  AS hl7_export_CountyOfDeath, 
+	  rtrim(edenmaster.CityOfDeath)  AS   hl7_export__CityOfDeath, 
+	  rtrim(edenmaster.CertifierFullName)  AS hl7_export_CertifierFullName, 
+	  rtrim(edenmaster.CertifierSignCCYY)  AS hl7_export_CertifierSignCCYY, 
+	  rtrim(edenmaster.CertifierSignMM)  AS hl7_export_CertifierSignMM, 
+	  rtrim(edenmaster.CertifierSignDD)  AS hl7_export_CertifierSignDD, 
+	  rtrim(edenmaster.CertifierAddress1)  AS hl7_export_CertifierAddress1, 
+	  rtrim(edenmaster.CertifierAddress2)  AS hl7_export_CertifierAddress2, 
+	  rtrim(edenmaster.CertifierCity)  AS hl7_export_CertifierCity, 
+	  rtrim(edenmaster.CertifierState)  AS hl7_export_CertifierState, 
+	  rtrim(edenmaster.CertifierCountry)  AS hl7_export_CertifierCountry, 
+	  rtrim(edenmaster.CertifierZip5)  AS hl7_export_CertifierZip5, 
+	  rtrim(edenmaster.ME_Contacted)  AS hl7_export_ME_Contacted, 
+	  rtrim(edenmaster.AutopsyDone)  AS hl7_export_AutopsyDone, 
+	  rtrim(edenmaster.AutopsyAvailable)  AS hl7_export_AutopsyAvailable, 
+	  rtrim(edenmaster.LastSeenCCYY)  AS hl7_export_LastSeenCCYY, 
+	  rtrim(edenmaster.LastSeenMM)  AS hl7_export_LastSeenMM, 
+	  rtrim(edenmaster.LastSeenDD)  AS hl7_export_LastSeenDD, 
+	  rtrim(edenmaster.DaysLastSeenToDeath)  AS hl7_export_DaysLastSeenToDeath, 
+	  rtrim(edenmaster.ImmediateCause)  AS hl7_export_ImmediateCause, 
+	  rtrim(edenmaster.ImmediateInterval)  AS hl7_export_ImmediateInterval, 
+	  rtrim(edenmaster.ImmediateIntervalUnit)  AS ImmediateIntervalUnit, 
+	  rtrim(edenmaster.AdditionalCause1)  AS hl7_export_AdditionalCause1, 
+	  rtrim(edenmaster.AdditionalInterval1)  AS hl7_export_AdditionalInterval1, 
+	  rtrim(edenmaster.AdditionalIntervalUnit1)  AS AdditionalIntervalUnit1, 
+	  rtrim(edenmaster.AdditionalCause2)  AS hl7_export_AdditionalCause2, 
+	  rtrim(edenmaster.AdditionalInterval2)  AS hl7_export_AdditionalInterval2, 
+	  rtrim(edenmaster.AdditionalIntervalUnit2)  AS AdditionalIntervalUnit2, 
+	  rtrim(edenmaster.UnderlyingCause)  AS hl7_export_UnderlyingCause, 
+	  rtrim(edenmaster.UnderlyingInterval)  AS hl7_export_UnderlyingInterval, 
+	  rtrim(edenmaster.UnderlyingIntervalUnit)  AS UnderlyingIntervalUnit, 
+	  rtrim(edenmaster.OtherConditions)  AS hl7_export_OtherConditions, 
+	  rtrim(edenmaster.MannerOfDeath)  AS hl7_export_MannerOfDeath, 
+	  rtrim(edenmaster.Tobacco)  AS hl7_export_Tobacco, 
+	  rtrim(edenmaster.Injury)  AS hl7_export_Injury, 
+	  rtrim(edenmaster.InjuryCCYY)  AS hl7_export_InjuryCCYY, 
+	  rtrim(edenmaster.InjuryMM)  AS hl7_export_InjuryMM, 
+	  rtrim(edenmaster.InjuryDD)  AS hl7_export_InjuryDD, 
+	  rtrim(edenmaster.InjuryTimeHH)  AS hl7_export_InjuryTimeHH, 
+	  rtrim(edenmaster.InjuryTimeMM)  AS hl7_export_InjuryTimeMM, 
+	  rtrim(edenmaster.InjuryStreet)  AS hl7_export_InjuryStreet, 
+	  rtrim(edenmaster.InjuryCity)  AS hl7_export_InjuryCity, 
+	  rtrim(edenmaster.InjuryCounty)  AS hl7_export_InjuryCounty, 
+	  rtrim(edenmaster.InjuryState)  AS hl7_export_InjuryState, 
+	  rtrim(edenmaster.InjuryCountry)  AS hl7_export_InjuryCountry, 
+	  rtrim(edenmaster.InjuryPlace)  AS hl7_export_InjuryPlace, 
+	  rtrim(edenmaster.InjuryAtWork)  AS hl7_export_InjuryAtWork, 
+	  rtrim(edenmaster.InjuryMotorVehicle)  AS hl7_export_InjuryMotorVehicle, 
+	  rtrim(edenmaster.InjuryMotorSpec)  AS hl7_export_InjuryMotorSpec,
+	   rtrim(edenmaster.InjuryDescription1)  AS hl7_export_InjuryDescription1, 
+		rtrim(edenmaster.InjuryDescription2)  AS hl7_export_InjuryDescription2, 
+		rtrim(edenmaster.MasterStatus)  AS hl7_export_MasterStatus, 
+		rtrim(edenmaster.DropPaperDate)  AS hl7_export_DropPaperDate, 
+		rtrim(edenmaster.RegisteredCCYY)  AS hl7_export_registeredccyy, 
+		rtrim(edenmaster.RegisteredMM)  AS hl7_export_registeredmm, 
+		rtrim(edenmaster.RegisteredDD)  AS hl7_export_RegisteredDD, 
+		rtrim(edenmaster.MaritalStatus)  AS hl7_export_MaritalStatus, 
+		rtrim(edenmaster.HispanicOrigin)  AS hl7_export_hispanicOrigin, 
+		rtrim(edenmaster.AgeInYears)  AS hl7_export_AgeInYears, 
+		rtrim(edenmaster.AgeInMonths)  AS hl7_export_AgeInMonths,
+		rtrim(edenmaster.AgeInDays)  AS hl7_export_AgeInDays, 
+		rtrim(edenmaster.AgeInHours)  AS hl7_export_AgeInHours, 
+		rtrim(edenmaster.AgeInMinutes)  AS hl7_export_AgeInMinutes, 
+		rtrim(edenmaster.BirthStateFileNumber)  AS hl7_export_BirthStateFileNumber, 
+		rtrim(edenmaster.FatherLast)  AS hl7_export_FatherLast, 
+		rtrim(edenmaster.DispositionBurial)  AS hl7_export_DispositionBurial, 
+		rtrim(edenmaster.DispositionCremation)  AS hl7_export_dispositioncremation, 
+		rtrim(edenmaster.DispositionEntombment)  AS hl7_export_dispositionentombment, 
+		rtrim(edenmaster.DispositionRemoval)  AS hl7_export_dispositionremoval, 
+		rtrim(edenmaster.DispositionOther)  AS hl7_export_dispositionother, 
+		rtrim(edenmaster.ME_CaseNumber)  AS hl7_export_MEcasenumber, 
+		rtrim(edenmaster.ResCityFips)  AS hl7_export_ResCityFips, 
+		rtrim(edenmaster.ResCountyFips)  AS hl7_export_ResCountyFips, 
+		rtrim(edenmaster.ResStateFips)  AS hl7_export_ResStateFips, 
+		rtrim(edenmaster.ResCountryFips)  AS hl7_export_ResCountryFips, 
+		rtrim(edenmaster.BirthStateFips)  AS hl7_export_BirthStateFips, 
+		rtrim(edenmaster.BirthCountryFips)  AS hl7_export_birthcountryfips
+FROM   edenmaster WHERE hl7Send = 0 --  and edenmasterid = 35
 
 
 
@@ -130,7 +205,7 @@ FROM edenmaster WHERE hl7Send = 0 Limit 1
       <fetchSize>1000</fetchSize>
       <encoding>DEFAULT_ENCODING</encoding>
     </properties>
-    <transformer version="3.5.0">
+    <transformer version="3.5.1">
       <elements>
         <com.mirth.connect.plugins.mapper.MapperStep>
           <name>StateFileNumber</name>
@@ -622,7 +697,7 @@ var InjuryYN = &quot; &quot;;
     InjuryYN = msg[&apos;hl7_export_injury&apos;].toString();
 var Injwork = msg[&apos;hl7_export_injuryatwork&apos;].toString();
 var injuryDate = msg[&apos;hl7_export_injuryccyy&apos;].toString()+msg[&apos;hl7_export_injurymm&apos;].toString()+msg[&apos;hl7_export_injurydd&apos;].toString();
-var injuryDateTime = injuryDate + msg[&apos;hl7_export_injurytimehh&apos;].toString()+msg[&apos;hl7_export_injurytimemm&apos;].toString();
+var injuryDateTime = injuryDate + msg[&apos;hl7_export_injurytimehh&apos;].toString()+msg[&apos;hl7_export_injurytimemm&apos;].toString()+&quot;-0800&quot;;
 var injuryMV= &quot;N&quot;;
 var injuryMVSpecify = &quot; &quot;;
 
@@ -775,7 +850,7 @@ switch(educationLevel){
  case &quot;9&quot;:   
         var education_ccode = &quot;Unknown&quot;;
         var education_cname = &quot;Unknown&quot;;
-        var education_csys = &quot;NullFlavor&quot;;
+        var education_csys = &quot;CDCPHINVS&quot;;
         break;
 }
 
@@ -1347,102 +1422,102 @@ dWU8L2hsN19leHBvcnRfbnVyc2luZ2hvbWVuYW1lPg0KICAgIDxobDdfZXhwb3J0X3BvZF9vdGhl
 cnNwZWM+dmFsdWU8L2hsN19leHBvcnRfcG9kX290aGVyc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9u
 b25mYWNpbGl0eWxvY2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X25vbmZhY2lsaXR5bG9jYXRpb24+
 DQogICAgPGhsN19leHBvcnRfY291bnR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9jb3VudHlv
-ZmRlYXRoPg0KICAgIDxlZGVubWFzdGVyX2NpdHlvZmRlYXRoPnZhbHVlPC9lZGVubWFzdGVyX2Np
-dHlvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmZ1bGxuYW1lPnZhbHVlPC9obDdf
-ZXhwb3J0X2NlcnRpZmllcmZ1bGxuYW1lPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25j
-Y3l5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNpZ25jY3l5Pg0KICAgIDxobDdfZXhwb3J0
-X2NlcnRpZmllcnNpZ25tbT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+DQogICAg
-PGhsN19leHBvcnRfY2VydGlmaWVyc2lnbmRkPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNp
-Z25kZD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJhZGRyZXNzMT52YWx1ZTwvaGw3X2V4cG9y
-dF9jZXJ0aWZpZXJhZGRyZXNzMT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJhZGRyZXNzMj52
-YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJhZGRyZXNzMj4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0
-aWZpZXJjaXR5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcmNpdHk+DQogICAgPGhsN19leHBv
-cnRfY2VydGlmaWVyc3RhdGU+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyc3RhdGU+DQogICAg
-PGhsN19leHBvcnRfY2VydGlmaWVyY291bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJj
-b3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnppcDU+dmFsdWU8L2hsN19leHBvcnRf
-Y2VydGlmaWVyemlwNT4NCiAgICA8aGw3X2V4cG9ydF9tZV9jb250YWN0ZWQ+dmFsdWU8L2hsN19l
-eHBvcnRfbWVfY29udGFjdGVkPg0KICAgIDxobDdfZXhwb3J0X2F1dG9wc3lkb25lPnZhbHVlPC9o
-bDdfZXhwb3J0X2F1dG9wc3lkb25lPg0KICAgIDxobDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+
-dmFsdWU8L2hsN19leHBvcnRfYXV0b3BzeWF2YWlsYWJsZT4NCiAgICA8aGw3X2V4cG9ydF9sYXN0
-c2VlbmNjeXk+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5jY3l5Pg0KICAgIDxobDdfZXhwb3J0
-X2xhc3RzZWVubW0+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5tbT4NCiAgICA8aGw3X2V4cG9y
-dF9sYXN0c2VlbmRkPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuZGQ+DQogICAgPGhsN19leHBv
-cnRfZGF5c2xhc3RzZWVudG9kZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9kYXlzbGFzdHNlZW50b2Rl
-YXRoPg0KICAgIDxobDdfZXhwb3J0X2ltbWVkaWF0ZWNhdXNlPnZhbHVlPC9obDdfZXhwb3J0X2lt
-bWVkaWF0ZWNhdXNlPg0KICAgIDxobDdfZXhwb3J0X2ltbWVkaWF0ZWludGVydmFsPnZhbHVlPC9o
-bDdfZXhwb3J0X2ltbWVkaWF0ZWludGVydmFsPg0KICAgIDxpbW1lZGlhdGVpbnRlcnZhbHVuaXQ+
-dmFsdWU8L2ltbWVkaWF0ZWludGVydmFsdW5pdD4NCiAgICA8aGw3X2V4cG9ydF9hZGRpdGlvbmFs
-Y2F1c2UxPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTE+DQogICAgPGhsN19leHBv
-cnRfYWRkaXRpb25hbGludGVydmFsMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsaW50ZXJ2
-YWwxPg0KICAgIDxhZGRpdGlvbmFsaW50ZXJ2YWx1bml0MT52YWx1ZTwvYWRkaXRpb25hbGludGVy
-dmFsdW5pdDE+DQogICAgPGhsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj52YWx1ZTwvaGw3X2V4
-cG9ydF9hZGRpdGlvbmFsY2F1c2UyPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZh
-bDI+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGludGVydmFsMj4NCiAgICA8YWRkaXRpb25h
-bGludGVydmFsdW5pdDI+dmFsdWU8L2FkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPg0KICAgIDxobDdf
-ZXhwb3J0X3VuZGVybHlpbmdjYXVzZT52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+
-DQogICAgPGhsN19leHBvcnRfdW5kZXJseWluZ2ludGVydmFsPnZhbHVlPC9obDdfZXhwb3J0X3Vu
-ZGVybHlpbmdpbnRlcnZhbD4NCiAgICA8dW5kZXJseWluZ2ludGVydmFsdW5pdD52YWx1ZTwvdW5k
-ZXJseWluZ2ludGVydmFsdW5pdD4NCiAgICA8aGw3X2V4cG9ydF9vdGhlcmNvbmRpdGlvbnM+dmFs
-dWU8L2hsN19leHBvcnRfb3RoZXJjb25kaXRpb25zPg0KICAgIDxobDdfZXhwb3J0X21hbm5lcm9m
-ZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfbWFubmVyb2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF90
-b2JhY2NvPnZhbHVlPC9obDdfZXhwb3J0X3RvYmFjY28+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
-PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljY3l5PnZh
-bHVlPC9obDdfZXhwb3J0X2luanVyeWNjeXk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5bW0+dmFs
-dWU8L2hsN19leHBvcnRfaW5qdXJ5bW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGQ+dmFsdWU8
-L2hsN19leHBvcnRfaW5qdXJ5ZGQ+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5dGltZWhoPnZhbHVl
-PC9obDdfZXhwb3J0X2luanVyeXRpbWVoaD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1lbW0+
-dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGltZW1tPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXN0
-cmVldD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlzdHJlZXQ+DQogICAgPGhsN19leHBvcnRfaW5q
-dXJ5Y2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnljaXR5Pg0KICAgIDxobDdfZXhwb3J0X2lu
-anVyeWNvdW50eT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnljb3VudHk+DQogICAgPGhsN19leHBv
-cnRfaW5qdXJ5c3RhdGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5c3RhdGU+DQogICAgPGhsN19l
-eHBvcnRfaW5qdXJ5Y291bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5Pg0KICAg
-IDxobDdfZXhwb3J0X2luanVyeXBsYWNlPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeXBsYWNlPg0K
-ICAgIDxobDdfZXhwb3J0X2luanVyeWF0d29yaz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlhdHdv
-cms+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPnZhbHVlPC9obDdfZXhwb3J0
-X2luanVyeW1vdG9ydmVoaWNsZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltb3RvcnNwZWM+dmFs
-dWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3JzcGVjPg0KICAgIDxobDdfZXhwb3J0X2luanVyeWRl
-c2NyaXB0aW9uMT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlwdGlvbjE+DQogICAgPGhs
-N19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWRlc2Ny
-aXB0aW9uMj4NCiAgICA8aGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+dmFsdWU8L2hsN19leHBvcnRf
-bWFzdGVyc3RhdHVzPg0KICAgIDxobDdfZXhwb3J0X2Ryb3BwYXBlcmRhdGU+dmFsdWU8L2hsN19l
-eHBvcnRfZHJvcHBhcGVyZGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9yZWdpc3RlcmVkY2N5eT52YWx1
-ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9yZWdpc3RlcmVk
-bW0+dmFsdWU8L2hsN19leHBvcnRfcmVnaXN0ZXJlZG1tPg0KICAgIDxobDdfZXhwb3J0X3JlZ2lz
-dGVyZWRkZD52YWx1ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkZGQ+DQogICAgPGhsN19leHBvcnRf
-bWFyaXRhbHN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXJpdGFsc3RhdHVzPg0KICAgIDxobDdf
-ZXhwb3J0X2hpc3Bhbmljb3JpZ2luPnZhbHVlPC9obDdfZXhwb3J0X2hpc3Bhbmljb3JpZ2luPg0K
-ICAgIDxobDdfZXhwb3J0X2FnZWlueWVhcnM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW55ZWFycz4N
-CiAgICA8aGw3X2V4cG9ydF9hZ2Vpbm1vbnRocz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vpbm1vbnRo
-cz4NCiAgICA8aGw3X2V4cG9ydF9hZ2VpbmRheXM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW5kYXlz
-Pg0KICAgIDxobDdfZXhwb3J0X2FnZWluaG91cnM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW5ob3Vy
-cz4NCiAgICA8aGw3X2V4cG9ydF9hZ2Vpbm1pbnV0ZXM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW5t
-aW51dGVzPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoc3RhdGVmaWxlbnVtYmVyPnZhbHVlPC9obDdf
-ZXhwb3J0X2JpcnRoc3RhdGVmaWxlbnVtYmVyPg0KICAgIDxobDdfZXhwb3J0X2ZhdGhlcmxhc3Q+
-dmFsdWU8L2hsN19leHBvcnRfZmF0aGVybGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kaXNwb3NpdGlv
-bmJ1cmlhbD52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbmJ1cmlhbD4NCiAgICA8aGw3X2V4
-cG9ydF9kaXNwb3NpdGlvbmNyZW1hdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbmNy
-ZW1hdGlvbj4NCiAgICA8aGw3X2V4cG9ydF9kaXNwb3NpdGlvbmVudG9tYm1lbnQ+dmFsdWU8L2hs
-N19leHBvcnRfZGlzcG9zaXRpb25lbnRvbWJtZW50Pg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0
-aW9ucmVtb3ZhbD52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbnJlbW92YWw+DQogICAgPGhs
-N19leHBvcnRfZGlzcG9zaXRpb25vdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbm90
-aGVyPg0KICAgIDxobDdfZXhwb3J0X21lY2FzZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9ydF9tZWNh
-c2VudW1iZXI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eWZpcHM+dmFsdWU8L2hsN19leHBvcnRf
-cmVzY2l0eWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzY291bnR5Zmlwcz52YWx1ZTwvaGw3X2V4
-cG9ydF9yZXNjb3VudHlmaXBzPg0KICAgIDxobDdfZXhwb3J0X3Jlc3N0YXRlZmlwcz52YWx1ZTwv
-aGw3X2V4cG9ydF9yZXNzdGF0ZWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeWZpcHM+
-dmFsdWU8L2hsN19leHBvcnRfcmVzY291bnRyeWZpcHM+DQogICAgPGhsN19leHBvcnRfYmlydGhz
-dGF0ZWZpcHM+dmFsdWU8L2hsN19leHBvcnRfYmlydGhzdGF0ZWZpcHM+DQogICAgPGhsN19leHBv
-cnRfYmlydGhjb3VudHJ5Zmlwcz52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnlmaXBzPg0K
-PC9yZXN1bHQ+DQo=</inboundTemplate>
+ZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X19jaXR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9f
+Y2l0eW9mZGVhdGg+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+dmFsdWU8L2hs
+N19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyc2ln
+bmNjeXk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyc2lnbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfY2VydGlmaWVyc2lnbm1tPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNpZ25tbT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduZGQ+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbmRkPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MxPnZhbHVlPC9obDdfZXhw
+b3J0X2NlcnRpZmllcmFkZHJlc3MxPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3My
+PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MyPg0KICAgIDxobDdfZXhwb3J0X2Nl
+cnRpZmllcmNpdHk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyY2l0eT4NCiAgICA8aGw3X2V4
+cG9ydF9jZXJ0aWZpZXJzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzdGF0ZT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJjb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cmNvdW50cnk+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyemlwNT52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJ6aXA1Pg0KICAgIDxobDdfZXhwb3J0X21lX2NvbnRhY3RlZD52YWx1ZTwvaGw3
+X2V4cG9ydF9tZV9jb250YWN0ZWQ+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWRvbmU+dmFsdWU8
+L2hsN19leHBvcnRfYXV0b3BzeWRvbmU+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWF2YWlsYWJs
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5YXZhaWxhYmxlPg0KICAgIDxobDdfZXhwb3J0X2xh
+c3RzZWVuY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfbGFzdHNlZW5tbT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2Vlbm1tPg0KICAgIDxobDdfZXhw
+b3J0X2xhc3RzZWVuZGQ+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5kZD4NCiAgICA8aGw3X2V4
+cG9ydF9kYXlzbGFzdHNlZW50b2RlYXRoPnZhbHVlPC9obDdfZXhwb3J0X2RheXNsYXN0c2VlbnRv
+ZGVhdGg+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlY2F1c2U+dmFsdWU8L2hsN19leHBvcnRf
+aW1tZWRpYXRlY2F1c2U+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+dmFsdWU8
+L2hsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+DQogICAgPGltbWVkaWF0ZWludGVydmFsdW5p
+dD52YWx1ZTwvaW1tZWRpYXRlaW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9u
+YWxjYXVzZTE+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMT4NCiAgICA8aGw3X2V4
+cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwxPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRl
+cnZhbDE+DQogICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQxPnZhbHVlPC9hZGRpdGlvbmFsaW50
+ZXJ2YWx1bml0MT4NCiAgICA8aGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UyPnZhbHVlPC9obDdf
+ZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+DQogICAgPGhsN19leHBvcnRfYWRkaXRpb25hbGludGVy
+dmFsMj52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwyPg0KICAgIDxhZGRpdGlv
+bmFsaW50ZXJ2YWx1bml0Mj52YWx1ZTwvYWRkaXRpb25hbGludGVydmFsdW5pdDI+DQogICAgPGhs
+N19leHBvcnRfdW5kZXJseWluZ2NhdXNlPnZhbHVlPC9obDdfZXhwb3J0X3VuZGVybHlpbmdjYXVz
+ZT4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+dmFsdWU8L2hsN19leHBvcnRf
+dW5kZXJseWluZ2ludGVydmFsPg0KICAgIDx1bmRlcmx5aW5naW50ZXJ2YWx1bml0PnZhbHVlPC91
+bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52
+YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNvbmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVy
+b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0
+X3RvYmFjY28+dmFsdWU8L2hsN19leHBvcnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1
+cnk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+
+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltbT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1
+ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFs
+dWU8L2hsN19leHBvcnRfaW5qdXJ5dGltZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVt
+bT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnljaXR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRf
+aW5qdXJ5Y291bnR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4
+cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3
+X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQog
+ICAgPGhsN19leHBvcnRfaW5qdXJ5cGxhY2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+
+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0
+d29yaz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBv
+cnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0KICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltb3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8
+aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlwdGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVz
+Y3JpcHRpb24yPg0KICAgIDxobDdfZXhwb3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9y
+dF9tYXN0ZXJzdGF0dXM+DQogICAgPGhsN19leHBvcnRfZHJvcHBhcGVyZGF0ZT52YWx1ZTwvaGw3
+X2V4cG9ydF9kcm9wcGFwZXJkYXRlPg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5PnZh
+bHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5Pg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVy
+ZWRtbT52YWx1ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkbW0+DQogICAgPGhsN19leHBvcnRfcmVn
+aXN0ZXJlZGRkPnZhbHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRkZD4NCiAgICA8aGw3X2V4cG9y
+dF9tYXJpdGFsc3RhdHVzPnZhbHVlPC9obDdfZXhwb3J0X21hcml0YWxzdGF0dXM+DQogICAgPGhs
+N19leHBvcnRfaGlzcGFuaWNvcmlnaW4+dmFsdWU8L2hsN19leHBvcnRfaGlzcGFuaWNvcmlnaW4+
+DQogICAgPGhsN19leHBvcnRfYWdlaW55ZWFycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbnllYXJz
+Pg0KICAgIDxobDdfZXhwb3J0X2FnZWlubW9udGhzPnZhbHVlPC9obDdfZXhwb3J0X2FnZWlubW9u
+dGhzPg0KICAgIDxobDdfZXhwb3J0X2FnZWluZGF5cz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbmRh
+eXM+DQogICAgPGhsN19leHBvcnRfYWdlaW5ob3Vycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vpbmhv
+dXJzPg0KICAgIDxobDdfZXhwb3J0X2FnZWlubWludXRlcz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vp
+bm1pbnV0ZXM+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+dmFsdWU8L2hs
+N19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfZmF0aGVybGFz
+dD52YWx1ZTwvaGw3X2V4cG9ydF9mYXRoZXJsYXN0Pg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0
+aW9uYnVyaWFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9uYnVyaWFsPg0KICAgIDxobDdf
+ZXhwb3J0X2Rpc3Bvc2l0aW9uY3JlbWF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+Y3JlbWF0aW9uPg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0aW9uZW50b21ibWVudD52YWx1ZTwv
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbmVudG9tYm1lbnQ+DQogICAgPGhsN19leHBvcnRfZGlzcG9z
+aXRpb25yZW1vdmFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9ucmVtb3ZhbD4NCiAgICA8
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbm90aGVyPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+b3RoZXI+DQogICAgPGhsN19leHBvcnRfbWVjYXNlbnVtYmVyPnZhbHVlPC9obDdfZXhwb3J0X21l
+Y2FzZW51bWJlcj4NCiAgICA8aGw3X2V4cG9ydF9yZXNjaXR5Zmlwcz52YWx1ZTwvaGw3X2V4cG9y
+dF9yZXNjaXR5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHlmaXBzPnZhbHVlPC9obDdf
+ZXhwb3J0X3Jlc2NvdW50eWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGVmaXBzPnZhbHVl
+PC9obDdfZXhwb3J0X3Jlc3N0YXRlZmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlw
+cz52YWx1ZTwvaGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aHN0YXRlZmlwcz52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlZmlwcz4NCiAgICA8aGw3X2V4
+cG9ydF9iaXJ0aGNvdW50cnlmaXBzPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY291bnRyeWZpcHM+
+DQo8L3Jlc3VsdD4NCg==</inboundTemplate>
       <outboundTemplate encoding="base64"></outboundTemplate>
       <inboundDataType>XML</inboundDataType>
       <outboundDataType>XML</outboundDataType>
-      <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.0">
-        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.0">
+      <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
           <stripNamespaces>false</stripNamespaces>
         </serializationProperties>
-        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.0">
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
           <splitType>Element_Name</splitType>
           <elementName></elementName>
           <level>1</level>
@@ -1450,11 +1525,11 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
           <batchScript></batchScript>
         </batchProperties>
       </inboundProperties>
-      <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.0">
-        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.0">
+      <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
           <stripNamespaces>false</stripNamespaces>
         </serializationProperties>
-        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.0">
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
           <splitType>Element_Name</splitType>
           <elementName></elementName>
           <level>1</level>
@@ -1463,7 +1538,7 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
         </batchProperties>
       </outboundProperties>
     </transformer>
-    <filter version="3.5.0">
+    <filter version="3.5.1">
       <elements/>
     </filter>
     <transportName>Database Reader</transportName>
@@ -1472,12 +1547,12 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
     <waitForPrevious>true</waitForPrevious>
   </sourceConnector>
   <destinationConnectors>
-    <connector version="3.5.0">
+    <connector version="3.5.1">
       <metaDataId>1</metaDataId>
       <name>Destination 1</name>
-      <properties class="com.mirth.connect.connectors.file.FileDispatcherProperties" version="3.5.0">
+      <properties class="com.mirth.connect.connectors.file.FileDispatcherProperties" version="3.5.1">
         <pluginProperties/>
-        <destinationConnectorProperties version="3.5.0">
+        <destinationConnectorProperties version="3.5.1">
           <queueEnabled>false</queueEnabled>
           <sendFirst>false</sendFirst>
           <retryIntervalMillis>10000</retryIntervalMillis>
@@ -1497,8 +1572,8 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
           <reattachAttachments>true</reattachAttachments>
         </destinationConnectorProperties>
         <scheme>FILE</scheme>
-        <host>c:/mirth/death/toNCHS</host>
-        <outputPattern>UT${SYSTIME}.hl7</outputPattern>
+        <host>f:/mirth/death/toNCHS</host>
+        <outputPattern>MI${SYSTIME}.hl7</outputPattern>
         <anonymous>true</anonymous>
         <username>anonymous</username>
         <password>anonymous</password>
@@ -1513,13 +1588,13 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
         <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
         <template>${message.encodedData}</template>
       </properties>
-      <transformer version="3.5.0">
+      <transformer version="3.5.1">
         <elements>
           <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
             <name>PID: SSN, StateFileNumber</name>
             <sequenceNumber>0</sequenceNumber>
             <script>/////////social security number   and state file number////////////
-
+logger.debug(&quot;PID&quot;);
 tmp[&apos;PID&apos;][&apos;PID.1&apos;][&apos;PID.1.1&apos;] = &quot;1&quot;;
 if ($(&apos;SSN&apos;)){
 
@@ -1593,8 +1668,8 @@ tmp[&apos;PID&apos;][&apos;PID.3&apos;][0][&apos;PID.3.5&apos;] = &quot;SS&quot;
           <com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
             <name>DOB</name>
             <sequenceNumber>2</sequenceNumber>
-            <messageSegment>tmp[&apos;PID&apos;][0][&apos;PID.7&apos;][&apos;PID.7.1&apos;]</messageSegment>
-            <mapping>msg[&apos;hl7_export_birthccyy&apos;].toString()+msg[&apos;hl7_export_birthmm&apos;].toString()+msg[&apos;hl7_export_birthdd&apos;].toString()</mapping>
+            <messageSegment>tmp[&apos;EVN&apos;][&apos;EVN.2&apos;][&apos;EVN.2.1&apos;]</messageSegment>
+            <mapping>$(&apos;RegisteredCCYY&apos;)+  $(&apos;RegisteredMM&apos;)+  $(&apos;RegisteredDD&apos;)+&quot;20180130100000-0400&quot;</mapping>
             <defaultValue></defaultValue>
             <replacements/>
           </com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
@@ -1618,13 +1693,14 @@ tmp[&apos;PID&apos;][&apos;PID.3&apos;][0][&apos;PID.3.5&apos;] = &quot;SS&quot;
             <name>MSH Mapper</name>
             <sequenceNumber>5</sequenceNumber>
             <script>//Final output message mapper
+logger.debug(&quot;MSH Mapper&quot;);
 tmp[&apos;MSH&apos;][&apos;MSH.2&apos;]= &quot;^~\\&amp;&quot;;
 
 
 ///SENDING APPLICATION
-tmp[&apos;MSH&apos;][&apos;MSH.3&apos;][&apos;MSH.3.1&apos;] = &quot;Utah EDEN&quot;;
+tmp[&apos;MSH&apos;][&apos;MSH.3&apos;][&apos;MSH.3.1&apos;] = &quot;MI EDRS&quot;;
 
-tmp[&apos;MSH&apos;][&apos;MSH.4&apos;][&apos;MSH.4.1&apos;] = &quot;Utah Vital Records&quot;;
+tmp[&apos;MSH&apos;][&apos;MSH.4&apos;][&apos;MSH.4.1&apos;] = &quot;Mi Vital Records&quot;;
 tmp[&apos;MSH&apos;][&apos;MSH.4&apos;][&apos;MSH.4.2&apos;] = &quot;2.16.840.1.113883.3.4397&quot;;  //Utah VRs OID from HL7 OID registry
 tmp[&apos;MSH&apos;][&apos;MSH.4&apos;][&apos;MSH.4.3&apos;] = &quot;ISO&quot;;
 
@@ -1662,7 +1738,7 @@ else if ($(&apos;MasterStatus&apos;)==&quot;Amended&quot;){
 tmp[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.3&apos;]= &quot;ADT_A01&quot;;
 
 
-tmp[&apos;MSH&apos;][&apos;MSH.10&apos;][&apos;MSH.10.1&apos;] = &quot;UT_Death_&quot; + $(&apos;StateFileNumber&apos;);
+tmp[&apos;MSH&apos;][&apos;MSH.10&apos;][&apos;MSH.10.1&apos;] = &quot;MI_Death_&quot; + $(&apos;StateFileNumber&apos;);
 
 tmp[&apos;MSH&apos;][&apos;MSH.11&apos;][&apos;MSH.11.1&apos;] = &quot;T&quot;;   //Message is for testing. Change to P for Production
 
@@ -1672,10 +1748,12 @@ tmp[&apos;MSH&apos;][&apos;MSH.15&apos;][&apos;MSH.15.1&apos;] = &quot;AL&quot;;
 tmp[&apos;MSH&apos;][&apos;MSH.16&apos;][&apos;MSH.16.1&apos;] = &quot;NE&quot;;
 tmp[&apos;MSH&apos;][&apos;MSH.17&apos;][&apos;MSH.17.1&apos;] = &quot;US&quot;;
 
-tmp[&apos;MSH&apos;][&apos;MSH.21&apos;][&apos;MSH.21.1&apos;] = &quot;JDIA04_V1.0&quot;;
+tmp[&apos;MSH&apos;][&apos;MSH.21&apos;][&apos;MSH.21.1&apos;] = &quot;CCODA04_V1.0&quot;;
 
 tmp[&apos;MSH&apos;][&apos;MSH.21&apos;][&apos;MSH.21.2&apos;] = &quot;CDCPHINVS&quot;;
 
+
+logger.debug(&quot;Leave MSH Mapper&quot;);
 //Loop through causes of death and create OBX segments for causes and intervals</script>
           </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
           <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
@@ -1690,14 +1768,7 @@ var obxnum = 0;
 var obx = tmp[&apos;OBX&apos;];  //this could be tmp instead for the outgoing template
 
 
-/*
-for (var i = 0; i &lt; maxobx; i++){
-   tmp[&apos;OBX&apos;][i] = obx;
-   //copies the obx to a new repeating segment. You can now modify msg[&apos;OBX&apos;][i] directly
-}
-
-*/
-
+logger.debug(&quot;OBX&quot;);
 
 tmp[&apos;OBX&apos;][obxnum] = obx;
 
@@ -2003,15 +2074,17 @@ if ($(&apos;InjuryYN&apos;)==&quot;Y&quot;){
 obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
 tmp[&apos;OBX&apos;][obxnum] = obx;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CE&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CWE&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69444-8&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Did Injury Occur at Work&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
 
 if($(&apos;Injwork&apos;)==&quot;Y&quot;){
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = &quot;Y&quot;;	
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = &quot;YES&quot;;
 }else{
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = &quot;N&quot;;	
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = &quot;NO&quot;;
 }
 
@@ -2026,14 +2099,14 @@ obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
 
 tmp[&apos;OBX&apos;][obxnum] = obx;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;TS&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;DTM&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69445-5&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Injury Date&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
 
 
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = $(&apos;injuryDateTime&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = $(&apos;injuryDateTime&apos;);
 
 
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
@@ -2052,7 +2125,7 @@ tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
 
 
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = msg[&apos;hl7_export_injurydescription1&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = msg[&apos;hl7_export_injurydescription1&apos;].toString();
 
 
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
@@ -2065,20 +2138,23 @@ obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
 
 tmp[&apos;OBX&apos;][obxnum] = obx;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CWE&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69448-9&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Injury Associated With Transportation Event&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
 
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = msg[&apos;hl7_export_injurydescription1&apos;].toString();
+//tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = msg[&apos;hl7_export_injurydescription1&apos;].toString();
 
 
 
 
-if($(&apos;InjuryMV&apos;)==&quot;Y&quot;){                                  
+if($(&apos;InjuryMV&apos;)==&quot;Y&quot;){   
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = &quot;Y&quot;;
+	                               
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = &quot;YES&quot;;
 }else{
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = &quot;N&quot;;	
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = &quot;NO&quot;;
 }
 
@@ -2146,8 +2222,10 @@ tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Add
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = $(&apos;pod_addr&apos;);
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] = $(&apos;pod_city&apos;);
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.4&apos;] = $(&apos;pod_state&apos;);
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.6&apos;] = $(&apos;pod_county&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.4&apos;] = &quot;23&quot;;
+// tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.4&apos;] = $(&apos;pod_state&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.6&apos;] = &quot;US&quot;;
+// original-  changed by rrh tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.6&apos;] = $(&apos;pod_county&apos;);
 
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
 
@@ -2247,10 +2325,10 @@ obxnum++;
 obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
 tmp[&apos;OBX&apos;][obxnum] = obx;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;XPN&quot;;
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;397678008&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;80909-5&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Father&apos;s surname&quot;;
-tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;SCT&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = msg[&apos;hl7_export_fatherlast&apos;].toString();
 tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
 
@@ -2276,7 +2354,7 @@ tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F
             <name>Date Registered--EVN Segment</name>
             <sequenceNumber>7</sequenceNumber>
             <messageSegment>tmp[&apos;EVN&apos;][&apos;EVN.2&apos;][&apos;EVN.2.1&apos;]</messageSegment>
-            <mapping>$(&apos;RegisteredCCYY&apos;)+  $(&apos;RegisteredMM&apos;)+  $(&apos;RegisteredDD&apos;)+&quot;120000&quot;</mapping>
+            <mapping>$(&apos;RegisteredCCYY&apos;)+  $(&apos;RegisteredMM&apos;)+  $(&apos;RegisteredDD&apos;)+&quot;20180130100000-0400&quot;</mapping>
             <defaultValue></defaultValue>
             <replacements/>
           </com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
@@ -2285,6 +2363,7 @@ tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F
             <sequenceNumber>8</sequenceNumber>
             <script>/////Name fields   (XPN--extended person name///////////
 
+logger.debug(&quot;Deceased Name&quot;);
 
 tmp[&apos;PID&apos;][&apos;PID.5&apos;][&apos;PID.5.1&apos;]=$(&apos;LastName&apos;);
 tmp[&apos;PID&apos;][&apos;PID.5&apos;][&apos;PID.5.2&apos;]=$(&apos;FirstName&apos;)
@@ -2325,14 +2404,14 @@ data type XAD
 
 */
 
-
+logger.debug(&quot;PID11 address&quot;);
 
 tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.1&apos;]= msg[&apos;hl7_export_resstreetaddress1&apos;].toString();
 
 tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.3&apos;]=msg[&apos;hl7_export_rescityfips&apos;].toString();
 tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.4&apos;]=msg[&apos;hl7_export_resstatefips&apos;].toString();
-tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.5&apos;]=msg[&apos;hl7_export_reszip5&apos;].toString();
-tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.6&apos;]=msg[&apos;hl7_export_rescountryfips&apos;].toString();
+tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.5&apos;]=$(&apos;ResZip5&apos;)
+tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.6&apos;]=$(&apos;ResCountry&apos;);
 tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.8&apos;]=msg[&apos;hl7_export_resincitylimits&apos;].toString();
 tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.9&apos;]=msg[&apos;hl7_export_rescountyfips&apos;].toString();</script>
           </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
@@ -2506,104 +2585,104 @@ dWU8L2hsN19leHBvcnRfbnVyc2luZ2hvbWVuYW1lPg0KICAgIDxobDdfZXhwb3J0X3BvZF9vdGhl
 cnNwZWM+dmFsdWU8L2hsN19leHBvcnRfcG9kX290aGVyc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9u
 b25mYWNpbGl0eWxvY2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X25vbmZhY2lsaXR5bG9jYXRpb24+
 DQogICAgPGhsN19leHBvcnRfY291bnR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9jb3VudHlv
-ZmRlYXRoPg0KICAgIDxlZGVubWFzdGVyX2NpdHlvZmRlYXRoPnZhbHVlPC9lZGVubWFzdGVyX2Np
-dHlvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmZ1bGxuYW1lPnZhbHVlPC9obDdf
-ZXhwb3J0X2NlcnRpZmllcmZ1bGxuYW1lPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25j
-Y3l5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNpZ25jY3l5Pg0KICAgIDxobDdfZXhwb3J0
-X2NlcnRpZmllcnNpZ25tbT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+DQogICAg
-PGhsN19leHBvcnRfY2VydGlmaWVyc2lnbmRkPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNp
-Z25kZD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJhZGRyZXNzMT52YWx1ZTwvaGw3X2V4cG9y
-dF9jZXJ0aWZpZXJhZGRyZXNzMT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJhZGRyZXNzMj52
-YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJhZGRyZXNzMj4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0
-aWZpZXJjaXR5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcmNpdHk+DQogICAgPGhsN19leHBv
-cnRfY2VydGlmaWVyc3RhdGU+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyc3RhdGU+DQogICAg
-PGhsN19leHBvcnRfY2VydGlmaWVyY291bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJj
-b3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnppcDU+dmFsdWU8L2hsN19leHBvcnRf
-Y2VydGlmaWVyemlwNT4NCiAgICA8aGw3X2V4cG9ydF9tZV9jb250YWN0ZWQ+dmFsdWU8L2hsN19l
-eHBvcnRfbWVfY29udGFjdGVkPg0KICAgIDxobDdfZXhwb3J0X2F1dG9wc3lkb25lPnZhbHVlPC9o
-bDdfZXhwb3J0X2F1dG9wc3lkb25lPg0KICAgIDxobDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+
-dmFsdWU8L2hsN19leHBvcnRfYXV0b3BzeWF2YWlsYWJsZT4NCiAgICA8aGw3X2V4cG9ydF9sYXN0
-c2VlbmNjeXk+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5jY3l5Pg0KICAgIDxobDdfZXhwb3J0
-X2xhc3RzZWVubW0+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5tbT4NCiAgICA8aGw3X2V4cG9y
-dF9sYXN0c2VlbmRkPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuZGQ+DQogICAgPGhsN19leHBv
-cnRfZGF5c2xhc3RzZWVudG9kZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9kYXlzbGFzdHNlZW50b2Rl
-YXRoPg0KICAgIDxobDdfZXhwb3J0X2ltbWVkaWF0ZWNhdXNlPnZhbHVlPC9obDdfZXhwb3J0X2lt
-bWVkaWF0ZWNhdXNlPg0KICAgIDxobDdfZXhwb3J0X2ltbWVkaWF0ZWludGVydmFsPnZhbHVlPC9o
-bDdfZXhwb3J0X2ltbWVkaWF0ZWludGVydmFsPg0KICAgIDxpbW1lZGlhdGVpbnRlcnZhbHVuaXQ+
-dmFsdWU8L2ltbWVkaWF0ZWludGVydmFsdW5pdD4NCiAgICA8aGw3X2V4cG9ydF9hZGRpdGlvbmFs
-Y2F1c2UxPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTE+DQogICAgPGhsN19leHBv
-cnRfYWRkaXRpb25hbGludGVydmFsMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsaW50ZXJ2
-YWwxPg0KICAgIDxhZGRpdGlvbmFsaW50ZXJ2YWx1bml0MT52YWx1ZTwvYWRkaXRpb25hbGludGVy
-dmFsdW5pdDE+DQogICAgPGhsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj52YWx1ZTwvaGw3X2V4
-cG9ydF9hZGRpdGlvbmFsY2F1c2UyPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZh
-bDI+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGludGVydmFsMj4NCiAgICA8YWRkaXRpb25h
-bGludGVydmFsdW5pdDI+dmFsdWU8L2FkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPg0KICAgIDxobDdf
-ZXhwb3J0X3VuZGVybHlpbmdjYXVzZT52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+
-DQogICAgPGhsN19leHBvcnRfdW5kZXJseWluZ2ludGVydmFsPnZhbHVlPC9obDdfZXhwb3J0X3Vu
-ZGVybHlpbmdpbnRlcnZhbD4NCiAgICA8dW5kZXJseWluZ2ludGVydmFsdW5pdD52YWx1ZTwvdW5k
-ZXJseWluZ2ludGVydmFsdW5pdD4NCiAgICA8aGw3X2V4cG9ydF9vdGhlcmNvbmRpdGlvbnM+dmFs
-dWU8L2hsN19leHBvcnRfb3RoZXJjb25kaXRpb25zPg0KICAgIDxobDdfZXhwb3J0X21hbm5lcm9m
-ZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfbWFubmVyb2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF90
-b2JhY2NvPnZhbHVlPC9obDdfZXhwb3J0X3RvYmFjY28+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
-PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljY3l5PnZh
-bHVlPC9obDdfZXhwb3J0X2luanVyeWNjeXk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5bW0+dmFs
-dWU8L2hsN19leHBvcnRfaW5qdXJ5bW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGQ+dmFsdWU8
-L2hsN19leHBvcnRfaW5qdXJ5ZGQ+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5dGltZWhoPnZhbHVl
-PC9obDdfZXhwb3J0X2luanVyeXRpbWVoaD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1lbW0+
-dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGltZW1tPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXN0
-cmVldD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlzdHJlZXQ+DQogICAgPGhsN19leHBvcnRfaW5q
-dXJ5Y2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnljaXR5Pg0KICAgIDxobDdfZXhwb3J0X2lu
-anVyeWNvdW50eT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnljb3VudHk+DQogICAgPGhsN19leHBv
-cnRfaW5qdXJ5c3RhdGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5c3RhdGU+DQogICAgPGhsN19l
-eHBvcnRfaW5qdXJ5Y291bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5Pg0KICAg
-IDxobDdfZXhwb3J0X2luanVyeXBsYWNlPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeXBsYWNlPg0K
-ICAgIDxobDdfZXhwb3J0X2luanVyeWF0d29yaz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlhdHdv
-cms+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPnZhbHVlPC9obDdfZXhwb3J0
-X2luanVyeW1vdG9ydmVoaWNsZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltb3RvcnNwZWM+dmFs
-dWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3JzcGVjPg0KICAgIDxobDdfZXhwb3J0X2luanVyeWRl
-c2NyaXB0aW9uMT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlwdGlvbjE+DQogICAgPGhs
-N19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWRlc2Ny
-aXB0aW9uMj4NCiAgICA8aGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+dmFsdWU8L2hsN19leHBvcnRf
-bWFzdGVyc3RhdHVzPg0KICAgIDxobDdfZXhwb3J0X2Ryb3BwYXBlcmRhdGU+dmFsdWU8L2hsN19l
-eHBvcnRfZHJvcHBhcGVyZGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9yZWdpc3RlcmVkY2N5eT52YWx1
-ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9yZWdpc3RlcmVk
-bW0+dmFsdWU8L2hsN19leHBvcnRfcmVnaXN0ZXJlZG1tPg0KICAgIDxobDdfZXhwb3J0X3JlZ2lz
-dGVyZWRkZD52YWx1ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkZGQ+DQogICAgPGhsN19leHBvcnRf
-bWFyaXRhbHN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXJpdGFsc3RhdHVzPg0KICAgIDxobDdf
-ZXhwb3J0X2hpc3Bhbmljb3JpZ2luPnZhbHVlPC9obDdfZXhwb3J0X2hpc3Bhbmljb3JpZ2luPg0K
-ICAgIDxobDdfZXhwb3J0X2FnZWlueWVhcnM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW55ZWFycz4N
-CiAgICA8aGw3X2V4cG9ydF9hZ2Vpbm1vbnRocz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vpbm1vbnRo
-cz4NCiAgICA8aGw3X2V4cG9ydF9hZ2VpbmRheXM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW5kYXlz
-Pg0KICAgIDxobDdfZXhwb3J0X2FnZWluaG91cnM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW5ob3Vy
-cz4NCiAgICA8aGw3X2V4cG9ydF9hZ2Vpbm1pbnV0ZXM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW5t
-aW51dGVzPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoc3RhdGVmaWxlbnVtYmVyPnZhbHVlPC9obDdf
-ZXhwb3J0X2JpcnRoc3RhdGVmaWxlbnVtYmVyPg0KICAgIDxobDdfZXhwb3J0X2ZhdGhlcmxhc3Q+
-dmFsdWU8L2hsN19leHBvcnRfZmF0aGVybGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kaXNwb3NpdGlv
-bmJ1cmlhbD52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbmJ1cmlhbD4NCiAgICA8aGw3X2V4
-cG9ydF9kaXNwb3NpdGlvbmNyZW1hdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbmNy
-ZW1hdGlvbj4NCiAgICA8aGw3X2V4cG9ydF9kaXNwb3NpdGlvbmVudG9tYm1lbnQ+dmFsdWU8L2hs
-N19leHBvcnRfZGlzcG9zaXRpb25lbnRvbWJtZW50Pg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0
-aW9ucmVtb3ZhbD52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbnJlbW92YWw+DQogICAgPGhs
-N19leHBvcnRfZGlzcG9zaXRpb25vdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbm90
-aGVyPg0KICAgIDxobDdfZXhwb3J0X21lY2FzZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9ydF9tZWNh
-c2VudW1iZXI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eWZpcHM+dmFsdWU8L2hsN19leHBvcnRf
-cmVzY2l0eWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzY291bnR5Zmlwcz52YWx1ZTwvaGw3X2V4
-cG9ydF9yZXNjb3VudHlmaXBzPg0KICAgIDxobDdfZXhwb3J0X3Jlc3N0YXRlZmlwcz52YWx1ZTwv
-aGw3X2V4cG9ydF9yZXNzdGF0ZWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeWZpcHM+
-dmFsdWU8L2hsN19leHBvcnRfcmVzY291bnRyeWZpcHM+DQogICAgPGhsN19leHBvcnRfYmlydGhz
-dGF0ZWZpcHM+dmFsdWU8L2hsN19leHBvcnRfYmlydGhzdGF0ZWZpcHM+DQogICAgPGhsN19leHBv
-cnRfYmlydGhjb3VudHJ5Zmlwcz52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnlmaXBzPg0K
-PC9yZXN1bHQ+DQo=</inboundTemplate>
-        <outboundTemplate encoding="base64">TVNIfF5+XCZ8fHx8fHx8fHx8fHx8fHx8fHx8ClNGVHxVRE9IfDEuMXxFREVOfDExMTExfHwyMDE0
-MTIyMgpFVk58fHx8ClBJRHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fFkKUFYxfHxOCk9C
-WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
+ZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X19jaXR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9f
+Y2l0eW9mZGVhdGg+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+dmFsdWU8L2hs
+N19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyc2ln
+bmNjeXk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyc2lnbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfY2VydGlmaWVyc2lnbm1tPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNpZ25tbT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduZGQ+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbmRkPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MxPnZhbHVlPC9obDdfZXhw
+b3J0X2NlcnRpZmllcmFkZHJlc3MxPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3My
+PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MyPg0KICAgIDxobDdfZXhwb3J0X2Nl
+cnRpZmllcmNpdHk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyY2l0eT4NCiAgICA8aGw3X2V4
+cG9ydF9jZXJ0aWZpZXJzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzdGF0ZT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJjb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cmNvdW50cnk+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyemlwNT52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJ6aXA1Pg0KICAgIDxobDdfZXhwb3J0X21lX2NvbnRhY3RlZD52YWx1ZTwvaGw3
+X2V4cG9ydF9tZV9jb250YWN0ZWQ+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWRvbmU+dmFsdWU8
+L2hsN19leHBvcnRfYXV0b3BzeWRvbmU+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWF2YWlsYWJs
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5YXZhaWxhYmxlPg0KICAgIDxobDdfZXhwb3J0X2xh
+c3RzZWVuY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfbGFzdHNlZW5tbT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2Vlbm1tPg0KICAgIDxobDdfZXhw
+b3J0X2xhc3RzZWVuZGQ+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5kZD4NCiAgICA8aGw3X2V4
+cG9ydF9kYXlzbGFzdHNlZW50b2RlYXRoPnZhbHVlPC9obDdfZXhwb3J0X2RheXNsYXN0c2VlbnRv
+ZGVhdGg+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlY2F1c2U+dmFsdWU8L2hsN19leHBvcnRf
+aW1tZWRpYXRlY2F1c2U+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+dmFsdWU8
+L2hsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+DQogICAgPGltbWVkaWF0ZWludGVydmFsdW5p
+dD52YWx1ZTwvaW1tZWRpYXRlaW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9u
+YWxjYXVzZTE+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMT4NCiAgICA8aGw3X2V4
+cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwxPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRl
+cnZhbDE+DQogICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQxPnZhbHVlPC9hZGRpdGlvbmFsaW50
+ZXJ2YWx1bml0MT4NCiAgICA8aGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UyPnZhbHVlPC9obDdf
+ZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+DQogICAgPGhsN19leHBvcnRfYWRkaXRpb25hbGludGVy
+dmFsMj52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwyPg0KICAgIDxhZGRpdGlv
+bmFsaW50ZXJ2YWx1bml0Mj52YWx1ZTwvYWRkaXRpb25hbGludGVydmFsdW5pdDI+DQogICAgPGhs
+N19leHBvcnRfdW5kZXJseWluZ2NhdXNlPnZhbHVlPC9obDdfZXhwb3J0X3VuZGVybHlpbmdjYXVz
+ZT4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+dmFsdWU8L2hsN19leHBvcnRf
+dW5kZXJseWluZ2ludGVydmFsPg0KICAgIDx1bmRlcmx5aW5naW50ZXJ2YWx1bml0PnZhbHVlPC91
+bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52
+YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNvbmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVy
+b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0
+X3RvYmFjY28+dmFsdWU8L2hsN19leHBvcnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1
+cnk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+
+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltbT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1
+ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFs
+dWU8L2hsN19leHBvcnRfaW5qdXJ5dGltZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVt
+bT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnljaXR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRf
+aW5qdXJ5Y291bnR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4
+cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3
+X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQog
+ICAgPGhsN19leHBvcnRfaW5qdXJ5cGxhY2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+
+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0
+d29yaz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBv
+cnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0KICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltb3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8
+aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlwdGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVz
+Y3JpcHRpb24yPg0KICAgIDxobDdfZXhwb3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9y
+dF9tYXN0ZXJzdGF0dXM+DQogICAgPGhsN19leHBvcnRfZHJvcHBhcGVyZGF0ZT52YWx1ZTwvaGw3
+X2V4cG9ydF9kcm9wcGFwZXJkYXRlPg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5PnZh
+bHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5Pg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVy
+ZWRtbT52YWx1ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkbW0+DQogICAgPGhsN19leHBvcnRfcmVn
+aXN0ZXJlZGRkPnZhbHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRkZD4NCiAgICA8aGw3X2V4cG9y
+dF9tYXJpdGFsc3RhdHVzPnZhbHVlPC9obDdfZXhwb3J0X21hcml0YWxzdGF0dXM+DQogICAgPGhs
+N19leHBvcnRfaGlzcGFuaWNvcmlnaW4+dmFsdWU8L2hsN19leHBvcnRfaGlzcGFuaWNvcmlnaW4+
+DQogICAgPGhsN19leHBvcnRfYWdlaW55ZWFycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbnllYXJz
+Pg0KICAgIDxobDdfZXhwb3J0X2FnZWlubW9udGhzPnZhbHVlPC9obDdfZXhwb3J0X2FnZWlubW9u
+dGhzPg0KICAgIDxobDdfZXhwb3J0X2FnZWluZGF5cz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbmRh
+eXM+DQogICAgPGhsN19leHBvcnRfYWdlaW5ob3Vycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vpbmhv
+dXJzPg0KICAgIDxobDdfZXhwb3J0X2FnZWlubWludXRlcz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vp
+bm1pbnV0ZXM+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+dmFsdWU8L2hs
+N19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfZmF0aGVybGFz
+dD52YWx1ZTwvaGw3X2V4cG9ydF9mYXRoZXJsYXN0Pg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0
+aW9uYnVyaWFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9uYnVyaWFsPg0KICAgIDxobDdf
+ZXhwb3J0X2Rpc3Bvc2l0aW9uY3JlbWF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+Y3JlbWF0aW9uPg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0aW9uZW50b21ibWVudD52YWx1ZTwv
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbmVudG9tYm1lbnQ+DQogICAgPGhsN19leHBvcnRfZGlzcG9z
+aXRpb25yZW1vdmFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9ucmVtb3ZhbD4NCiAgICA8
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbm90aGVyPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+b3RoZXI+DQogICAgPGhsN19leHBvcnRfbWVjYXNlbnVtYmVyPnZhbHVlPC9obDdfZXhwb3J0X21l
+Y2FzZW51bWJlcj4NCiAgICA8aGw3X2V4cG9ydF9yZXNjaXR5Zmlwcz52YWx1ZTwvaGw3X2V4cG9y
+dF9yZXNjaXR5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHlmaXBzPnZhbHVlPC9obDdf
+ZXhwb3J0X3Jlc2NvdW50eWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGVmaXBzPnZhbHVl
+PC9obDdfZXhwb3J0X3Jlc3N0YXRlZmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlw
+cz52YWx1ZTwvaGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aHN0YXRlZmlwcz52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlZmlwcz4NCiAgICA8aGw3X2V4
+cG9ydF9iaXJ0aGNvdW50cnlmaXBzPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY291bnRyeWZpcHM+
+DQo8L3Jlc3VsdD4NCg==</inboundTemplate>
+        <outboundTemplate encoding="base64">TVNIfF5+XCZ8fHx8fHx8fHx8fHx8fHx8fHx8ClNGVHxNREhIU3wxLjF8RURFTnwxMTExMXx8MjAx
+NDEyMjIKRVZOfHx8fApQSUR8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHxZClBWMXx8TgpP
+Qlh8fHx8fHx8fHx8fApQREF8fHx8fHx8fHx8fHwKCg==</outboundTemplate>
         <inboundDataType>XML</inboundDataType>
         <outboundDataType>HL7V2</outboundDataType>
-        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.0">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.0">
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
             <stripNamespaces>false</stripNamespaces>
           </serializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.0">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
             <splitType>Element_Name</splitType>
             <elementName></elementName>
             <level>1</level>
@@ -2611,8 +2690,8 @@ WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
             <batchScript></batchScript>
           </batchProperties>
         </inboundProperties>
-        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.0">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.0">
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
             <handleRepetitions>false</handleRepetitions>
             <handleSubcomponents>true</handleSubcomponents>
             <useStrictParser>false</useStrictParser>
@@ -2621,16 +2700,16 @@ WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
             <segmentDelimiter>\r</segmentDelimiter>
             <convertLineBreaks>true</convertLineBreaks>
           </serializationProperties>
-          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.0">
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
             <useStrictParser>false</useStrictParser>
             <useStrictValidation>false</useStrictValidation>
             <segmentDelimiter>\r</segmentDelimiter>
           </deserializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.0">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
             <splitType>MSH_Segment</splitType>
             <batchScript></batchScript>
           </batchProperties>
-          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.0">
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
             <segmentDelimiter>\r</segmentDelimiter>
             <successfulACKCode>AA</successfulACKCode>
             <successfulACKMessage></successfulACKMessage>
@@ -2641,7 +2720,7 @@ WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
             <msh15ACKAccept>false</msh15ACKAccept>
             <dateFormat>yyyyMMddHHmmss</dateFormat>
           </responseGenerationProperties>
-          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.0">
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
             <successfulACKCode>AA,CA</successfulACKCode>
             <errorACKCode>AE,CE</errorACKCode>
             <rejectedACKCode>AR,CR</rejectedACKCode>
@@ -2651,17 +2730,17 @@ WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
           </responseValidationProperties>
         </outboundProperties>
       </transformer>
-      <responseTransformer version="3.5.0">
+      <responseTransformer version="3.5.1">
         <elements/>
         <inboundTemplate encoding="base64"></inboundTemplate>
         <outboundTemplate encoding="base64"></outboundTemplate>
         <inboundDataType>XML</inboundDataType>
         <outboundDataType>HL7V2</outboundDataType>
-        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.0">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.0">
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
             <stripNamespaces>false</stripNamespaces>
           </serializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.0">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
             <splitType>Element_Name</splitType>
             <elementName></elementName>
             <level>1</level>
@@ -2669,8 +2748,8 @@ WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
             <batchScript></batchScript>
           </batchProperties>
         </inboundProperties>
-        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.0">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.0">
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
             <handleRepetitions>true</handleRepetitions>
             <handleSubcomponents>true</handleSubcomponents>
             <useStrictParser>false</useStrictParser>
@@ -2679,16 +2758,16 @@ WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
             <segmentDelimiter>\r</segmentDelimiter>
             <convertLineBreaks>true</convertLineBreaks>
           </serializationProperties>
-          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.0">
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
             <useStrictParser>false</useStrictParser>
             <useStrictValidation>false</useStrictValidation>
             <segmentDelimiter>\r</segmentDelimiter>
           </deserializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.0">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
             <splitType>MSH_Segment</splitType>
             <batchScript></batchScript>
           </batchProperties>
-          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.0">
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
             <segmentDelimiter>\r</segmentDelimiter>
             <successfulACKCode>AA</successfulACKCode>
             <successfulACKMessage></successfulACKMessage>
@@ -2699,7 +2778,7 @@ WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
             <msh15ACKAccept>false</msh15ACKAccept>
             <dateFormat>yyyyMMddHHmmss</dateFormat>
           </responseGenerationProperties>
-          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.0">
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
             <successfulACKCode>AA,CA</successfulACKCode>
             <errorACKCode>AE,CE</errorACKCode>
             <rejectedACKCode>AR,CR</rejectedACKCode>
@@ -2709,7 +2788,7 @@ WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
           </responseValidationProperties>
         </outboundProperties>
       </responseTransformer>
-      <filter version="3.5.0">
+      <filter version="3.5.1">
         <elements/>
       </filter>
       <transportName>File Writer</transportName>
@@ -2717,12 +2796,12 @@ WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
       <enabled>true</enabled>
       <waitForPrevious>true</waitForPrevious>
     </connector>
-    <connector version="3.5.0">
+    <connector version="3.5.1">
       <metaDataId>3</metaDataId>
       <name>Genesis</name>
-      <properties class="com.mirth.connect.connectors.tcp.TcpDispatcherProperties" version="3.5.0">
+      <properties class="com.mirth.connect.connectors.tcp.TcpDispatcherProperties" version="3.5.1">
         <pluginProperties/>
-        <destinationConnectorProperties version="3.5.0">
+        <destinationConnectorProperties version="3.5.1">
           <queueEnabled>false</queueEnabled>
           <sendFirst>false</sendFirst>
           <retryIntervalMillis>10000</retryIntervalMillis>
@@ -2766,7 +2845,7 @@ WHx8fHx8fHx8fHx8ClBEQXx8fHx8fHx8fHx8fAoK</outboundTemplate>
         <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
         <template>${message.encodedData}</template>
       </properties>
-      <transformer version="3.5.0">
+      <transformer version="3.5.1">
         <elements/>
         <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
 cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
@@ -2831,101 +2910,101 @@ dWU8L2hsN19leHBvcnRfbnVyc2luZ2hvbWVuYW1lPg0KICAgIDxobDdfZXhwb3J0X3BvZF9vdGhl
 cnNwZWM+dmFsdWU8L2hsN19leHBvcnRfcG9kX290aGVyc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9u
 b25mYWNpbGl0eWxvY2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X25vbmZhY2lsaXR5bG9jYXRpb24+
 DQogICAgPGhsN19leHBvcnRfY291bnR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9jb3VudHlv
-ZmRlYXRoPg0KICAgIDxlZGVubWFzdGVyX2NpdHlvZmRlYXRoPnZhbHVlPC9lZGVubWFzdGVyX2Np
-dHlvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmZ1bGxuYW1lPnZhbHVlPC9obDdf
-ZXhwb3J0X2NlcnRpZmllcmZ1bGxuYW1lPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25j
-Y3l5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNpZ25jY3l5Pg0KICAgIDxobDdfZXhwb3J0
-X2NlcnRpZmllcnNpZ25tbT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+DQogICAg
-PGhsN19leHBvcnRfY2VydGlmaWVyc2lnbmRkPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNp
-Z25kZD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJhZGRyZXNzMT52YWx1ZTwvaGw3X2V4cG9y
-dF9jZXJ0aWZpZXJhZGRyZXNzMT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJhZGRyZXNzMj52
-YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJhZGRyZXNzMj4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0
-aWZpZXJjaXR5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcmNpdHk+DQogICAgPGhsN19leHBv
-cnRfY2VydGlmaWVyc3RhdGU+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyc3RhdGU+DQogICAg
-PGhsN19leHBvcnRfY2VydGlmaWVyY291bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJj
-b3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnppcDU+dmFsdWU8L2hsN19leHBvcnRf
-Y2VydGlmaWVyemlwNT4NCiAgICA8aGw3X2V4cG9ydF9tZV9jb250YWN0ZWQ+dmFsdWU8L2hsN19l
-eHBvcnRfbWVfY29udGFjdGVkPg0KICAgIDxobDdfZXhwb3J0X2F1dG9wc3lkb25lPnZhbHVlPC9o
-bDdfZXhwb3J0X2F1dG9wc3lkb25lPg0KICAgIDxobDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+
-dmFsdWU8L2hsN19leHBvcnRfYXV0b3BzeWF2YWlsYWJsZT4NCiAgICA8aGw3X2V4cG9ydF9sYXN0
-c2VlbmNjeXk+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5jY3l5Pg0KICAgIDxobDdfZXhwb3J0
-X2xhc3RzZWVubW0+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5tbT4NCiAgICA8aGw3X2V4cG9y
-dF9sYXN0c2VlbmRkPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuZGQ+DQogICAgPGhsN19leHBv
-cnRfZGF5c2xhc3RzZWVudG9kZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9kYXlzbGFzdHNlZW50b2Rl
-YXRoPg0KICAgIDxobDdfZXhwb3J0X2ltbWVkaWF0ZWNhdXNlPnZhbHVlPC9obDdfZXhwb3J0X2lt
-bWVkaWF0ZWNhdXNlPg0KICAgIDxobDdfZXhwb3J0X2ltbWVkaWF0ZWludGVydmFsPnZhbHVlPC9o
-bDdfZXhwb3J0X2ltbWVkaWF0ZWludGVydmFsPg0KICAgIDxpbW1lZGlhdGVpbnRlcnZhbHVuaXQ+
-dmFsdWU8L2ltbWVkaWF0ZWludGVydmFsdW5pdD4NCiAgICA8aGw3X2V4cG9ydF9hZGRpdGlvbmFs
-Y2F1c2UxPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTE+DQogICAgPGhsN19leHBv
-cnRfYWRkaXRpb25hbGludGVydmFsMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsaW50ZXJ2
-YWwxPg0KICAgIDxhZGRpdGlvbmFsaW50ZXJ2YWx1bml0MT52YWx1ZTwvYWRkaXRpb25hbGludGVy
-dmFsdW5pdDE+DQogICAgPGhsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj52YWx1ZTwvaGw3X2V4
-cG9ydF9hZGRpdGlvbmFsY2F1c2UyPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZh
-bDI+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGludGVydmFsMj4NCiAgICA8YWRkaXRpb25h
-bGludGVydmFsdW5pdDI+dmFsdWU8L2FkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPg0KICAgIDxobDdf
-ZXhwb3J0X3VuZGVybHlpbmdjYXVzZT52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+
-DQogICAgPGhsN19leHBvcnRfdW5kZXJseWluZ2ludGVydmFsPnZhbHVlPC9obDdfZXhwb3J0X3Vu
-ZGVybHlpbmdpbnRlcnZhbD4NCiAgICA8dW5kZXJseWluZ2ludGVydmFsdW5pdD52YWx1ZTwvdW5k
-ZXJseWluZ2ludGVydmFsdW5pdD4NCiAgICA8aGw3X2V4cG9ydF9vdGhlcmNvbmRpdGlvbnM+dmFs
-dWU8L2hsN19leHBvcnRfb3RoZXJjb25kaXRpb25zPg0KICAgIDxobDdfZXhwb3J0X21hbm5lcm9m
-ZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfbWFubmVyb2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF90
-b2JhY2NvPnZhbHVlPC9obDdfZXhwb3J0X3RvYmFjY28+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
-PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljY3l5PnZh
-bHVlPC9obDdfZXhwb3J0X2luanVyeWNjeXk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5bW0+dmFs
-dWU8L2hsN19leHBvcnRfaW5qdXJ5bW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGQ+dmFsdWU8
-L2hsN19leHBvcnRfaW5qdXJ5ZGQ+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5dGltZWhoPnZhbHVl
-PC9obDdfZXhwb3J0X2luanVyeXRpbWVoaD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1lbW0+
-dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGltZW1tPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXN0
-cmVldD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlzdHJlZXQ+DQogICAgPGhsN19leHBvcnRfaW5q
-dXJ5Y2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnljaXR5Pg0KICAgIDxobDdfZXhwb3J0X2lu
-anVyeWNvdW50eT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnljb3VudHk+DQogICAgPGhsN19leHBv
-cnRfaW5qdXJ5c3RhdGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5c3RhdGU+DQogICAgPGhsN19l
-eHBvcnRfaW5qdXJ5Y291bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5Pg0KICAg
-IDxobDdfZXhwb3J0X2luanVyeXBsYWNlPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeXBsYWNlPg0K
-ICAgIDxobDdfZXhwb3J0X2luanVyeWF0d29yaz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlhdHdv
-cms+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPnZhbHVlPC9obDdfZXhwb3J0
-X2luanVyeW1vdG9ydmVoaWNsZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltb3RvcnNwZWM+dmFs
-dWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3JzcGVjPg0KICAgIDxobDdfZXhwb3J0X2luanVyeWRl
-c2NyaXB0aW9uMT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlwdGlvbjE+DQogICAgPGhs
-N19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWRlc2Ny
-aXB0aW9uMj4NCiAgICA8aGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+dmFsdWU8L2hsN19leHBvcnRf
-bWFzdGVyc3RhdHVzPg0KICAgIDxobDdfZXhwb3J0X2Ryb3BwYXBlcmRhdGU+dmFsdWU8L2hsN19l
-eHBvcnRfZHJvcHBhcGVyZGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9yZWdpc3RlcmVkY2N5eT52YWx1
-ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9yZWdpc3RlcmVk
-bW0+dmFsdWU8L2hsN19leHBvcnRfcmVnaXN0ZXJlZG1tPg0KICAgIDxobDdfZXhwb3J0X3JlZ2lz
-dGVyZWRkZD52YWx1ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkZGQ+DQogICAgPGhsN19leHBvcnRf
-bWFyaXRhbHN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXJpdGFsc3RhdHVzPg0KICAgIDxobDdf
-ZXhwb3J0X2hpc3Bhbmljb3JpZ2luPnZhbHVlPC9obDdfZXhwb3J0X2hpc3Bhbmljb3JpZ2luPg0K
-ICAgIDxobDdfZXhwb3J0X2FnZWlueWVhcnM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW55ZWFycz4N
-CiAgICA8aGw3X2V4cG9ydF9hZ2Vpbm1vbnRocz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vpbm1vbnRo
-cz4NCiAgICA8aGw3X2V4cG9ydF9hZ2VpbmRheXM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW5kYXlz
-Pg0KICAgIDxobDdfZXhwb3J0X2FnZWluaG91cnM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW5ob3Vy
-cz4NCiAgICA8aGw3X2V4cG9ydF9hZ2Vpbm1pbnV0ZXM+dmFsdWU8L2hsN19leHBvcnRfYWdlaW5t
-aW51dGVzPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoc3RhdGVmaWxlbnVtYmVyPnZhbHVlPC9obDdf
-ZXhwb3J0X2JpcnRoc3RhdGVmaWxlbnVtYmVyPg0KICAgIDxobDdfZXhwb3J0X2ZhdGhlcmxhc3Q+
-dmFsdWU8L2hsN19leHBvcnRfZmF0aGVybGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kaXNwb3NpdGlv
-bmJ1cmlhbD52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbmJ1cmlhbD4NCiAgICA8aGw3X2V4
-cG9ydF9kaXNwb3NpdGlvbmNyZW1hdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbmNy
-ZW1hdGlvbj4NCiAgICA8aGw3X2V4cG9ydF9kaXNwb3NpdGlvbmVudG9tYm1lbnQ+dmFsdWU8L2hs
-N19leHBvcnRfZGlzcG9zaXRpb25lbnRvbWJtZW50Pg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0
-aW9ucmVtb3ZhbD52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbnJlbW92YWw+DQogICAgPGhs
-N19leHBvcnRfZGlzcG9zaXRpb25vdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9kaXNwb3NpdGlvbm90
-aGVyPg0KICAgIDxobDdfZXhwb3J0X21lY2FzZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9ydF9tZWNh
-c2VudW1iZXI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eWZpcHM+dmFsdWU8L2hsN19leHBvcnRf
-cmVzY2l0eWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzY291bnR5Zmlwcz52YWx1ZTwvaGw3X2V4
-cG9ydF9yZXNjb3VudHlmaXBzPg0KICAgIDxobDdfZXhwb3J0X3Jlc3N0YXRlZmlwcz52YWx1ZTwv
-aGw3X2V4cG9ydF9yZXNzdGF0ZWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeWZpcHM+
-dmFsdWU8L2hsN19leHBvcnRfcmVzY291bnRyeWZpcHM+DQogICAgPGhsN19leHBvcnRfYmlydGhz
-dGF0ZWZpcHM+dmFsdWU8L2hsN19leHBvcnRfYmlydGhzdGF0ZWZpcHM+DQogICAgPGhsN19leHBv
-cnRfYmlydGhjb3VudHJ5Zmlwcz52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnlmaXBzPg0K
-PC9yZXN1bHQ+DQo=</inboundTemplate>
+ZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X19jaXR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9f
+Y2l0eW9mZGVhdGg+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+dmFsdWU8L2hs
+N19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyc2ln
+bmNjeXk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyc2lnbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfY2VydGlmaWVyc2lnbm1tPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNpZ25tbT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduZGQ+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbmRkPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MxPnZhbHVlPC9obDdfZXhw
+b3J0X2NlcnRpZmllcmFkZHJlc3MxPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3My
+PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MyPg0KICAgIDxobDdfZXhwb3J0X2Nl
+cnRpZmllcmNpdHk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyY2l0eT4NCiAgICA8aGw3X2V4
+cG9ydF9jZXJ0aWZpZXJzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzdGF0ZT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJjb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cmNvdW50cnk+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyemlwNT52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJ6aXA1Pg0KICAgIDxobDdfZXhwb3J0X21lX2NvbnRhY3RlZD52YWx1ZTwvaGw3
+X2V4cG9ydF9tZV9jb250YWN0ZWQ+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWRvbmU+dmFsdWU8
+L2hsN19leHBvcnRfYXV0b3BzeWRvbmU+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWF2YWlsYWJs
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5YXZhaWxhYmxlPg0KICAgIDxobDdfZXhwb3J0X2xh
+c3RzZWVuY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfbGFzdHNlZW5tbT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2Vlbm1tPg0KICAgIDxobDdfZXhw
+b3J0X2xhc3RzZWVuZGQ+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5kZD4NCiAgICA8aGw3X2V4
+cG9ydF9kYXlzbGFzdHNlZW50b2RlYXRoPnZhbHVlPC9obDdfZXhwb3J0X2RheXNsYXN0c2VlbnRv
+ZGVhdGg+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlY2F1c2U+dmFsdWU8L2hsN19leHBvcnRf
+aW1tZWRpYXRlY2F1c2U+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+dmFsdWU8
+L2hsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+DQogICAgPGltbWVkaWF0ZWludGVydmFsdW5p
+dD52YWx1ZTwvaW1tZWRpYXRlaW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9u
+YWxjYXVzZTE+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMT4NCiAgICA8aGw3X2V4
+cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwxPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRl
+cnZhbDE+DQogICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQxPnZhbHVlPC9hZGRpdGlvbmFsaW50
+ZXJ2YWx1bml0MT4NCiAgICA8aGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UyPnZhbHVlPC9obDdf
+ZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+DQogICAgPGhsN19leHBvcnRfYWRkaXRpb25hbGludGVy
+dmFsMj52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwyPg0KICAgIDxhZGRpdGlv
+bmFsaW50ZXJ2YWx1bml0Mj52YWx1ZTwvYWRkaXRpb25hbGludGVydmFsdW5pdDI+DQogICAgPGhs
+N19leHBvcnRfdW5kZXJseWluZ2NhdXNlPnZhbHVlPC9obDdfZXhwb3J0X3VuZGVybHlpbmdjYXVz
+ZT4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+dmFsdWU8L2hsN19leHBvcnRf
+dW5kZXJseWluZ2ludGVydmFsPg0KICAgIDx1bmRlcmx5aW5naW50ZXJ2YWx1bml0PnZhbHVlPC91
+bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52
+YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNvbmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVy
+b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0
+X3RvYmFjY28+dmFsdWU8L2hsN19leHBvcnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1
+cnk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+
+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltbT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1
+ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFs
+dWU8L2hsN19leHBvcnRfaW5qdXJ5dGltZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVt
+bT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnljaXR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRf
+aW5qdXJ5Y291bnR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4
+cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3
+X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQog
+ICAgPGhsN19leHBvcnRfaW5qdXJ5cGxhY2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+
+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0
+d29yaz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBv
+cnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0KICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltb3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8
+aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlwdGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVz
+Y3JpcHRpb24yPg0KICAgIDxobDdfZXhwb3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9y
+dF9tYXN0ZXJzdGF0dXM+DQogICAgPGhsN19leHBvcnRfZHJvcHBhcGVyZGF0ZT52YWx1ZTwvaGw3
+X2V4cG9ydF9kcm9wcGFwZXJkYXRlPg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5PnZh
+bHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5Pg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVy
+ZWRtbT52YWx1ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkbW0+DQogICAgPGhsN19leHBvcnRfcmVn
+aXN0ZXJlZGRkPnZhbHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRkZD4NCiAgICA8aGw3X2V4cG9y
+dF9tYXJpdGFsc3RhdHVzPnZhbHVlPC9obDdfZXhwb3J0X21hcml0YWxzdGF0dXM+DQogICAgPGhs
+N19leHBvcnRfaGlzcGFuaWNvcmlnaW4+dmFsdWU8L2hsN19leHBvcnRfaGlzcGFuaWNvcmlnaW4+
+DQogICAgPGhsN19leHBvcnRfYWdlaW55ZWFycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbnllYXJz
+Pg0KICAgIDxobDdfZXhwb3J0X2FnZWlubW9udGhzPnZhbHVlPC9obDdfZXhwb3J0X2FnZWlubW9u
+dGhzPg0KICAgIDxobDdfZXhwb3J0X2FnZWluZGF5cz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbmRh
+eXM+DQogICAgPGhsN19leHBvcnRfYWdlaW5ob3Vycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vpbmhv
+dXJzPg0KICAgIDxobDdfZXhwb3J0X2FnZWlubWludXRlcz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vp
+bm1pbnV0ZXM+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+dmFsdWU8L2hs
+N19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfZmF0aGVybGFz
+dD52YWx1ZTwvaGw3X2V4cG9ydF9mYXRoZXJsYXN0Pg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0
+aW9uYnVyaWFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9uYnVyaWFsPg0KICAgIDxobDdf
+ZXhwb3J0X2Rpc3Bvc2l0aW9uY3JlbWF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+Y3JlbWF0aW9uPg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0aW9uZW50b21ibWVudD52YWx1ZTwv
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbmVudG9tYm1lbnQ+DQogICAgPGhsN19leHBvcnRfZGlzcG9z
+aXRpb25yZW1vdmFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9ucmVtb3ZhbD4NCiAgICA8
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbm90aGVyPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+b3RoZXI+DQogICAgPGhsN19leHBvcnRfbWVjYXNlbnVtYmVyPnZhbHVlPC9obDdfZXhwb3J0X21l
+Y2FzZW51bWJlcj4NCiAgICA8aGw3X2V4cG9ydF9yZXNjaXR5Zmlwcz52YWx1ZTwvaGw3X2V4cG9y
+dF9yZXNjaXR5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHlmaXBzPnZhbHVlPC9obDdf
+ZXhwb3J0X3Jlc2NvdW50eWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGVmaXBzPnZhbHVl
+PC9obDdfZXhwb3J0X3Jlc3N0YXRlZmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlw
+cz52YWx1ZTwvaGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aHN0YXRlZmlwcz52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlZmlwcz4NCiAgICA8aGw3X2V4
+cG9ydF9iaXJ0aGNvdW50cnlmaXBzPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY291bnRyeWZpcHM+
+DQo8L3Jlc3VsdD4NCg==</inboundTemplate>
         <inboundDataType>XML</inboundDataType>
         <outboundDataType>HL7V2</outboundDataType>
-        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.0">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.0">
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
             <stripNamespaces>true</stripNamespaces>
           </serializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.0">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
             <splitType>Element_Name</splitType>
             <elementName></elementName>
             <level>1</level>
@@ -2933,8 +3012,8 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
             <batchScript></batchScript>
           </batchProperties>
         </inboundProperties>
-        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.0">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.0">
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
             <handleRepetitions>true</handleRepetitions>
             <handleSubcomponents>true</handleSubcomponents>
             <useStrictParser>false</useStrictParser>
@@ -2943,16 +3022,16 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
             <segmentDelimiter>\r</segmentDelimiter>
             <convertLineBreaks>true</convertLineBreaks>
           </serializationProperties>
-          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.0">
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
             <useStrictParser>false</useStrictParser>
             <useStrictValidation>false</useStrictValidation>
             <segmentDelimiter>\r</segmentDelimiter>
           </deserializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.0">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
             <splitType>MSH_Segment</splitType>
             <batchScript></batchScript>
           </batchProperties>
-          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.0">
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
             <segmentDelimiter>\r</segmentDelimiter>
             <successfulACKCode>AA</successfulACKCode>
             <successfulACKMessage></successfulACKMessage>
@@ -2963,7 +3042,7 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
             <msh15ACKAccept>false</msh15ACKAccept>
             <dateFormat>yyyyMMddHHmmss</dateFormat>
           </responseGenerationProperties>
-          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.0">
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
             <successfulACKCode>AA,CA</successfulACKCode>
             <errorACKCode>AE,CE</errorACKCode>
             <rejectedACKCode>AR,CR</rejectedACKCode>
@@ -2973,12 +3052,12 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
           </responseValidationProperties>
         </outboundProperties>
       </transformer>
-      <responseTransformer version="3.5.0">
+      <responseTransformer version="3.5.1">
         <elements/>
         <inboundDataType>HL7V2</inboundDataType>
         <outboundDataType>HL7V2</outboundDataType>
-        <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.0">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.0">
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
             <handleRepetitions>true</handleRepetitions>
             <handleSubcomponents>true</handleSubcomponents>
             <useStrictParser>false</useStrictParser>
@@ -2987,16 +3066,16 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
             <segmentDelimiter>\r</segmentDelimiter>
             <convertLineBreaks>true</convertLineBreaks>
           </serializationProperties>
-          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.0">
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
             <useStrictParser>false</useStrictParser>
             <useStrictValidation>false</useStrictValidation>
             <segmentDelimiter>\r</segmentDelimiter>
           </deserializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.0">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
             <splitType>MSH_Segment</splitType>
             <batchScript></batchScript>
           </batchProperties>
-          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.0">
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
             <segmentDelimiter>\r</segmentDelimiter>
             <successfulACKCode>AA</successfulACKCode>
             <successfulACKMessage></successfulACKMessage>
@@ -3007,7 +3086,7 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
             <msh15ACKAccept>false</msh15ACKAccept>
             <dateFormat>yyyyMMddHHmmss</dateFormat>
           </responseGenerationProperties>
-          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.0">
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
             <successfulACKCode>AA,CA</successfulACKCode>
             <errorACKCode>AE,CE</errorACKCode>
             <rejectedACKCode>AR,CR</rejectedACKCode>
@@ -3016,8 +3095,8 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
             <originalIdMapVariable></originalIdMapVariable>
           </responseValidationProperties>
         </inboundProperties>
-        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.0">
-          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.0">
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
             <handleRepetitions>true</handleRepetitions>
             <handleSubcomponents>true</handleSubcomponents>
             <useStrictParser>false</useStrictParser>
@@ -3026,16 +3105,16 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
             <segmentDelimiter>\r</segmentDelimiter>
             <convertLineBreaks>true</convertLineBreaks>
           </serializationProperties>
-          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.0">
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
             <useStrictParser>false</useStrictParser>
             <useStrictValidation>false</useStrictValidation>
             <segmentDelimiter>\r</segmentDelimiter>
           </deserializationProperties>
-          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.0">
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
             <splitType>MSH_Segment</splitType>
             <batchScript></batchScript>
           </batchProperties>
-          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.0">
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
             <segmentDelimiter>\r</segmentDelimiter>
             <successfulACKCode>AA</successfulACKCode>
             <successfulACKMessage></successfulACKMessage>
@@ -3046,7 +3125,7 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
             <msh15ACKAccept>false</msh15ACKAccept>
             <dateFormat>yyyyMMddHHmmss</dateFormat>
           </responseGenerationProperties>
-          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.0">
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
             <successfulACKCode>AA,CA</successfulACKCode>
             <errorACKCode>AE,CE</errorACKCode>
             <rejectedACKCode>AR,CR</rejectedACKCode>
@@ -3056,7 +3135,7 @@ PC9yZXN1bHQ+DQo=</inboundTemplate>
           </responseValidationProperties>
         </outboundProperties>
       </responseTransformer>
-      <filter version="3.5.0">
+      <filter version="3.5.1">
         <elements/>
       </filter>
       <transportName>TCP Sender</transportName>
@@ -3076,7 +3155,7 @@ return;</deployScript>
   <undeployScript>// This script executes once when the channel is undeployed
 // You only have access to the globalMap and globalChannelMap here to persist data
 return;</undeployScript>
-  <properties version="3.5.0">
+  <properties version="3.5.1">
     <clearGlobalChannelMap>true</clearGlobalChannelMap>
     <messageStorageMode>DEVELOPMENT</messageStorageMode>
     <encryptData>false</encryptData>
@@ -3097,7 +3176,7 @@ return;</undeployScript>
         <mappingName>mirth_type</mappingName>
       </metaDataColumn>
     </metaDataColumns>
-    <attachmentProperties version="3.5.0">
+    <attachmentProperties version="3.5.1">
       <type>None</type>
       <properties/>
     </attachmentProperties>
@@ -3112,12 +3191,54 @@ return;</undeployScript>
     <metadata>
       <enabled>true</enabled>
       <lastModified>
-        <time>1485795622470</time>
+        <time>1517394089886</time>
         <timezone>America/New_York</timezone>
       </lastModified>
       <pruningSettings>
         <archiveEnabled>true</archiveEnabled>
       </pruningSettings>
     </metadata>
+    <channelTags>
+      <channelTag>
+        <id>1318feb3-a2da-447f-ad80-a70cf7bd64d3</id>
+        <name>2018</name>
+        <channelIds>
+          <string>ba1e1fad-55f9-414d-9fdf-299bbb972f38</string>
+          <string>12d8ec02-b0fd-4925-bb09-fe9f83e2c7d0</string>
+          <string>b09e35ad-4fc5-4dc0-9909-80ae22c0900f</string>
+          <string>f6304de6-71f5-464d-be4d-3c3cabe33dc6</string>
+          <string>ec01f9a8-7f8e-418b-8fe0-15afb1eb1c42</string>
+          <string>6196759c-940f-40cb-94a8-ab7e17d32e19</string>
+          <string>e3a88c51-a15e-4152-b064-a80f8b976199</string>
+          <string>26998c34-8105-4ec1-ae92-f3e9fed1912c</string>
+          <string>189068f6-2833-4646-b74e-f46a988202c1</string>
+          <string>bd2d2918-e155-4b90-a0e5-e48e6d1eecdf</string>
+          <string>f8adb5e6-546c-45fc-886f-babb5ddfb052</string>
+        </channelIds>
+        <backgroundColor>
+          <red>255</red>
+          <green>0</green>
+          <blue>0</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+      <channelTag>
+        <id>be59beff-589c-461b-afd0-1f65f5614096</id>
+        <name>Connectathon</name>
+        <channelIds>
+          <string>ba1e1fad-55f9-414d-9fdf-299bbb972f38</string>
+          <string>12d8ec02-b0fd-4925-bb09-fe9f83e2c7d0</string>
+          <string>dc877250-5c2d-478e-980e-c81577d5bb83</string>
+          <string>bd2d2918-e155-4b90-a0e5-e48e6d1eecdf</string>
+          <string>f8adb5e6-546c-45fc-886f-babb5ddfb052</string>
+        </channelIds>
+        <backgroundColor>
+          <red>128</red>
+          <green>0</green>
+          <blue>0</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+    </channelTags>
   </exportData>
 </channel>
