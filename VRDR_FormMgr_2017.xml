@@ -1,0 +1,1371 @@
+<channel version="3.5.1">
+  <id>f6304de6-71f5-464d-be4d-3c3cabe33dc6</id>
+  <nextMetaDataId>3</nextMetaDataId>
+  <name>VRDR_FormMgr_2017</name>
+  <description></description>
+  <revision>6</revision>
+  <sourceConnector version="3.5.1">
+    <metaDataId>0</metaDataId>
+    <name>sourceConnector</name>
+    <properties class="com.mirth.connect.connectors.vm.VmReceiverProperties" version="3.5.1">
+      <pluginProperties/>
+      <sourceConnectorProperties version="3.5.1">
+        <responseVariable>None</responseVariable>
+        <respondAfterProcessing>true</respondAfterProcessing>
+        <processBatch>false</processBatch>
+        <firstResponse>false</firstResponse>
+        <processingThreads>1</processingThreads>
+        <resourceIds class="linked-hash-map">
+          <entry>
+            <string>Default Resource</string>
+            <string>[Default Resource]</string>
+          </entry>
+        </resourceIds>
+        <queueBufferSize>1000</queueBufferSize>
+      </sourceConnectorProperties>
+    </properties>
+    <transformer version="3.5.1">
+      <elements>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>New Step</name>
+          <sequenceNumber>0</sequenceNumber>
+          <script>logger.warn(&quot;rawdata: &quot; + connectorMessage.getRawData().toString());
+
+var instanceId = msg[&apos;form&apos;][&apos;instanceID&apos;].toString();
+
+globalMap.put(&apos;instanceId&apos;, instanceId);
+
+if (globalMap.get(&apos;instance_id&apos;)){
+     instance_id = globalMap.get(&apos;instance_id&apos;);
+}</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DecedentFirstName</name>
+          <sequenceNumber>1</sequenceNumber>
+          <variable>DecedentFirstName</variable>
+          <mapping>msg[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;patient&apos;][&apos;name&apos;][0][&apos;given&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DecedentLastName</name>
+          <sequenceNumber>2</sequenceNumber>
+          <variable>DecedentLastName</variable>
+          <mapping>msg[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;patient&apos;][&apos;name&apos;][0][&apos;family&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DecedentSSN</name>
+          <sequenceNumber>3</sequenceNumber>
+          <variable>DecedentSSN</variable>
+          <mapping>msg[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;id&apos;][0][&apos;@extension&apos;].toString()</mapping>
+          <defaultValue>&quot; &quot;</defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ProviderOrganization</name>
+          <sequenceNumber>4</sequenceNumber>
+          <variable>ProviderOrganization</variable>
+          <mapping>msg[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;providerOrganization&apos;][&apos;name&apos;].toString()</mapping>
+          <defaultValue>&quot; &quot;</defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ProviderName</name>
+          <sequenceNumber>5</sequenceNumber>
+          <variable>ProviderName</variable>
+          <mapping>msg[&apos;componentOf&apos;][&apos;encompassingEncounter&apos;][&apos;encounterParticipant&apos;][&apos;assignedEntity&apos;][&apos;assignedPerson&apos;][&apos;name&apos;][&apos;given&apos;].toString()+ &quot; &quot; +msg[&apos;componentOf&apos;][&apos;encompassingEncounter&apos;][&apos;encounterParticipant&apos;][&apos;assignedEntity&apos;][&apos;assignedPerson&apos;][&apos;name&apos;][&apos;family&apos;].toString()</mapping>
+          <defaultValue>&quot; &quot;</defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ProviderAddress</name>
+          <sequenceNumber>6</sequenceNumber>
+          <variable>ProviderAddress</variable>
+          <mapping>msg[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;providerOrganization&apos;][&apos;addr&apos;][&apos;streetAddressLine&apos;].toString()+&quot; &quot; +msg[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;providerOrganization&apos;][&apos;addr&apos;][&apos;city&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DecedentSex</name>
+          <sequenceNumber>7</sequenceNumber>
+          <variable>DecedentSex</variable>
+          <mapping>msg[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;patient&apos;][&apos;administrativeGenderCode&apos;][&apos;@code&apos;].toString()</mapping>
+          <defaultValue>&quot; &quot;</defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>DOB</name>
+          <sequenceNumber>8</sequenceNumber>
+          <script>var DecedentDOB = &quot; &quot;;
+
+
+var tempDOB = msg[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;patient&apos;][&apos;birthTime&apos;][&apos;@value&apos;].toString();
+
+var bmonth = tempDOB.substr(4,2);
+var bday = tempDOB.substr(6,2);
+var byear = tempDOB.substr(0,4);
+
+
+DecedentDOB = bmonth + &quot;/&quot;+bday +&quot;/&quot; + byear;
+
+globalMap.put(&apos;DecedentDOB&apos;, DecedentDOB);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>LOAD CDA</name>
+          <sequenceNumber>9</sequenceNumber>
+          <script>//DC Content
+
+
+var doc = org.openhealthtools.mdht.uml.cda.util.CDAUtil.load(new java.io.ByteArrayInputStream(connectorMessage.getRawData().getBytes(&quot;UTF-8&quot;)));
+
+logger.debug(&apos;Document ID: &apos;+doc.getId().getExtension()); // get document ID
+
+
+var structuredBodyComponents = doc.getComponent().getStructuredBody().getComponents();
+var structuredBodyComponentsSize = structuredBodyComponents.size();
+logger.debug(&apos;Size: &apos; + structuredBodyComponentsSize);
+
+var sectionTitle = &apos;&apos;;
+var sectionCode = &apos;&apos;;
+var sectionValueSet = &apos;&apos;;
+var sectionCodeName = &apos;&apos;;
+var thisSection = null;
+
+for (i = 0; i &lt; structuredBodyComponentsSize; i++) {
+	thisSection = structuredBodyComponents.get(i).getSection();
+	//logger.debug(&apos;HELLO!&apos;);
+	//sectionTitle = thisSection.getTitle().getText();
+	
+	sectionCode = thisSection.getCode().getCode();
+	//logger.debug(&apos;Code: &apos;);
+	sectionCodeName = thisSection.getCode().getDisplayName();
+	sectionValueSet = thisSection.getCode().getCodeSystemName();
+	logger.debug(&apos;Found Section... &apos;+sectionTitle+&apos; (&apos;+sectionValueSet+ &apos; Code: &apos;+sectionCode+&apos; [&apos;+sectionCodeName+&apos;]&apos;);
+
+
+/*
+    if (sectionCode == &apos;69409-1&apos;){
+
+    	   logger.debug(&apos;Death Cert!&apos;);
+    }
+*/
+
+
+	
+
+}</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+      </elements>
+      <inboundTemplate encoding="base64">PENsaW5pY2FsRG9jdW1lbnQgeG1sbnM9InVybjpobDctb3JnOnYzIj48cmVhbG1Db2RlIGNvZGU9
+IlVTIiAvPjx0eXBlSWQgZXh0ZW5zaW9uPSJQT0NEX0hEMDAwMDQwIiByb290PSIyLjE2Ljg0MC4x
+LjExMzg4My4xLjMiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMS4yLjg0MC4xMTQzNTAuMS43Mi4xLjUx
+NjkzIiAvPjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjEwIiBleHRlbnNpb249
+IklNUExfQ0RBUjJfTEVWRUwxIiAvPjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgz
+LjEwLjIwLjMiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMTAuMjAuMSIg
+Lz48dGVtcGxhdGVJZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4zLjg4LjExLjMyLjEiIC8+PHRl
+bXBsYXRlSWQgcm9vdD0iMS4zLjYuMS40LjEuMTkzNzYuMS41LjMuMS4xLjUiIC8+PHRlbXBsYXRl
+SWQgcm9vdD0iMS4zLjYuMS40LjEuMTkzNzYuMS41LjMuMS4xLjIiIC8+PHRlbXBsYXRlSWQgcm9v
+dD0iMS4zLjYuMS40LjEuMTkzNzYuMS41LjMuMS4xLjEiIC8+PGlkIGFzc2lnbmluZ0F1dGhvcml0
+eU5hbWU9IkVQQyIgcm9vdD0iMS4yLjg0MC4xMTQzNTAuMS4xMy4zMjEuMS43LjguNjg4ODgzLjU0
+NSIgLz48Y29kZSBjb2RlPSIzNDEzMy05IiBjb2RlU3lzdGVtPSIyLjE2Ljg0MC4xLjExMzg4My42
+LjEiIGNvZGVTeXN0ZW1OYW1lPSJMT0lOQyIgZGlzcGxheU5hbWU9IlN1bW1hcml6YXRpb24gb2Yg
+RXBpc29kZSBOb3RlIiAvPjx0aXRsZT5Db250aW51aXR5IG9mIENhcmUgRG9jdW1lbnQ8L3RpdGxl
+PjxlZmZlY3RpdmVUaW1lIHZhbHVlPSIyMDE0MDEyODE2Mjk1NS0wNjAwIiAvPjxjb25maWRlbnRp
+YWxpdHlDb2RlIGNvZGU9Ik4iIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjUuMjUiIC8+
+PGxhbmd1YWdlQ29kZSBjb2RlPSJlbi1VUyIgLz48cmVjb3JkVGFyZ2V0PjxwYXRpZW50Um9sZT48
+aWQgYXNzaWduaW5nQXV0aG9yaXR5TmFtZT0iU29jaWFsIFNlY3VyaXR5IEFkbWluaXN0cmF0aW9u
+IiByb290PSIyLjE2Ljg0MC4xLjExMzg4My40LjEiIGV4dGVuc2lvbj0iNTY1LTY1LTk4NzYiIC8+
+PGlkIGFzc2lnbmluZ0F1dGhvcml0eU5hbWU9Inp6eiZhbXA7MS4zLjYuMS40LjEuMjEzNjcuMTMu
+MjAuMTIwJmFtcDtITDciIHJvb3Q9IjEuMy42LjEuNC4xLjIxMzY3LjEzLjIwLjEyMCIgZXh0ZW5z
+aW9uPSJFMjMyOTU0IiAvPjxpZCByb290PSIxLjMuNi4xLjQuMS4yMTM2Ny4xMy4yMC4yMDAwIiBl
+eHRlbnNpb249IkdyZWVuLTEyMy1MRFMiIC8+PGFkZHIgdXNlPSJIUCI+PHN0cmVldEFkZHJlc3NM
+aW5lPjMzMiBhZGRyZXNzIHN0cmVldDwvc3RyZWV0QWRkcmVzc0xpbmU+PGNpdHk+bWFkaXNvbjwv
+Y2l0eT48c3RhdGU+V0k8L3N0YXRlPjxwb3N0YWxDb2RlPjUzNzExPC9wb3N0YWxDb2RlPjwvYWRk
+cj48dGVsZWNvbSB1c2U9IkhQIiB2YWx1ZT0idGVsOisxLTg5OC03NjctODc2NSIgLz48cGF0aWVu
+dD48bmFtZSB1c2U9IkwiPjxnaXZlbj5NYXJpYTwvZ2l2ZW4+PGZhbWlseT5GaWZhPC9mYW1pbHk+
+PC9uYW1lPjxuYW1lIHVzZT0iUCI+PGdpdmVuPkZJRkE8L2dpdmVuPjxmYW1pbHk+RklGQTwvZmFt
+aWx5PjwvbmFtZT48YWRtaW5pc3RyYXRpdmVHZW5kZXJDb2RlIGNvZGU9IkYiIGNvZGVTeXN0ZW09
+IjIuMTYuODQwLjEuMTEzODgzLjUuMSIgY29kZVN5c3RlbU5hbWU9IkFkbWluaXN0cmF0aXZlR2Vu
+ZGVyQ29kZSIgZGlzcGxheU5hbWU9IkZlbWFsZSIgLz48YmlydGhUaW1lIHZhbHVlPSIxOTg5MDEw
+MiIgLz48bWFyaXRhbFN0YXR1c0NvZGUgY29kZT0iTSIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4x
+MTM4ODMuNS4yIiBjb2RlU3lzdGVtTmFtZT0iTWFyaXRhbFN0YXR1c0NvZGUiIGRpc3BsYXlOYW1l
+PSJNYXJyaWVkIiAvPjxyYWNlQ29kZSBjb2RlPSJXSElURSIgY29kZVN5c3RlbT0iMi4xNi44NDAu
+MS4xMTM4ODMuNi4yMzgiIGNvZGVTeXN0ZW1OYW1lPSJDREMgUmFjZSBhbmQgRXRobmljaXR5IiBk
+aXNwbGF5TmFtZT0iV2hpdGUiIC8+PGV0aG5pY0dyb3VwQ29kZSBjb2RlPSIyIiBjb2RlU3lzdGVt
+PSIyLjE2Ljg0MC4xLjExMzg4My42LjIzOCIgY29kZVN5c3RlbU5hbWU9IkNEQyBSYWNlIGFuZCBF
+dGhuaWNpdHkiIGRpc3BsYXlOYW1lPSJOb24tSGlzcGFuaWMiIC8+PGxhbmd1YWdlQ29tbXVuaWNh
+dGlvbj48bGFuZ3VhZ2VDb2RlIGNvZGU9IkVuZ2xpc2giIC8+PHByZWZlcmVuY2VJbmQgdmFsdWU9
+InRydWUiIC8+PC9sYW5ndWFnZUNvbW11bmljYXRpb24+PC9wYXRpZW50Pjxwcm92aWRlck9yZ2Fu
+aXphdGlvbj48aWQgcm9vdD0iMS4yLjg0MC4xMTQzNTAuMS4xMy4zMjEuMS43LjIuNjk2NTcwIiBl
+eHRlbnNpb249IjIwMCIgLz48bmFtZT5FcGljIE1lZGljYWwgQ2VudGVyPC9uYW1lPjx0ZWxlY29t
+IHVzZT0iV1AiIHZhbHVlPSJ0ZWw6KzEtMjcxLTkwMDAiIC8+PGFkZHI+PHN0cmVldEFkZHJlc3NM
+aW5lPjIwMCBVTklWRVJTSVRZIEJBWSBEUjwvc3RyZWV0QWRkcmVzc0xpbmU+PGNpdHk+TUFESVNP
+TjwvY2l0eT48c3RhdGU+V0k8L3N0YXRlPjxwb3N0YWxDb2RlPjUzNzEzPC9wb3N0YWxDb2RlPjwv
+YWRkcj48L3Byb3ZpZGVyT3JnYW5pemF0aW9uPjwvcGF0aWVudFJvbGU+PC9yZWNvcmRUYXJnZXQ+
+PGF1dGhvcj48dGltZSB2YWx1ZT0iMjAxNDAxMjgxNjI5NTUtMDYwMCIgLz48YXNzaWduZWRBdXRo
+b3I+PGlkIG51bGxGbGF2b3I9Ik5BIiAvPjxhZGRyIG51bGxGbGF2b3I9Ik5BIj48c3RyZWV0QWRk
+cmVzc0xpbmUgbnVsbEZsYXZvcj0iVU5LIiAvPjxjaXR5IG51bGxGbGF2b3I9IlVOSyIgLz48L2Fk
+ZHI+PHRlbGVjb20gbnVsbEZsYXZvcj0iTkEiIC8+PGFzc2lnbmVkUGVyc29uPjxuYW1lIG51bGxG
+bGF2b3I9Ik5BIiAvPjwvYXNzaWduZWRQZXJzb24+PHJlcHJlc2VudGVkT3JnYW5pemF0aW9uPjxp
+ZCByb290PSIxLjIuODQwLjExNDM1MC4xLjEzLjMyMS4xLjcuMi42OTY1NzAiIGV4dGVuc2lvbj0i
+MjAwIiAvPjxuYW1lPkVwaWMgTWVkaWNhbCBDZW50ZXI8L25hbWU+PHRlbGVjb20gdXNlPSJXUCIg
+dmFsdWU9InRlbDorMS0yNzEtOTAwMCIgLz48YWRkcj48c3RyZWV0QWRkcmVzc0xpbmU+MjAwIFVO
+SVZFUlNJVFkgQkFZIERSPC9zdHJlZXRBZGRyZXNzTGluZT48Y2l0eT5NQURJU09OPC9jaXR5Pjxz
+dGF0ZT5XSTwvc3RhdGU+PHBvc3RhbENvZGU+NTM3MTM8L3Bvc3RhbENvZGU+PC9hZGRyPjwvcmVw
+cmVzZW50ZWRPcmdhbml6YXRpb24+PC9hc3NpZ25lZEF1dGhvcj48L2F1dGhvcj48YXV0aG9yPjx0
+aW1lIHZhbHVlPSIyMDE0MDEyODE2Mjk1NS0wNjAwIiAvPjxhc3NpZ25lZEF1dGhvcj48aWQgcm9v
+dD0iMS4yLjg0MC4xMTQzNTAuMS4xIiBleHRlbnNpb249IjguMSIgLz48YWRkciBudWxsRmxhdm9y
+PSJOQSI+PHN0cmVldEFkZHJlc3NMaW5lIG51bGxGbGF2b3I9IlVOSyIgLz48Y2l0eSBudWxsRmxh
+dm9yPSJVTksiIC8+PC9hZGRyPjx0ZWxlY29tIG51bGxGbGF2b3I9Ik5BIiAvPjxhc3NpZ25lZEF1
+dGhvcmluZ0RldmljZT48bWFudWZhY3R1cmVyTW9kZWxOYW1lPkVwaWMgLSBWZXJzaW9uIDguMTwv
+bWFudWZhY3R1cmVyTW9kZWxOYW1lPjxzb2Z0d2FyZU5hbWU+RXBpYyAtIFZlcnNpb24gOC4xPC9z
+b2Z0d2FyZU5hbWU+PC9hc3NpZ25lZEF1dGhvcmluZ0RldmljZT48cmVwcmVzZW50ZWRPcmdhbml6
+YXRpb24+PGlkIHJvb3Q9IjEuMi44NDAuMTE0MzUwLjEuMTMuMzIxLjEuNy4yLjY5NjU3MCIgZXh0
+ZW5zaW9uPSIyMDAiIC8+PG5hbWU+RXBpYyBNZWRpY2FsIENlbnRlcjwvbmFtZT48dGVsZWNvbSB1
+c2U9IldQIiB2YWx1ZT0idGVsOisxLTI3MS05MDAwIiAvPjxhZGRyPjxzdHJlZXRBZGRyZXNzTGlu
+ZT4yMDAgVU5JVkVSU0lUWSBCQVkgRFI8L3N0cmVldEFkZHJlc3NMaW5lPjxjaXR5Pk1BRElTT048
+L2NpdHk+PHN0YXRlPldJPC9zdGF0ZT48cG9zdGFsQ29kZT41MzcxMzwvcG9zdGFsQ29kZT48L2Fk
+ZHI+PC9yZXByZXNlbnRlZE9yZ2FuaXphdGlvbj48L2Fzc2lnbmVkQXV0aG9yPjwvYXV0aG9yPjxj
+dXN0b2RpYW4+PGFzc2lnbmVkQ3VzdG9kaWFuPjxyZXByZXNlbnRlZEN1c3RvZGlhbk9yZ2FuaXph
+dGlvbj48aWQgcm9vdD0iMS4yLjg0MC4xMTQzNTAuMS4xMy4zMjEuMS43LjIuNjk2NTcwIiBleHRl
+bnNpb249IjIwMCIgLz48bmFtZT5FcGljIE1lZGljYWwgQ2VudGVyPC9uYW1lPjx0ZWxlY29tIHVz
+ZT0iV1AiIHZhbHVlPSJ0ZWw6KzEtMjcxLTkwMDAiIC8+PGFkZHI+PHN0cmVldEFkZHJlc3NMaW5l
+PjIwMCBVTklWRVJTSVRZIEJBWSBEUjwvc3RyZWV0QWRkcmVzc0xpbmU+PGNpdHk+TUFESVNPTjwv
+Y2l0eT48c3RhdGU+V0k8L3N0YXRlPjxwb3N0YWxDb2RlPjUzNzEzPC9wb3N0YWxDb2RlPjwvYWRk
+cj48L3JlcHJlc2VudGVkQ3VzdG9kaWFuT3JnYW5pemF0aW9uPjwvYXNzaWduZWRDdXN0b2RpYW4+
+PC9jdXN0b2RpYW4+PGRvY3VtZW50YXRpb25PZiB0eXBlQ29kZT0iRE9DIj48c2VydmljZUV2ZW50
+IGNsYXNzQ29kZT0iUENQUiI+PGVmZmVjdGl2ZVRpbWU+PGxvdyB2YWx1ZT0iMTk4OTAxMDIiIC8+
+PGhpZ2ggdmFsdWU9IjIwMTQwMTI4IiAvPjwvZWZmZWN0aXZlVGltZT48cGVyZm9ybWVyIHR5cGVD
+b2RlPSJQUkYiPjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjMuODguMTEuMzIu
+NCIgLz48dGVtcGxhdGVJZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4zLjg4LjExLjgzLjQiIC8+
+PHRlbXBsYXRlSWQgcm9vdD0iMS4zLjYuMS40LjEuMTkzNzYuMS41LjMuMS4yLjMiIC8+PGZ1bmN0
+aW9uQ29kZSBjb2RlPSJQUCIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuMTIuNDQzIiBj
+b2RlU3lzdGVtTmFtZT0iUHJvdmlkZXIgUm9sZSIgZGlzcGxheU5hbWU9IlByaW1hcnkgQ2FyZSBQ
+cm92aWRlciI+PG9yaWdpbmFsVGV4dD5QcmltYXJ5IENhcmUgUHJvdmlkZXI8L29yaWdpbmFsVGV4
+dD48L2Z1bmN0aW9uQ29kZT48dGltZT48bG93IG51bGxGbGF2b3I9Ik5JIiAvPjxoaWdoIG51bGxG
+bGF2b3I9IlBJTkYiIC8+PC90aW1lPjxhc3NpZ25lZEVudGl0eSBudWxsRmxhdm9yPSJOSSI+PGlk
+IG51bGxGbGF2b3I9Ik5BIiAvPjxhZGRyIG51bGxGbGF2b3I9Ik5BIiAvPjx0ZWxlY29tIG51bGxG
+bGF2b3I9Ik5BIiAvPjxhc3NpZ25lZFBlcnNvbiBudWxsRmxhdm9yPSJOQSI+PG5hbWUgbnVsbEZs
+YXZvcj0iTkEiIC8+PC9hc3NpZ25lZFBlcnNvbj48cmVwcmVzZW50ZWRPcmdhbml6YXRpb24+PGlk
+IHJvb3Q9IjEuMi44NDAuMTE0MzUwLjEuMTMuMzIxLjEuNy4yLjY5NjU3MCIgZXh0ZW5zaW9uPSIy
+MDAiIC8+PG5hbWU+RXBpYyBNZWRpY2FsIENlbnRlcjwvbmFtZT48dGVsZWNvbSB1c2U9IldQIiB2
+YWx1ZT0idGVsOisxLTI3MS05MDAwIiAvPjxhZGRyPjxzdHJlZXRBZGRyZXNzTGluZT4yMDAgVU5J
+VkVSU0lUWSBCQVkgRFI8L3N0cmVldEFkZHJlc3NMaW5lPjxjaXR5Pk1BRElTT048L2NpdHk+PHN0
+YXRlPldJPC9zdGF0ZT48cG9zdGFsQ29kZT41MzcxMzwvcG9zdGFsQ29kZT48L2FkZHI+PC9yZXBy
+ZXNlbnRlZE9yZ2FuaXphdGlvbj48L2Fzc2lnbmVkRW50aXR5PjwvcGVyZm9ybWVyPjwvc2Vydmlj
+ZUV2ZW50PjwvZG9jdW1lbnRhdGlvbk9mPjxjb21wb25lbnRPZj48ZW5jb21wYXNzaW5nRW5jb3Vu
+dGVyPjxpZCByb290PSIxLjIuODQwLjExNDM1MC4xLjEzLjMyMS4xLjcuMy42OTgwODQuOCIgZXh0
+ZW5zaW9uPSIxMTc4MDYiIC8+PGVmZmVjdGl2ZVRpbWUgdmFsdWU9IjIwMDIwNTI4MTYyNzE4LTA1
+MDAiPjxsb3cgdmFsdWU9IjIwMDIwNTI4MTYyNzE4LTA1MDAiIC8+PC9lZmZlY3RpdmVUaW1lPjxl
+bmNvdW50ZXJQYXJ0aWNpcGFudCB0eXBlQ29kZT0iQURNIj48dGltZSB2YWx1ZT0iMjAwMjA1Mjgx
+NjI3MTgtMDUwMCIgLz48YXNzaWduZWRFbnRpdHk+PGlkIHJvb3Q9IjEuMi44NDAuMTE0MzUwLjEu
+MTMuMzIxLjEuNy4yLjgzNjk4MiIgZXh0ZW5zaW9uPSI5MDUiIC8+PGFkZHIgdXNlPSJXUCI+PHN0
+cmVldEFkZHJlc3NMaW5lPjUzMDEgR0lMTElBTiBTVC48L3N0cmVldEFkZHJlc3NMaW5lPjwvYWRk
+cj48dGVsZWNvbSB1c2U9IldQIiB2YWx1ZT0idGVsOisxLTI2NC0zMzk4IiAvPjx0ZWxlY29tIHZh
+bHVlPSJtYWlsdG86Ly9Cb2JfRmFjdG9yQGVwaWNuZXQuY29tIiAvPjxhc3NpZ25lZFBlcnNvbj48
+bmFtZT48Z2l2ZW4+Um9iZXJ0PC9naXZlbj48ZmFtaWx5PkZhY3RvcjwvZmFtaWx5PjwvbmFtZT48
+L2Fzc2lnbmVkUGVyc29uPjwvYXNzaWduZWRFbnRpdHk+PC9lbmNvdW50ZXJQYXJ0aWNpcGFudD48
+bG9jYXRpb24+PGhlYWx0aENhcmVGYWNpbGl0eT48aWQgcm9vdD0iMS4yLjg0MC4xMTQzNTAuMS4x
+My4zMjEuMS43LjIuNjk2NTcwIiBleHRlbnNpb249IjIwMCIgLz48L2hlYWx0aENhcmVGYWNpbGl0
+eT48L2xvY2F0aW9uPjwvZW5jb21wYXNzaW5nRW5jb3VudGVyPjwvY29tcG9uZW50T2Y+PGNvbXBv
+bmVudD48c3RydWN0dXJlZEJvZHk+PGNvbXBvbmVudD48c2VjdGlvbj48dGVtcGxhdGVJZCByb290
+PSIyLjE2Ljg0MC4xLjExMzg4My4xMC4yMC4xLjIiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMS4zLjYu
+MS40LjEuMTkzNzYuMS41LjMuMS4zLjEzIiAvPjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEu
+MTEzODgzLjMuODguMTEuODMuMTAyIiAvPjxpZCByb290PSI2QzU0OUFBNy04M0FFLTRBRjQtOTY5
+MC03OEQwRjUzNDk4RjIiIC8+PGNvZGUgY29kZT0iNDg3NjUtMiIgY29kZVN5c3RlbT0iMi4xNi44
+NDAuMS4xMTM4ODMuNi4xIiBjb2RlU3lzdGVtTmFtZT0iTE9JTkMiIGRpc3BsYXlOYW1lPSJBbGxl
+cmdpZXMsIEFkdmVyc2UgUmVhY3Rpb25zLCBBbGVydHMiIC8+PHRpdGxlPkFjdGl2ZSBBbGxlcmdp
+ZXMgLSBhcyBvZiAxLzI4LzE0PC90aXRsZT48dGV4dD48dGFibGU+PGNvbGdyb3VwPjxjb2wgd2lk
+dGg9IjI1JSIgLz48Y29sIHdpZHRoPSIxMyUiIC8+PGNvbCB3aWR0aD0iMTIlIiAvPjxjb2wgd2lk
+dGg9IjI1JSIgLz48Y29sIHdpZHRoPSIyNSUiIC8+PC9jb2xncm91cD48dGhlYWQ+PHRyPjx0aD5B
+bGxlcmdlbjwvdGg+PHRoPk5vdGVkIERhdGE8L3RoPjx0aD5TZXZlcml0eTwvdGg+PHRoPlJlYWN0
+aW9uczwvdGg+PHRoPkNvbW1lbnRzPC90aD48L3RyPjwvdGhlYWQ+PHRib2R5Pjx0ciBJRD0iYWxs
+ZXJneTEiPjx0ZCBJRD0iYWxsZXJneTFhbGxlcmdlbiI+UGVhbnV0LURlcml2ZWQ8L3RkPjx0ZCBJ
+RD0iYWxsZXJneTFub3RlZCI+MS8yOC8xNDwvdGQ+PHRkIElEPSJhbGxlcmd5MXNldmVyaXR5IiAv
+Pjx0ZD48Y29udGVudCBJRD0iYWxsZXJneTFyZWFjdGlvbiI+Q29udGFjdCBkZXJtYXRpdGlzPC9j
+b250ZW50PjwvdGQ+PHRkIElEPSJhbGxlcmd5MWNvbW1lbnRzIiAvPjwvdHI+PC90Ym9keT48L3Rh
+YmxlPjwvdGV4dD48ZW50cnk+PGFjdCBjbGFzc0NvZGU9IkFDVCIgbW9vZENvZGU9IkVWTiI+PHRl
+bXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMTAuMjAuMS4yNyIgLz48dGVtcGxhdGVJ
+ZCByb290PSIxLjMuNi4xLjQuMS4xOTM3Ni4xLjUuMy4xLjQuNS4xIiAvPjx0ZW1wbGF0ZUlkIHJv
+b3Q9IjEuMy42LjEuNC4xLjE5Mzc2LjEuNS4zLjEuNC41LjMiIC8+PHRlbXBsYXRlSWQgcm9vdD0i
+Mi4xNi44NDAuMS4xMTM4ODMuMy44OC4xMS4zMi42IiAvPjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYu
+ODQwLjEuMTEzODgzLjMuODguMTEuODMuNiIgLz48aWQgcm9vdD0iMS4yLjg0MC4xMTQzNTAuMS4x
+My4zMjEuMS43LjIuNzY4MDc2IiBleHRlbnNpb249Ijg0MDc0IiAvPjxjb2RlIG51bGxGbGF2b3I9
+Ik5BIiAvPjxzdGF0dXNDb2RlIGNvZGU9ImFjdGl2ZSIgLz48ZWZmZWN0aXZlVGltZT48bG93IHZh
+bHVlPSIyMDE0MDEyOCIgLz48L2VmZmVjdGl2ZVRpbWU+PGVudHJ5UmVsYXRpb25zaGlwIGludmVy
+c2lvbkluZD0iZmFsc2UiIHR5cGVDb2RlPSJTVUJKIj48b2JzZXJ2YXRpb24gY2xhc3NDb2RlPSJP
+QlMiIG1vb2RDb2RlPSJFVk4iIG5lZ2F0aW9uSW5kPSJmYWxzZSI+PHRlbXBsYXRlSWQgcm9vdD0i
+MS4zLjYuMS40LjEuMTkzNzYuMS41LjMuMS40LjUiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMS4zLjYu
+MS40LjEuMTkzNzYuMS41LjMuMS40LjYiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4x
+MTM4ODMuMTAuMjAuMS4xOCIgLz48dGVtcGxhdGVJZCByb290PSIxLjMuNi4xLjQuMS4xOTM3Ni4x
+LjUuMy4xIiBleHRlbnNpb249ImFsbGVyZ3kiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAu
+MS4xMTM4ODMuMTAuMjAuMS4yOCIgLz48aWQgcm9vdD0iMS4yLjg0MC4xMTQzNTAuMS4xMy4zMjEu
+MS43LjIuNzY4MDc2IiBleHRlbnNpb249Ijg0MDc0IiAvPjxjb2RlIGNvZGU9IjQxOTUxMTAwMyIg
+Y29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi45NiIgY29kZVN5c3RlbU5hbWU9IlNOT01F
+RCBDVCIgZGlzcGxheU5hbWU9InByb3BlbnNpdHkgdG8gYWR2ZXJzZSByZWFjdGlvbnMgdG8gZHJ1
+ZyIgLz48dGV4dD48cmVmZXJlbmNlIHZhbHVlPSIjYWxsZXJneTEiIC8+PC90ZXh0PjxzdGF0dXND
+b2RlIGNvZGU9ImNvbXBsZXRlZCIgLz48ZWZmZWN0aXZlVGltZT48bG93IHZhbHVlPSIyMDE0MDEy
+OCIgLz48aGlnaCBudWxsRmxhdm9yPSJQSU5GIiAvPjwvZWZmZWN0aXZlVGltZT48dmFsdWUgbnVs
+bEZsYXZvcj0iVU5LIiB4c2k6dHlwZT0iQ0QiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcv
+MjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIC8+PGF1dGhvcj48dGltZSB2YWx1ZT0iMjAxNDAxMjgi
+IC8+PGFzc2lnbmVkQXV0aG9yPjxpZCByb290PSIxLjIuODQwLjExNDM1MC4xLjEzLjMyMS4xLjcu
+Mi42OTc3ODAiIGV4dGVuc2lvbj0iODQyOCIgLz48YWRkciBudWxsRmxhdm9yPSJVTksiIC8+PHRl
+bGVjb20gbnVsbEZsYXZvcj0iVU5LIiAvPjxhc3NpZ25lZFBlcnNvbj48bmFtZT48Z2l2ZW4+Sm9o
+bjwvZ2l2ZW4+PGZhbWlseT5TdGFtbTwvZmFtaWx5PjwvbmFtZT48L2Fzc2lnbmVkUGVyc29uPjxy
+ZXByZXNlbnRlZE9yZ2FuaXphdGlvbj48aWQgcm9vdD0iMS4yLjg0MC4xMTQzNTAuMS4xMy4zMjEu
+MS43LjIuNjk2NTcwIiBleHRlbnNpb249IjIwMCIgLz48bmFtZT5FcGljIE1lZGljYWwgQ2VudGVy
+PC9uYW1lPjx0ZWxlY29tIHVzZT0iV1AiIHZhbHVlPSJ0ZWw6KzEtMjcxLTkwMDAiIC8+PGFkZHI+
+PHN0cmVldEFkZHJlc3NMaW5lPjIwMCBVTklWRVJTSVRZIEJBWSBEUjwvc3RyZWV0QWRkcmVzc0xp
+bmU+PGNpdHk+TUFESVNPTjwvY2l0eT48c3RhdGU+V0k8L3N0YXRlPjxwb3N0YWxDb2RlPjUzNzEz
+PC9wb3N0YWxDb2RlPjwvYWRkcj48L3JlcHJlc2VudGVkT3JnYW5pemF0aW9uPjwvYXNzaWduZWRB
+dXRob3I+PC9hdXRob3I+PHBhcnRpY2lwYW50IHR5cGVDb2RlPSJDU00iPjxwYXJ0aWNpcGFudFJv
+bGUgY2xhc3NDb2RlPSJNQU5VIj48cGxheWluZ0VudGl0eSBjbGFzc0NvZGU9Ik1NQVQiPjxjb2Rl
+IG51bGxGbGF2b3I9IlVOSyI+PG9yaWdpbmFsVGV4dD48cmVmZXJlbmNlIHZhbHVlPSIjYWxsZXJn
+eTFhbGxlcmdlbiIgLz48L29yaWdpbmFsVGV4dD48L2NvZGU+PG5hbWU+UEVBTlVULURFUklWRUQ8
+L25hbWU+PC9wbGF5aW5nRW50aXR5PjwvcGFydGljaXBhbnRSb2xlPjwvcGFydGljaXBhbnQ+PGVu
+dHJ5UmVsYXRpb25zaGlwIGludmVyc2lvbkluZD0idHJ1ZSIgdHlwZUNvZGU9Ik1GU1QiPjxvYnNl
+cnZhdGlvbiBjbGFzc0NvZGU9Ik9CUyIgbW9vZENvZGU9IkVWTiI+PHRlbXBsYXRlSWQgcm9vdD0i
+Mi4xNi44NDAuMS4xMTM4ODMuMTAuMjAuMS41NCIgLz48dGVtcGxhdGVJZCByb290PSIxLjMuNi4x
+LjQuMS4xOTM3Ni4xLjUuMy4xLjQuNSIgLz48dGVtcGxhdGVJZCByb290PSIxLjMuNi4xLjQuMS4x
+OTM3Ni4xLjUuMy4xLjQuNSIgZXh0ZW5zaW9uPSJyZWFjdGlvbiIgLz48dGVtcGxhdGVJZCByb290
+PSIyLjE2Ljg0MC4xLjExMzg4My4xMC4yMC4xLjI4IiAvPjxpZCByb290PSIxLjIuODQwLjExNDM1
+MC4xLjEzLjMyMS4xLjcuNC43NjgwNzYuMzAwOCIgZXh0ZW5zaW9uPSI3IiAvPjxjb2RlIGNvZGU9
+IlJYTkFTU0VTUyIgLz48dGV4dD48cmVmZXJlbmNlIHZhbHVlPSIjYWxsZXJneTFyZWFjdGlvbjEi
+IC8+PC90ZXh0PjxzdGF0dXNDb2RlIGNvZGU9ImNvbXBsZXRlZCIgLz48ZWZmZWN0aXZlVGltZT48
+bG93IHZhbHVlPSIyMDE0MDEyOCIgLz48aGlnaCBudWxsRmxhdm9yPSJQSU5GIiAvPjwvZWZmZWN0
+aXZlVGltZT48dmFsdWUgeHNpOnR5cGU9IkNEIiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3Jn
+LzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIj48b3JpZ2luYWxUZXh0PjxyZWZlcmVuY2UgdmFsdWU9
+IiNhbGxlcmd5MXJlYWN0aW9uMSIgLz48L29yaWdpbmFsVGV4dD48L3ZhbHVlPjwvb2JzZXJ2YXRp
+b24+PC9lbnRyeVJlbGF0aW9uc2hpcD48ZW50cnlSZWxhdGlvbnNoaXAgaW52ZXJzaW9uSW5kPSJ0
+cnVlIiB0eXBlQ29kZT0iUkVGUiI+PG9ic2VydmF0aW9uIGNsYXNzQ29kZT0iT0JTIiBtb29kQ29k
+ZT0iRVZOIj48dGVtcGxhdGVJZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4xMC4yMC4xLjM5IiAv
+Pjxjb2RlIGNvZGU9IjMzOTk5LTQiIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjYuMSIg
+ZGlzcGxheU5hbWU9IlN0YXR1cyIgLz48c3RhdHVzQ29kZSBjb2RlPSJjb21wbGV0ZWQiIC8+PHZh
+bHVlIHhzaTp0eXBlPSJDRSIgY29kZT0iNTU1NjEwMDMiIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEu
+MTEzODgzLjYuOTYiIGRpc3BsYXlOYW1lPSJBY3RpdmUiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53
+My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIC8+PC9vYnNlcnZhdGlvbj48L2VudHJ5UmVs
+YXRpb25zaGlwPjwvb2JzZXJ2YXRpb24+PC9lbnRyeVJlbGF0aW9uc2hpcD48L2FjdD48L2VudHJ5
+Pjwvc2VjdGlvbj48L2NvbXBvbmVudD48Y29tcG9uZW50PjxzZWN0aW9uPjx0ZW1wbGF0ZUlkIHJv
+b3Q9IjIuMTYuODQwLjEuMTEzODgzLjEwLjIwLjEuOCIgLz48dGVtcGxhdGVJZCByb290PSIyLjE2
+Ljg0MC4xLjExMzg4My4zLjg4LjExLjgzLjExMiIgLz48dGVtcGxhdGVJZCByb290PSIxLjMuNi4x
+LjQuMS4xOTM3Ni4xLjUuMy4xLjMuMTkiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMS4yLjg0MC4xMTQz
+NTAuMS43Mi4yLjEwMTA4LjI2IiAvPjxpZCByb290PSJEQjlGQTIyRC0xMTk2LTQ3MEEtODhFQi0z
+MjNEMkMxRjEzNkUiIC8+PGNvZGUgY29kZT0iMTAxNjAtMCIgY29kZVN5c3RlbT0iMi4xNi44NDAu
+MS4xMTM4ODMuNi4xIiBjb2RlU3lzdGVtTmFtZT0iTE9JTkMiIGRpc3BsYXlOYW1lPSJIaXN0b3J5
+IG9mIE1lZGljYXRpb24gVXNhZ2UiIC8+PHRpdGxlPk1lZGljYXRpb25zIC0gYXMgb2YgMS8yOC8x
+NDwvdGl0bGU+PHRleHQ+PHRhYmxlPjxjb2xncm91cD48Y29sIHdpZHRoPSIyNSUiIC8+PGNvbCB3
+aWR0aD0iMTMlIiAvPjxjb2wgd2lkdGg9IjEyJSIgLz48Y29sIHdpZHRoPSIyNSUiIC8+PGNvbCB3
+aWR0aD0iMTMlIiAvPjxjb2wgd2lkdGg9IjEyJSIgLz48L2NvbGdyb3VwPjx0aGVhZD48dHI+PHRo
+PkFjdGl2ZSBGYWNpbGl0eSBBZG1pbmlzdGVyZWQgTWVkaWNhdGlvbjwvdGg+PHRoPk9yZGVyZWQg
+RG9zZTwvdGg+PHRoPlJvdXRlPC90aD48dGg+RnJlcXVlbmN5PC90aD48dGg+U3RhcnQgRGF0ZTwv
+dGg+PHRoPkVuZCBEYXRlPC90aD48L3RyPjwvdGhlYWQ+PHRib2R5Pjx0ciBJRD0iY3VycngyIj48
+dGQgSUQ9Im1lZDIiPmF0ZW5vbG9sIChURU5PUk1JTikgdGFibGV0IDI1IG1nPC90ZD48dGQ+MjVt
+ZzwvdGQ+PHRkPlBPPC90ZD48dGQ+MSB4L2RheTwvdGQ+PHRkPjEvMjgvMTQ8L3RkPjx0ZCAvPjwv
+dHI+PC90Ym9keT48L3RhYmxlPjwvdGV4dD48ZW50cnk+PHN1YnN0YW5jZUFkbWluaXN0cmF0aW9u
+IGNsYXNzQ29kZT0iU0JBRE0iIG1vb2RDb2RlPSJJTlQiPjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYu
+ODQwLjEuMTEzODgzLjEwLjIwLjEuMjQiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4x
+MTM4ODMuMy44OC4xMS44My44IiAvPjx0ZW1wbGF0ZUlkIHJvb3Q9IjEuMy42LjEuNC4xLjE5Mzc2
+LjEuNS4zLjEuNC43IiAvPjx0ZW1wbGF0ZUlkIHJvb3Q9IjEuMy42LjEuNC4xLjE5Mzc2LjEuNS4z
+LjEuNC43LjEiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMy44OC4xMS4z
+Mi44IiAvPjxpZCByb290PSIxLjIuODQwLjExNDM1MC4xLjEzLjMyMS4xLjcuMi43OTgyNjgiIGV4
+dGVuc2lvbj0iNTgwODU4IiAvPjx0ZXh0IG1lZGlhVHlwZT0idGV4dC94bWwiIC8+PHN0YXR1c0Nv
+ZGUgY29kZT0iY29tcGxldGVkIiAvPjxlZmZlY3RpdmVUaW1lIHhzaTp0eXBlPSJJVkxfVFMiIHht
+bG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPjxsb3cg
+dmFsdWU9IjIwMTQwMTI4MjIwMDAwKzAwMDAiIC8+PGhpZ2ggbnVsbEZsYXZvcj0iVU5LIiAvPjwv
+ZWZmZWN0aXZlVGltZT48cm91dGVDb2RlIGNvZGU9IlBPIiBjb2RlU3lzdGVtPSIyLjE2Ljg0MC4x
+LjExMzg4My4zLjI2LjEuMSIgY29kZVN5c3RlbU5hbWU9Ik5DSSBUaGVzYXVydXMiIGRpc3BsYXlO
+YW1lPSJPcmFsIiAvPjxkb3NlUXVhbnRpdHkgdW5pdD0ibWciIHZhbHVlPSIyNSIgLz48Y29uc3Vt
+YWJsZSB0eXBlQ29kZT0iQ1NNIj48bWFudWZhY3R1cmVkUHJvZHVjdCBjbGFzc0NvZGU9Ik1BTlUi
+Pjx0ZW1wbGF0ZUlkIHJvb3Q9IjEuMy42LjEuNC4xLjE5Mzc2LjEuNS4zLjEuNC43LjIiIC8+PHRl
+bXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMTAuMjAuMS41MyIgLz48dGVtcGxhdGVJ
+ZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4zLjg4LjExLjMyLjkiIC8+PHRlbXBsYXRlSWQgcm9v
+dD0iMi4xNi44NDAuMS4xMTM4ODMuMy44OC4xMS44My44LjIiIC8+PHRlbXBsYXRlSWQgcm9vdD0i
+Mi4xNi44NDAuMS4xMTM4ODMuMy4yNDkuMTEuMTAwLjEzIiAvPjxtYW51ZmFjdHVyZWRNYXRlcmlh
+bD48Y29kZSBjb2RlU3lzdGVtPSIyLjE2Ljg0MC4xLjExMzg4My42Ljg4IiBjb2RlU3lzdGVtTmFt
+ZT0iUnhOb3JtIiBudWxsRmxhdm9yPSJPVEgiPjxvcmlnaW5hbFRleHQ+PHJlZmVyZW5jZSB2YWx1
+ZT0iI21lZDIiIC8+PC9vcmlnaW5hbFRleHQ+PHRyYW5zbGF0aW9uIGNvZGU9IjAzNzgtMDIxOC0w
+MSIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi42OSIgY29kZVN5c3RlbU5hbWU9Ik5E
+QyIgZGlzcGxheU5hbWU9IkF0ZW5vbG9sIDI1IE1nIFBvIFRhYmxldCIgLz48dHJhbnNsYXRpb24g
+Y29kZT0iMjAxMSIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi4xNjIiIGNvZGVTeXN0
+ZW1OYW1lPSJNZWQtRmlsZSAoTWVkaS1TcGFuKSIgZGlzcGxheU5hbWU9IkF0ZW5vbG9sIDI1IE1n
+IFBvIFRhYmxldCIgLz48L2NvZGU+PC9tYW51ZmFjdHVyZWRNYXRlcmlhbD48L21hbnVmYWN0dXJl
+ZFByb2R1Y3Q+PC9jb25zdW1hYmxlPjxhdXRob3I+PHRpbWUgdmFsdWU9IjIwMTQwMTI4MjE0OTI1
+KzAwMDAiIC8+PGFzc2lnbmVkQXV0aG9yPjxpZCByb290PSIxLjIuODQwLjExNDM1MC4xLjEzLjMy
+MS4xLjcuMi44MzY5ODIiIGV4dGVuc2lvbj0iOTA1IiAvPjxhZGRyIG51bGxGbGF2b3I9IlVOSyIg
+Lz48dGVsZWNvbSB1c2U9IldQIiB2YWx1ZT0idGVsOisxLTI2NC0zMzk4IiAvPjx0ZWxlY29tIHVz
+ZT0iV1AiIHZhbHVlPSJtYWlsdG86Ly9Cb2JfRmFjdG9yQGVwaWNuZXQuY29tIiAvPjxhc3NpZ25l
+ZFBlcnNvbj48bmFtZT48Z2l2ZW4+Um9iZXJ0PC9naXZlbj48ZmFtaWx5PkZhY3RvcjwvZmFtaWx5
+PjwvbmFtZT48L2Fzc2lnbmVkUGVyc29uPjxyZXByZXNlbnRlZE9yZ2FuaXphdGlvbj48aWQgcm9v
+dD0iMS4yLjg0MC4xMTQzNTAuMS4xMy4zMjEuMS43LjIuNjk2NTcwIiBleHRlbnNpb249IjIwMCIg
+Lz48bmFtZT5FcGljIE1lZGljYWwgQ2VudGVyPC9uYW1lPjx0ZWxlY29tIHVzZT0iV1AiIHZhbHVl
+PSJ0ZWw6KzEtMjcxLTkwMDAiIC8+PGFkZHI+PHN0cmVldEFkZHJlc3NMaW5lPjIwMCBVTklWRVJT
+SVRZIEJBWSBEUjwvc3RyZWV0QWRkcmVzc0xpbmU+PGNpdHk+TUFESVNPTjwvY2l0eT48c3RhdGU+
+V0k8L3N0YXRlPjxwb3N0YWxDb2RlPjUzNzEzPC9wb3N0YWxDb2RlPjwvYWRkcj48L3JlcHJlc2Vu
+dGVkT3JnYW5pemF0aW9uPjwvYXNzaWduZWRBdXRob3I+PC9hdXRob3I+PGVudHJ5UmVsYXRpb25z
+aGlwIHR5cGVDb2RlPSJTVUJKIj48b2JzZXJ2YXRpb24gY2xhc3NDb2RlPSJPQlMiIG1vb2RDb2Rl
+PSJFVk4iPjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjMuODguMTEuMzIuMTAi
+IC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMy44OC4xMS44My44LjEiIC8+
+PGNvZGUgY29kZT0iNzM2MzkwMDAiIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjYuOTYi
+IGNvZGVTeXN0ZW1OYW1lPSJTTk9NRUQgQ1QiIGRpc3BsYXlOYW1lPSJQcmVzY3JpcHRpb24gRHJ1
+ZyIgLz48c3RhdHVzQ29kZSBjb2RlPSJjb21wbGV0ZWQiIC8+PC9vYnNlcnZhdGlvbj48L2VudHJ5
+UmVsYXRpb25zaGlwPjxlbnRyeVJlbGF0aW9uc2hpcCB0eXBlQ29kZT0iUkVGUiI+PG9ic2VydmF0
+aW9uIGNsYXNzQ29kZT0iT0JTIiBtb29kQ29kZT0iRVZOIj48dGVtcGxhdGVJZCByb290PSIyLjE2
+Ljg0MC4xLjExMzg4My4xMC4yMC4xLjQ3IiAvPjxjb2RlIGNvZGU9IjMzOTk5LTQiIGNvZGVTeXN0
+ZW09IjIuMTYuODQwLjEuMTEzODgzLjYuMSIgY29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNwbGF5
+TmFtZT0iU3RhdHVzIiAvPjxzdGF0dXNDb2RlIGNvZGU9ImNvbXBsZXRlZCIgLz48dmFsdWUgeHNp
+OnR5cGU9IkNFIiBjb2RlPSI1NTU2MTAwMyIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMu
+Ni45NiIgZGlzcGxheU5hbWU9IkFjdGl2ZSIgY29kZVN5c3RlbU5hbWU9IlNOT01FRCBDVCIgeG1s
+bnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgLz48L29i
+c2VydmF0aW9uPjwvZW50cnlSZWxhdGlvbnNoaXA+PC9zdWJzdGFuY2VBZG1pbmlzdHJhdGlvbj48
+L2VudHJ5Pjwvc2VjdGlvbj48L2NvbXBvbmVudD48Y29tcG9uZW50PjxzZWN0aW9uPjx0ZW1wbGF0
+ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjEwLjIwLjEuMTEiIC8+PHRlbXBsYXRlSWQgcm9v
+dD0iMS4zLjYuMS40LjEuMTkzNzYuMS41LjMuMS4zLjYiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4x
+Ni44NDAuMS4xMTM4ODMuMy44OC4xMS44My4xMDMiIC8+PGlkIHJvb3Q9IkEzMkVBM0FBLTU3Njgt
+NEUzMC04OTNDLUFGQzA4QjM0ODc3QSIgLz48Y29kZSBjb2RlPSIxMTQ1MC00IiBjb2RlU3lzdGVt
+PSIyLjE2Ljg0MC4xLjExMzg4My42LjEiIGNvZGVTeXN0ZW1OYW1lPSJMT0lOQyIgZGlzcGxheU5h
+bWU9IlBST0JMRU0gTElTVCIgLz48dGl0bGU+QWN0aXZlIFByb2JsZW1zIC0gYXMgb2YgMS8yOC8x
+NDwvdGl0bGU+PHRleHQ+PHBhcmFncmFwaCBJRD0ibm9mMyI+Tm90IG9uIGZpbGU8L3BhcmFncmFw
+aD48L3RleHQ+PGVudHJ5PjxhY3QgY2xhc3NDb2RlPSJBQ1QiIG1vb2RDb2RlPSJFVk4iIG51bGxG
+bGF2b3I9IkFTS1UiPjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjEwLjIwLjEu
+MjciIC8+PHRlbXBsYXRlSWQgcm9vdD0iMS4zLjYuMS40LjEuMTkzNzYuMS41LjMuMS40LjUuMSIg
+Lz48dGVtcGxhdGVJZCByb290PSIxLjMuNi4xLjQuMS4xOTM3Ni4xLjUuMy4xLjQuNS4yIiAvPjx0
+ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjMuODguMTEuMzIuNyIgLz48dGVtcGxh
+dGVJZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4zLjg4LjExLjgzLjciIC8+PGlkIG51bGxGbGF2
+b3I9Ik5JIiAvPjxjb2RlIG51bGxGbGF2b3I9Ik5BIiAvPjxzdGF0dXNDb2RlIGNvZGU9ImFjdGl2
+ZSIgLz48ZWZmZWN0aXZlVGltZT48bG93IG51bGxGbGF2b3I9IlVOSyIgLz48L2VmZmVjdGl2ZVRp
+bWU+PGVudHJ5UmVsYXRpb25zaGlwIGludmVyc2lvbkluZD0iZmFsc2UiIHR5cGVDb2RlPSJTVUJK
+Ij48b2JzZXJ2YXRpb24gY2xhc3NDb2RlPSJPQlMiIG1vb2RDb2RlPSJFVk4iIG51bGxGbGF2b3I9
+IkFTS1UiPjx0ZW1wbGF0ZUlkIHJvb3Q9IjEuMy42LjEuNC4xLjE5Mzc2LjEuNS4zLjEuNC41IiAv
+Pjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjEwLjIwLjEuMjgiIC8+PGlkIG51
+bGxGbGF2b3I9Ik5JIiAvPjxjb2RlIGNvZGU9IjU1NjA3MDA2IiBjb2RlU3lzdGVtPSIyLjE2Ljg0
+MC4xLjExMzg4My42Ljk2IiBjb2RlU3lzdGVtTmFtZT0iU05PTUVEIENUIiBkaXNwbGF5TmFtZT0i
+UHJvYmxlbSIgLz48dGV4dD48cmVmZXJlbmNlIHZhbHVlPSIjbm9mMyIgLz48L3RleHQ+PHN0YXR1
+c0NvZGUgY29kZT0iY29tcGxldGVkIiAvPjxlZmZlY3RpdmVUaW1lPjxsb3cgbnVsbEZsYXZvcj0i
+VU5LIiAvPjwvZWZmZWN0aXZlVGltZT48dmFsdWUgeHNpOnR5cGU9IkNEIiBjb2RlPSI2NDU3MjAw
+MSIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi45NiIgZGlzcGxheU5hbWU9IkRpc2Vh
+c2UiIGNvZGVTeXN0ZW1OYW1lPSJTTk9NRUQgQ1QiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5v
+cmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiPjxvcmlnaW5hbFRleHQ+PHJlZmVyZW5jZSB2YWx1
+ZT0iI25vZjMiIC8+PC9vcmlnaW5hbFRleHQ+PC92YWx1ZT48L29ic2VydmF0aW9uPjwvZW50cnlS
+ZWxhdGlvbnNoaXA+PC9hY3Q+PC9lbnRyeT48L3NlY3Rpb24+PC9jb21wb25lbnQ+PGNvbXBvbmVu
+dD48c2VjdGlvbj48dGVtcGxhdGVJZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4xMC4yMC4xLjMi
+IC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMy44OC4xMS44My4xMjciIC8+
+PHRlbXBsYXRlSWQgcm9vdD0iMS4zLjYuMS40LjEuMTkzNzYuMS41LjMuMS4xLjUuMy4zIiAvPjxj
+b2RlIGNvZGU9IjQ2MjQwLTgiIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjYuMSIgY29k
+ZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNwbGF5TmFtZT0iSElTVE9SWSBPRiBFTkNPVU5URVJTIiAv
+Pjx0aXRsZT5FbmNvdW50ZXIgRGV0YWlsczwvdGl0bGU+PHRleHQ+PHRhYmxlPjxjb2xncm91cD48
+Y29sIHdpZHRoPSIxMCUiIC8+PGNvbCB3aWR0aD0iMTUlIiAvPjxjb2wgd2lkdGg9IjEzJSIgLz48
+Y29sIHdpZHRoPSIyNSUiIC8+PGNvbCB3aWR0aD0iMzclIiAvPjwvY29sZ3JvdXA+PHRoZWFkPjx0
+cj48dGg+RGF0ZTwvdGg+PHRoPlR5cGU8L3RoPjx0aD5EZXBhcnRtZW50PC90aD48dGg+Q2FyZSBU
+ZWFtPC90aD48dGg+RGVzY3JpcHRpb248L3RoPjwvdHI+PC90aGVhZD48dGJvZHk+PHRyIElEPSJl
+bmNvdW50ZXI0IiBzdHlsZUNvZGU9Im5vcm1Sb3ciPjx0ZD41LzI4LzAyPC90ZD48dGQgSUQ9InR5
+cGU1Ij5Ib3NwaXRhbCBFbmNvdW50ZXI8L3RkPjx0ZD48cGFyYWdyYXBoPkxvbmcgVGVybSBDYXJl
+IFVuaXQ8L3BhcmFncmFwaD48L3RkPjx0ZD48cGFyYWdyYXBoIHN0eWxlQ29kZT0iQm9sZCI+RmFj
+dG9yLCBSb2JlcnQsIE0uRC48L3BhcmFncmFwaD48cGFyYWdyYXBoPjUzMDEgR0lMTElBTiBTVC48
+L3BhcmFncmFwaD48cGFyYWdyYXBoPjI2NC0zMzk4PC9wYXJhZ3JhcGg+PC90ZD48dGQgLz48L3Ry
+PjwvdGJvZHk+PC90YWJsZT48L3RleHQ+PGVudHJ5PjxlbmNvdW50ZXIgY2xhc3NDb2RlPSJFTkMi
+IG1vb2RDb2RlPSJFVk4iPjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjEwLjIw
+LjEuMjEiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMy44OC4xMS44My4x
+NiIgLz48dGVtcGxhdGVJZCByb290PSIxLjMuNi4xLjQuMS4xOTM3Ni4xLjUuMy4xLjQuMTQiIC8+
+PGlkIGFzc2lnbmluZ0F1dGhvcml0eU5hbWU9IkVQSUMiIHJvb3Q9IjEuMi44NDAuMTE0MzUwLjEu
+MTMuMzIxLjEuNy4zLjY5ODA4NC44IiBleHRlbnNpb249IjExNzgwNiIgLz48Y29kZSBjb2RlPSIz
+IiBjb2RlU3lzdGVtPSIxLjIuODQwLjExNDM1MC4xLjEzLjMyMS4xLjcuNC42OTgwODQuMzAiIGNv
+ZGVTeXN0ZW1OYW1lPSJFcGljLkVuY291bnRlclR5cGUiIGRpc3BsYXlOYW1lPSJIb3NwaXRhbCBF
+bmNvdW50ZXIiIGNvZGVTeXN0ZW1WZXJzaW9uPSJFcGljIDIwMTQiPjxvcmlnaW5hbFRleHQ+PHJl
+ZmVyZW5jZSB2YWx1ZT0iI3R5cGU1IiAvPjwvb3JpZ2luYWxUZXh0PjwvY29kZT48dGV4dD48cmVm
+ZXJlbmNlIG51bGxGbGF2b3I9Ik5BIiAvPjwvdGV4dD48c3RhdHVzQ29kZSBjb2RlPSJub3JtYWwi
+IC8+PGVmZmVjdGl2ZVRpbWU+PGxvdyB2YWx1ZT0iMjAwMjA1MjgxNjI3MTgtMDUwMCIgLz48L2Vm
+ZmVjdGl2ZVRpbWU+PHBlcmZvcm1lciB0eXBlQ29kZT0iUFJGIj48YXNzaWduZWRFbnRpdHkgY2xh
+c3NDb2RlPSJBU1NJR05FRCI+PGlkIHJvb3Q9IjEuMi44NDAuMTE0MzUwLjEuMTMuMzIxLjEuNy4y
+LjgzNjk4MiIgZXh0ZW5zaW9uPSI5MDUiIC8+PGFkZHI+PHN0cmVldEFkZHJlc3NMaW5lPjUzMDEg
+R0lMTElBTiBTVC48L3N0cmVldEFkZHJlc3NMaW5lPjwvYWRkcj48dGVsZWNvbSB1c2U9IldQIiB2
+YWx1ZT0idGVsOisxLTI2NC0zMzk4IiAvPjx0ZWxlY29tIHZhbHVlPSJtYWlsdG86Ly9Cb2JfRmFj
+dG9yQGVwaWNuZXQuY29tIiAvPjxhc3NpZ25lZFBlcnNvbj48bmFtZT48Z2l2ZW4+Um9iZXJ0PC9n
+aXZlbj48ZmFtaWx5PkZhY3RvcjwvZmFtaWx5PjwvbmFtZT48L2Fzc2lnbmVkUGVyc29uPjxyZXBy
+ZXNlbnRlZE9yZ2FuaXphdGlvbj48bmFtZSBudWxsRmxhdm9yPSJVTksiIC8+PHRlbGVjb20gbnVs
+bEZsYXZvcj0iVU5LIiAvPjxhZGRyIG51bGxGbGF2b3I9IlVOSyIgLz48L3JlcHJlc2VudGVkT3Jn
+YW5pemF0aW9uPjwvYXNzaWduZWRFbnRpdHk+PC9wZXJmb3JtZXI+PHBhcnRpY2lwYW50IHR5cGVD
+b2RlPSJBVE5EIj48cGFydGljaXBhbnRSb2xlPjxpZCByb290PSIxLjIuODQwLjExNDM1MC4xLjEz
+LjMyMS4xLjcuMi44MzY5ODIiIGV4dGVuc2lvbj0iOTA1IiAvPjxhZGRyIHVzZT0iV1AiPjxzdHJl
+ZXRBZGRyZXNzTGluZT41MzAxIEdJTExJQU4gU1QuPC9zdHJlZXRBZGRyZXNzTGluZT48L2FkZHI+
+PHRlbGVjb20gdXNlPSJXUCIgdmFsdWU9InRlbDorMS0yNjQtMzM5OCIgLz48dGVsZWNvbSB2YWx1
+ZT0ibWFpbHRvOi8vQm9iX0ZhY3RvckBlcGljbmV0LmNvbSIgLz48cGxheWluZ0VudGl0eT48bmFt
+ZT48Z2l2ZW4+Um9iZXJ0PC9naXZlbj48ZmFtaWx5PkZhY3RvcjwvZmFtaWx5PjwvbmFtZT48L3Bs
+YXlpbmdFbnRpdHk+PC9wYXJ0aWNpcGFudFJvbGU+PC9wYXJ0aWNpcGFudD48cGFydGljaXBhbnQg
+dHlwZUNvZGU9IkFETSI+PHBhcnRpY2lwYW50Um9sZT48aWQgcm9vdD0iMS4yLjg0MC4xMTQzNTAu
+MS4xMy4zMjEuMS43LjIuODM2OTgyIiBleHRlbnNpb249IjkwNSIgLz48L3BhcnRpY2lwYW50Um9s
+ZT48L3BhcnRpY2lwYW50PjxwYXJ0aWNpcGFudCB0eXBlQ29kZT0iTE9DIj48dGVtcGxhdGVJZCBy
+b290PSIyLjE2Ljg0MC4xLjExMzg4My4xMC4yMC4xLjQ1IiAvPjxwYXJ0aWNpcGFudFJvbGUgY2xh
+c3NDb2RlPSJTRExPQyI+PGlkIHJvb3Q9IjEuMi44NDAuMTE0MzUwLjEuMTMuMzIxLjEuNy4yLjY4
+Njk4MCIgZXh0ZW5zaW9uPSI5MiIgLz48cGxheWluZ0VudGl0eSBjbGFzc0NvZGU9IlBMQyI+PG5h
+bWU+TG9uZyBUZXJtIENhcmUgVW5pdDwvbmFtZT48L3BsYXlpbmdFbnRpdHk+PC9wYXJ0aWNpcGFu
+dFJvbGU+PC9wYXJ0aWNpcGFudD48cmVmZXJlbmNlIHR5cGVDb2RlPSJSRUZSIj48ZXh0ZXJuYWxP
+YnNlcnZhdGlvbj48Y29kZSBjb2RlPSIxIiBjb2RlU3lzdGVtPSIxLjIuODQwLjExNDM1MC4xLjEz
+LjMyMS4xLjcuMy42ODg4ODIuODEwMCIgY29kZVN5c3RlbU5hbWU9IkVwaWMuRW5jb3VudGVyLkNv
+bnRlbnRzIiAvPjwvZXh0ZXJuYWxPYnNlcnZhdGlvbj48L3JlZmVyZW5jZT48L2VuY291bnRlcj48
+L2VudHJ5Pjwvc2VjdGlvbj48L2NvbXBvbmVudD48Y29tcG9uZW50PjxzZWN0aW9uPjx0ZW1wbGF0
+ZUlkIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjEwLjIwLjEuMTQiIC8+PHRlbXBsYXRlSWQgcm9v
+dD0iMS4zLjYuMS40LjEuMTkzNzYuMS41LjMuMS4zLjI3IiAvPjx0ZW1wbGF0ZUlkIHJvb3Q9IjEu
+My42LjEuNC4xLjE5Mzc2LjEuNS4zLjEuMy4yOCIgLz48dGVtcGxhdGVJZCByb290PSIyLjE2Ljg0
+MC4xLjExMzg4My4zLjg4LjExLjgzLjEyMiIgLz48aWQgcm9vdD0iYjE5MGQ0NWItNmQ5NC00Nzgz
+LTgwOWItMTU3NDlhMzNmNDhjIiAvPjxjb2RlIGNvZGU9IjMwOTU0LTIiIGNvZGVTeXN0ZW09IjIu
+MTYuODQwLjEuMTEzODgzLjYuMSIgY29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNwbGF5TmFtZT0i
+U1RVRElFUyBTVU1NQVJZIiAvPjx0aXRsZT5SZXN1bHRzIGZyb20gMTAvMjgvMTMgdG8gMS8yOC8x
+NDwvdGl0bGU+PHRleHQ+PGxpc3Q+PGl0ZW0+PGNvbnRlbnQ+Tm90IG9uIGZpbGU8L2NvbnRlbnQ+
+PC9pdGVtPjwvbGlzdD48L3RleHQ+PGVudHJ5Pjxvcmdhbml6ZXIgY2xhc3NDb2RlPSJCQVRURVJZ
+IiBtb29kQ29kZT0iRVZOIj48dGVtcGxhdGVJZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4xMC4y
+MC4xLjMyIiAvPjxpZCBudWxsRmxhdm9yPSJOQSIgLz48Y29kZSBjb2RlPSIyNjE2NjUwMDYiIGNv
+ZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjYuOTYiIGNvZGVTeXN0ZW1OYW1lPSJTTk9NRUQg
+Q1QiIGRpc3BsYXlOYW1lPSJVbmtub3duIiAvPjxzdGF0dXNDb2RlIGNvZGU9ImNvbXBsZXRlZCIg
+Lz48ZWZmZWN0aXZlVGltZSBudWxsRmxhdm9yPSJVTksiIC8+PGNvbXBvbmVudD48b2JzZXJ2YXRp
+b24gY2xhc3NDb2RlPSJPQlMiIG1vb2RDb2RlPSJFVk4iPjx0ZW1wbGF0ZUlkIHJvb3Q9IjIuMTYu
+ODQwLjEuMTEzODgzLjEwLjIwLjEuMzEiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4x
+MTM4ODMuMy44OC4xMS44My4xNS4xIiAvPjx0ZW1wbGF0ZUlkIHJvb3Q9IjEuMy42LjEuNC4xLjE5
+Mzc2LjEuNS4zLjEuNC4xMyIgLz48aWQgbnVsbEZsYXZvcj0iTkEiIC8+PGNvZGUgY29kZT0iMjYx
+NjY1MDA2IiBjb2RlU3lzdGVtPSIyLjE2Ljg0MC4xLjExMzg4My42Ljk2IiBjb2RlU3lzdGVtTmFt
+ZT0iU05PTUVEIENUIiBkaXNwbGF5TmFtZT0iVW5rbm93biIgLz48dGV4dD48cmVmZXJlbmNlIG51
+bGxGbGF2b3I9IlVOSyIgLz48L3RleHQ+PHN0YXR1c0NvZGUgY29kZT0iY29tcGxldGVkIiAvPjxl
+ZmZlY3RpdmVUaW1lIG51bGxGbGF2b3I9IlVOSyI+PGxvdyBudWxsRmxhdm9yPSJVTksiIC8+PC9l
+ZmZlY3RpdmVUaW1lPjx2YWx1ZSBudWxsRmxhdm9yPSJOQSIgeHNpOnR5cGU9IkNEIiB4bWxuczp4
+c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiAvPjxyZWZlcmVu
+Y2VSYW5nZT48b2JzZXJ2YXRpb25SYW5nZT48dGV4dCAvPjwvb2JzZXJ2YXRpb25SYW5nZT48L3Jl
+ZmVyZW5jZVJhbmdlPjwvb2JzZXJ2YXRpb24+PC9jb21wb25lbnQ+PGNvbXBvbmVudD48cHJvY2Vk
+dXJlIGNsYXNzQ29kZT0iUFJPQyIgbW9vZENvZGU9IkVWTiI+PHRlbXBsYXRlSWQgcm9vdD0iMi4x
+Ni44NDAuMS4xMTM4ODMuMTAuMjAuMS4yOSIgLz48dGVtcGxhdGVJZCByb290PSIxLjMuNi4xLjQu
+MS4xOTM3Ni4xLjUuMy4xLjQuMTkiIC8+PHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4
+ODMuMy44OC4xMS44My4xNyIgLz48aWQgbnVsbEZsYXZvcj0iTkEiIC8+PGNvZGUgbnVsbEZsYXZv
+cj0iTkEiPjxvcmlnaW5hbFRleHQ+PHJlZmVyZW5jZSBudWxsRmxhdm9yPSJVTksiIC8+PC9vcmln
+aW5hbFRleHQ+PC9jb2RlPjx0ZXh0PjxyZWZlcmVuY2UgbnVsbEZsYXZvcj0iVU5LIiAvPjwvdGV4
+dD48c3RhdHVzQ29kZSBjb2RlPSJjb21wbGV0ZWQiIC8+PGVmZmVjdGl2ZVRpbWUgbnVsbEZsYXZv
+cj0iVU5LIj48bG93IG51bGxGbGF2b3I9IlVOSyIgLz48L2VmZmVjdGl2ZVRpbWU+PC9wcm9jZWR1
+cmU+PC9jb21wb25lbnQ+PC9vcmdhbml6ZXI+PC9lbnRyeT48L3NlY3Rpb24+PC9jb21wb25lbnQ+
+PC9zdHJ1Y3R1cmVkQm9keT48L2NvbXBvbmVudD48L0NsaW5pY2FsRG9jdW1lbnQ+</inboundTemplate>
+      <outboundTemplate encoding="base64"></outboundTemplate>
+      <inboundDataType>XML</inboundDataType>
+      <outboundDataType>XML</outboundDataType>
+      <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+          <stripNamespaces>false</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </inboundProperties>
+      <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+          <stripNamespaces>false</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </outboundProperties>
+    </transformer>
+    <filter version="3.5.1">
+      <elements/>
+    </filter>
+    <transportName>Channel Reader</transportName>
+    <mode>SOURCE</mode>
+    <enabled>true</enabled>
+    <waitForPrevious>true</waitForPrevious>
+  </sourceConnector>
+  <destinationConnectors>
+    <connector version="3.5.1">
+      <metaDataId>1</metaDataId>
+      <name>Destination 1</name>
+      <properties class="com.mirth.connect.connectors.file.FileDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <scheme>FILE</scheme>
+        <host>F:/xampp/htdocs/results</host>
+        <outputPattern>${instance_id}.html</outputPattern>
+        <anonymous>true</anonymous>
+        <username>anonymous</username>
+        <password>anonymous</password>
+        <timeout>10000</timeout>
+        <secure>true</secure>
+        <passive>true</passive>
+        <validateConnection>true</validateConnection>
+        <outputAppend>false</outputAppend>
+        <errorOnExists>false</errorOnExists>
+        <temporary>true</temporary>
+        <binary>false</binary>
+        <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
+        <template>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+
+&lt;head&gt;
+&lt;meta http-equiv=”Pragma” content=”no-cache”&gt;
+&lt;meta http-equiv=”Expires” content=”-1″&gt;
+&lt;meta http-equiv=”CACHE-CONTROL” content=”NO-CACHE”&gt;
+
+&lt;base target=&quot;_self&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/EdenLiteStyle.css&quot; /&gt;
+
+
+&lt;title&gt;EdenMD - Sign a death record&lt;/title&gt;
+
+&lt;style type=&quot;text/css&quot;&gt;
+.style1 {
+	position: relative;
+	width: 90%;
+	text-align: left;
+	font-family: Arial;
+	font-weight: normal;
+	padding: 0 0 10px 0;
+	font-family: Arial;
+	font-style: normal;
+}
+&lt;/style&gt;
+
+
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+&lt;div id=&quot;edenmdtop&quot;&gt;
+   &lt;div id=&quot;indexall&quot; class=&quot;style3&quot; &gt;
+	  &lt;img src=&quot;MDHHS_Agency_Header_Logo_485531_7.png&quot; alt=&quot;old_dc&quot; width=&quot;382&quot; height=&quot;110&quot; align=&quot;left&quot;/&gt;&lt;p&gt;
+	   &amp;nbsp;&lt;/p&gt;
+       &lt;p id=&quot;logo&quot;&gt;Michigan Department of Health and Human Services&lt;/p&gt;&lt;p id=&quot;tagline&quot;&gt;Electronic Death Entry Network&lt;/p&gt;
+   &lt;/div&gt;
+   &lt;div id=&quot;hz_spacer&quot;&gt;
+    &lt;!-- &lt;p id=&quot;dateformat&quot;&gt;&amp;nbsp;&amp;nbsp;&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;document.write(TODAY);	&lt;/script&gt;&lt;/p&gt;--&gt;
+   &lt;/div&gt;
+   &lt;div id=&quot;menucontainer&quot;&gt;
+     &lt;div class=&quot;underlinemenu&quot;&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;frmCertifierPortal.php&quot;&gt;&lt;span class=&quot;lrgc&quot;&gt;Home&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;frmContact.php&quot;&gt;&lt;span class=&quot;lrgc&quot;&gt;Contact Us&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+		  &lt;li&gt;&lt;a href=&quot;frmManage.php&quot;&gt;&lt;span class=&quot;lrgc&quot;&gt;Account Settings&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;frmELFaq.php&quot;&gt;&lt;span class=&quot;lrgc&quot;&gt;Help&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;index.php&quot;&gt;&lt;span class=&quot;lrgc&quot;&gt;Exit&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;&lt;!--underlinemenu--&gt;
+  &lt;/div&gt;&lt;!--menucontainer--&gt;
+&lt;/div&gt;&lt;!--edenmdtop--&gt;
+
+&lt;form method=&quot;post&quot; name=&quot;frmCertify&quot; id=&quot;frmCertify&quot; action=&quot;http://127.0.0.1:8080/Results/SubmitForm/createDeathCertXML.php&quot; target=&quot;_blank&quot; &gt;
+&lt;!--&lt;form method=&quot;post&quot; name=&quot;frmCertify&quot; id=&quot;frmCertify&quot; action=&quot;http://10.242.128.147:8080/Results/SubmitForm/createDeathCertXML.php&quot; target=&quot;_blank&quot; &gt;--&gt;
+	  		
+
+&lt;div id=&quot;certcontent&quot;&gt;  
+    &lt;p class=&quot;lrgc&quot;&gt;Physician and facility  information&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class=&quot;info&quot; href=&quot;#&quot;&gt;?&lt;span&gt;Make sure this is your patient. Enter MRN if known.&lt;/span&gt;&lt;/a&gt; &lt;/p&gt;
+    &lt;div id=&quot;certinfo1&quot;&gt; 
+       &lt;span class=&quot;lbl&quot;&gt;Certifying Physician Name:&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type=&quot;text&quot; size=&quot;60&quot; name=&quot;VRDR_CertifierName&quot; value=&quot;${ProviderName}&quot;/&gt;&lt;/span&gt;&lt;br/&gt;
+       &lt;span class=&quot;lbl&quot;&gt;Certifying Physician Address:&amp;nbsp;&lt;input type=&quot;text&quot; size=&quot;60&quot; name=&quot;VRDR_PhyisicianAddress&quot; value=&quot;${ProviderAddress}&quot;/&gt;&lt;/span&gt;&lt;br/&gt;
+       &lt;span class=&quot;lbl&quot;&gt;Certifier License:&amp;nbsp;&lt;input type=&quot;text&apos; size=&quot;30&quot;  name=&quot;CertifierLicense&quot; value=&quot;&quot;/&gt;&lt;/span&gt;&lt;br/&gt;
+
+	   &lt;span class=&quot;lbl&quot;&gt;Facility:&amp;nbsp;&lt;input type=&quot;text&quot; size=&quot;60&quot;  name=&quot;VRDR_FacilityName&quot; value=&quot;${ProviderOrganization}&quot;/&gt;&lt;/span&gt;&lt;br/&gt;
+	   
+	  
+       &lt;span class=&quot;lbl&quot;&gt;&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;
+           &lt;/div&gt;
+
+ 
+ 
+ 
+    &lt;p class=&quot;lrgc&quot;&gt;Verify patient information&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class=&quot;info&quot; href=&quot;#&quot;&gt;?&lt;span&gt;Make sure this is your patient. Enter MRN if known.&lt;/span&gt;&lt;/a&gt; &lt;/p&gt;
+    &lt;div id=&quot;certinfo1&quot;&gt; 
+       &lt;span class=&quot;lbl&quot;&gt;First Name:&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;VRDR_Decedent_Name_given_1&quot; value=&quot;${DecedentFirstName}&quot;/&gt; Middle Name: &lt;input type=&quot;text&quot; name=&quot;VRDR_Decedent_Name_given_2&quot; value = &quot;&quot; /&gt;&amp;nbsp;Last Name: &lt;input type=&quot;text&quot; name=&quot;VRDR_Decedent_Name_given_family&quot; value=&quot;${DecedentLastName}&quot;/&gt;&lt;/span&gt;&lt;br/&gt;
+       &lt;span class=&quot;lbl&quot;&gt;SSN:&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;VRDR_DSSN&quot; value=&quot;${DecedentSSN}&quot;/&gt;&lt;/span&gt;&lt;br/&gt;
+       &lt;span class=&quot;lbl&quot;&gt;Sex:&amp;nbsp;&lt;/span&gt;&lt;input id=&quot;sex&quot; name=&quot;VRDR_PatientGenderCode&quot; value=&quot;${DecedentSex}&quot; /&gt;&lt;br/&gt;
+       &lt;span class=&quot;lbl&quot;&gt;DOB:&amp;nbsp;&lt;input type=&quot;text&quot;name=&quot;VRDR_BirthDate&quot; value=&quot;${DecedentDOB}&quot;/&gt;&lt;/span&gt;&lt;span &gt;mm/dd/ccyy&lt;/span&gt; &lt;br/&gt;&lt;br/&gt;
+
+         &lt;span class=&quot;lbl&quot;&gt;Medical Record Number:&amp;nbsp;&lt;/span&gt;&amp;nbsp;&lt;input type=&quot;text&quot;  name=&quot;VRDR_PatientMedicalRecordNumber&quot; id=&quot;MedicalRecordNumber&quot;  value=&quot;&quot;/&gt;(optional, enter if known)&lt;br/&gt;
+      Days last seen to death:&lt;input type=&quot;text&quot; name=&quot;txtDaysLastSeenToDeath&quot; id=&quot;txtDaysLastSeenToDeath&quot; /&gt;
+ 
+    &lt;/div&gt;
+
+   &lt;div id=&quot;certinfo3&quot; &gt;
+   &lt;p class=&quot;lrgc&quot;&gt;Date and time of death and date last attended&amp;nbsp;&amp;nbsp;&lt;a class=&quot;info&quot; href=&quot;#&quot;&gt;?&lt;span&gt;Information in these fields may have been provided by the funeral director. Verify it is correct and change if necessary.&lt;/span&gt;&lt;/a&gt; &lt;/p&gt;
+      &lt;div id=&quot;certinfo4&quot;&gt;
+      	
+      &lt;span class=&quot;lbl&quot;&gt;Date of Death:&lt;/span&gt;
+     
+   
+          &lt;input type=&quot;text&quot; name=&quot;VRDR_datePronouncedDead&quot; value=&quot;&quot;/&gt;
+     
+                        
+          &lt;span &gt;mm/dd/ccyy&lt;/span&gt; &amp;nbsp;&lt;input type=&quot;checkbox&quot; name=&quot;chkFoundDate&quot;  id=&quot;chkFoundDate&quot; value=&quot;X&quot;   /&gt;
+               
+                &lt;span class=&quot;ckbox&quot; &gt;Check if Decedent was Found on this 
+					Date&lt;/span&gt;&lt;br/&gt;	&lt;span id=&quot;dmonthInfo&quot;&gt;
+						&lt;/span&gt;&lt;span id=&quot;ddayInfo&quot;&gt;&lt;/span&gt;&lt;span id=&quot;dyearInfo&quot;&gt;&lt;/span&gt;
+  
+&lt;br/&gt;
+
+              &lt;span class=&quot;lbl&quot;&gt;Time of Death:&lt;/span&gt;
+             Hour: &lt;input type=&quot;text&quot; name=&quot;VRDR_Pronounced_Dead_Main_Hour&quot; value=&quot;&quot;/&gt;&amp;nbsp;Minute: &lt;input type=&quot;text&quot; name=&quot;VRDR_Pronounced_Dead_Main_Minute&quot; value=&quot;&quot;/&gt;&lt;br/&gt;
+             
+              &lt;span &gt;hh/mm&lt;/span&gt;
+              &amp;nbsp;&lt;input type=&quot;checkbox&quot; name=&quot;chkFoundTime&quot; id=&quot;chkFoundTime&quot; value=&quot;X&quot; /&gt;
+              &lt;font &gt; 
+              &lt;span class=&quot;ckbox&quot; &gt;Check if Decedent Found at this Time&lt;/span&gt;&lt;/font&gt;&lt;br/&gt;&lt;span id=&quot;dtimeHHInfo&quot;&gt;&lt;/span&gt;&lt;span id=&quot;dtimeMMInfo&quot;&gt;&lt;/span&gt;&lt;br/&gt;
+
+             &lt;span class=&quot;lbl&quot;&gt;Date Deceased Last Seen or Attended by Physician:&lt;/span&gt;
+             
+
+             
+              &lt;span style=&quot;font-size: 8pt&quot;&gt;mm/dd/ccyy&lt;/span&gt;&amp;nbsp; &amp;nbsp; &lt;a class=&quot;info&quot; href=&quot;#&quot;&gt;?&lt;span class=&quot;lrgc&quot;&gt;This is the date you or someone under your supervision last attended the patient.&lt;/span&gt;&lt;/a&gt;
+              &lt;span id=&quot;monthLastSeenInfo&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span id=&quot;dayLastSeenInfo&quot;&gt;&lt;/span&gt;&amp;nbsp;&lt;span id=&quot;yearLastSeenInfo&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span id=&quot;lastSeenInfo&quot;&gt;&lt;/span&gt;
+              &lt;br/&gt;&lt;br/&gt;
+             
+              &lt;input type=&quot;checkbox&quot; name=&quot;chkNeverSeenAlive&quot; id=&quot;chkNeverSeenAlive&quot; value=&quot;X&quot; style=&quot;border:none&quot;/&gt;
+					 &lt;font style=&quot;font-size:   (10 pt)&quot;&gt;
+              &lt;span class=&quot;ckbox&quot; &gt;Check if you have never seen this patient alive&lt;/span&gt;&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;
+              
+    &lt;/div&gt;
+   &lt;/div&gt;
+  
+  
+   &lt;div class=&quot;cod&quot;&gt;
+   &lt;p class=&quot;lrgc&quot;&gt;Cause of death&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;a class=&quot;info&quot; href=&quot;#&quot;&gt;?&lt;span&gt;Enter your best medical opinion as to the cause of this patient&apos;s death.&lt;/span&gt;&lt;/a&gt; &lt;/p&gt;
+   
+    &lt;div class=&quot;certhead&quot; style=&quot;left: 0px; top: 0px&quot;&gt;
+    &lt;b&gt;Part I: &lt;/b&gt;Enter the &lt;u&gt;&lt;b&gt;Chain of Events&lt;/b&gt;&lt;/u&gt; 
+              - diseases, injuries or complications - that directly caused the 
+			death.&lt;br/&gt;
+            &lt;ul&gt;          
+			&lt;li&gt;DO NOT enter terminal events such as cardiac arrest, 
+			respiratory arrest or ventricular fibrillation without showing the 
+			etiology. &lt;/li&gt;
+			&lt;li&gt;DO NOT abbreviate. &lt;/li&gt;&lt;li&gt;Enter only one cause on a line.&lt;/li&gt;
+			
+			&lt;/ul&gt;&lt;br/&gt;
+   &lt;/div&gt;
+  
+    &lt;div class=&quot;md_input&quot;&gt;
+    &lt;br/&gt;
+    &lt;p class=&quot;smc&quot;&gt;Immediate Cause (Final disease or condition resulting in death)&lt;/p&gt;&lt;span id=&quot;immediateCauseInfo&quot;&gt;&lt;/span&gt;&lt;br/&gt;
+    &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;VRDR_immediateCause&quot; id=&quot;Line1a&quot;  class=&quot;dtext&quot; value=&quot;&quot; size=&quot;90&quot; /&gt;
+      &lt;div class=&quot;onset&quot;&gt;
+              &lt;span class=&quot;style1&quot; style=&quot;left: 0px; top: 0px&quot;&gt;Time between onset and death:&lt;/span&gt;&lt;br/&gt;
+                &lt;input name=&quot;txtImmediateNum&quot; id=&quot;txtImmediateNum&quot; type=&quot;text&quot;  size=&quot;3&quot;value=&quot;&quot; /&gt;
+                
+        &lt;select name=&quot;selImmediateIntervalUnit&quot; id=&quot;immediateUnit&quot;&gt;
+                       &lt;option value=&quot;&quot; selected &gt;--Select&lt;/option&gt;
+                       &lt;option value=&quot;Immediate&quot;&gt;Immediate&lt;/option&gt;
+                       &lt;option value=&quot;Minutes&quot;&gt;Minutes&lt;/option&gt;
+                       &lt;option value=&quot;Hours&quot;&gt;Hours&lt;/option&gt;
+                       &lt;option value=&quot;Days&quot;&gt;Days&lt;/option&gt;
+					   &lt;option value=&quot;Weeks&quot;&gt;Weeks&lt;/option&gt;
+					   &lt;option value=&quot;Months&quot;&gt;Months&lt;/option&gt;
+                       &lt;option value=&quot;Years&quot;&gt;Years&lt;/option&gt;
+ 
+         		&lt;/select&gt;
+		&amp;nbsp;&lt;a class=&quot;info&quot; href=&quot;#&quot;&gt;?&lt;span class=&quot;lrgc&quot;&gt;Enter the number for the interval between onset and death for condition on this line, and select the number of units. If immediate, select &quot;immediate&quot;.  If unknown, leave blank.&lt;/span&gt;&lt;/a&gt;
+      &lt;/div&gt; &lt;!--onset--&gt;
+   &lt;/div&gt;  &lt;!--immediate--&gt;
+  
+ 
+     &lt;div class=&quot;md_input&quot;&gt;
+     &lt;br/&gt;
+     &lt;p class=&quot;smc&quot;&gt;Sequentially list conditions, if any, leading to the cause listed above&lt;/p&gt;&lt;br/&gt;
+     &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;Line1b&quot; id=&quot;Line1b&quot; value=&quot;&quot; size=&quot;90&quot; /&gt;
+     &lt;div class=&quot;onset&quot;&gt;
+	 &lt;br/&gt;&lt;input name=&quot;txtAdditionalNum1&quot; id=&quot;txtAdditionalNum1&quot; type=&quot;text&quot; size=&quot;3&quot;value=&quot;&quot; /&gt;
+                
+        
+            
+        &lt;select name=&quot;selAdditionalIntervalUnit1&quot; id=&quot;intervalUnit1&quot; &gt;
+		
+	               &lt;option value=&quot;&quot; selected &gt;--Select&lt;/option&gt;
+                   &lt;option value=&quot;Immediate&quot;&gt;Immediate&lt;/option&gt;
+                   &lt;option value=&quot;Minutes&quot;&gt;Minutes&lt;/option&gt;
+				   &lt;option value=&quot;Hours&quot;&gt;Hours&lt;/option&gt;
+				   &lt;option value=&quot;Days&quot;&gt;Days&lt;/option&gt;
+				   &lt;option value=&quot;Weeks&quot;&gt;Weeks&lt;/option&gt;
+				   &lt;option value=&quot;Months&quot;&gt;Months&lt;/option&gt;
+				   &lt;option value=&quot;Years&quot;&gt;Years&lt;/option&gt;
+
+        &lt;/select&gt;
+
+
+   
+ 
+   &lt;/div&gt;
+
+&lt;/div&gt;
+   &lt;div class=&quot;md_input&quot;&gt;   
+   &lt;br/&gt;&lt;br/&gt;
+   &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;Line1c&quot; id=&quot;Line1c&quot; value=&quot;&quot; size=&quot;90&quot; /&gt;
+	&lt;div class=&quot;onset&quot;&gt;
+	&lt;br/&gt;&lt;input name=&quot;txtAdditionalNum2&quot; id=&quot;txtAdditionalNum2&quot; type=&quot;text&quot; size=&quot;3&quot;value=&quot;&quot;/&gt;
+
+        
+          
+              &lt;select name=&quot;selAdditionalIntervalUnit2&quot; id=&quot;intervalUnit2&quot; &gt;
+	               &lt;option value=&quot;&quot; selected &gt;--Select&lt;/option&gt;
+                   &lt;option value=&quot;Immediate&quot;&gt;Immediate&lt;/option&gt;
+                   &lt;option value=&quot;Minutes&quot;&gt;Minutes&lt;/option&gt;
+				   &lt;option value=&quot;Hours&quot;&gt;Hours&lt;/option&gt;
+				   &lt;option value=&quot;Days&quot;&gt;Days&lt;/option&gt;
+				   &lt;option value=&quot;Weeks&quot;&gt;Weeks&lt;/option&gt;
+				   &lt;option value=&quot;Months&quot;&gt;Months&lt;/option&gt;
+				   &lt;option value=&quot;Years&quot;&gt;Years&lt;/option&gt;
+        &lt;/select&gt;&lt;br/&gt;
+   &lt;/div&gt;
+&lt;/div&gt;   
+ 
+&lt;div class=&quot;md_input&quot;&gt;
+   &amp;nbsp;&amp;nbsp;&lt;p class=&quot;smc&quot;&gt;Enter the &lt;b&gt;UNDERLYING CAUSE &lt;/b&gt;(disease or injury that initiated the events 
+			resulting in death)&lt;/p&gt;&lt;br/&gt;
+   &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type=&quot;text&quot; id=&quot;Line1d&quot; name=&quot;VRDR_UnderlyingCause&quot; value=&quot;&quot; size=&quot;90&quot; /&gt;&lt;br/&gt;
+
+    &lt;div class=&quot;onset&quot;&gt;
+              &lt;br/&gt;&lt;input name=&quot;txtUnderlyingNum&quot; id=&quot;txtUnderlyingNum&quot; type=&quot;text&quot;  size=&quot;3&quot; value=&quot;&quot; /&gt;
+
+
+      &lt;select name=&quot;lstUnderlyingIntervalUnit&quot; id=&quot;underlyingUnit&quot; &gt;
+              &lt;option value=&quot;&quot; selected &gt;--Select&lt;/option&gt;
+                   &lt;option value=&quot;Immediate&quot;&gt;Immediate&lt;/option&gt;
+                   &lt;option value=&quot;Minutes&quot;&gt;Minutes&lt;/option&gt;
+				   &lt;option value=&quot;Hours&quot;&gt;Hours&lt;/option&gt;
+				   &lt;option value=&quot;Days&quot;&gt;Days&lt;/option&gt;
+				   &lt;option value=&quot;Weeks&quot;&gt;Weeks&lt;/option&gt;
+				   &lt;option value=&quot;Months&quot;&gt;Months&lt;/option&gt;
+				   &lt;option value=&quot;Years&quot;&gt;Years&lt;/option&gt;
+        &lt;/select&gt;&lt;br/&gt;    
+      &lt;/div&gt;
+ &lt;/div&gt;   
+   
+   &lt;div class=&quot;certhead&quot;&gt;
+          Part II: Enter other &lt;u&gt;significant conditions contributing to 
+			death&lt;/u&gt; but not resulting in the underlying cause given in &lt;b&gt;PART I&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;md_input&quot;&gt;
+        &lt;br/&gt;
+      &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+       &lt;br/&gt;&lt;br/&gt;
+	 &lt;br/&gt;
+       
+ 
+	   &lt;br/&gt;
+	   
+	     
+    &lt;/div&gt;
+  
+&lt;/div&gt; 
+ 
+
+
+	
+	 
+	
+   &lt;div id=&quot;certhead5&quot; style=&quot;left: 0px; top: 0px&quot;&gt; 
+   &lt;br/&gt;&lt;br/&gt;
+    &lt;p class=&quot;lrgc&quot;&gt;Other Information&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;md_input1&quot;&gt;&lt;p class=&quot;smc&quot;&gt;
+    Was an Autopsy Performed?&lt;/p&gt;
+            &lt;span id=&quot;autopsyDone&quot;&gt;&lt;/span&gt;
+              
+           	&lt;label &gt;&lt;input type=&quot;radio&quot; name=&quot;chkAutopsyDone&quot; id=&quot;chkAutopsyDoneY&quot; value=&quot;Y&quot; /&gt;Yes&lt;/label&gt;
+			&lt;label &gt;&lt;input type=&quot;radio&quot; name=&quot;chkAutopsyDone&quot; id=&quot;chkAutopsyDoneN&quot; value=&quot;N&quot; /&gt;No&lt;/label&gt;
+			&lt;br/&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;md_input1&quot;&gt;
+		&lt;p class=&quot;smc&quot;&gt;	Were Autopsy Findings Available for completion of the Cause of 
+				Death?&lt;/p&gt;
+			&lt;label &gt;&lt;input type=&quot;radio&quot; class=&quot;.radio_b&quot;  id=&quot;radAutopsyAvailableY&quot; name=&quot;radAutopsyAvailable&quot; value=&quot;Y&quot;/&gt;Yes&lt;/label&gt;
+			&lt;label &gt;&lt;input type=&quot;radio&quot; name=&quot;radAutopsyAvailable&quot; class=&quot;.radio_b&quot; id=&quot;radAutopsyAvailableN&quot; value=&quot;N&quot; /&gt;No&lt;/label&gt;
+			&lt;br/&gt;&lt;br/&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;md_input1&quot;&gt;
+     			&lt;span&gt;In Your Opinion, Did Tobacco Use by the 
+			Decedent Contribute to Death?&lt;/span&gt;&amp;nbsp;&lt;span id=&quot;tobaccoUse&quot;&gt;&lt;/span&gt; &lt;select name=&quot;lstTobacco&quot; id=&quot;lstTobacco&quot;  &gt;
+             	   &lt;option value=&quot;&quot; selected &gt;--Select--&lt;/option&gt;
+                   &lt;option value=&quot;1&quot;&gt;Probably contributed to death&lt;/option&gt;
+                   &lt;option value=&quot;2&quot;&gt;Was underlying cause of death&lt;/option&gt;
+				   &lt;option value=&quot;3&quot;&gt;Did not contribute to cause of death&lt;/option&gt;
+				   &lt;option value=&quot;4&quot;&gt;Is unknown in relation to cause of death&lt;/option&gt;
+				   &lt;option value=&quot;5&quot;&gt;Non-user&lt;/option&gt;
+				   &lt;option value=&quot;6&quot;&gt;Unknown if user&lt;/option&gt;
+
+        &lt;/select&gt;
+    &lt;br/&gt;&lt;br/&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;md_input1&quot;&gt;
+   &lt;span&gt;Manner of Death:&lt;/span&gt;&lt;span id=&quot;mannerInfo&quot;&gt;&lt;/span&gt;&amp;nbsp;
+
+
+		
+	 &lt;select name=&quot;lstManner&quot; id=&quot;lstManner&quot; &gt;
+	       &lt;option value=&quot;&quot; selected &gt;--Select--&lt;/option&gt;
+		   &lt;option value=&quot;1&quot;&gt;Natural&lt;/option&gt;
+		   &lt;option value=&quot;2&quot;&gt;Accident&lt;/option&gt;
+		   &lt;option value=&quot;3&quot;&gt;Suicide&lt;/option&gt;
+		   &lt;option value=&quot;4&quot;&gt;Homicide&lt;/option&gt;
+		   &lt;option value=&quot;5&quot;&gt;Could not be determined&lt;/option&gt;
+		   &lt;option value=&quot;6&quot;&gt;Pending investigation&lt;/option&gt;
+	  &lt;/select&gt;
+        
+        &lt;br/&gt;&lt;br/&gt;
+        &lt;/div&gt;
+     &lt;div id=&quot;pregQ&quot;&gt;
+       &lt;div class=&quot;md_input1&quot;&gt;
+		&lt;!--hide pregnancy question if decedent is a male--&gt;
+		
+		&lt;span&gt;&lt;br/&gt;Pregnancy Question: If Female, 
+			Decedent Was&lt;/span&gt;&lt;span id=&quot;pregnantInfo&quot;&gt;&lt;/span&gt;&lt;br/&gt;
+			
+	    &lt;select name=&quot;lstPregnant&quot; id=&quot;lstPregnant&quot; &gt;
+		 &lt;option value=&quot;&quot; selected &gt;--Select--&lt;/option&gt;
+	   &lt;option value=&quot;1&quot;&gt;Not pregnant within the last year&lt;/option&gt;
+	   &lt;option value=&quot;2&quot;&gt;Pregnant at time of death&lt;/option&gt;
+	   &lt;option value=&quot;3&quot;&gt;Not pregnant, but pregnant within 42 days before death&lt;/option&gt;
+	   &lt;option value=&quot;4&quot;&gt;Not pregnant, but pregnant within 43 days to 1 year before death&lt;/option&gt;
+	   &lt;option value=&quot;5&quot;&gt;Unknown if pregnant within the last year&lt;/option&gt;
+
+	&lt;/select&gt;&lt;br/&gt;
+         &lt;/div&gt;
+     &lt;/div&gt; &lt;!--end preg info--&gt;
+     &lt;div class=&quot;md_input1&quot;&gt;
+        &lt;br/&gt;&lt;br/&gt;
+          Is injury information available 
+			for this death?
+		 &lt;input type=&quot;radio&quot; name =&quot;radInjury&quot; id=&quot;radInjuryYes&quot; value=&quot;Y&quot; /&gt;&lt;font color=&quot;#004A00&quot;&gt; 
+	    	Yes&lt;/font&gt;
+			&lt;input type=&quot;radio&quot; name=&quot;radInjury&quot; id=&quot;radInjuryNo&quot; value=&quot;N&quot; /&gt;&lt;font color=&quot;#004A00&quot;&gt; 
+			No&lt;/font&gt;&amp;nbsp; &lt;a class=&quot;info&quot; href=&quot;#&quot;&gt;?&lt;span&gt;If this death involved an injury, select yes to see and complete injury informaton fields below. If injury was not involved, click no and proceed to the next question.&lt;/span&gt;&lt;/a&gt;&lt;span id=&quot;injuryInfo&quot;&gt;&lt;/span&gt;
+		    &lt;br/&gt;&lt;br/&gt;
+	  &lt;/div&gt;
+      &lt;div id=&quot;injinfo&quot;&gt;
+         &lt;div class=&quot;md_input&quot; &gt;
+       			
+					
+					Date of Injury:&amp;nbsp;&lt;span id=&quot;imonthInfo&quot;&gt;
+						&lt;/span&gt;&lt;span id=&quot;idayInfo&quot;&gt;&lt;/span&gt;&lt;span id=&quot;iyearInfo&quot;&gt;&lt;/span&gt;
+	
+		
+              &lt;font style=&quot;font-size: 8pt&quot;&gt;mm/dd/ccyy&lt;/font&gt;
+					
+                 
+                 &lt;br/&gt;&lt;br/&gt;Time of Injury:&lt;span id=&quot;itimeHHInfo&quot;&gt;
+						&lt;/span&gt;&lt;span id=&quot;itimeMMInfo&quot;&gt;&lt;/span&gt;
+                 
+    
+                  &lt;font style=&quot;font-size: 8pt&quot;&gt;hh/mm&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;md_input&quot;&gt;Injury at work:&lt;span id=&quot;iworkInfo&quot;&gt;&lt;/span&gt;&amp;nbsp;&lt;input type=&quot;radio&quot; name=&quot;radInjuryAtWork&quot; id=&quot;radInjuryAtWorkYes&quot; value=&quot;Yes&quot; style=&quot;border:none&quot; /&gt;
+              Yes&amp;nbsp;&lt;input type=&quot;radio&quot; name=&quot;radInjuryAtWork&quot;  id=&quot;radInjuryAtWorkNo&quot; value=&quot;No&quot; style=&quot;border:none&quot; /&gt;
+              No&amp;nbsp;&lt;input type=&quot;radio&quot; name=&quot;radInjuryAtWork&quot;  id=&quot;radInjuryAtWorkUnknown&quot; value=&quot;Unknown&quot; style=&quot;border:none&quot; /&gt;
+              Unknown&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Place of Injury:&lt;span id=&quot;injuryplaceInfo&quot;&gt;&lt;/span&gt;
+              &lt;input type=&quot;text&quot; name=&quot;txtInjuryPlace&quot; id=&quot;txtInjuryPlace&quot;  value=&quot;&quot; size=&quot;60&quot; /&gt;&amp;nbsp; &lt;a class=&quot;info&quot; href=&quot;#&quot;&gt; ?&lt;span class=&quot;lrgc&quot;&gt;Enter the general type of place of injury such as home, farm, street, factory, office, building, etc. DO NOT enter firm or organization names.&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;
+	          &lt;br/&gt;&lt;br/&gt;If motor vehicle accident:
+			
+		&lt;select name=&quot;lstInjuryMotorVehicle&quot;  &gt;
+			 &lt;option value=&quot;&quot; selected &gt;--Select--&lt;/option&gt;
+		   &lt;option value=&quot;1&quot;&gt;Driver&lt;/option&gt;
+		   &lt;option value=&quot;2&quot;&gt;Passenger&lt;/option&gt;
+		   &lt;option value=&quot;3&quot;&gt;Pedestrian&lt;/option&gt;
+		   &lt;option value=&quot;4&quot;&gt;Other&lt;/option&gt;
+		   &lt;option value=&quot;5&quot;&gt;Unknown&lt;/option&gt;
+
+				
+             
+        &lt;/select&gt;
+        	  If Other, specify:
+
+		&lt;input type=&quot;text&quot; name=&quot;txtInjuryMotorSpec&quot;   value=&quot;&quot; size=&quot;60&quot;/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt; 	  
+		&lt;/div&gt;
+		&lt;div class=&quot;md_input&quot;&gt;	 
+
+              &lt;br/&gt;Location of Injury
+				&lt;br/&gt;&lt;br/&gt; Street address:&lt;span id=&quot;injurystreetInfo&quot;&gt;&lt;/span&gt;
+			  &lt;input type=&quot;text&quot; name=&quot;txtInjuryStreet&quot; id=&quot;txtInjuryStreet&quot;   value=&quot;&quot; size=&quot;60&quot; /&gt;
+	    &lt;/div&gt;
+	    &lt;div class=&quot;md_input&quot;&gt;
+			  &lt;br/&gt;City:&lt;span id=&quot;injurycityInfo&quot;&gt;&lt;/span&gt;
+			  &lt;input type=&quot;text&quot; name=&quot;txtInjuryCity&quot; id=&quot;txtInjuryCity&quot;   value=&quot;&quot; size=&quot;35&quot; style=&quot;background-color: #ECECFF&quot;/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+			 
+			  County:&lt;span id=&quot;injurycountyInfo&quot;&gt;&lt;/span&gt;
+			  &lt;input type=&quot;text&quot; name=&quot;txtInjuryCounty&quot; id=&quot;txtInjuryCounty&quot;   value=&quot;&quot; size=&quot;10&quot;  style=&quot;background-color: #EDF8EB&quot;/&gt;&amp;nbsp;&amp;nbsp;
+			  
+			&lt;br/&gt;&lt;br/&gt;State:&lt;span id=&quot;injurystateInfo&quot;&gt;&lt;/span&gt;
+			  &lt;input type=&quot;text&quot; name=&quot;txtInjuryState&quot; id=&quot;txtInjuryState&quot; value=&quot;&quot; size=&quot;25&quot;  style=&quot;background-color: #EDF8EB&quot;/&gt;
+			  Country:&lt;span id=&quot;injurycountryInfo&quot;&gt;&lt;/span&gt;
+			  &lt;input type=&quot;text&quot; name=&quot;txtInjuryCountry&quot; id=&quot;txtInjuryCountry&quot; value=&quot;&quot; size=&quot;35&quot; style=&quot;background-color: #EDF8EB&quot;/&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;md_input&quot;&gt;
+     &lt;p align=&quot;left&quot;&gt;Describe How Injury Occurred 1&lt;span id=&quot;injurydescriptionInfo&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+		
+			&lt;input type=&quot;text&quot; name=&quot;txtInjuryDescription1&quot; id=&quot;txtInjuryDescription1&quot;   value=&quot;&quot; size=&quot;82&quot;  maxlength=&quot;60&quot;/&gt;
+    &lt;br/&gt; &lt;br/&gt;&lt;p align=&quot;left&quot;&gt;Describe How Injury Occurred 2 &lt;/p&gt;
+			
+			&lt;input type=&quot;text&quot; name=&quot;txtInjuryDescription2&quot;   value=&quot;&quot; size=&quot;82&quot;  maxlength=&quot;60&quot;/&gt;
+     &lt;/div&gt;
+     
+   &lt;/div&gt;
+   &lt;div id=&quot;certinfo6&quot;&gt;   &lt;p class=&quot;lrgc&quot;&gt;&amp;nbsp;&lt;/p&gt;
+	&lt;p class=&quot;lrgc&quot;&gt;&amp;nbsp;&lt;/p&gt;
+	&lt;p class=&quot;lrgc&quot;&gt;Edit and Sign Death Certificate&lt;/p&gt;
+      &lt;div class=&quot;md_input2&quot; style=&quot;left: 45px; top: 0px&quot;&gt;
+        &lt;div class=&quot;md2_left&quot;&gt;
+           
+      
+           &lt;br/&gt;&lt;input type=&quot;submit&quot; id=&quot;cmdSave&quot; value=&quot;Submit&quot; name=&quot;cmdSave&quot;/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+           
+             
+         
+            &lt;input type=&quot;button&quot; name=&quot;cmdExit&quot; id=&quot;cmdExit&quot; value=&quot;Exit&quot; /&gt;&lt;br/&gt;
+         
+         &lt;/div&gt;
+         &lt;div class=&quot;md2_right&quot;&gt;   
+       
+         
+       &lt;/div&gt;
+    &lt;/div&gt;	
+
+		
+		          
+   &lt;/div&gt;            
+
+&lt;/div&gt;
+&lt;/form&gt;   
+
+
+ 
+&lt;/body&gt;
+&lt;/html&gt;
+
+</template>
+      </properties>
+      <transformer version="3.5.1">
+        <elements>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>ProviderAddressOut</name>
+            <sequenceNumber>0</sequenceNumber>
+            <script>var ProviderAddressOut
+
+ProviderAddressOut = $(&apos;ProviderAddress&apos;)
+if (ProviderAddressOut.length==0){
+ ProviderAddressOut = &quot;X&quot;;
+}
+
+globalMap.put(&apos;ProviderAddressOut&apos;, ProviderAddressOut);</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        </elements>
+        <inboundTemplate encoding="base64"></inboundTemplate>
+        <outboundTemplate encoding="base64"></outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>File Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+    <connector version="3.5.1">
+      <metaDataId>2</metaDataId>
+      <name>Destination 2</name>
+      <properties class="com.mirth.connect.connectors.file.FileDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <scheme>FILE</scheme>
+        <host>f:/mirth/death/</host>
+        <outputPattern>deathmsglog.txt</outputPattern>
+        <anonymous>true</anonymous>
+        <username>anonymous</username>
+        <password>anonymous</password>
+        <timeout>10000</timeout>
+        <secure>true</secure>
+        <passive>true</passive>
+        <validateConnection>true</validateConnection>
+        <outputAppend>true</outputAppend>
+        <errorOnExists>false</errorOnExists>
+        <temporary>false</temporary>
+        <binary>false</binary>
+        <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
+        <template>*************************************
+Name: ${DecedentFirstName}
+LName:${DecedentLastName}
+SSN: ${DecedentSSN}
+Addr:
+More ADDR:${ProviderAddress}${ProviderAddressOut}
+ProviderName:${ProviderName}
+ProviderOrganization:${ProviderOrganization}
+**************************************************************************************************</template>
+      </properties>
+      <transformer version="3.5.1">
+        <elements/>
+        <inboundTemplate encoding="base64"></inboundTemplate>
+        <outboundTemplate encoding="base64"></outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>File Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+  </destinationConnectors>
+  <preprocessingScript>// Modify the message variable below to pre process data
+return message;</preprocessingScript>
+  <postprocessingScript>// This script executes once after a message has been processed
+// Responses returned from here will be stored as &quot;Postprocessor&quot; in the response map
+return;</postprocessingScript>
+  <deployScript>// This script executes once when the channel is deployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+// This script executes once when the channel is deployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+
+// Initialize MDHT Clinical Document Package
+org.openhealthtools.mdht.uml.cda.ccd.CCDPackage.eINSTANCE.eClass();
+
+return;</deployScript>
+  <undeployScript>// This script executes once when the channel is undeployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</undeployScript>
+  <properties version="3.5.1">
+    <clearGlobalChannelMap>true</clearGlobalChannelMap>
+    <messageStorageMode>DEVELOPMENT</messageStorageMode>
+    <encryptData>false</encryptData>
+    <removeContentOnCompletion>false</removeContentOnCompletion>
+    <removeOnlyFilteredOnCompletion>false</removeOnlyFilteredOnCompletion>
+    <removeAttachmentsOnCompletion>false</removeAttachmentsOnCompletion>
+    <initialState>STARTED</initialState>
+    <storeAttachments>false</storeAttachments>
+    <metaDataColumns>
+      <metaDataColumn>
+        <name>SOURCE</name>
+        <type>STRING</type>
+        <mappingName>mirth_source</mappingName>
+      </metaDataColumn>
+      <metaDataColumn>
+        <name>TYPE</name>
+        <type>STRING</type>
+        <mappingName>mirth_type</mappingName>
+      </metaDataColumn>
+    </metaDataColumns>
+    <attachmentProperties version="3.5.1">
+      <type>None</type>
+      <properties/>
+    </attachmentProperties>
+    <resourceIds class="linked-hash-map">
+      <entry>
+        <string>Default Resource</string>
+        <string>[Default Resource]</string>
+      </entry>
+    </resourceIds>
+  </properties>
+  <exportData>
+    <metadata>
+      <enabled>true</enabled>
+      <lastModified>
+        <time>1516646023703</time>
+        <timezone>America/New_York</timezone>
+      </lastModified>
+      <pruningSettings>
+        <archiveEnabled>true</archiveEnabled>
+      </pruningSettings>
+    </metadata>
+    <channelTags>
+      <channelTag>
+        <id>1318feb3-a2da-447f-ad80-a70cf7bd64d3</id>
+        <name>2018</name>
+        <channelIds>
+          <string>ba1e1fad-55f9-414d-9fdf-299bbb972f38</string>
+          <string>12d8ec02-b0fd-4925-bb09-fe9f83e2c7d0</string>
+          <string>b09e35ad-4fc5-4dc0-9909-80ae22c0900f</string>
+          <string>f6304de6-71f5-464d-be4d-3c3cabe33dc6</string>
+          <string>ec01f9a8-7f8e-418b-8fe0-15afb1eb1c42</string>
+          <string>6196759c-940f-40cb-94a8-ab7e17d32e19</string>
+          <string>e3a88c51-a15e-4152-b064-a80f8b976199</string>
+          <string>26998c34-8105-4ec1-ae92-f3e9fed1912c</string>
+          <string>189068f6-2833-4646-b74e-f46a988202c1</string>
+          <string>bd2d2918-e155-4b90-a0e5-e48e6d1eecdf</string>
+          <string>f8adb5e6-546c-45fc-886f-babb5ddfb052</string>
+        </channelIds>
+        <backgroundColor>
+          <red>255</red>
+          <green>0</green>
+          <blue>0</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+      <channelTag>
+        <id>45a74879-abde-4794-9743-c8467e9bf222</id>
+        <name>VRDR</name>
+        <channelIds>
+          <string>f6304de6-71f5-464d-be4d-3c3cabe33dc6</string>
+          <string>189068f6-2833-4646-b74e-f46a988202c1</string>
+        </channelIds>
+        <backgroundColor>
+          <red>255</red>
+          <green>0</green>
+          <blue>0</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+    </channelTags>
+  </exportData>
+</channel>

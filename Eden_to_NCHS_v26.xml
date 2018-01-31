@@ -1,0 +1,3244 @@
+<channel version="3.5.1">
+  <id>f8adb5e6-546c-45fc-886f-babb5ddfb052</id>
+  <nextMetaDataId>4</nextMetaDataId>
+  <name>Eden_to_NCHS_v26</name>
+  <description></description>
+  <revision>7</revision>
+  <sourceConnector version="3.5.1">
+    <metaDataId>0</metaDataId>
+    <name>sourceConnector</name>
+    <properties class="com.mirth.connect.connectors.jdbc.DatabaseReceiverProperties" version="3.5.1">
+      <pluginProperties/>
+      <pollConnectorProperties version="3.5.1">
+        <pollingType>INTERVAL</pollingType>
+        <pollOnStart>true</pollOnStart>
+        <pollingFrequency>5000</pollingFrequency>
+        <pollingHour>0</pollingHour>
+        <pollingMinute>0</pollingMinute>
+        <cronJobs/>
+        <pollConnectorPropertiesAdvanced>
+          <weekly>true</weekly>
+          <inactiveDays>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+          </inactiveDays>
+          <dayOfMonth>1</dayOfMonth>
+          <allDay>true</allDay>
+          <startingHour>8</startingHour>
+          <startingMinute>0</startingMinute>
+          <endingHour>17</endingHour>
+          <endingMinute>0</endingMinute>
+        </pollConnectorPropertiesAdvanced>
+      </pollConnectorProperties>
+      <sourceConnectorProperties version="3.5.1">
+        <responseVariable>None</responseVariable>
+        <respondAfterProcessing>true</respondAfterProcessing>
+        <processBatch>false</processBatch>
+        <firstResponse>false</firstResponse>
+        <processingThreads>1</processingThreads>
+        <resourceIds class="linked-hash-map">
+          <entry>
+            <string>Default Resource</string>
+            <string>[Default Resource]</string>
+          </entry>
+        </resourceIds>
+        <queueBufferSize>1000</queueBufferSize>
+      </sourceConnectorProperties>
+      <driver>net.sourceforge.jtds.jdbc.Driver</driver>
+      <url>jdbc:jtds:sqlserver://RHUMPHRYS-A1641:1433/connectathon</url>
+      <username>ray</username>
+      <password>mss</password>
+      <select>SELECT TOP 1 rtrim(edenmaster.StateFileNumber)  AS hl7_export_StateFileNumber, 
+       rtrim(edenmaster.MRN)  AS hl7_export_MRN, 
+	  rtrim(edenmaster.DeceasedLast)  AS hl7_export_DeceasedLast, 
+	  rtrim(edenmaster.DeceasedFirst)  AS hl7_export_DeceasedFirst, 
+	  rtrim(edenmaster.DeceasedMiddle)  AS hl7_export_DeceasedMiddle, 
+	  rtrim(edenmaster.DeceasedSuffix)  AS hl7_export_DeceasedSuffix, 
+	  rtrim(edenmaster.SSN)  AS hl7_export_SSN, 
+	  rtrim(edenmaster.Gender)  AS hl7_export_Gender, 
+	  rtrim(edenmaster.BirthCity)  AS hl7_export_BirthCity, 
+	  rtrim(edenmaster.BirthCounty)  AS hl7_export_BirthCounty, 
+	  rtrim(edenmaster.BirthState)  AS hl7_export_BirthState, 
+	  rtrim(edenmaster.BirthCountry)  AS hl7_export_BirthCountry, 
+	  rtrim(edenmaster.BirthCCYY)  AS hl7_export_BirthCCYY, 
+	  rtrim(edenmaster.BirthMM)  AS hl7_export_BirthMM, 
+	  rtrim(edenmaster.BirthDD)  AS hl7_export_BirthDD, 
+	  rtrim(edenmaster.RaceWhite)  AS hl7_export_RaceWhite, 
+	  rtrim(edenmaster.RaceBlack)  AS hl7_export_RaceBlack, 
+	  rtrim(edenmaster.RaceAmIndian)  AS hl7_export_RaceAmIndian, 
+	  rtrim(edenmaster.RaceTribeSpec)  AS hl7_export_RaceTribeSpec, 
+	  rtrim(edenmaster.RaceChinese)  AS hl7_export_RaceChinese, 
+	  rtrim(edenmaster.RaceJapanese)  AS hl7_export_RaceJapanese, 
+	  rtrim(edenmaster.RaceHawaiian)  AS hl7_export_RaceHawaiian, 
+	  rtrim(edenmaster.RaceFilipino)  AS hl7_export_RaceFilipino, 
+	  rtrim(edenmaster.RaceOtherAsian)  AS hl7_export_RaceOtherAsian, 
+	  rtrim(edenmaster.RaceAsianSpec)  AS hl7_export_RaceAsianSpec, 
+	  rtrim(edenmaster.RaceAsianIndian)  AS hl7_export_RaceAsianIndian, 
+	  rtrim(edenmaster.RaceKorean)  AS hl7_export_RaceKorean, 
+	  rtrim(edenmaster.RaceSamoan)  AS hl7_export_RaceSamoan, 
+	  rtrim(edenmaster.RaceVietnamese)  AS hl7_export_RaceVietnamese, 
+	  rtrim(edenmaster.RaceGuamanian)  AS hl7_export_RaceGuamanian, 
+	  rtrim(edenmaster.RacePacIslander)  AS hl7_export_RacePacIslander, 
+	  rtrim(edenmaster.RaceOther)  AS hl7_export_RaceOther, 
+	  rtrim(edenmaster.RaceUnknown)  AS hl7_export_RaceUnknown, 
+	  rtrim(edenmaster.Education)  AS hl7_export_Education, 
+	  rtrim(edenmaster.Occupation)  AS hl7_export_Occupation, 
+	  rtrim(edenmaster.Industry)  AS hl7_export_Industry, 
+	  rtrim(edenmaster.ArmedForces)  AS hl7_export_ArmedForces, 
+	  rtrim(edenmaster.Pregnant)  AS hl7_export_Pregnant, 
+	  rtrim(edenmaster.ResStreetAddress1)  AS hl7_export_ResStreetAddress1, 
+	  rtrim(edenmaster.ResStreetAddress2)  AS hl7_export_ResStreetAddress2, 
+	  rtrim(edenmaster.ResCity)  AS hl7_export_ResCity, 
+	  rtrim(edenmaster.ResCounty)  AS hl7_export_ResCounty, 
+	  rtrim(edenmaster.ResState)  AS hl7_export_ResState, 
+	  rtrim(edenmaster.ResCountry)  AS hl7_export_ResCountry, 
+	  rtrim(edenmaster.ResZip5)  AS hl7_export_ResZip5, 
+	  rtrim(edenmaster.ResInCityLimits)  AS hl7_export_ResInCityLimits, 
+	  rtrim(edenmaster.DeathCCYY)  AS hl7_export_DeathCCYY, 
+	  rtrim(edenmaster.DeathMM)  AS hl7_export_DeathMM, 
+	  rtrim(edenmaster.DeathDD)  AS hl7_export_DeathDD, 
+	  rtrim(edenmaster.FoundDate)  AS hl7_export_FoundDate, 
+	  rtrim(edenmaster.TimeOfDeathHH)  AS hl7_export_TimeOfDeathHH, 
+	  rtrim(edenmaster.TimeOfDeathMM)  AS hl7_export_TimeOfDeathMM, 
+	  rtrim(edenmaster.FoundTime)  AS hl7_export_FoundTime, 
+	  rtrim(edenmaster.PlaceOfDeath)  AS hl7_export_PlaceOfDeath, 
+	  rtrim(edenmaster.FacilityName)  AS hl7_export_FacilityName, 
+	  rtrim(edenmaster.NursingHomeName)  AS hl7_export_NursingHomeName, 
+	  rtrim(edenmaster.POD_OtherSpec)  AS hl7_export_POD_OtherSpec, 
+	  rtrim(edenmaster.NonFacilityLocation)  AS hl7_export_NonFacilityLocation, 
+	  rtrim(edenmaster.CountyOfDeath)  AS hl7_export_CountyOfDeath, 
+	  rtrim(edenmaster.CityOfDeath)  AS   hl7_export__CityOfDeath, 
+	  rtrim(edenmaster.CertifierFullName)  AS hl7_export_CertifierFullName, 
+	  rtrim(edenmaster.CertifierSignCCYY)  AS hl7_export_CertifierSignCCYY, 
+	  rtrim(edenmaster.CertifierSignMM)  AS hl7_export_CertifierSignMM, 
+	  rtrim(edenmaster.CertifierSignDD)  AS hl7_export_CertifierSignDD, 
+	  rtrim(edenmaster.CertifierAddress1)  AS hl7_export_CertifierAddress1, 
+	  rtrim(edenmaster.CertifierAddress2)  AS hl7_export_CertifierAddress2, 
+	  rtrim(edenmaster.CertifierCity)  AS hl7_export_CertifierCity, 
+	  rtrim(edenmaster.CertifierState)  AS hl7_export_CertifierState, 
+	  rtrim(edenmaster.CertifierCountry)  AS hl7_export_CertifierCountry, 
+	  rtrim(edenmaster.CertifierZip5)  AS hl7_export_CertifierZip5, 
+	  rtrim(edenmaster.ME_Contacted)  AS hl7_export_ME_Contacted, 
+	  rtrim(edenmaster.AutopsyDone)  AS hl7_export_AutopsyDone, 
+	  rtrim(edenmaster.AutopsyAvailable)  AS hl7_export_AutopsyAvailable, 
+	  rtrim(edenmaster.LastSeenCCYY)  AS hl7_export_LastSeenCCYY, 
+	  rtrim(edenmaster.LastSeenMM)  AS hl7_export_LastSeenMM, 
+	  rtrim(edenmaster.LastSeenDD)  AS hl7_export_LastSeenDD, 
+	  rtrim(edenmaster.DaysLastSeenToDeath)  AS hl7_export_DaysLastSeenToDeath, 
+	  rtrim(edenmaster.ImmediateCause)  AS hl7_export_ImmediateCause, 
+	  rtrim(edenmaster.ImmediateInterval)  AS hl7_export_ImmediateInterval, 
+	  rtrim(edenmaster.ImmediateIntervalUnit)  AS ImmediateIntervalUnit, 
+	  rtrim(edenmaster.AdditionalCause1)  AS hl7_export_AdditionalCause1, 
+	  rtrim(edenmaster.AdditionalInterval1)  AS hl7_export_AdditionalInterval1, 
+	  rtrim(edenmaster.AdditionalIntervalUnit1)  AS AdditionalIntervalUnit1, 
+	  rtrim(edenmaster.AdditionalCause2)  AS hl7_export_AdditionalCause2, 
+	  rtrim(edenmaster.AdditionalInterval2)  AS hl7_export_AdditionalInterval2, 
+	  rtrim(edenmaster.AdditionalIntervalUnit2)  AS AdditionalIntervalUnit2, 
+	  rtrim(edenmaster.UnderlyingCause)  AS hl7_export_UnderlyingCause, 
+	  rtrim(edenmaster.UnderlyingInterval)  AS hl7_export_UnderlyingInterval, 
+	  rtrim(edenmaster.UnderlyingIntervalUnit)  AS UnderlyingIntervalUnit, 
+	  rtrim(edenmaster.OtherConditions)  AS hl7_export_OtherConditions, 
+	  rtrim(edenmaster.MannerOfDeath)  AS hl7_export_MannerOfDeath, 
+	  rtrim(edenmaster.Tobacco)  AS hl7_export_Tobacco, 
+	  rtrim(edenmaster.Injury)  AS hl7_export_Injury, 
+	  rtrim(edenmaster.InjuryCCYY)  AS hl7_export_InjuryCCYY, 
+	  rtrim(edenmaster.InjuryMM)  AS hl7_export_InjuryMM, 
+	  rtrim(edenmaster.InjuryDD)  AS hl7_export_InjuryDD, 
+	  rtrim(edenmaster.InjuryTimeHH)  AS hl7_export_InjuryTimeHH, 
+	  rtrim(edenmaster.InjuryTimeMM)  AS hl7_export_InjuryTimeMM, 
+	  rtrim(edenmaster.InjuryStreet)  AS hl7_export_InjuryStreet, 
+	  rtrim(edenmaster.InjuryCity)  AS hl7_export_InjuryCity, 
+	  rtrim(edenmaster.InjuryCounty)  AS hl7_export_InjuryCounty, 
+	  rtrim(edenmaster.InjuryState)  AS hl7_export_InjuryState, 
+	  rtrim(edenmaster.InjuryCountry)  AS hl7_export_InjuryCountry, 
+	  rtrim(edenmaster.InjuryPlace)  AS hl7_export_InjuryPlace, 
+	  rtrim(edenmaster.InjuryAtWork)  AS hl7_export_InjuryAtWork, 
+	  rtrim(edenmaster.InjuryMotorVehicle)  AS hl7_export_InjuryMotorVehicle, 
+	  rtrim(edenmaster.InjuryMotorSpec)  AS hl7_export_InjuryMotorSpec,
+	   rtrim(edenmaster.InjuryDescription1)  AS hl7_export_InjuryDescription1, 
+		rtrim(edenmaster.InjuryDescription2)  AS hl7_export_InjuryDescription2, 
+		rtrim(edenmaster.MasterStatus)  AS hl7_export_MasterStatus, 
+		rtrim(edenmaster.DropPaperDate)  AS hl7_export_DropPaperDate, 
+		rtrim(edenmaster.RegisteredCCYY)  AS hl7_export_registeredccyy, 
+		rtrim(edenmaster.RegisteredMM)  AS hl7_export_registeredmm, 
+		rtrim(edenmaster.RegisteredDD)  AS hl7_export_RegisteredDD, 
+		rtrim(edenmaster.MaritalStatus)  AS hl7_export_MaritalStatus, 
+		rtrim(edenmaster.HispanicOrigin)  AS hl7_export_hispanicOrigin, 
+		rtrim(edenmaster.AgeInYears)  AS hl7_export_AgeInYears, 
+		rtrim(edenmaster.AgeInMonths)  AS hl7_export_AgeInMonths,
+		rtrim(edenmaster.AgeInDays)  AS hl7_export_AgeInDays, 
+		rtrim(edenmaster.AgeInHours)  AS hl7_export_AgeInHours, 
+		rtrim(edenmaster.AgeInMinutes)  AS hl7_export_AgeInMinutes, 
+		rtrim(edenmaster.BirthStateFileNumber)  AS hl7_export_BirthStateFileNumber, 
+		rtrim(edenmaster.FatherLast)  AS hl7_export_FatherLast, 
+		rtrim(edenmaster.DispositionBurial)  AS hl7_export_DispositionBurial, 
+		rtrim(edenmaster.DispositionCremation)  AS hl7_export_dispositioncremation, 
+		rtrim(edenmaster.DispositionEntombment)  AS hl7_export_dispositionentombment, 
+		rtrim(edenmaster.DispositionRemoval)  AS hl7_export_dispositionremoval, 
+		rtrim(edenmaster.DispositionOther)  AS hl7_export_dispositionother, 
+		rtrim(edenmaster.ME_CaseNumber)  AS hl7_export_MEcasenumber, 
+		rtrim(edenmaster.ResCityFips)  AS hl7_export_ResCityFips, 
+		rtrim(edenmaster.ResCountyFips)  AS hl7_export_ResCountyFips, 
+		rtrim(edenmaster.ResStateFips)  AS hl7_export_ResStateFips, 
+		rtrim(edenmaster.ResCountryFips)  AS hl7_export_ResCountryFips, 
+		rtrim(edenmaster.BirthStateFips)  AS hl7_export_BirthStateFips, 
+		rtrim(edenmaster.BirthCountryFips)  AS hl7_export_birthcountryfips
+FROM   edenmaster WHERE hl7Send = 0 --  and edenmasterid = 35
+
+
+
+</select>
+      <update>update edenmaster set hl7Send = 1 where StateFileNumber = ${hl7_export_statefilenumber}</update>
+      <useScript>false</useScript>
+      <aggregateResults>false</aggregateResults>
+      <cacheResults>true</cacheResults>
+      <keepConnectionOpen>true</keepConnectionOpen>
+      <updateMode>3</updateMode>
+      <retryCount>3</retryCount>
+      <retryInterval>10000</retryInterval>
+      <fetchSize>1000</fetchSize>
+      <encoding>DEFAULT_ENCODING</encoding>
+    </properties>
+    <transformer version="3.5.1">
+      <elements>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>StateFileNumber</name>
+          <sequenceNumber>0</sequenceNumber>
+          <variable>StateFileNumber</variable>
+          <mapping>msg[&apos;hl7_export_statefilenumber&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>MRN</name>
+          <sequenceNumber>1</sequenceNumber>
+          <variable>MRN</variable>
+          <mapping>msg[&apos;hl7_export_mrn&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>LastName</name>
+          <sequenceNumber>2</sequenceNumber>
+          <variable>LastName</variable>
+          <mapping>msg[&apos;hl7_export_deceasedlast&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>FirstName</name>
+          <sequenceNumber>3</sequenceNumber>
+          <variable>FirstName</variable>
+          <mapping>msg[&apos;hl7_export_deceasedfirst&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>MiddleName</name>
+          <sequenceNumber>4</sequenceNumber>
+          <variable>MiddleName</variable>
+          <mapping>msg[&apos;hl7_export_deceasedmiddle&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>SSN</name>
+          <sequenceNumber>5</sequenceNumber>
+          <variable>SSN</variable>
+          <mapping>msg[&apos;hl7_export_ssn&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Gender</name>
+          <sequenceNumber>6</sequenceNumber>
+          <variable>Gender</variable>
+          <mapping>msg[&apos;hl7_export_gender&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ImmediateCause</name>
+          <sequenceNumber>7</sequenceNumber>
+          <variable>ImmediateCause</variable>
+          <mapping>msg[&apos;hl7_export_immediatecause&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Additional1</name>
+          <sequenceNumber>8</sequenceNumber>
+          <variable>Additional1</variable>
+          <mapping>msg[&apos;hl7_export_additionalcause1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Additional2</name>
+          <sequenceNumber>9</sequenceNumber>
+          <variable>Additional2</variable>
+          <mapping>msg[&apos;hl7_export_additionalcause2&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>UnderlyingCause</name>
+          <sequenceNumber>10</sequenceNumber>
+          <variable>UnderlyingCause</variable>
+          <mapping>msg[&apos;hl7_export_underlyingcause&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>msgDate</name>
+          <sequenceNumber>11</sequenceNumber>
+          <script>var dateString = DateUtil.getCurrentDate(&quot;yyyyMMddhhmmss&quot;);
+
+logger.debug(&quot;msgdate:&quot; + dateString);
+
+mDate = dateString + &quot;-0600&quot;;
+
+
+channelMap.put(&apos;msgDate&apos;,mDate);
+
+
+//var MasterStatus = hl7_export_MasterStatus;
+
+//logger.debug(&quot;master status:&quot; + MasterStatus);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>MasterStatus</name>
+          <sequenceNumber>12</sequenceNumber>
+          <variable>MasterStatus</variable>
+          <mapping>msg[&apos;hl7_export_masterstatus&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Education</name>
+          <sequenceNumber>13</sequenceNumber>
+          <variable>Education</variable>
+          <mapping>msg[&apos;hl7_export_education&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Occupation</name>
+          <sequenceNumber>14</sequenceNumber>
+          <variable>Occupation</variable>
+          <mapping>msg[&apos;hl7_export_occupation&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Industry</name>
+          <sequenceNumber>15</sequenceNumber>
+          <variable>Industry</variable>
+          <mapping>msg[&apos;hl7_export_industry&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ArmedForces</name>
+          <sequenceNumber>16</sequenceNumber>
+          <variable>ArmedForces</variable>
+          <mapping>msg[&apos;hl7_export_armedforces&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Pregnant</name>
+          <sequenceNumber>17</sequenceNumber>
+          <variable>Pregnant</variable>
+          <mapping>msg[&apos;hl7_export_pregnant&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ResStreetAddr1</name>
+          <sequenceNumber>18</sequenceNumber>
+          <variable>ResStreetAddr1</variable>
+          <mapping>msg[&apos;hl7_export_resstreetaddress1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ResStreetAddr2</name>
+          <sequenceNumber>19</sequenceNumber>
+          <variable>ResStreetAddr2</variable>
+          <mapping>msg[&apos;hl7_export_resstreetaddress2&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ResCity</name>
+          <sequenceNumber>20</sequenceNumber>
+          <variable>ResCity</variable>
+          <mapping>msg[&apos;hl7_export_rescity&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ResCounty</name>
+          <sequenceNumber>21</sequenceNumber>
+          <variable>ResCounty</variable>
+          <mapping>msg[&apos;hl7_export_rescounty&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ResState</name>
+          <sequenceNumber>22</sequenceNumber>
+          <variable>ResState</variable>
+          <mapping>msg[&apos;hl7_export_resstate&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ResCountry</name>
+          <sequenceNumber>23</sequenceNumber>
+          <variable>ResCountry</variable>
+          <mapping>msg[&apos;hl7_export_rescountry&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ResZip5</name>
+          <sequenceNumber>24</sequenceNumber>
+          <variable>ResZip5</variable>
+          <mapping>msg[&apos;hl7_export_reszip5&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>DateOfDeath</name>
+          <sequenceNumber>25</sequenceNumber>
+          <script>//Date of Death
+
+
+var deathccyy = msg[&apos;hl7_export_deathccyy&apos;].toString();
+
+var deathmm = msg[&apos;hl7_export_deathmm&apos;].toString();
+
+var deathdd = msg[&apos;hl7_export_deathdd&apos;].toString();
+
+var dod_found = msg[&apos;hl7_export_founddate&apos;].toString();
+
+var deathhh  = msg[&apos;hl7_export_timeofdeathhh&apos;].toString();
+
+var deathmm = msg[&apos;hl7_export_timeofdeathmm&apos;].toString();
+
+
+var tod_found = msg[&apos;hl7_export_foundtime&apos;].toString();
+
+var DateOfDeath = deathccyy + deathmm + deathdd;
+
+channelMap.put(&quot;DateOfDeath&quot;, DateOfDeath);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>AutopsyAvailable</name>
+          <sequenceNumber>26</sequenceNumber>
+          <variable>AutopsyAvailable</variable>
+          <mapping>msg[&apos;hl7_export_autopsyavailable&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>AutopsyDone</name>
+          <sequenceNumber>27</sequenceNumber>
+          <variable>AutopsyDone</variable>
+          <mapping>msg[&apos;hl7_export_autopsydone&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Manner of Death</name>
+          <sequenceNumber>28</sequenceNumber>
+          <script>////Manner of Death Recoding
+
+
+
+
+///EDEN Manner of Death Codes///////////
+/*
+1 = Natural
+2 = Accident
+3 = Suicide
+4 = Homicide
+5 = Could not be determined
+6 = Pending investigation
+
+
+
+
+
+*/
+var manner_ccode = &quot; &quot;;
+var manner_cname = &quot; &quot;;
+var manner_csys = &quot; &quot;;
+
+var manner_in = msg[&apos;hl7_export_mannerofdeath&apos;].toString();
+logger.debug(&quot;MANNER: &quot; + manner_in);
+
+
+
+switch(manner_in){
+    case &quot;1&quot;:
+    manner_ccode = &quot;38605008&quot;;
+    manner_cname = &quot;Natural&quot;;
+    manner_csys = &quot;SCT&quot;;
+    break;
+
+    case &quot;2&quot;: 
+    manner_ccode = &quot;7878000&quot;;
+    manner_cname = &quot;Accident&quot;;
+    manner_csys = &quot;SCT&quot;;
+    break;
+  
+   case &quot;3&quot;:
+    manner_ccode = &quot;44301001&quot;;
+    manner_cname = &quot;Suicide&quot;;
+    manner_csys = &quot;SCT&quot;;
+    break;
+
+    case &quot;4&quot;:
+    manner_ccode = &quot;27935005&quot;;
+    manner_cname = &quot;Homicide&quot;;
+    manner_csys = &quot;SCT&quot;;
+    break;
+
+    case &quot;5&quot;:
+    manner_ccode = &quot;65037004&quot;;
+    manner_cname = &quot;Could not be determined&quot;;
+    manner_csys = &quot;SCT&quot;;
+    break;
+
+    case &quot;6&quot;:
+    manner_ccode = &quot;185973002&quot;;
+    manner_cname = &quot;Pending Investigation&quot;;
+    manner_csys = &quot;SCT&quot;;
+    break;
+
+
+}
+
+channelMap.put(&quot;manner_ccode&quot;, manner_ccode);
+channelMap.put(&quot;manner_cname&quot;,manner_cname);
+channelMap.put(&quot;manner_csys&quot;, manner_csys);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Tobacco Use</name>
+          <sequenceNumber>29</sequenceNumber>
+          <script>//Tobacco use variable
+/*
+Eden codes:
+ 
+1 - Probably contributed--2931005^Probably^SCT
+2 - Was underlying cause of death--373066001^Yes^SCT
+3 - Did not contribute--373067005^No^SCT
+4 - Is unknown in relation to cod--UNK^Unknown^NullFlavor
+5 - Non-user--373067005^No^SCT
+6 - unknown if user--UNK^Unknown^NullFlavor
+
+
+
+*/
+
+var tobac_ccode = &quot; &quot;;
+var tobac_cname = &quot; &quot;;
+var tobac_csys = &quot; &quot;;
+
+var tobacco = msg[&apos;hl7_export_tobacco&apos;].toString();
+logger.debug(&quot;tobacco: &quot; + tobacco);
+
+switch(tobacco){
+
+case &quot;1&quot;:
+  tobac_ccode = &quot;2931005&quot;;
+  tobac_cname  = &quot;Probably&quot;;
+  tobac_csys = &quot;SCT&quot;;
+  break;
+case &quot;2&quot;:
+   tobac_ccode = &quot;373066001&quot;;
+  tobac_cname  = &quot;Yes&quot;;
+  tobac_csys = &quot;SCT&quot;;
+  break;
+
+case &quot;3&quot;:
+tobac_ccode = &quot;373067005&quot;;
+  tobac_cname  = &quot;No&quot;;
+  tobac_csys = &quot;SCT&quot;;
+  break;
+
+case &quot;4&quot;:
+tobac_ccode = &quot;UNK&quot;;
+  tobac_cname  = &quot;Unknown&quot;;
+  tobac_csys = &quot;&quot;;
+  break;
+
+
+case &quot;5&quot;:
+tobac_ccode = &quot;363067005&quot;;
+  tobac_cname  = &quot;No&quot;;
+  tobac_csys = &quot;SCT&quot;;
+  break;
+
+case &quot;6&quot;:
+tobac_ccode = &quot;UNK&quot;;
+  tobac_cname  = &quot;Unknown&quot;;
+  tobac_csys = &quot;&quot;;
+  break;
+
+
+}
+
+channelMap.put(&quot;tobac_ccode&quot;, tobac_ccode);
+channelMap.put(&quot;tobac_cname&quot;, tobac_cname);
+channelMap.put(&quot;tobac_csys&quot;, tobac_csys);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Pregnancy</name>
+          <sequenceNumber>30</sequenceNumber>
+          <script>////Pregnancy field///////////
+///Required for females 5-75 years old//////////////
+/*
+    1 - Not pregnant within last year--
+    2 - Pregnant at time of death--
+    3 - Not pregnant, but pregnant within 42 days before death
+    4 - Not pregnant, but pregnant within 43 days to 1 year before death
+    5 - Unknown if pregnant within last year
+
+
+
+*/
+
+var Pregnant = msg[&apos;hl7_export_pregnant&apos;].toString();
+
+var pregnant_ccode = &quot;NA&quot;;
+var pregnant_cname = &quot;Not Applicable&quot;;
+var pregnant_csys = &quot; &quot;;
+
+
+
+switch(Pregnant){
+
+case &quot;1&quot;:
+   pregnant_ccode = &quot;PHC1260&quot;;
+   pregnant_cname = &quot;Not pregnant within last year&quot;;
+   pregnant_csys = &quot;CDCPHINVS&quot;;
+   break;
+case &quot;2&quot;:
+  pregnant_ccode = &quot;PHC1261&quot;;
+   pregnant_cname = &quot;Pregnant at time of death&quot;;
+   pregnant_csys = &quot;CDCPHINVS&quot;;
+   break;
+case &quot;3&quot;:
+pregnant_ccode = &quot;PHC1262&quot;;
+   pregnant_cname = &quot;Not pregnant, but pregnant within 42 days of death&quot;;
+   pregnant_csys = &quot;CDCPHINVS&quot;;
+   break;
+case &quot;4&quot;:
+pregnant_ccode = &quot;PHC1263&quot;;
+   pregnant_cname = &quot;Not pregnant, but pregnant 42 days to 1 year before death&quot;;
+   pregnant_csys = &quot;CDCPHINVS&quot;;
+   break;
+case &quot;5&quot;:
+pregnant_ccode = &quot;PHC1264&quot;;
+   pregnant_cname = &quot;Unknown if pregnant within the past year&quot;;
+   pregnant_csys = &quot;CDCPHINVS&quot;;
+   break;
+
+
+
+}
+
+channelMap.put(&quot;pregnant_ccode&quot;,pregnant_ccode);
+channelMap.put(&quot;pregnant_cname&quot;,pregnant_cname);
+channelMap.put(&quot;pregnant_csys&quot;,pregnant_csys);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Injury fields</name>
+          <sequenceNumber>31</sequenceNumber>
+          <script>////injury at work///////////
+
+var InjuryYN = &quot; &quot;;
+    InjuryYN = msg[&apos;hl7_export_injury&apos;].toString();
+var Injwork = msg[&apos;hl7_export_injuryatwork&apos;].toString();
+var injuryDate = msg[&apos;hl7_export_injuryccyy&apos;].toString()+msg[&apos;hl7_export_injurymm&apos;].toString()+msg[&apos;hl7_export_injurydd&apos;].toString();
+var injuryDateTime = injuryDate + msg[&apos;hl7_export_injurytimehh&apos;].toString()+msg[&apos;hl7_export_injurytimemm&apos;].toString()+&quot;-0800&quot;;
+var injuryMV= &quot;N&quot;;
+var injuryMVSpecify = &quot; &quot;;
+
+injuryMV = msg[&apos;hl7_export_injurymotorvehicle&apos;].toString();
+
+
+/*Injury Motor Vehicle Codes: Eden to IJE
+
+Eden
+1 --Driver
+2--Passenger
+3--Pedestrian
+4--Other
+5--Unknown
+6--
+
+*/
+
+var injMV_ccode = &quot;&quot;;
+var injMV_cname = &quot;&quot;;
+var injMV_csys = &quot; &quot;;
+
+
+switch(injuryMV){
+
+case &quot;1&quot;:
+   injuryMV = &quot;Y&quot;;
+   injMV_ccode = &quot;236320001&quot;;
+   injMV_cname  = &quot;Driver/Operator&quot;;
+   injMV_csys = &quot;SCT&quot;;
+   break;
+case &quot;2&quot;:
+     injuryMV = &quot;Y&quot;;
+   injMV_ccode = &quot;25750003&quot;;
+   injMV_cname  = &quot;Passenger&quot;;
+   injMV_csys = &quot;SCT&quot;;
+   break;
+  case &quot;3&quot;:
+     injuryMV = &quot;Y&quot;;
+   injMV_ccode = &quot;257518000&quot;;
+   injMV_cname  = &quot;Pedestrian&quot;;
+   injMV_csys = &quot;SCT&quot;;
+   break;
+case &quot;4&quot;:
+     injuryMV = &quot;Y&quot;;
+   injMV_ccode = &quot;OTH&quot;;
+   injMV_cname  = &quot;Other&quot;;
+   injMV_csys = &quot;NullFlavor&quot;;
+   break;
+
+
+}
+
+
+channelMap.put(&quot;InjuryYN&quot;, InjuryYN);
+channelMap.put(&quot;injuryMV&quot;,injuryMV);
+channelMap.put(&quot;Injwork&quot;,Injwork);
+channelMap.put(&quot;injuryDateTime&quot;,injuryDateTime);
+channelMap.put(&quot;injMV_ccode&quot;, injMV_ccode);
+channelMap.put(&quot;injMV_cname&quot;,injMV_cname);
+channelMap.put(&quot;injMV_csys&quot;,injMV_csys);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Record Source</name>
+          <sequenceNumber>32</sequenceNumber>
+          <script>////Record Source////////////////////
+
+var record_source = &quot;1&quot;;
+var source_ccode = &quot;PHC1359&quot;;
+var source_cname = &quot;Electronic Mode&quot;;
+var source_csys = &quot;CDCPHINVS&quot;;
+
+/*
+if (msg[&apos;hl7_export_droppaperdate&apos;].toString() != &quot; &quot;){
+   record_source = &quot;3&quot;;
+   source_ccode = &quot;PHC1361&quot;;
+   source_cname = &quot;Mixed Mode&quot;;
+   source_csys = &quot;CDCPHINVS&quot;;
+}
+
+*/
+
+
+channelMap.put(&quot;record_source&quot;,record_source);
+channelMap.put(&quot;source_ccode&quot;,source_ccode);
+channelMap.put(&quot;source_cname&quot;,source_cname);
+channelMap.put(&quot;source_csys&quot;, source_csys);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Education Level</name>
+          <sequenceNumber>33</sequenceNumber>
+          <script>/////EDUCATION LEVEL
+
+
+
+var educationLevel = msg[&apos;hl7_export_education&apos;].toString();
+
+
+
+var education_ccode = &quot;Unk&quot;;
+var education_cname = &quot;Unk&quot;;
+var education_csys = &quot;CDCPHINVS&quot;;
+
+
+
+
+
+switch(educationLevel){
+        case &quot;1&quot;:   
+        var education_ccode = &quot;PHC1448&quot;;
+        var education_cname = &quot;8th grade or less&quot;;
+        var education_csys = &quot;CDCPHINVS&quot;;
+        break;
+ case &quot;2&quot;:   
+        var education_ccode = &quot;PHC1449&quot;;
+        var education_cname = &quot;9th through 12th grade, no diploma&quot;;
+        var education_csys = &quot;CDCPHINVS&quot;;
+        break;
+ case &quot;3&quot;:   
+        var education_ccode = &quot;PHC1450&quot;;
+        var education_cname = &quot;High School Graduate or GED Completed&quot;;
+        var education_csys = &quot;CDCPHINVS&quot;;
+        break;
+
+ case &quot;4&quot;:   
+        var education_ccode = &quot;PHC1451&quot;;
+        var education_cname = &quot;Some college credit, but no degree&quot;;
+        var education_csys = &quot;CDCPHINVS&quot;;
+        break;
+ case &quot;5&quot;:   
+        var education_ccode = &quot;PHC1452&quot;;
+        var education_cname = &quot;Associate Degree&quot;;
+        var education_csys = &quot;CDCPHINVS&quot;;
+        break;
+ case &quot;6&quot;:   
+        var education_ccode = &quot;PHC1453&quot;;
+        var education_cname = &quot;Bachelor&apos;s Degree&quot;;
+        var education_csys = &quot;CDCPHINVS&quot;;
+        break;
+ case &quot;7&quot;:   
+        var education_ccode = &quot;PHC1454&quot;;
+        var education_cname = &quot;Master&apos;s Degree&quot;;
+        var education_csys = &quot;CDCPHINVS&quot;;
+        break;
+ case &quot;8&quot;:   
+        var education_ccode = &quot;PHC1455&quot;;
+        var education_cname = &quot;Doctorate or Professional Degree&quot;;
+        var education_csys = &quot;CDCPHINVS&quot;;
+        break;
+ case &quot;9&quot;:   
+        var education_ccode = &quot;Unknown&quot;;
+        var education_cname = &quot;Unknown&quot;;
+        var education_csys = &quot;CDCPHINVS&quot;;
+        break;
+}
+
+channelMap.put(&quot;education_ccode&quot;,education_ccode);
+channelMap.put(&quot;education_cname&quot;,education_cname);
+channelMap.put(&quot;education_csys&quot;,education_csys);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>FacilityName</name>
+          <sequenceNumber>34</sequenceNumber>
+          <variable>FacilityName</variable>
+          <mapping>msg[&apos;hl7_export_facilityname&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Marital Status</name>
+          <sequenceNumber>35</sequenceNumber>
+          <script>var marital_ccode = &quot; &quot;;
+var marital_cname = &quot; &quot;;
+var marital_csys = &quot; &quot;;
+
+marital_ccode = &quot;U&quot;;
+
+marital_cname = &quot;Unknown&quot;;
+marital_csys = &quot;CDCPHINVS&quot;;
+
+
+switch (msg[&apos;hl7_export_maritalstatus&apos;].toString()){
+
+     case &quot;S&quot;:
+      marital_ccode = &quot;S&quot;;
+      marital_cname = &quot;Never Married&quot;;
+      marital_csys = &quot;CDCPHINVS&quot;;
+      break;
+      case &quot;M&quot;:
+      marital_ccode = &quot;M&quot;;
+      marital_cname = &quot;Married&quot;;
+      marital_csys = &quot;CDCPHINVS&quot;;
+      break;
+      case &quot;W&quot;:
+      marital_ccode = &quot;W&quot;;
+      marital_cname = &quot;Widowed&quot;;
+      marital_csys = &quot;CDCPHINVS&quot;;
+      break;
+      case &quot;D&quot;:
+       marital_ccode = &quot;D&quot;;
+      marital_cname = &quot;Divorced&quot;;
+      marital_csys = &quot;CDCPHINVS&quot;;
+
+
+}
+
+
+channelMap.put(&quot;marital_ccode&quot;, marital_ccode);
+channelMap.put(&quot;marital_cname&quot;, marital_cname);
+channelMap.put(&quot;marital_csys&quot;,marital_csys);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Ethnicity</name>
+          <sequenceNumber>36</sequenceNumber>
+          <script>///////Ethnicity///////////////////////
+
+
+
+var hispanic_cname = &quot;  &quot;;
+var hispanic_ccode = &quot; &quot;;
+var hispanic_csys = &quot; &quot;;
+
+
+/*
+Data type CE
+HL70189
+
+H-Hispanic or Latino
+N-Not Hispanic or Latino
+U-Unknown
+
+
+*/
+
+switch(msg[&apos;hl7_export_hispanicorigin&apos;].toString()){
+
+case &quot;Y&quot;:
+    hispanic_ccode = &quot;H&quot;;
+    hispanic_cname = &quot;Hispanic or Latino&quot;;
+    hispanic_csys = &quot;CDCPHINVS&quot;;
+    break;
+case &quot;N&quot;:
+   hispanic_ccode = &quot;N&quot;;
+    hispanic_cname = &quot;NotHispanic or Latino&quot;;
+    hispanic_csys = &quot;CDCPHINVS&quot;;
+    break;
+case &quot;U&quot;:
+   hispanic_ccode = &quot;U&quot;;
+    hispanic_cname = &quot;Unknown&quot;;
+    hispanic_csys = &quot;CDCPHINVS&quot;;
+    break;
+
+}
+
+
+channelMap.put(&quot;hispanic_ccode&quot;,hispanic_ccode);
+channelMap.put(&quot;hispanic_cname&quot;,hispanic_cname);
+channelMap.put(&quot;hispanic_csys&quot;,hispanic_csys);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Race Information</name>
+          <sequenceNumber>37</sequenceNumber>
+          <script>/////////////////RACE INFORMATION///////////////
+/*
+From Eden
+
+RaceWhite   2106-3^White^CDCREC
+RaceBlack   2054-5^Black or African American^CDCREC
+RaceAmIndian 1002-5^American Indian or Alaska Native^CDCREC
+RaceTribeSpec
+RaceChinese 2034-7^Chinese
+RaceJapanese 2039-6^Japanese
+RaceHawaiian 207902^Native Hawaiian
+RaceFilipino 2036-2^Filipino
+RaceOtherAsian 2028-9 Other Asian
+RaceAsianSpec
+RaceAsianIndian 2029-7^Asian Indian
+RaceKorean 2040-4^Korean
+RaceSamoan 2080-0^Samoan
+RaceVietnamese 2047-9^Vietnamese
+RaceGuamanian 2086-7^Guamanian or Chamorro
+RacePacIslander 2500-7^Other Pacific Islander
+RaceIslanderSpec
+RaceOther 2131-1^Other
+RaceOtherSpec
+RaceUnknown 
+
+tmp[&apos;PID&apos;][&apos;PID.10&apos;]
+*/
+
+numrace = 0;
+
+var raceobjects = [];
+
+
+if (msg[&apos;hl7_export_racewhite&apos;].toString()==&quot;X&quot;){
+numrace +=1;
+
+  raceobjects.push({rcode:&apos;2106-3&apos;,rname:&apos;White&apos;, rsys:&apos;CDCREC&apos;});
+   
+}
+
+if (msg[&apos;hl7_export_raceblack&apos;].toString()==&quot;X&quot;){
+ //RaceBlack   2054-5^Black or African American^CDCREC
+	raceobjects.push({rcode:&apos;2054-5&apos;,rname:&apos;Black&apos;, rsys:&apos;CDCREC&apos;});
+
+
+}
+
+if (msg[&apos;hl7_export_raceamindian&apos;].toString()==&quot;X&quot;){
+ //RaceAmIndian 1002-5^American Indian or Alaska Native^CDCREC 
+  raceobjects.push({rcode:&apos;1002-5&apos;,rname:&apos;American Indian or Alaska Native&apos;, rsys:&apos;CDCREC&apos;});
+
+}
+
+
+if (msg[&apos;hl7_export_racechinese&apos;].toString()==&quot;X&quot;){
+//RaceChinese 2034-7^Chinese
+ raceobjects.push({rcode:&apos;2034-7&apos;,rname:&apos;Chinese&apos;, rsys:&apos;CDCREC&apos;});
+
+}
+
+
+if (msg[&apos;hl7_export_racejapanese&apos;].toString()==&quot;X&quot;){
+
+//RaceJapanese 2039-6^Japanese
+raceobjects.push({rcode:&apos;2039-6&apos;,rname:&apos;Japanese&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+
+if (msg[&apos;hl7_export_racehawaiian&apos;].toString()==&quot;X&quot;){
+
+//RaceHawaiian 207902^Native Hawaiian
+raceobjects.push({rcode:&apos;2079-2&apos;,rname:&apos;Hawaiian&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+if (msg[&apos;hl7_export_racefilipino&apos;].toString()==&quot;X&quot;){
+
+//RaceFilipino 2036-2^Filipino
+raceobjects.push({rcode:&apos;2036-2&apos;,rname:&apos;Filipino&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+if (msg[&apos;hl7_export_raceotherasian&apos;].toString()==&quot;X&quot;){
+
+//RaceOtherAsian 2028-9 Other Asian
+raceobjects.push({rcode:&apos;2028-9&apos;,rname:&apos;Other Asian&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+if (msg[&apos;hl7_export_raceasianindian&apos;].toString()==&quot;X&quot;){
+
+//RaceAsianIndian 2029-7 Asian Indian
+raceobjects.push({rcode:&apos;2029-7&apos;,rname:&apos;Asian Indian&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+
+//RaceKorean 2040-4^Korean
+if (msg[&apos;hl7_export_racekorean&apos;].toString()==&quot;X&quot;){
+
+raceobjects.push({rcode:&apos;2040-4&apos;,rname:&apos;Korean&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+
+//RaceSamoan 2080-0^Samoan
+if (msg[&apos;hl7_export_racesamoan&apos;].toString()==&quot;X&quot;){
+
+raceobjects.push({rcode:&apos;2080-0&apos;,rname:&apos;Samoan&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+//RaceVietnamese 2047-9^Vietnamese
+if (msg[&apos;hl7_export_racevietnamese&apos;].toString()==&quot;X&quot;){
+
+raceobjects.push({rcode:&apos;2047-9&apos;,rname:&apos;Vietnamese&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+//RaceGuamanian 2086-7^Guamanian or Chamorro
+if (msg[&apos;hl7_export_raceguamanian&apos;].toString()==&quot;X&quot;){
+
+raceobjects.push({rcode:&apos;2086-7&apos;,rname:&apos;Guamanian or Chamorro&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+//RacePacIslander 2500-7^Other Pacific Islander
+if (msg[&apos;hl7_export_raceotherpacislander&apos;].toString()==&quot;X&quot;){
+
+raceobjects.push({rcode:&apos;2500-7&apos;,rname:&apos;Other Pacific Islander&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+
+
+//RaceOther 2131-1^Other
+if (msg[&apos;hl7_export_raceother&apos;].toString()==&quot;X&quot;){
+
+raceobjects.push({rcode:&apos;2131-1&apos;,rname:&apos;Other&apos;, rsys:&apos;CDCREC&apos;});
+}
+
+
+
+//RaceUnknown 
+
+if (msg[&apos;hl7_export_raceunknown&apos;].toString()==&quot;X&quot;){
+
+raceobjects.push({rcode:&apos;Unk&apos;,rname:&apos;Unknown&apos;, rsys:&apos;&apos;});
+}
+
+
+
+
+
+
+
+
+
+var Jrace = JSON.stringify(raceobjects);
+
+channelMap.put(&quot;Jrace&quot;,Jrace);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Age at death</name>
+          <sequenceNumber>38</sequenceNumber>
+          <script>///////////Age at Death////////////////////////
+
+var ageYears = msg[&apos;hl7_export_ageinyears&apos;].toString();
+var ageMonths = msg[&apos;hl7_export_ageinmonths&apos;].toString();
+var ageDays  = msg[&apos;hl7_export_ageindays&apos;].toString();
+var ageHours = msg[&apos;hl7_export_ageinhours&apos;].toString();
+var ageMins = msg[&apos;hl7_export_ageinminutes&apos;].toString();
+
+
+
+var age_cname = &quot;unknown&quot;;
+var age_ccode = &quot;UNK&quot;;
+var age_csys = &quot;NullFlavor&quot;;
+var decedentAge = &quot; &quot;;
+
+if (ageYears &gt; 0){
+	var age_cname = &quot;year&quot;;
+	var age_ccode = &quot;a&quot;;
+	var age_csys = &quot;UCUM&quot;;
+    decedentAge = ageYears;
+}else if (ageMonths &gt; 0){
+    logger.debug(&quot;MONTHS: &quot; + ageMonths);
+	var age_cname = &quot;month&quot;;
+	var age_ccode = &quot;mo&quot;;
+	var age_csys = &quot;UCUM&quot;;
+    decedentAge = ageMonths;
+}else if (ageDays &gt; 0){
+     logger.debug(&quot;DAZE: &quot; + ageDays);
+	var age_cname = &quot;day&quot;;
+	var age_ccode = &quot;d&quot;;
+	var age_csys = &quot;UCUM&quot;;
+    decedentAge = ageDays;
+
+}else if (ageHours &gt; 0){
+	var age_cname = &quot;hour&quot;;
+	var age_ccode = &quot;h&quot;;
+	var age_csys = &quot;UCUM&quot;;
+      decedentAge = ageHours;
+}else if (ageMins &gt; 0){
+    var age_cname = &quot;minute&quot;;
+	var age_ccode = &quot;min&quot;;
+	var age_csys = &quot;UCUM&quot;;
+      decedentAge = ageMins;
+}
+
+channelMap.put(&quot;age_cname&quot;,age_cname);
+channelMap.put(&quot;age_ccode&quot;,age_ccode);
+channelMap.put(&quot;age_csys&quot;,age_csys);
+channelMap.put(&quot;decedentage&quot;,decedentAge);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Method of Disposition</name>
+          <sequenceNumber>39</sequenceNumber>
+          <script>//////////Method of Disposition//////////////
+
+/*  
+     Loinctbd, NCHSlocalCS
+     B-Burial
+     C-Cremation
+     D-Donation
+     E-Entombment
+     R-Removal from state
+     O-other
+     U-unknown
+*/
+
+var burial = msg[&apos;hl7_export_dispositionburial&apos;].toString();
+var cremation = msg[&apos;hl7_export_dispositioncremation&apos;].toString();
+var entombment = msg[&apos;hl7_export_dispositionentombment&apos;].toString();
+var removal = msg[&apos;hl7_export_dispositionremoval&apos;].toString();
+var disp_other = msg[&apos;hl7_export_dispositionother&apos;].toString();
+var disp_unk = msg[&apos;hl7_export_dispositionunknown&apos;].toString();
+disp_csys = &quot; &quot;;
+
+var disp_cname = &quot; &quot;;
+var disp_ccode = &quot;U&quot;;
+
+if (burial == &quot;X&quot;){
+    disp_ccode= &quot;449971000124106&quot;;
+    disp_cname = &quot;Burial&quot;;
+    disp_csys = &quot;SCT&quot;;
+    //449971000124106
+}else if (cremation ==&quot;X&quot;){
+      disp_ccode= &quot;C&quot;;
+}else if (entombment ==&quot;X&quot;){
+     disp_ccode= &quot;E&quot;;
+}else if (removal ==&quot;X&quot;){
+ dispccode= &quot;R&quot;;
+}else if (disp_other ==&quot;X&quot;){
+ disp_ccode= &quot;O&quot;;
+}
+
+
+channelMap.put(&quot;disp_ccode&quot;,disp_ccode);
+channelMap.put(&quot;disp_cname&quot;,disp_cname);
+channelMap.put(&quot;disp_csys&quot;,disp_csys);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>Place of Death</name>
+          <sequenceNumber>40</sequenceNumber>
+          <script>///////////Place of Death////////////////////////////
+///create a place of deatah for PDA 2.9//////
+
+
+
+var PlaceofDeath = &quot; &quot;;
+var PODCode = &quot;&quot;;
+var pod_ccode=&quot;OTH&quot;;
+var pod_cname=&quot;Other&quot;;
+var pod_csys = &quot;&quot;;
+
+///folowing variables are for the obx segment place of death
+
+var pod_city = &quot;&quot;;
+var pod_county =&quot;&quot;;
+var pod_addr = &quot;&quot;;
+
+
+
+
+PODCode = msg[&apos;hl7_export_placeofdeath&apos;].toString();
+
+switch(PODCode){
+
+case &quot;1&quot;:
+   pod_ccode = &quot;16983000&quot;;
+  pod_cname  = &quot;Death in hospital&quot;;
+  pod_csys = &quot;SCT&quot;;
+  break;
+case &quot;2&quot;:
+   pod_ccode = &quot;440041000124106&quot;;
+  pod_cname  = &quot;Death in hospital-based emergency department&quot;;
+  pod_csys = &quot;SCT&quot;;
+  break;
+case &quot;3&quot;:
+   pod_ccode = &quot;63238001&quot;;
+  pod_cname  = &quot;Dead on arrival at hospital&quot;;
+  pod_csys = &quot;SCT&quot;;
+    break;
+ case &quot;5&quot;:
+   pod_ccode = &quot;450381000124100&quot;;
+  pod_cname  = &quot;Death in nursing home or long term care facility&quot;;
+  pod_csys = &quot;SCT&quot;;
+   break;
+
+case &quot;6&quot;:
+   pod_ccode = &quot;	440081000124100	&quot;;
+  pod_cname  = &quot;Death in home&quot;;
+  pod_csys = &quot;SCT&quot;;
+  pod_addr = msg[&apos;hl7_export_nonfacilitylocation&apos;].toString();
+   break;
+case &quot;7&quot;:
+   pod_ccode = &quot;OTH&quot;;
+  pod_cname  = &quot;Other&quot;;
+  pod_csys = &quot;SCT&quot;;
+   break;
+
+	
+}
+
+
+if (msg[&apos;hl7_export_facilityname&apos;].toString()){
+
+PlaceofDeath = msg[&apos;hl7_export_facilityname&apos;].toString();
+}else if (msg[&apos;hl7_export_nursinghomename&apos;].toString()){
+PlaceofDeath = msg[&apos;hl7_export_nursinghomename&apos;].toString();
+
+}else if (msg[&apos;hl7_export_nonfacilitylocation&apos;].toString()){
+PlaceofDeath = msg[&apos;hl7_export_nonfacilitylocation&apos;].toString();
+}
+
+
+
+pod_city = msg[&apos;hl7_export_cityofdeath&apos;].toString();
+
+pod_county = msg[&apos;hl7_export_countyofdeath&apos;].toString()
+
+var pod_state = &quot;49&quot;;
+
+
+
+
+
+
+
+
+
+channelMap.put(&quot;pod_ccode&quot;,pod_ccode);
+channelMap.put(&quot;pod_cname&quot;,pod_cname);
+channelMap.put(&quot;pod_csys&quot;,pod_csys);
+channelMap.put(&quot;pod_city&quot;,pod_city);
+channelMap.put(&quot;pod_county&quot;,pod_county);
+channelMap.put(&quot;pod_state&quot;,pod_state);
+channelMap.put(&quot;pod_addr&quot;,pod_addr);
+
+
+
+channelMap.put(&quot;PlaceofDeath&quot;,PlaceofDeath);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>ME Case Indicator</name>
+          <sequenceNumber>41</sequenceNumber>
+          <script>////////////ME Case Indicator for PDA 9////////////////////
+
+var mecase = &quot;N&quot;;
+
+if(msg[&apos;hl7_export_mecasenumber&apos;].toString()){
+
+mecase = &quot;Y&quot;;
+}
+
+
+channelMap.put(&quot;Mecase&quot;,mecase);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>RegisteredCCYY</name>
+          <sequenceNumber>42</sequenceNumber>
+          <variable>RegisteredCCYY</variable>
+          <mapping>msg[&apos;hl7_export_registeredccyy&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>RegisteredMM</name>
+          <sequenceNumber>43</sequenceNumber>
+          <variable>RegisteredMM</variable>
+          <mapping>msg[&apos;hl7_export_registeredmm&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>RegisteredDD</name>
+          <sequenceNumber>44</sequenceNumber>
+          <variable>RegisteredDD</variable>
+          <mapping>msg[&apos;hl7_export_registereddd&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+      </elements>
+      <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfbXJuPnZhbHVlPC9obDdfZXhwb3J0
+X21ybj4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGxhc3Q+dmFsdWU8L2hsN19leHBvcnRfZGVj
+ZWFzZWRsYXN0Pg0KICAgIDxobDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+dmFsdWU8L2hsN19leHBv
+cnRfZGVjZWFzZWRmaXJzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZG1pZGRsZT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWNlYXNlZG1pZGRsZT4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZHN1ZmZp
+eD52YWx1ZTwvaGw3X2V4cG9ydF9kZWNlYXNlZHN1ZmZpeD4NCiAgICA8aGw3X2V4cG9ydF9zc24+
+dmFsdWU8L2hsN19leHBvcnRfc3NuPg0KICAgIDxobDdfZXhwb3J0X2dlbmRlcj52YWx1ZTwvaGw3
+X2V4cG9ydF9nZW5kZXI+DQogICAgPGhsN19leHBvcnRfYmlydGhjaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2JpcnRoY2l0eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aGNvdW50eT52YWx1ZTwvaGw3X2V4
+cG9ydF9iaXJ0aGNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aHN0YXRlPnZhbHVlPC9obDdf
+ZXhwb3J0X2JpcnRoc3RhdGU+DQogICAgPGhsN19leHBvcnRfYmlydGhjb3VudHJ5PnZhbHVlPC9o
+bDdfZXhwb3J0X2JpcnRoY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aGNjeXk+dmFsdWU8
+L2hsN19leHBvcnRfYmlydGhjY3l5Pg0KICAgIDxobDdfZXhwb3J0X2JpcnRobW0+dmFsdWU8L2hs
+N19leHBvcnRfYmlydGhtbT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aGRkPnZhbHVlPC9obDdfZXhw
+b3J0X2JpcnRoZGQ+DQogICAgPGhsN19leHBvcnRfcmFjZXdoaXRlPnZhbHVlPC9obDdfZXhwb3J0
+X3JhY2V3aGl0ZT4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYmxhY2s+dmFsdWU8L2hsN19leHBvcnRf
+cmFjZWJsYWNrPg0KICAgIDxobDdfZXhwb3J0X3JhY2VhbWluZGlhbj52YWx1ZTwvaGw3X2V4cG9y
+dF9yYWNlYW1pbmRpYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXRyaWJlc3BlYz52YWx1ZTwvaGw3
+X2V4cG9ydF9yYWNldHJpYmVzcGVjPg0KICAgIDxobDdfZXhwb3J0X3JhY2VjaGluZXNlPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VjaGluZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2VqYXBhbmVzZT52
+YWx1ZTwvaGw3X2V4cG9ydF9yYWNlamFwYW5lc2U+DQogICAgPGhsN19leHBvcnRfcmFjZWhhd2Fp
+aWFuPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VoYXdhaWlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+ZmlsaXBpbm8+dmFsdWU8L2hsN19leHBvcnRfcmFjZWZpbGlwaW5vPg0KICAgIDxobDdfZXhwb3J0
+X3JhY2VvdGhlcmFzaWFuPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VvdGhlcmFzaWFuPg0KICAgIDxo
+bDdfZXhwb3J0X3JhY2Vhc2lhbnNwZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZWFzaWFuc3BlYz4N
+CiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5pbmRpYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWFz
+aWFuaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vrb3JlYW4+dmFsdWU8L2hsN19leHBvcnRf
+cmFjZWtvcmVhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlc2Ftb2FuPnZhbHVlPC9obDdfZXhwb3J0
+X3JhY2VzYW1vYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXZpZXRuYW1lc2U+dmFsdWU8L2hsN19l
+eHBvcnRfcmFjZXZpZXRuYW1lc2U+DQogICAgPGhsN19leHBvcnRfcmFjZWd1YW1hbmlhbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlZ3VhbWFuaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2VwYWNpc2xh
+bmRlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlcGFjaXNsYW5kZXI+DQogICAgPGhsN19leHBvcnRf
+cmFjZW90aGVyPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VvdGhlcj4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNldW5rbm93bj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNldW5rbm93bj4NCiAgICA8aGw3X2V4cG9y
+dF9lZHVjYXRpb24+dmFsdWU8L2hsN19leHBvcnRfZWR1Y2F0aW9uPg0KICAgIDxobDdfZXhwb3J0
+X29jY3VwYXRpb24+dmFsdWU8L2hsN19leHBvcnRfb2NjdXBhdGlvbj4NCiAgICA8aGw3X2V4cG9y
+dF9pbmR1c3RyeT52YWx1ZTwvaGw3X2V4cG9ydF9pbmR1c3RyeT4NCiAgICA8aGw3X2V4cG9ydF9h
+cm1lZGZvcmNlcz52YWx1ZTwvaGw3X2V4cG9ydF9hcm1lZGZvcmNlcz4NCiAgICA8aGw3X2V4cG9y
+dF9wcmVnbmFudD52YWx1ZTwvaGw3X2V4cG9ydF9wcmVnbmFudD4NCiAgICA8aGw3X2V4cG9ydF9y
+ZXNzdHJlZXRhZGRyZXNzMT52YWx1ZTwvaGw3X2V4cG9ydF9yZXNzdHJlZXRhZGRyZXNzMT4NCiAg
+ICA8aGw3X2V4cG9ydF9yZXNzdHJlZXRhZGRyZXNzMj52YWx1ZTwvaGw3X2V4cG9ydF9yZXNzdHJl
+ZXRhZGRyZXNzMj4NCiAgICA8aGw3X2V4cG9ydF9yZXNjaXR5PnZhbHVlPC9obDdfZXhwb3J0X3Jl
+c2NpdHk+DQogICAgPGhsN19leHBvcnRfcmVzY291bnR5PnZhbHVlPC9obDdfZXhwb3J0X3Jlc2Nv
+dW50eT4NCiAgICA8aGw3X2V4cG9ydF9yZXNzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9yZXNzdGF0
+ZT4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X3Jlc2NvdW50
+cnk+DQogICAgPGhsN19leHBvcnRfcmVzemlwNT52YWx1ZTwvaGw3X2V4cG9ydF9yZXN6aXA1Pg0K
+ICAgIDxobDdfZXhwb3J0X3Jlc2luY2l0eWxpbWl0cz52YWx1ZTwvaGw3X2V4cG9ydF9yZXNpbmNp
+dHlsaW1pdHM+DQogICAgPGhsN19leHBvcnRfZGVhdGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2Rl
+YXRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9kZWF0aG1tPnZhbHVlPC9obDdfZXhwb3J0X2RlYXRo
+bW0+DQogICAgPGhsN19leHBvcnRfZGVhdGhkZD52YWx1ZTwvaGw3X2V4cG9ydF9kZWF0aGRkPg0K
+ICAgIDxobDdfZXhwb3J0X2ZvdW5kZGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9mb3VuZGRhdGU+DQog
+ICAgPGhsN19leHBvcnRfdGltZW9mZGVhdGhoaD52YWx1ZTwvaGw3X2V4cG9ydF90aW1lb2ZkZWF0
+aGhoPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+dmFsdWU8L2hsN19leHBvcnRfdGlt
+ZW9mZGVhdGhtbT4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZHRpbWU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmR0aW1lPg0KICAgIDxobDdfZXhwb3J0X3BsYWNlb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9wbGFjZW9mZGVhdGg+DQogICAgPGhsN19leHBvcnRfZmFjaWxpdHluYW1lPnZhbHVlPC9obDdf
+ZXhwb3J0X2ZhY2lsaXR5bmFtZT4NCiAgICA8aGw3X2V4cG9ydF9udXJzaW5naG9tZW5hbWU+dmFs
+dWU8L2hsN19leHBvcnRfbnVyc2luZ2hvbWVuYW1lPg0KICAgIDxobDdfZXhwb3J0X3BvZF9vdGhl
+cnNwZWM+dmFsdWU8L2hsN19leHBvcnRfcG9kX290aGVyc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9u
+b25mYWNpbGl0eWxvY2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X25vbmZhY2lsaXR5bG9jYXRpb24+
+DQogICAgPGhsN19leHBvcnRfY291bnR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9jb3VudHlv
+ZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X19jaXR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9f
+Y2l0eW9mZGVhdGg+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+dmFsdWU8L2hs
+N19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyc2ln
+bmNjeXk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyc2lnbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfY2VydGlmaWVyc2lnbm1tPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNpZ25tbT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduZGQ+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbmRkPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MxPnZhbHVlPC9obDdfZXhw
+b3J0X2NlcnRpZmllcmFkZHJlc3MxPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3My
+PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MyPg0KICAgIDxobDdfZXhwb3J0X2Nl
+cnRpZmllcmNpdHk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyY2l0eT4NCiAgICA8aGw3X2V4
+cG9ydF9jZXJ0aWZpZXJzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzdGF0ZT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJjb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cmNvdW50cnk+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyemlwNT52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJ6aXA1Pg0KICAgIDxobDdfZXhwb3J0X21lX2NvbnRhY3RlZD52YWx1ZTwvaGw3
+X2V4cG9ydF9tZV9jb250YWN0ZWQ+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWRvbmU+dmFsdWU8
+L2hsN19leHBvcnRfYXV0b3BzeWRvbmU+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWF2YWlsYWJs
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5YXZhaWxhYmxlPg0KICAgIDxobDdfZXhwb3J0X2xh
+c3RzZWVuY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfbGFzdHNlZW5tbT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2Vlbm1tPg0KICAgIDxobDdfZXhw
+b3J0X2xhc3RzZWVuZGQ+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5kZD4NCiAgICA8aGw3X2V4
+cG9ydF9kYXlzbGFzdHNlZW50b2RlYXRoPnZhbHVlPC9obDdfZXhwb3J0X2RheXNsYXN0c2VlbnRv
+ZGVhdGg+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlY2F1c2U+dmFsdWU8L2hsN19leHBvcnRf
+aW1tZWRpYXRlY2F1c2U+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+dmFsdWU8
+L2hsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+DQogICAgPGltbWVkaWF0ZWludGVydmFsdW5p
+dD52YWx1ZTwvaW1tZWRpYXRlaW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9u
+YWxjYXVzZTE+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMT4NCiAgICA8aGw3X2V4
+cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwxPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRl
+cnZhbDE+DQogICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQxPnZhbHVlPC9hZGRpdGlvbmFsaW50
+ZXJ2YWx1bml0MT4NCiAgICA8aGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UyPnZhbHVlPC9obDdf
+ZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+DQogICAgPGhsN19leHBvcnRfYWRkaXRpb25hbGludGVy
+dmFsMj52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwyPg0KICAgIDxhZGRpdGlv
+bmFsaW50ZXJ2YWx1bml0Mj52YWx1ZTwvYWRkaXRpb25hbGludGVydmFsdW5pdDI+DQogICAgPGhs
+N19leHBvcnRfdW5kZXJseWluZ2NhdXNlPnZhbHVlPC9obDdfZXhwb3J0X3VuZGVybHlpbmdjYXVz
+ZT4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+dmFsdWU8L2hsN19leHBvcnRf
+dW5kZXJseWluZ2ludGVydmFsPg0KICAgIDx1bmRlcmx5aW5naW50ZXJ2YWx1bml0PnZhbHVlPC91
+bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52
+YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNvbmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVy
+b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0
+X3RvYmFjY28+dmFsdWU8L2hsN19leHBvcnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1
+cnk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+
+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltbT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1
+ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFs
+dWU8L2hsN19leHBvcnRfaW5qdXJ5dGltZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVt
+bT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnljaXR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRf
+aW5qdXJ5Y291bnR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4
+cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3
+X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQog
+ICAgPGhsN19leHBvcnRfaW5qdXJ5cGxhY2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+
+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0
+d29yaz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBv
+cnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0KICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltb3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8
+aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlwdGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVz
+Y3JpcHRpb24yPg0KICAgIDxobDdfZXhwb3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9y
+dF9tYXN0ZXJzdGF0dXM+DQogICAgPGhsN19leHBvcnRfZHJvcHBhcGVyZGF0ZT52YWx1ZTwvaGw3
+X2V4cG9ydF9kcm9wcGFwZXJkYXRlPg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5PnZh
+bHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5Pg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVy
+ZWRtbT52YWx1ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkbW0+DQogICAgPGhsN19leHBvcnRfcmVn
+aXN0ZXJlZGRkPnZhbHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRkZD4NCiAgICA8aGw3X2V4cG9y
+dF9tYXJpdGFsc3RhdHVzPnZhbHVlPC9obDdfZXhwb3J0X21hcml0YWxzdGF0dXM+DQogICAgPGhs
+N19leHBvcnRfaGlzcGFuaWNvcmlnaW4+dmFsdWU8L2hsN19leHBvcnRfaGlzcGFuaWNvcmlnaW4+
+DQogICAgPGhsN19leHBvcnRfYWdlaW55ZWFycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbnllYXJz
+Pg0KICAgIDxobDdfZXhwb3J0X2FnZWlubW9udGhzPnZhbHVlPC9obDdfZXhwb3J0X2FnZWlubW9u
+dGhzPg0KICAgIDxobDdfZXhwb3J0X2FnZWluZGF5cz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbmRh
+eXM+DQogICAgPGhsN19leHBvcnRfYWdlaW5ob3Vycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vpbmhv
+dXJzPg0KICAgIDxobDdfZXhwb3J0X2FnZWlubWludXRlcz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vp
+bm1pbnV0ZXM+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+dmFsdWU8L2hs
+N19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfZmF0aGVybGFz
+dD52YWx1ZTwvaGw3X2V4cG9ydF9mYXRoZXJsYXN0Pg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0
+aW9uYnVyaWFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9uYnVyaWFsPg0KICAgIDxobDdf
+ZXhwb3J0X2Rpc3Bvc2l0aW9uY3JlbWF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+Y3JlbWF0aW9uPg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0aW9uZW50b21ibWVudD52YWx1ZTwv
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbmVudG9tYm1lbnQ+DQogICAgPGhsN19leHBvcnRfZGlzcG9z
+aXRpb25yZW1vdmFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9ucmVtb3ZhbD4NCiAgICA8
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbm90aGVyPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+b3RoZXI+DQogICAgPGhsN19leHBvcnRfbWVjYXNlbnVtYmVyPnZhbHVlPC9obDdfZXhwb3J0X21l
+Y2FzZW51bWJlcj4NCiAgICA8aGw3X2V4cG9ydF9yZXNjaXR5Zmlwcz52YWx1ZTwvaGw3X2V4cG9y
+dF9yZXNjaXR5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHlmaXBzPnZhbHVlPC9obDdf
+ZXhwb3J0X3Jlc2NvdW50eWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGVmaXBzPnZhbHVl
+PC9obDdfZXhwb3J0X3Jlc3N0YXRlZmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlw
+cz52YWx1ZTwvaGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aHN0YXRlZmlwcz52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlZmlwcz4NCiAgICA8aGw3X2V4
+cG9ydF9iaXJ0aGNvdW50cnlmaXBzPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY291bnRyeWZpcHM+
+DQo8L3Jlc3VsdD4NCg==</inboundTemplate>
+      <outboundTemplate encoding="base64"></outboundTemplate>
+      <inboundDataType>XML</inboundDataType>
+      <outboundDataType>XML</outboundDataType>
+      <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+          <stripNamespaces>false</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </inboundProperties>
+      <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+          <stripNamespaces>false</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </outboundProperties>
+    </transformer>
+    <filter version="3.5.1">
+      <elements/>
+    </filter>
+    <transportName>Database Reader</transportName>
+    <mode>SOURCE</mode>
+    <enabled>true</enabled>
+    <waitForPrevious>true</waitForPrevious>
+  </sourceConnector>
+  <destinationConnectors>
+    <connector version="3.5.1">
+      <metaDataId>1</metaDataId>
+      <name>Destination 1</name>
+      <properties class="com.mirth.connect.connectors.file.FileDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <scheme>FILE</scheme>
+        <host>f:/mirth/death/toNCHS</host>
+        <outputPattern>MI${SYSTIME}.hl7</outputPattern>
+        <anonymous>true</anonymous>
+        <username>anonymous</username>
+        <password>anonymous</password>
+        <timeout>10000</timeout>
+        <secure>true</secure>
+        <passive>true</passive>
+        <validateConnection>true</validateConnection>
+        <outputAppend>false</outputAppend>
+        <errorOnExists>false</errorOnExists>
+        <temporary>false</temporary>
+        <binary>false</binary>
+        <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
+        <template>${message.encodedData}</template>
+      </properties>
+      <transformer version="3.5.1">
+        <elements>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>PID: SSN, StateFileNumber</name>
+            <sequenceNumber>0</sequenceNumber>
+            <script>/////////social security number   and state file number////////////
+logger.debug(&quot;PID&quot;);
+tmp[&apos;PID&apos;][&apos;PID.1&apos;][&apos;PID.1.1&apos;] = &quot;1&quot;;
+if ($(&apos;SSN&apos;)){
+
+tmp[&apos;PID&apos;][&apos;PID.3&apos;][&apos;PID.3.1&apos;] = $(&apos;SSN&apos;);
+}else{
+tmp[&apos;PID&apos;][&apos;PID.3&apos;][&apos;PID.3.1&apos;] =&quot;999-99-9999&quot;;
+}
+
+
+
+tmp[&apos;PID&apos;][&apos;PID.3&apos;][&apos;PID.3.4&apos;] = &quot;HL70203&quot;;
+tmp[&apos;PID&apos;][&apos;PID.3&apos;][&apos;PID.3.5&apos;] = &quot;SS&quot;;
+
+
+/******************Add StateFileNumber**************************/
+var certnum = $(&apos;StateFileNumber&apos;).substring(4,10);
+
+logger.debug(&quot;Certnum:&quot; + certnum);
+
+
+var objects = [
+    {val:certnum,code:&apos;HL70203&apos;, name:&apos;DC&apos;}
+];
+
+for each (obj in objects){
+
+  var pid2 = &lt;PID.3/&gt;;
+      pid2[&apos;PID.3.1&apos;] = obj.val;
+      pid2[&apos;PID.3.4&apos;] = obj.code;
+      pid2[&apos;PID.3.5&apos;] = obj.name;
+      tmp[&apos;PID&apos;][&apos;PID.3&apos;] = tmp[&apos;PID&apos;][&apos;PID.3&apos;] ? tmp[&apos;PID&apos;][&apos;PID.3&apos;]+pid2 : pid2;
+}
+
+
+//var pid = tmp[&apos;PID&apos;][&apos;PID.3&apos;];
+//pid.appendChild(pid2);
+
+//tmp.appendChild(pid);     
+
+
+
+
+
+/*
+
+if ($(&apos;SSN&apos;)){
+
+
+tmp[&apos;PID&apos;][&apos;PID.3&apos;][0][&apos;PID.3.1&apos;] = $(&apos;SSN&apos;);
+}else{
+tmp[&apos;PID&apos;][&apos;PID.3&apos;][0][&apos;PID.3.1&apos;] =&quot;999-99-9999&quot;;
+}
+
+
+
+tmp[&apos;PID&apos;][&apos;PID.3&apos;][0][&apos;PID.3.4&apos;] = &quot;2.16.840.1.113883.4.1&quot;;
+tmp[&apos;PID&apos;][&apos;PID.3&apos;][0][&apos;PID.3.5&apos;] = &quot;SS&quot;;
+
+
+
+*/</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+            <name>AdministrativeSex</name>
+            <sequenceNumber>1</sequenceNumber>
+            <messageSegment>tmp[&apos;PID&apos;][0][&apos;PID.8&apos;][&apos;PID.8.1&apos;]</messageSegment>
+            <mapping>msg[&apos;hl7_export_gender&apos;].toString()</mapping>
+            <defaultValue></defaultValue>
+            <replacements/>
+          </com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+          <com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+            <name>DOB</name>
+            <sequenceNumber>2</sequenceNumber>
+            <messageSegment>tmp[&apos;EVN&apos;][&apos;EVN.2&apos;][&apos;EVN.2.1&apos;]</messageSegment>
+            <mapping>$(&apos;RegisteredCCYY&apos;)+  $(&apos;RegisteredMM&apos;)+  $(&apos;RegisteredDD&apos;)+&quot;20180130100000-0400&quot;</mapping>
+            <defaultValue></defaultValue>
+            <replacements/>
+          </com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+          <com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+            <name>DOD</name>
+            <sequenceNumber>3</sequenceNumber>
+            <messageSegment>tmp[&apos;PID&apos;][0][&apos;PID.29&apos;][&apos;PID.29.1&apos;]</messageSegment>
+            <mapping>msg[&apos;hl7_export_deathccyy&apos;].toString()+msg[&apos;hl7_export_deathmm&apos;].toString()+msg[&apos;hl7_export_deathdd&apos;].toString()+msg[&apos;hl7_export_timeofdeathhh&apos;].toString()+msg[&apos;hl7_export_timeofdeathmm&apos;].toString()</mapping>
+            <defaultValue></defaultValue>
+            <replacements/>
+          </com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+          <com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+            <name>messagedatetime</name>
+            <sequenceNumber>4</sequenceNumber>
+            <messageSegment>tmp[&apos;MSH&apos;][0][&apos;MSH.7&apos;][&apos;MSH.7.1&apos;]</messageSegment>
+            <mapping>$(&apos;msgDate&apos;)</mapping>
+            <defaultValue></defaultValue>
+            <replacements/>
+          </com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>MSH Mapper</name>
+            <sequenceNumber>5</sequenceNumber>
+            <script>//Final output message mapper
+logger.debug(&quot;MSH Mapper&quot;);
+tmp[&apos;MSH&apos;][&apos;MSH.2&apos;]= &quot;^~\\&amp;&quot;;
+
+
+///SENDING APPLICATION
+tmp[&apos;MSH&apos;][&apos;MSH.3&apos;][&apos;MSH.3.1&apos;] = &quot;MI EDRS&quot;;
+
+tmp[&apos;MSH&apos;][&apos;MSH.4&apos;][&apos;MSH.4.1&apos;] = &quot;Mi Vital Records&quot;;
+tmp[&apos;MSH&apos;][&apos;MSH.4&apos;][&apos;MSH.4.2&apos;] = &quot;2.16.840.1.113883.3.4397&quot;;  //Utah VRs OID from HL7 OID registry
+tmp[&apos;MSH&apos;][&apos;MSH.4&apos;][&apos;MSH.4.3&apos;] = &quot;ISO&quot;;
+
+///RECEIVING APPLICATION
+tmp[&apos;MSH&apos;][&apos;MSH.5&apos;][&apos;MSH.5.1&apos;] = &quot;DRrcv&quot;;
+tmp[&apos;MSH&apos;][&apos;MSH.5&apos;][&apos;MSH.5.2&apos;] = &quot;2.16.840.1.113883.3.20091&quot;;  
+tmp[&apos;MSH&apos;][&apos;MSH.5&apos;][&apos;MSH.5.3&apos;] = &quot;ISO&quot;;
+
+
+///RECEIVING FACILITY
+tmp[&apos;MSH&apos;][&apos;MSH.6&apos;][&apos;MSH.6.1&apos;] = &quot;NCHS&quot;;
+tmp[&apos;MSH&apos;][&apos;MSH.6&apos;][&apos;MSH.6.2&apos;] = &quot;2.16.840.1.113883.3.8989&quot;;  
+tmp[&apos;MSH&apos;][&apos;MSH.6&apos;][&apos;MSH.6.3&apos;] = &quot;ISO&quot;;
+
+
+
+tmp[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.1&apos;]=&quot;ADT&quot;;
+
+//logger.debug($(&apos;MasterStatus&apos;));
+
+
+  tmp[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.2&apos;] = &quot;A04&quot;;
+
+
+/*
+if($(&apos;MasterStatus&apos;)==&quot;Registered&quot;){
+  tmp[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.2&apos;] = &quot;A04&quot;;
+}
+else if ($(&apos;MasterStatus&apos;)==&quot;Amended&quot;){
+  tmp[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.2&apos;] = &quot;A08&quot;;
+}
+*/
+
+
+tmp[&apos;MSH&apos;][&apos;MSH.9&apos;][&apos;MSH.9.3&apos;]= &quot;ADT_A01&quot;;
+
+
+tmp[&apos;MSH&apos;][&apos;MSH.10&apos;][&apos;MSH.10.1&apos;] = &quot;MI_Death_&quot; + $(&apos;StateFileNumber&apos;);
+
+tmp[&apos;MSH&apos;][&apos;MSH.11&apos;][&apos;MSH.11.1&apos;] = &quot;T&quot;;   //Message is for testing. Change to P for Production
+
+tmp[&apos;MSH&apos;][&apos;MSH.12&apos;][&apos;MSH.12.1&apos;] = &quot;2.6&quot;;
+
+tmp[&apos;MSH&apos;][&apos;MSH.15&apos;][&apos;MSH.15.1&apos;] = &quot;AL&quot;;
+tmp[&apos;MSH&apos;][&apos;MSH.16&apos;][&apos;MSH.16.1&apos;] = &quot;NE&quot;;
+tmp[&apos;MSH&apos;][&apos;MSH.17&apos;][&apos;MSH.17.1&apos;] = &quot;US&quot;;
+
+tmp[&apos;MSH&apos;][&apos;MSH.21&apos;][&apos;MSH.21.1&apos;] = &quot;CCODA04_V1.0&quot;;
+
+tmp[&apos;MSH&apos;][&apos;MSH.21&apos;][&apos;MSH.21.2&apos;] = &quot;CDCPHINVS&quot;;
+
+
+logger.debug(&quot;Leave MSH Mapper&quot;);
+//Loop through causes of death and create OBX segments for causes and intervals</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>OBXFields</name>
+            <sequenceNumber>6</sequenceNumber>
+            <script>//This script will write all of the obx segments for output
+
+
+var obxnum = 0;
+
+
+var obx = tmp[&apos;OBX&apos;];  //this could be tmp instead for the outgoing template
+
+
+logger.debug(&quot;OBX&quot;);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+
+
+//OBX1  Autopsy Results Available
+
+
+tmp[&apos;OBX&apos;][0][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][0][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CWE&quot;;
+tmp[&apos;OBX&apos;][0][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69436-4&quot;;
+tmp[&apos;OBX&apos;][0][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Autopsy Results Available&quot;;
+tmp[&apos;OBX&apos;][0][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+
+tmp[&apos;OBX&apos;][0][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = $(&apos;AutopsyAvailable&apos;);
+
+if($(&apos;AutopsyAvailable&apos;) == &quot;Y&quot;){
+tmp[&apos;OBX&apos;][0][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = &quot;Y&quot;;	
+tmp[&apos;OBX&apos;][0][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = &quot;YES&quot;;
+}else{
+tmp[&apos;OBX&apos;][0][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = &quot;N&quot;;
+tmp[&apos;OBX&apos;][0][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = &quot;NO&quot;;
+}
+
+tmp[&apos;OBX&apos;][0][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] = &quot;HL70136&quot;;
+tmp[&apos;OBX&apos;][0][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+
+////////////////////////////////immediate cause of death///////////////////////
+obxnum++;
+subnum = 1;
+
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69453-9&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Cause of death&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = subnum;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = msg[&apos;hl7_export_immediatecause&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+obxnum++;
+
+
+//////////imm cause interval
+
+
+var imm_intvl_num = &quot;&quot;;
+var imm_intvl_unit = &quot;&quot;;
+
+imm_intvl_num = msg[&apos;hl7_export_immediateinterval&apos;].toString();
+imm_intvl_unit = msg[&apos;immediateintervalunit&apos;].toString();
+
+
+var imm1 = $(&apos;ImmediateCause&apos;).length();
+
+
+if (imm1 &gt; 0){
+
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69440-6&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Cause of death interval&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = subnum;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = imm_intvl_num + &quot; &quot; + imm_intvl_unit;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+}
+
+
+subnum++;
+
+
+//////////////additional cause 1 death (optional)////////////////////////
+  
+  var add_1 = 0;
+  add_1 = $(&apos;Additional1&apos;).length();
+
+if (add_1 &gt; 0){
+
+obxnum++; 
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69453-9&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Cause of death&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = subnum;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = msg[&apos;hl7_export_additionalcause1&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+////////////////additional cause 1 interval
+
+var add1_intvl_num = &quot;&quot;;
+var add1_invl_unit = &quot;&quot;;
+
+add1_intvl_num = msg[&apos;hl7_export_additionalinterval1&apos;].toString();
+add1_intvl_unit = msg[&apos;additionalintervalunit1&apos;].toString();
+
+
+if (add1_intvl_num != &quot;&quot;){
+
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69440-6&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Cause of death interval&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = subnum;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = add1_intvl_num + &quot; &quot; + add1_intvl_unit;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+  }
+}
+subnum++;
+
+
+
+//////////////additional cause 2 death (optional)////////////////////////
+  
+  var add_2 = 0;
+  add_2 = $(&apos;Additional2&apos;).length();
+
+if (add_2 &gt; 0){
+  obxnum++; 
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69453-9&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Cause of death&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = subnum;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = msg[&apos;hl7_export_additionalcause2&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+////////////////additional cause 2 interval
+
+var add2_intvl_num = &quot;&quot;;
+var add2_intvl_unit = &quot;&quot;;
+
+
+add2_intvl_num = msg[&apos;hl7_export_additionalinterval2&apos;].toString();
+add2_intvl_unit = msg[&apos;additionalintervalunit2&apos;].toString();
+
+if (add2_intvl_num != &quot;&quot;){
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69440-6&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Cause of death interval&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = subnum;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = add2_intvl_num + &quot; &quot; + add2_intvl_unit;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+ }
+}
+subnum++;
+
+
+
+
+//////////////UNDERLYING CAUSE////////////////////////
+  
+  var ucause = 0;
+  ucause = $(&apos;UnderlyingCause&apos;).length();
+
+if (ucause &gt; 0){
+  obxnum++; 
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69453-9&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Cause of death&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = subnum;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = $(&apos;UnderlyingCause&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+////////////////UC interval
+
+var uc_intvl_num = &quot;&quot;;
+var uc_intvl_unit = &quot;&quot;;
+
+uc_intvl_num = msg[&apos;hl7_export_underlyinginterval&apos;].toString();
+uc_intvl_unit = msg[&apos;underlyingintervalunit&apos;].toString();
+
+if (uc_intvl_num != &quot;&quot;){
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69440-6&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Cause of death interval&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = subnum;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = uc_intvl_num + &quot; &quot; + uc_intvl_unit;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+
+}
+}
+//subnum++;
+
+
+
+////OTHER CONDITIONS
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69441-4&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Death Cause Other Significant Conditions&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = msg[&apos;hl7_export_otherconditions&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+////MANNER OF DEATH
+
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum +1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CWE&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69449-7&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Manner of Death&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = $(&apos;manner_ccode&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;] =$(&apos;manner_cname&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] =$(&apos;manner_csys&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+/////	CO USE/////////////
+
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CWE&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69443-0&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Did Tobacco Use Contribute to Death&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = $(&apos;tobac_ccode&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;] =$(&apos;tobac_cname&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] =$(&apos;tobac_csys&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+////PREGNANCY////////////
+
+if (msg[&apos;hl7_export_gender&apos;].toString() ==&quot;F&quot;){
+
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CE&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69442-2&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Timing of recent pregnancy related to death&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = $(&apos;pregnant_ccode&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;] =$(&apos;pregnant_cname&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] =$(&apos;pregnant_csys&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+}
+
+
+
+
+
+/////////////////INJURY FIELDS////////////////////
+
+if ($(&apos;InjuryYN&apos;)==&quot;Y&quot;){
+  obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CWE&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69444-8&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Did Injury Occur at Work&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
+
+if($(&apos;Injwork&apos;)==&quot;Y&quot;){
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = &quot;Y&quot;;	
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = &quot;YES&quot;;
+}else{
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = &quot;N&quot;;	
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = &quot;NO&quot;;
+}
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] = &quot;HL70136&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+////injury date///////
+
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;DTM&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69445-5&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Injury Date&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
+
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = $(&apos;injuryDateTime&apos;);
+
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+//////Injury Description///////////////
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;TX&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;11374-6&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Injury Incident Description&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
+
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = msg[&apos;hl7_export_injurydescription1&apos;].toString();
+
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+
+///////Injury associated with transportation event
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CWE&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69448-9&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Injury Associated With Transportation Event&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
+
+//tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = msg[&apos;hl7_export_injurydescription1&apos;].toString();
+
+
+
+
+if($(&apos;InjuryMV&apos;)==&quot;Y&quot;){   
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = &quot;Y&quot;;
+	                               
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = &quot;YES&quot;;
+}else{
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;]  = &quot;N&quot;;	
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;]  = &quot;NO&quot;;
+}
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] = &quot;HL70136&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+
+
+
+}/////end injury fields/////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+
+
+////////SOURCE FLAG//////////////////////
+
+
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CWE&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;PHC1433&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Source Flag&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;CDCPHINVS&quot;;
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = $(&apos;source_ccode&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;] =$(&apos;source_cname&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] =$(&apos;source_csys&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+///////////EDUCATION////////////////
+
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CWE&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;80913-7&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Decedent Education Level&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.4&apos;][&apos;OBX.4.1&apos;] = 1;  //subid for immediate cause of death
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = $(&apos;education_ccode&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;] =$(&apos;education_cname&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] =$(&apos;education_csys&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+var nonfacilityaddress = msg[&apos;hl7_export_nonfacilitylocation&apos;].toString();
+
+
+
+///////////place where death occurred
+
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;XAD&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;69435-6&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Address Where Death Occurred&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = $(&apos;pod_addr&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] = $(&apos;pod_city&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.4&apos;] = &quot;23&quot;;
+// tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.4&apos;] = $(&apos;pod_state&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.6&apos;] = &quot;US&quot;;
+// original-  changed by rrh tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.6&apos;] = $(&apos;pod_county&apos;);
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+
+
+////////////Place of Birth///////////////////
+if (msg[&apos;hl7_export_birthcity&apos;].toString()||msg[&apos;hl7_export_birthcountry&apos;].toString()){
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;XAD&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;21842-0&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Birth Place&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+//tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = msg[&apos;hl7_export_birthcity&apos;].toString();
+//tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;] = msg[&apos;hl7_export_birthcounty&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.4&apos;] = msg[&apos;hl7_export_birthstatefips&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.6&apos;] = msg[&apos;hl7_export_birthcountryfips&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+}
+
+
+//////////////Age at Death//////////////////////////
+
+obxnum++;
+
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;NM&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;39016-1&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Age at death&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] =$(&apos;decedentage&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.6&apos;][&apos;OBX.6.1&apos;] = $(&apos;age_ccode&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.6&apos;][&apos;OBX.6.2&apos;] = $(&apos;age_cname&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.6&apos;][&apos;OBX.6.3&apos;] = $(&apos;age_csys&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+/////////////////Birth Certificate Year//////////////////
+
+obxnum++;
+
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;DTM&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;80904-6&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Birth certificate year&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] =msg[&apos;hl7_export_birthccyy&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+//////////////////Birth Certificate State File Number////////////////////
+
+if (msg[&apos;hl7_export_birthstatefilenumber&apos;].toString()){
+obxnum++;
+
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;LOINCtbd&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Birth certificate ID&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = msg[&apos;hl7_export_birthstatefilenumber&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+}
+
+
+
+///////////DATE of REGISTRATION///////////////////
+
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;DTM&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;80907-9&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Date of Death Registration&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = msg[&apos;hl7_export_registeredccyy&apos;].toString()+msg[&apos;hl7_export_registeredmm&apos;].toString()+msg[&apos;hl7_export_registereddd&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+
+////////Father Last Name
+
+if (msg[&apos;hl7_export_fatherlast&apos;].toString()){
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;ST&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;80909-5&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Father&apos;s surname&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = msg[&apos;hl7_export_fatherlast&apos;].toString();
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;
+
+}
+
+
+//////////Method of Disposition///////////////////////////
+
+obxnum++;
+obx=createSegmentAfter(&apos;OBX&apos;,tmp[&apos;OBX&apos;][obxnum-1]);
+tmp[&apos;OBX&apos;][obxnum] = obx;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.1&apos;][&apos;OBX.1.1&apos;] = obxnum+1;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.2&apos;][&apos;OBX.2.1&apos;] = &quot;CWE&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.1&apos;] = &quot;80905-3&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.2&apos;] = &quot;Method of Disposition&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.3&apos;][&apos;OBX.3.3&apos;] = &quot;LN&quot;;
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.1&apos;] = $(&apos;disp_ccode&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.2&apos;] = $(&apos;disp_cname&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.5&apos;][&apos;OBX.5.3&apos;] = $(&apos;disp_csys&apos;);
+tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F&quot;;</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+            <name>Date Registered--EVN Segment</name>
+            <sequenceNumber>7</sequenceNumber>
+            <messageSegment>tmp[&apos;EVN&apos;][&apos;EVN.2&apos;][&apos;EVN.2.1&apos;]</messageSegment>
+            <mapping>$(&apos;RegisteredCCYY&apos;)+  $(&apos;RegisteredMM&apos;)+  $(&apos;RegisteredDD&apos;)+&quot;20180130100000-0400&quot;</mapping>
+            <defaultValue></defaultValue>
+            <replacements/>
+          </com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Decedent Name</name>
+            <sequenceNumber>8</sequenceNumber>
+            <script>/////Name fields   (XPN--extended person name///////////
+
+logger.debug(&quot;Deceased Name&quot;);
+
+tmp[&apos;PID&apos;][&apos;PID.5&apos;][&apos;PID.5.1&apos;]=$(&apos;LastName&apos;);
+tmp[&apos;PID&apos;][&apos;PID.5&apos;][&apos;PID.5.2&apos;]=$(&apos;FirstName&apos;)
+tmp[&apos;PID&apos;][&apos;PID.5&apos;][&apos;PID.5.3&apos;]=$(&apos;MiddleName&apos;);
+tmp[&apos;PID&apos;][&apos;PID.5&apos;][&apos;PID.5.3&apos;]=msg[&apos;hl7_export_deceasedsuffix&apos;].toString();
+tmp[&apos;PID&apos;][&apos;PID.5&apos;][&apos;PID.5.3&apos;]=&quot;L&quot;;
+
+
+
+
+/*
+1-family name
+2-given name
+3-middle name
+4-suffix
+7-differentiate between legal name and alias
+
+*/</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>PID 11 Residence Address</name>
+            <sequenceNumber>9</sequenceNumber>
+            <script>///////Decedent Address//////////
+
+/*
+data type XAD
+1-street address 1
+2-street address 2, e.g. suite number
+3-city
+4-state
+5zip
+6-not required
+7-
+8-within city limits  (Y/N/U)
+9-
+
+
+
+*/
+
+logger.debug(&quot;PID11 address&quot;);
+
+tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.1&apos;]= msg[&apos;hl7_export_resstreetaddress1&apos;].toString();
+
+tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.3&apos;]=msg[&apos;hl7_export_rescityfips&apos;].toString();
+tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.4&apos;]=msg[&apos;hl7_export_resstatefips&apos;].toString();
+tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.5&apos;]=$(&apos;ResZip5&apos;)
+tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.6&apos;]=$(&apos;ResCountry&apos;);
+tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.8&apos;]=msg[&apos;hl7_export_resincitylimits&apos;].toString();
+tmp[&apos;PID&apos;][&apos;PID.11&apos;][&apos;PID.11.9&apos;]=msg[&apos;hl7_export_rescountyfips&apos;].toString();</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>PID 16 Marital Status</name>
+            <sequenceNumber>10</sequenceNumber>
+            <script>//////PID16 Marital Status//////////
+
+
+tmp[&apos;PID&apos;][&apos;PID.16&apos;][&apos;PID.16.1&apos;] =$(&apos;marital_ccode&apos;);
+tmp[&apos;PID&apos;][&apos;PID.16&apos;][&apos;PID.16.2&apos;] =$(&apos;marital_cname&apos;);
+tmp[&apos;PID&apos;][&apos;PID.16&apos;][&apos;PID.16.3&apos;] =$(&apos;marital_csys&apos;);</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>PID22 Ethnicity</name>
+            <sequenceNumber>11</sequenceNumber>
+            <script>///////////Ethnicity///////////////////////////
+
+tmp[&apos;PID&apos;][&apos;PID.22&apos;][&apos;PID.22.1&apos;]=$(&apos;hispanic_ccode&apos;);
+tmp[&apos;PID&apos;][&apos;PID.22&apos;][&apos;PID.22.2&apos;]=$(&apos;hispanic_cname&apos;);
+tmp[&apos;PID&apos;][&apos;PID.22&apos;][&apos;PID.22.3&apos;]=$(&apos;hispanic_csys&apos;);</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Race</name>
+            <sequenceNumber>12</sequenceNumber>
+            <script>///////////////RACE///////////////////
+
+
+
+var races = JSON.parse($(&apos;Jrace&apos;));
+
+nrace = 0;
+
+for each (race in races){
+
+logger.debug(&apos;race code: &apos;+ race.rcode);
+logger.debug(&apos;race name&quot; &apos; + race.rname);
+logger.debug(&apos;race sys &apos; + race.rsys);
+if (nrace==0){
+    tmp[&apos;PID&apos;][&apos;PID.10&apos;][&apos;PID.10.1&apos;]=race.rcode;
+    tmp[&apos;PID&apos;][&apos;PID.10&apos;][&apos;PID.10.2&apos;]=race.rname;
+    tmp[&apos;PID&apos;][&apos;PID.10&apos;][&apos;PID.10.3&apos;]=race.rsys;
+    nrace +=1;
+} else{
+
+       var pid10 = &lt;PID.10/&gt;;
+      pid10[&apos;PID.10.1&apos;] = race.rcode;
+      pid10[&apos;PID.10.2&apos;] = race.rname;
+      pid10[&apos;PID.10.3&apos;] = race.rsys;
+      tmp[&apos;PID&apos;][&apos;PID.10&apos;] = tmp[&apos;PID&apos;][&apos;PID.10&apos;] ? tmp[&apos;PID&apos;][&apos;PID.10&apos;]+pid10 : pid10;  
+
+    }
+}
+
+
+
+
+/*
+for each (obj in $(&apos;raceobjects&apos;)){
+  logger.debug(&quot;code:&quot; + obj.rcode);
+  var pid2 = &lt;PID.10/&gt;;
+      pid2[&apos;PID.10.1&apos;] = obj.rcode;
+      pid2[&apos;PID.10.2&apos;] = obj.rname;
+      pid2[&apos;PID.10.3&apos;] = obj.rsys;
+      tmp[&apos;PID&apos;][&apos;PID.10&apos;] = tmp[&apos;PID&apos;][&apos;PID.10&apos;] ? tmp[&apos;PID&apos;][&apos;PID.10&apos;]+pid2 : pid2;
+}
+
+*/</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>PDA Mapper</name>
+            <sequenceNumber>13</sequenceNumber>
+            <script>////////////PDA Segment////////////////////////////////
+
+
+////PDA2    Place of Death
+
+
+
+tmp[&apos;PDA&apos;][&apos;PDA.2&apos;][&apos;PDA.2.6&apos;] =$(&apos;pod_ccode&apos;);
+tmp[&apos;PDA&apos;][&apos;PDA.2&apos;][&apos;PDA.2.9&apos;] =$(&apos;pod_cname&apos;);
+
+
+
+///////PDA4  date signed//////////
+
+
+tmp[&apos;PDA&apos;][&apos;PDA.4&apos;][&apos;PDA.4.1&apos;]=msg[&apos;hl7_export_certifiersignccyy&apos;].toString()+msg[&apos;hl7_export_certifiersignmm&apos;].toString()+msg[&apos;hl7_export_certifiersigndd&apos;].toString();
+
+
+/////pda 5 CERTIFIER
+
+tmp[&apos;PDA&apos;][&apos;PDA.5&apos;][&apos;PDA.5.2&apos;] = msg[&apos;hl7_export_certifierfullname&apos;].toString();
+
+///pda 6 autopsy indicator
+
+tmp[&apos;PDA&apos;][&apos;PDA.6&apos;][&apos;PDA.6.1&apos;] = $(&apos;AutopsyDone&apos;);
+
+
+tmp[&apos;PDA&apos;][&apos;PDA.9&apos;][&apos;PDA.9.1&apos;] =$(&apos;Mecase&apos;);</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+            <name>Reason Code</name>
+            <sequenceNumber>14</sequenceNumber>
+            <messageSegment>tmp[&apos;EVN&apos;][&apos;EVN.4&apos;][&apos;EVN.4.1&apos;]</messageSegment>
+            <mapping>&quot;PHC1419&quot;</mapping>
+            <defaultValue></defaultValue>
+            <replacements/>
+          </com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
+        </elements>
+        <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfbXJuPnZhbHVlPC9obDdfZXhwb3J0
+X21ybj4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGxhc3Q+dmFsdWU8L2hsN19leHBvcnRfZGVj
+ZWFzZWRsYXN0Pg0KICAgIDxobDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+dmFsdWU8L2hsN19leHBv
+cnRfZGVjZWFzZWRmaXJzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZG1pZGRsZT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWNlYXNlZG1pZGRsZT4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZHN1ZmZp
+eD52YWx1ZTwvaGw3X2V4cG9ydF9kZWNlYXNlZHN1ZmZpeD4NCiAgICA8aGw3X2V4cG9ydF9zc24+
+dmFsdWU8L2hsN19leHBvcnRfc3NuPg0KICAgIDxobDdfZXhwb3J0X2dlbmRlcj52YWx1ZTwvaGw3
+X2V4cG9ydF9nZW5kZXI+DQogICAgPGhsN19leHBvcnRfYmlydGhjaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2JpcnRoY2l0eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aGNvdW50eT52YWx1ZTwvaGw3X2V4
+cG9ydF9iaXJ0aGNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aHN0YXRlPnZhbHVlPC9obDdf
+ZXhwb3J0X2JpcnRoc3RhdGU+DQogICAgPGhsN19leHBvcnRfYmlydGhjb3VudHJ5PnZhbHVlPC9o
+bDdfZXhwb3J0X2JpcnRoY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aGNjeXk+dmFsdWU8
+L2hsN19leHBvcnRfYmlydGhjY3l5Pg0KICAgIDxobDdfZXhwb3J0X2JpcnRobW0+dmFsdWU8L2hs
+N19leHBvcnRfYmlydGhtbT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aGRkPnZhbHVlPC9obDdfZXhw
+b3J0X2JpcnRoZGQ+DQogICAgPGhsN19leHBvcnRfcmFjZXdoaXRlPnZhbHVlPC9obDdfZXhwb3J0
+X3JhY2V3aGl0ZT4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYmxhY2s+dmFsdWU8L2hsN19leHBvcnRf
+cmFjZWJsYWNrPg0KICAgIDxobDdfZXhwb3J0X3JhY2VhbWluZGlhbj52YWx1ZTwvaGw3X2V4cG9y
+dF9yYWNlYW1pbmRpYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXRyaWJlc3BlYz52YWx1ZTwvaGw3
+X2V4cG9ydF9yYWNldHJpYmVzcGVjPg0KICAgIDxobDdfZXhwb3J0X3JhY2VjaGluZXNlPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VjaGluZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2VqYXBhbmVzZT52
+YWx1ZTwvaGw3X2V4cG9ydF9yYWNlamFwYW5lc2U+DQogICAgPGhsN19leHBvcnRfcmFjZWhhd2Fp
+aWFuPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VoYXdhaWlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+ZmlsaXBpbm8+dmFsdWU8L2hsN19leHBvcnRfcmFjZWZpbGlwaW5vPg0KICAgIDxobDdfZXhwb3J0
+X3JhY2VvdGhlcmFzaWFuPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VvdGhlcmFzaWFuPg0KICAgIDxo
+bDdfZXhwb3J0X3JhY2Vhc2lhbnNwZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZWFzaWFuc3BlYz4N
+CiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5pbmRpYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWFz
+aWFuaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vrb3JlYW4+dmFsdWU8L2hsN19leHBvcnRf
+cmFjZWtvcmVhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlc2Ftb2FuPnZhbHVlPC9obDdfZXhwb3J0
+X3JhY2VzYW1vYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXZpZXRuYW1lc2U+dmFsdWU8L2hsN19l
+eHBvcnRfcmFjZXZpZXRuYW1lc2U+DQogICAgPGhsN19leHBvcnRfcmFjZWd1YW1hbmlhbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlZ3VhbWFuaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2VwYWNpc2xh
+bmRlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlcGFjaXNsYW5kZXI+DQogICAgPGhsN19leHBvcnRf
+cmFjZW90aGVyPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VvdGhlcj4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNldW5rbm93bj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNldW5rbm93bj4NCiAgICA8aGw3X2V4cG9y
+dF9lZHVjYXRpb24+dmFsdWU8L2hsN19leHBvcnRfZWR1Y2F0aW9uPg0KICAgIDxobDdfZXhwb3J0
+X29jY3VwYXRpb24+dmFsdWU8L2hsN19leHBvcnRfb2NjdXBhdGlvbj4NCiAgICA8aGw3X2V4cG9y
+dF9pbmR1c3RyeT52YWx1ZTwvaGw3X2V4cG9ydF9pbmR1c3RyeT4NCiAgICA8aGw3X2V4cG9ydF9h
+cm1lZGZvcmNlcz52YWx1ZTwvaGw3X2V4cG9ydF9hcm1lZGZvcmNlcz4NCiAgICA8aGw3X2V4cG9y
+dF9wcmVnbmFudD52YWx1ZTwvaGw3X2V4cG9ydF9wcmVnbmFudD4NCiAgICA8aGw3X2V4cG9ydF9y
+ZXNzdHJlZXRhZGRyZXNzMT52YWx1ZTwvaGw3X2V4cG9ydF9yZXNzdHJlZXRhZGRyZXNzMT4NCiAg
+ICA8aGw3X2V4cG9ydF9yZXNzdHJlZXRhZGRyZXNzMj52YWx1ZTwvaGw3X2V4cG9ydF9yZXNzdHJl
+ZXRhZGRyZXNzMj4NCiAgICA8aGw3X2V4cG9ydF9yZXNjaXR5PnZhbHVlPC9obDdfZXhwb3J0X3Jl
+c2NpdHk+DQogICAgPGhsN19leHBvcnRfcmVzY291bnR5PnZhbHVlPC9obDdfZXhwb3J0X3Jlc2Nv
+dW50eT4NCiAgICA8aGw3X2V4cG9ydF9yZXNzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9yZXNzdGF0
+ZT4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X3Jlc2NvdW50
+cnk+DQogICAgPGhsN19leHBvcnRfcmVzemlwNT52YWx1ZTwvaGw3X2V4cG9ydF9yZXN6aXA1Pg0K
+ICAgIDxobDdfZXhwb3J0X3Jlc2luY2l0eWxpbWl0cz52YWx1ZTwvaGw3X2V4cG9ydF9yZXNpbmNp
+dHlsaW1pdHM+DQogICAgPGhsN19leHBvcnRfZGVhdGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2Rl
+YXRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9kZWF0aG1tPnZhbHVlPC9obDdfZXhwb3J0X2RlYXRo
+bW0+DQogICAgPGhsN19leHBvcnRfZGVhdGhkZD52YWx1ZTwvaGw3X2V4cG9ydF9kZWF0aGRkPg0K
+ICAgIDxobDdfZXhwb3J0X2ZvdW5kZGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9mb3VuZGRhdGU+DQog
+ICAgPGhsN19leHBvcnRfdGltZW9mZGVhdGhoaD52YWx1ZTwvaGw3X2V4cG9ydF90aW1lb2ZkZWF0
+aGhoPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+dmFsdWU8L2hsN19leHBvcnRfdGlt
+ZW9mZGVhdGhtbT4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZHRpbWU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmR0aW1lPg0KICAgIDxobDdfZXhwb3J0X3BsYWNlb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9wbGFjZW9mZGVhdGg+DQogICAgPGhsN19leHBvcnRfZmFjaWxpdHluYW1lPnZhbHVlPC9obDdf
+ZXhwb3J0X2ZhY2lsaXR5bmFtZT4NCiAgICA8aGw3X2V4cG9ydF9udXJzaW5naG9tZW5hbWU+dmFs
+dWU8L2hsN19leHBvcnRfbnVyc2luZ2hvbWVuYW1lPg0KICAgIDxobDdfZXhwb3J0X3BvZF9vdGhl
+cnNwZWM+dmFsdWU8L2hsN19leHBvcnRfcG9kX290aGVyc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9u
+b25mYWNpbGl0eWxvY2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X25vbmZhY2lsaXR5bG9jYXRpb24+
+DQogICAgPGhsN19leHBvcnRfY291bnR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9jb3VudHlv
+ZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X19jaXR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9f
+Y2l0eW9mZGVhdGg+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+dmFsdWU8L2hs
+N19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyc2ln
+bmNjeXk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyc2lnbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfY2VydGlmaWVyc2lnbm1tPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNpZ25tbT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduZGQ+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbmRkPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MxPnZhbHVlPC9obDdfZXhw
+b3J0X2NlcnRpZmllcmFkZHJlc3MxPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3My
+PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MyPg0KICAgIDxobDdfZXhwb3J0X2Nl
+cnRpZmllcmNpdHk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyY2l0eT4NCiAgICA8aGw3X2V4
+cG9ydF9jZXJ0aWZpZXJzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzdGF0ZT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJjb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cmNvdW50cnk+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyemlwNT52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJ6aXA1Pg0KICAgIDxobDdfZXhwb3J0X21lX2NvbnRhY3RlZD52YWx1ZTwvaGw3
+X2V4cG9ydF9tZV9jb250YWN0ZWQ+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWRvbmU+dmFsdWU8
+L2hsN19leHBvcnRfYXV0b3BzeWRvbmU+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWF2YWlsYWJs
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5YXZhaWxhYmxlPg0KICAgIDxobDdfZXhwb3J0X2xh
+c3RzZWVuY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfbGFzdHNlZW5tbT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2Vlbm1tPg0KICAgIDxobDdfZXhw
+b3J0X2xhc3RzZWVuZGQ+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5kZD4NCiAgICA8aGw3X2V4
+cG9ydF9kYXlzbGFzdHNlZW50b2RlYXRoPnZhbHVlPC9obDdfZXhwb3J0X2RheXNsYXN0c2VlbnRv
+ZGVhdGg+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlY2F1c2U+dmFsdWU8L2hsN19leHBvcnRf
+aW1tZWRpYXRlY2F1c2U+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+dmFsdWU8
+L2hsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+DQogICAgPGltbWVkaWF0ZWludGVydmFsdW5p
+dD52YWx1ZTwvaW1tZWRpYXRlaW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9u
+YWxjYXVzZTE+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMT4NCiAgICA8aGw3X2V4
+cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwxPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRl
+cnZhbDE+DQogICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQxPnZhbHVlPC9hZGRpdGlvbmFsaW50
+ZXJ2YWx1bml0MT4NCiAgICA8aGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UyPnZhbHVlPC9obDdf
+ZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+DQogICAgPGhsN19leHBvcnRfYWRkaXRpb25hbGludGVy
+dmFsMj52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwyPg0KICAgIDxhZGRpdGlv
+bmFsaW50ZXJ2YWx1bml0Mj52YWx1ZTwvYWRkaXRpb25hbGludGVydmFsdW5pdDI+DQogICAgPGhs
+N19leHBvcnRfdW5kZXJseWluZ2NhdXNlPnZhbHVlPC9obDdfZXhwb3J0X3VuZGVybHlpbmdjYXVz
+ZT4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+dmFsdWU8L2hsN19leHBvcnRf
+dW5kZXJseWluZ2ludGVydmFsPg0KICAgIDx1bmRlcmx5aW5naW50ZXJ2YWx1bml0PnZhbHVlPC91
+bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52
+YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNvbmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVy
+b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0
+X3RvYmFjY28+dmFsdWU8L2hsN19leHBvcnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1
+cnk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+
+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltbT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1
+ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFs
+dWU8L2hsN19leHBvcnRfaW5qdXJ5dGltZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVt
+bT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnljaXR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRf
+aW5qdXJ5Y291bnR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4
+cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3
+X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQog
+ICAgPGhsN19leHBvcnRfaW5qdXJ5cGxhY2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+
+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0
+d29yaz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBv
+cnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0KICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltb3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8
+aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlwdGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVz
+Y3JpcHRpb24yPg0KICAgIDxobDdfZXhwb3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9y
+dF9tYXN0ZXJzdGF0dXM+DQogICAgPGhsN19leHBvcnRfZHJvcHBhcGVyZGF0ZT52YWx1ZTwvaGw3
+X2V4cG9ydF9kcm9wcGFwZXJkYXRlPg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5PnZh
+bHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5Pg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVy
+ZWRtbT52YWx1ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkbW0+DQogICAgPGhsN19leHBvcnRfcmVn
+aXN0ZXJlZGRkPnZhbHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRkZD4NCiAgICA8aGw3X2V4cG9y
+dF9tYXJpdGFsc3RhdHVzPnZhbHVlPC9obDdfZXhwb3J0X21hcml0YWxzdGF0dXM+DQogICAgPGhs
+N19leHBvcnRfaGlzcGFuaWNvcmlnaW4+dmFsdWU8L2hsN19leHBvcnRfaGlzcGFuaWNvcmlnaW4+
+DQogICAgPGhsN19leHBvcnRfYWdlaW55ZWFycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbnllYXJz
+Pg0KICAgIDxobDdfZXhwb3J0X2FnZWlubW9udGhzPnZhbHVlPC9obDdfZXhwb3J0X2FnZWlubW9u
+dGhzPg0KICAgIDxobDdfZXhwb3J0X2FnZWluZGF5cz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbmRh
+eXM+DQogICAgPGhsN19leHBvcnRfYWdlaW5ob3Vycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vpbmhv
+dXJzPg0KICAgIDxobDdfZXhwb3J0X2FnZWlubWludXRlcz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vp
+bm1pbnV0ZXM+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+dmFsdWU8L2hs
+N19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfZmF0aGVybGFz
+dD52YWx1ZTwvaGw3X2V4cG9ydF9mYXRoZXJsYXN0Pg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0
+aW9uYnVyaWFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9uYnVyaWFsPg0KICAgIDxobDdf
+ZXhwb3J0X2Rpc3Bvc2l0aW9uY3JlbWF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+Y3JlbWF0aW9uPg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0aW9uZW50b21ibWVudD52YWx1ZTwv
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbmVudG9tYm1lbnQ+DQogICAgPGhsN19leHBvcnRfZGlzcG9z
+aXRpb25yZW1vdmFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9ucmVtb3ZhbD4NCiAgICA8
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbm90aGVyPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+b3RoZXI+DQogICAgPGhsN19leHBvcnRfbWVjYXNlbnVtYmVyPnZhbHVlPC9obDdfZXhwb3J0X21l
+Y2FzZW51bWJlcj4NCiAgICA8aGw3X2V4cG9ydF9yZXNjaXR5Zmlwcz52YWx1ZTwvaGw3X2V4cG9y
+dF9yZXNjaXR5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHlmaXBzPnZhbHVlPC9obDdf
+ZXhwb3J0X3Jlc2NvdW50eWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGVmaXBzPnZhbHVl
+PC9obDdfZXhwb3J0X3Jlc3N0YXRlZmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlw
+cz52YWx1ZTwvaGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aHN0YXRlZmlwcz52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlZmlwcz4NCiAgICA8aGw3X2V4
+cG9ydF9iaXJ0aGNvdW50cnlmaXBzPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY291bnRyeWZpcHM+
+DQo8L3Jlc3VsdD4NCg==</inboundTemplate>
+        <outboundTemplate encoding="base64">TVNIfF5+XCZ8fHx8fHx8fHx8fHx8fHx8fHx8ClNGVHxNREhIU3wxLjF8RURFTnwxMTExMXx8MjAx
+NDEyMjIKRVZOfHx8fApQSUR8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHxZClBWMXx8TgpP
+Qlh8fHx8fHx8fHx8fApQREF8fHx8fHx8fHx8fHwKCg==</outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>HL7V2</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
+            <handleRepetitions>false</handleRepetitions>
+            <handleSubcomponents>true</handleSubcomponents>
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <stripNamespaces>false</stripNamespaces>
+            <segmentDelimiter>\r</segmentDelimiter>
+            <convertLineBreaks>true</convertLineBreaks>
+          </serializationProperties>
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <segmentDelimiter>\r</segmentDelimiter>
+          </deserializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
+            <splitType>MSH_Segment</splitType>
+            <batchScript></batchScript>
+          </batchProperties>
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
+            <segmentDelimiter>\r</segmentDelimiter>
+            <successfulACKCode>AA</successfulACKCode>
+            <successfulACKMessage></successfulACKMessage>
+            <errorACKCode>AE</errorACKCode>
+            <errorACKMessage>An Error Occurred Processing Message.</errorACKMessage>
+            <rejectedACKCode>AR</rejectedACKCode>
+            <rejectedACKMessage>Message Rejected.</rejectedACKMessage>
+            <msh15ACKAccept>false</msh15ACKAccept>
+            <dateFormat>yyyyMMddHHmmss</dateFormat>
+          </responseGenerationProperties>
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
+            <successfulACKCode>AA,CA</successfulACKCode>
+            <errorACKCode>AE,CE</errorACKCode>
+            <rejectedACKCode>AR,CR</rejectedACKCode>
+            <validateMessageControlId>false</validateMessageControlId>
+            <originalMessageControlId>Destination_Encoded</originalMessageControlId>
+            <originalIdMapVariable></originalIdMapVariable>
+          </responseValidationProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundTemplate encoding="base64"></inboundTemplate>
+        <outboundTemplate encoding="base64"></outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>HL7V2</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
+            <handleRepetitions>true</handleRepetitions>
+            <handleSubcomponents>true</handleSubcomponents>
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <stripNamespaces>true</stripNamespaces>
+            <segmentDelimiter>\r</segmentDelimiter>
+            <convertLineBreaks>true</convertLineBreaks>
+          </serializationProperties>
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <segmentDelimiter>\r</segmentDelimiter>
+          </deserializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
+            <splitType>MSH_Segment</splitType>
+            <batchScript></batchScript>
+          </batchProperties>
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
+            <segmentDelimiter>\r</segmentDelimiter>
+            <successfulACKCode>AA</successfulACKCode>
+            <successfulACKMessage></successfulACKMessage>
+            <errorACKCode>AE</errorACKCode>
+            <errorACKMessage>An Error Occurred Processing Message.</errorACKMessage>
+            <rejectedACKCode>AR</rejectedACKCode>
+            <rejectedACKMessage>Message Rejected.</rejectedACKMessage>
+            <msh15ACKAccept>false</msh15ACKAccept>
+            <dateFormat>yyyyMMddHHmmss</dateFormat>
+          </responseGenerationProperties>
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
+            <successfulACKCode>AA,CA</successfulACKCode>
+            <errorACKCode>AE,CE</errorACKCode>
+            <rejectedACKCode>AR,CR</rejectedACKCode>
+            <validateMessageControlId>false</validateMessageControlId>
+            <originalMessageControlId>Destination_Encoded</originalMessageControlId>
+            <originalIdMapVariable></originalIdMapVariable>
+          </responseValidationProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>File Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+    <connector version="3.5.1">
+      <metaDataId>3</metaDataId>
+      <name>Genesis</name>
+      <properties class="com.mirth.connect.connectors.tcp.TcpDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <validateResponse>true</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <transmissionModeProperties class="com.mirth.connect.plugins.mllpmode.MLLPModeProperties">
+          <pluginPointName>MLLP</pluginPointName>
+          <startOfMessageBytes>0B</startOfMessageBytes>
+          <endOfMessageBytes>1C0D</endOfMessageBytes>
+          <useMLLPv2>false</useMLLPv2>
+          <ackBytes>06</ackBytes>
+          <nackBytes>15</nackBytes>
+          <maxRetries>2</maxRetries>
+        </transmissionModeProperties>
+        <remoteAddress>10.242.61.43</remoteAddress>
+        <remotePort>8222</remotePort>
+        <overrideLocalBinding>false</overrideLocalBinding>
+        <localAddress>0.0.0.0</localAddress>
+        <localPort>0</localPort>
+        <sendTimeout>5000</sendTimeout>
+        <bufferSize>65536</bufferSize>
+        <keepConnectionOpen>false</keepConnectionOpen>
+        <checkRemoteHost>false</checkRemoteHost>
+        <responseTimeout>5000</responseTimeout>
+        <ignoreResponse>false</ignoreResponse>
+        <queueOnResponseTimeout>true</queueOnResponseTimeout>
+        <dataTypeBinary>false</dataTypeBinary>
+        <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
+        <template>${message.encodedData}</template>
+      </properties>
+      <transformer version="3.5.1">
+        <elements/>
+        <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfbXJuPnZhbHVlPC9obDdfZXhwb3J0
+X21ybj4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGxhc3Q+dmFsdWU8L2hsN19leHBvcnRfZGVj
+ZWFzZWRsYXN0Pg0KICAgIDxobDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+dmFsdWU8L2hsN19leHBv
+cnRfZGVjZWFzZWRmaXJzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZG1pZGRsZT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWNlYXNlZG1pZGRsZT4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZHN1ZmZp
+eD52YWx1ZTwvaGw3X2V4cG9ydF9kZWNlYXNlZHN1ZmZpeD4NCiAgICA8aGw3X2V4cG9ydF9zc24+
+dmFsdWU8L2hsN19leHBvcnRfc3NuPg0KICAgIDxobDdfZXhwb3J0X2dlbmRlcj52YWx1ZTwvaGw3
+X2V4cG9ydF9nZW5kZXI+DQogICAgPGhsN19leHBvcnRfYmlydGhjaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2JpcnRoY2l0eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aGNvdW50eT52YWx1ZTwvaGw3X2V4
+cG9ydF9iaXJ0aGNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aHN0YXRlPnZhbHVlPC9obDdf
+ZXhwb3J0X2JpcnRoc3RhdGU+DQogICAgPGhsN19leHBvcnRfYmlydGhjb3VudHJ5PnZhbHVlPC9o
+bDdfZXhwb3J0X2JpcnRoY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aGNjeXk+dmFsdWU8
+L2hsN19leHBvcnRfYmlydGhjY3l5Pg0KICAgIDxobDdfZXhwb3J0X2JpcnRobW0+dmFsdWU8L2hs
+N19leHBvcnRfYmlydGhtbT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0aGRkPnZhbHVlPC9obDdfZXhw
+b3J0X2JpcnRoZGQ+DQogICAgPGhsN19leHBvcnRfcmFjZXdoaXRlPnZhbHVlPC9obDdfZXhwb3J0
+X3JhY2V3aGl0ZT4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYmxhY2s+dmFsdWU8L2hsN19leHBvcnRf
+cmFjZWJsYWNrPg0KICAgIDxobDdfZXhwb3J0X3JhY2VhbWluZGlhbj52YWx1ZTwvaGw3X2V4cG9y
+dF9yYWNlYW1pbmRpYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXRyaWJlc3BlYz52YWx1ZTwvaGw3
+X2V4cG9ydF9yYWNldHJpYmVzcGVjPg0KICAgIDxobDdfZXhwb3J0X3JhY2VjaGluZXNlPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VjaGluZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2VqYXBhbmVzZT52
+YWx1ZTwvaGw3X2V4cG9ydF9yYWNlamFwYW5lc2U+DQogICAgPGhsN19leHBvcnRfcmFjZWhhd2Fp
+aWFuPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VoYXdhaWlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+ZmlsaXBpbm8+dmFsdWU8L2hsN19leHBvcnRfcmFjZWZpbGlwaW5vPg0KICAgIDxobDdfZXhwb3J0
+X3JhY2VvdGhlcmFzaWFuPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VvdGhlcmFzaWFuPg0KICAgIDxo
+bDdfZXhwb3J0X3JhY2Vhc2lhbnNwZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZWFzaWFuc3BlYz4N
+CiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5pbmRpYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWFz
+aWFuaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vrb3JlYW4+dmFsdWU8L2hsN19leHBvcnRf
+cmFjZWtvcmVhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlc2Ftb2FuPnZhbHVlPC9obDdfZXhwb3J0
+X3JhY2VzYW1vYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXZpZXRuYW1lc2U+dmFsdWU8L2hsN19l
+eHBvcnRfcmFjZXZpZXRuYW1lc2U+DQogICAgPGhsN19leHBvcnRfcmFjZWd1YW1hbmlhbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlZ3VhbWFuaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2VwYWNpc2xh
+bmRlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlcGFjaXNsYW5kZXI+DQogICAgPGhsN19leHBvcnRf
+cmFjZW90aGVyPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VvdGhlcj4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNldW5rbm93bj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNldW5rbm93bj4NCiAgICA8aGw3X2V4cG9y
+dF9lZHVjYXRpb24+dmFsdWU8L2hsN19leHBvcnRfZWR1Y2F0aW9uPg0KICAgIDxobDdfZXhwb3J0
+X29jY3VwYXRpb24+dmFsdWU8L2hsN19leHBvcnRfb2NjdXBhdGlvbj4NCiAgICA8aGw3X2V4cG9y
+dF9pbmR1c3RyeT52YWx1ZTwvaGw3X2V4cG9ydF9pbmR1c3RyeT4NCiAgICA8aGw3X2V4cG9ydF9h
+cm1lZGZvcmNlcz52YWx1ZTwvaGw3X2V4cG9ydF9hcm1lZGZvcmNlcz4NCiAgICA8aGw3X2V4cG9y
+dF9wcmVnbmFudD52YWx1ZTwvaGw3X2V4cG9ydF9wcmVnbmFudD4NCiAgICA8aGw3X2V4cG9ydF9y
+ZXNzdHJlZXRhZGRyZXNzMT52YWx1ZTwvaGw3X2V4cG9ydF9yZXNzdHJlZXRhZGRyZXNzMT4NCiAg
+ICA8aGw3X2V4cG9ydF9yZXNzdHJlZXRhZGRyZXNzMj52YWx1ZTwvaGw3X2V4cG9ydF9yZXNzdHJl
+ZXRhZGRyZXNzMj4NCiAgICA8aGw3X2V4cG9ydF9yZXNjaXR5PnZhbHVlPC9obDdfZXhwb3J0X3Jl
+c2NpdHk+DQogICAgPGhsN19leHBvcnRfcmVzY291bnR5PnZhbHVlPC9obDdfZXhwb3J0X3Jlc2Nv
+dW50eT4NCiAgICA8aGw3X2V4cG9ydF9yZXNzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9yZXNzdGF0
+ZT4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X3Jlc2NvdW50
+cnk+DQogICAgPGhsN19leHBvcnRfcmVzemlwNT52YWx1ZTwvaGw3X2V4cG9ydF9yZXN6aXA1Pg0K
+ICAgIDxobDdfZXhwb3J0X3Jlc2luY2l0eWxpbWl0cz52YWx1ZTwvaGw3X2V4cG9ydF9yZXNpbmNp
+dHlsaW1pdHM+DQogICAgPGhsN19leHBvcnRfZGVhdGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2Rl
+YXRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9kZWF0aG1tPnZhbHVlPC9obDdfZXhwb3J0X2RlYXRo
+bW0+DQogICAgPGhsN19leHBvcnRfZGVhdGhkZD52YWx1ZTwvaGw3X2V4cG9ydF9kZWF0aGRkPg0K
+ICAgIDxobDdfZXhwb3J0X2ZvdW5kZGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9mb3VuZGRhdGU+DQog
+ICAgPGhsN19leHBvcnRfdGltZW9mZGVhdGhoaD52YWx1ZTwvaGw3X2V4cG9ydF90aW1lb2ZkZWF0
+aGhoPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+dmFsdWU8L2hsN19leHBvcnRfdGlt
+ZW9mZGVhdGhtbT4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZHRpbWU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmR0aW1lPg0KICAgIDxobDdfZXhwb3J0X3BsYWNlb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9wbGFjZW9mZGVhdGg+DQogICAgPGhsN19leHBvcnRfZmFjaWxpdHluYW1lPnZhbHVlPC9obDdf
+ZXhwb3J0X2ZhY2lsaXR5bmFtZT4NCiAgICA8aGw3X2V4cG9ydF9udXJzaW5naG9tZW5hbWU+dmFs
+dWU8L2hsN19leHBvcnRfbnVyc2luZ2hvbWVuYW1lPg0KICAgIDxobDdfZXhwb3J0X3BvZF9vdGhl
+cnNwZWM+dmFsdWU8L2hsN19leHBvcnRfcG9kX290aGVyc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9u
+b25mYWNpbGl0eWxvY2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X25vbmZhY2lsaXR5bG9jYXRpb24+
+DQogICAgPGhsN19leHBvcnRfY291bnR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9jb3VudHlv
+ZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X19jaXR5b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9f
+Y2l0eW9mZGVhdGg+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+dmFsdWU8L2hs
+N19leHBvcnRfY2VydGlmaWVyZnVsbG5hbWU+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyc2ln
+bmNjeXk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyc2lnbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfY2VydGlmaWVyc2lnbm1tPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcnNpZ25tbT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduZGQ+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbmRkPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MxPnZhbHVlPC9obDdfZXhw
+b3J0X2NlcnRpZmllcmFkZHJlc3MxPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3My
+PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmllcmFkZHJlc3MyPg0KICAgIDxobDdfZXhwb3J0X2Nl
+cnRpZmllcmNpdHk+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyY2l0eT4NCiAgICA8aGw3X2V4
+cG9ydF9jZXJ0aWZpZXJzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzdGF0ZT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJjb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cmNvdW50cnk+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyemlwNT52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJ6aXA1Pg0KICAgIDxobDdfZXhwb3J0X21lX2NvbnRhY3RlZD52YWx1ZTwvaGw3
+X2V4cG9ydF9tZV9jb250YWN0ZWQ+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWRvbmU+dmFsdWU8
+L2hsN19leHBvcnRfYXV0b3BzeWRvbmU+DQogICAgPGhsN19leHBvcnRfYXV0b3BzeWF2YWlsYWJs
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5YXZhaWxhYmxlPg0KICAgIDxobDdfZXhwb3J0X2xh
+c3RzZWVuY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmNjeXk+DQogICAgPGhsN19leHBv
+cnRfbGFzdHNlZW5tbT52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2Vlbm1tPg0KICAgIDxobDdfZXhw
+b3J0X2xhc3RzZWVuZGQ+dmFsdWU8L2hsN19leHBvcnRfbGFzdHNlZW5kZD4NCiAgICA8aGw3X2V4
+cG9ydF9kYXlzbGFzdHNlZW50b2RlYXRoPnZhbHVlPC9obDdfZXhwb3J0X2RheXNsYXN0c2VlbnRv
+ZGVhdGg+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlY2F1c2U+dmFsdWU8L2hsN19leHBvcnRf
+aW1tZWRpYXRlY2F1c2U+DQogICAgPGhsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+dmFsdWU8
+L2hsN19leHBvcnRfaW1tZWRpYXRlaW50ZXJ2YWw+DQogICAgPGltbWVkaWF0ZWludGVydmFsdW5p
+dD52YWx1ZTwvaW1tZWRpYXRlaW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9u
+YWxjYXVzZTE+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMT4NCiAgICA8aGw3X2V4
+cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwxPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRl
+cnZhbDE+DQogICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQxPnZhbHVlPC9hZGRpdGlvbmFsaW50
+ZXJ2YWx1bml0MT4NCiAgICA8aGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UyPnZhbHVlPC9obDdf
+ZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+DQogICAgPGhsN19leHBvcnRfYWRkaXRpb25hbGludGVy
+dmFsMj52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsaW50ZXJ2YWwyPg0KICAgIDxhZGRpdGlv
+bmFsaW50ZXJ2YWx1bml0Mj52YWx1ZTwvYWRkaXRpb25hbGludGVydmFsdW5pdDI+DQogICAgPGhs
+N19leHBvcnRfdW5kZXJseWluZ2NhdXNlPnZhbHVlPC9obDdfZXhwb3J0X3VuZGVybHlpbmdjYXVz
+ZT4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+dmFsdWU8L2hsN19leHBvcnRf
+dW5kZXJseWluZ2ludGVydmFsPg0KICAgIDx1bmRlcmx5aW5naW50ZXJ2YWx1bml0PnZhbHVlPC91
+bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0KICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52
+YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNvbmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVy
+b2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9ydF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0
+X3RvYmFjY28+dmFsdWU8L2hsN19leHBvcnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1
+cnk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+
+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltbT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1
+ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFs
+dWU8L2hsN19leHBvcnRfaW5qdXJ5dGltZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVt
+bT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnljaXR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRf
+aW5qdXJ5Y291bnR5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4
+cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3
+X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQog
+ICAgPGhsN19leHBvcnRfaW5qdXJ5cGxhY2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+
+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0
+d29yaz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBv
+cnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0KICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52
+YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnltb3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8
+aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlwdGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVz
+Y3JpcHRpb24yPg0KICAgIDxobDdfZXhwb3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9y
+dF9tYXN0ZXJzdGF0dXM+DQogICAgPGhsN19leHBvcnRfZHJvcHBhcGVyZGF0ZT52YWx1ZTwvaGw3
+X2V4cG9ydF9kcm9wcGFwZXJkYXRlPg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5PnZh
+bHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRjY3l5Pg0KICAgIDxobDdfZXhwb3J0X3JlZ2lzdGVy
+ZWRtbT52YWx1ZTwvaGw3X2V4cG9ydF9yZWdpc3RlcmVkbW0+DQogICAgPGhsN19leHBvcnRfcmVn
+aXN0ZXJlZGRkPnZhbHVlPC9obDdfZXhwb3J0X3JlZ2lzdGVyZWRkZD4NCiAgICA8aGw3X2V4cG9y
+dF9tYXJpdGFsc3RhdHVzPnZhbHVlPC9obDdfZXhwb3J0X21hcml0YWxzdGF0dXM+DQogICAgPGhs
+N19leHBvcnRfaGlzcGFuaWNvcmlnaW4+dmFsdWU8L2hsN19leHBvcnRfaGlzcGFuaWNvcmlnaW4+
+DQogICAgPGhsN19leHBvcnRfYWdlaW55ZWFycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbnllYXJz
+Pg0KICAgIDxobDdfZXhwb3J0X2FnZWlubW9udGhzPnZhbHVlPC9obDdfZXhwb3J0X2FnZWlubW9u
+dGhzPg0KICAgIDxobDdfZXhwb3J0X2FnZWluZGF5cz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2VpbmRh
+eXM+DQogICAgPGhsN19leHBvcnRfYWdlaW5ob3Vycz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vpbmhv
+dXJzPg0KICAgIDxobDdfZXhwb3J0X2FnZWlubWludXRlcz52YWx1ZTwvaGw3X2V4cG9ydF9hZ2Vp
+bm1pbnV0ZXM+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+dmFsdWU8L2hs
+N19leHBvcnRfYmlydGhzdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfZmF0aGVybGFz
+dD52YWx1ZTwvaGw3X2V4cG9ydF9mYXRoZXJsYXN0Pg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0
+aW9uYnVyaWFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9uYnVyaWFsPg0KICAgIDxobDdf
+ZXhwb3J0X2Rpc3Bvc2l0aW9uY3JlbWF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+Y3JlbWF0aW9uPg0KICAgIDxobDdfZXhwb3J0X2Rpc3Bvc2l0aW9uZW50b21ibWVudD52YWx1ZTwv
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbmVudG9tYm1lbnQ+DQogICAgPGhsN19leHBvcnRfZGlzcG9z
+aXRpb25yZW1vdmFsPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9ucmVtb3ZhbD4NCiAgICA8
+aGw3X2V4cG9ydF9kaXNwb3NpdGlvbm90aGVyPnZhbHVlPC9obDdfZXhwb3J0X2Rpc3Bvc2l0aW9u
+b3RoZXI+DQogICAgPGhsN19leHBvcnRfbWVjYXNlbnVtYmVyPnZhbHVlPC9obDdfZXhwb3J0X21l
+Y2FzZW51bWJlcj4NCiAgICA8aGw3X2V4cG9ydF9yZXNjaXR5Zmlwcz52YWx1ZTwvaGw3X2V4cG9y
+dF9yZXNjaXR5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHlmaXBzPnZhbHVlPC9obDdf
+ZXhwb3J0X3Jlc2NvdW50eWZpcHM+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGVmaXBzPnZhbHVl
+PC9obDdfZXhwb3J0X3Jlc3N0YXRlZmlwcz4NCiAgICA8aGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlw
+cz52YWx1ZTwvaGw3X2V4cG9ydF9yZXNjb3VudHJ5Zmlwcz4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aHN0YXRlZmlwcz52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlZmlwcz4NCiAgICA8aGw3X2V4
+cG9ydF9iaXJ0aGNvdW50cnlmaXBzPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY291bnRyeWZpcHM+
+DQo8L3Jlc3VsdD4NCg==</inboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>HL7V2</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
+            <handleRepetitions>true</handleRepetitions>
+            <handleSubcomponents>true</handleSubcomponents>
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <stripNamespaces>true</stripNamespaces>
+            <segmentDelimiter>\r</segmentDelimiter>
+            <convertLineBreaks>true</convertLineBreaks>
+          </serializationProperties>
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <segmentDelimiter>\r</segmentDelimiter>
+          </deserializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
+            <splitType>MSH_Segment</splitType>
+            <batchScript></batchScript>
+          </batchProperties>
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
+            <segmentDelimiter>\r</segmentDelimiter>
+            <successfulACKCode>AA</successfulACKCode>
+            <successfulACKMessage></successfulACKMessage>
+            <errorACKCode>AE</errorACKCode>
+            <errorACKMessage>An Error Occurred Processing Message.</errorACKMessage>
+            <rejectedACKCode>AR</rejectedACKCode>
+            <rejectedACKMessage>Message Rejected.</rejectedACKMessage>
+            <msh15ACKAccept>false</msh15ACKAccept>
+            <dateFormat>yyyyMMddHHmmss</dateFormat>
+          </responseGenerationProperties>
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
+            <successfulACKCode>AA,CA</successfulACKCode>
+            <errorACKCode>AE,CE</errorACKCode>
+            <rejectedACKCode>AR,CR</rejectedACKCode>
+            <validateMessageControlId>false</validateMessageControlId>
+            <originalMessageControlId>Destination_Encoded</originalMessageControlId>
+            <originalIdMapVariable></originalIdMapVariable>
+          </responseValidationProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>HL7V2</inboundDataType>
+        <outboundDataType>HL7V2</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
+            <handleRepetitions>true</handleRepetitions>
+            <handleSubcomponents>true</handleSubcomponents>
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <stripNamespaces>true</stripNamespaces>
+            <segmentDelimiter>\r</segmentDelimiter>
+            <convertLineBreaks>true</convertLineBreaks>
+          </serializationProperties>
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <segmentDelimiter>\r</segmentDelimiter>
+          </deserializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
+            <splitType>MSH_Segment</splitType>
+            <batchScript></batchScript>
+          </batchProperties>
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
+            <segmentDelimiter>\r</segmentDelimiter>
+            <successfulACKCode>AA</successfulACKCode>
+            <successfulACKMessage></successfulACKMessage>
+            <errorACKCode>AE</errorACKCode>
+            <errorACKMessage>An Error Occurred Processing Message.</errorACKMessage>
+            <rejectedACKCode>AR</rejectedACKCode>
+            <rejectedACKMessage>Message Rejected.</rejectedACKMessage>
+            <msh15ACKAccept>false</msh15ACKAccept>
+            <dateFormat>yyyyMMddHHmmss</dateFormat>
+          </responseGenerationProperties>
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
+            <successfulACKCode>AA,CA</successfulACKCode>
+            <errorACKCode>AE,CE</errorACKCode>
+            <rejectedACKCode>AR,CR</rejectedACKCode>
+            <validateMessageControlId>false</validateMessageControlId>
+            <originalMessageControlId>Destination_Encoded</originalMessageControlId>
+            <originalIdMapVariable></originalIdMapVariable>
+          </responseValidationProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties" version="3.5.1">
+            <handleRepetitions>true</handleRepetitions>
+            <handleSubcomponents>true</handleSubcomponents>
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <stripNamespaces>true</stripNamespaces>
+            <segmentDelimiter>\r</segmentDelimiter>
+            <convertLineBreaks>true</convertLineBreaks>
+          </serializationProperties>
+          <deserializationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties" version="3.5.1">
+            <useStrictParser>false</useStrictParser>
+            <useStrictValidation>false</useStrictValidation>
+            <segmentDelimiter>\r</segmentDelimiter>
+          </deserializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties" version="3.5.1">
+            <splitType>MSH_Segment</splitType>
+            <batchScript></batchScript>
+          </batchProperties>
+          <responseGenerationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties" version="3.5.1">
+            <segmentDelimiter>\r</segmentDelimiter>
+            <successfulACKCode>AA</successfulACKCode>
+            <successfulACKMessage></successfulACKMessage>
+            <errorACKCode>AE</errorACKCode>
+            <errorACKMessage>An Error Occurred Processing Message.</errorACKMessage>
+            <rejectedACKCode>AR</rejectedACKCode>
+            <rejectedACKMessage>Message Rejected.</rejectedACKMessage>
+            <msh15ACKAccept>false</msh15ACKAccept>
+            <dateFormat>yyyyMMddHHmmss</dateFormat>
+          </responseGenerationProperties>
+          <responseValidationProperties class="com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties" version="3.5.1">
+            <successfulACKCode>AA,CA</successfulACKCode>
+            <errorACKCode>AE,CE</errorACKCode>
+            <rejectedACKCode>AR,CR</rejectedACKCode>
+            <validateMessageControlId>false</validateMessageControlId>
+            <originalMessageControlId>Destination_Encoded</originalMessageControlId>
+            <originalIdMapVariable></originalIdMapVariable>
+          </responseValidationProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>TCP Sender</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>false</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+  </destinationConnectors>
+  <preprocessingScript>// Modify the message variable below to pre process data
+return message;</preprocessingScript>
+  <postprocessingScript>// This script executes once after a message has been processed
+// Responses returned from here will be stored as &quot;Postprocessor&quot; in the response map
+return;</postprocessingScript>
+  <deployScript>// This script executes once when the channel is deployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</deployScript>
+  <undeployScript>// This script executes once when the channel is undeployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</undeployScript>
+  <properties version="3.5.1">
+    <clearGlobalChannelMap>true</clearGlobalChannelMap>
+    <messageStorageMode>DEVELOPMENT</messageStorageMode>
+    <encryptData>false</encryptData>
+    <removeContentOnCompletion>false</removeContentOnCompletion>
+    <removeOnlyFilteredOnCompletion>false</removeOnlyFilteredOnCompletion>
+    <removeAttachmentsOnCompletion>false</removeAttachmentsOnCompletion>
+    <initialState>STARTED</initialState>
+    <storeAttachments>false</storeAttachments>
+    <metaDataColumns>
+      <metaDataColumn>
+        <name>SOURCE</name>
+        <type>STRING</type>
+        <mappingName>mirth_source</mappingName>
+      </metaDataColumn>
+      <metaDataColumn>
+        <name>TYPE</name>
+        <type>STRING</type>
+        <mappingName>mirth_type</mappingName>
+      </metaDataColumn>
+    </metaDataColumns>
+    <attachmentProperties version="3.5.1">
+      <type>None</type>
+      <properties/>
+    </attachmentProperties>
+    <resourceIds class="linked-hash-map">
+      <entry>
+        <string>Default Resource</string>
+        <string>[Default Resource]</string>
+      </entry>
+    </resourceIds>
+  </properties>
+  <exportData>
+    <metadata>
+      <enabled>true</enabled>
+      <lastModified>
+        <time>1517394089886</time>
+        <timezone>America/New_York</timezone>
+      </lastModified>
+      <pruningSettings>
+        <archiveEnabled>true</archiveEnabled>
+      </pruningSettings>
+    </metadata>
+    <channelTags>
+      <channelTag>
+        <id>1318feb3-a2da-447f-ad80-a70cf7bd64d3</id>
+        <name>2018</name>
+        <channelIds>
+          <string>ba1e1fad-55f9-414d-9fdf-299bbb972f38</string>
+          <string>12d8ec02-b0fd-4925-bb09-fe9f83e2c7d0</string>
+          <string>b09e35ad-4fc5-4dc0-9909-80ae22c0900f</string>
+          <string>f6304de6-71f5-464d-be4d-3c3cabe33dc6</string>
+          <string>ec01f9a8-7f8e-418b-8fe0-15afb1eb1c42</string>
+          <string>6196759c-940f-40cb-94a8-ab7e17d32e19</string>
+          <string>e3a88c51-a15e-4152-b064-a80f8b976199</string>
+          <string>26998c34-8105-4ec1-ae92-f3e9fed1912c</string>
+          <string>189068f6-2833-4646-b74e-f46a988202c1</string>
+          <string>bd2d2918-e155-4b90-a0e5-e48e6d1eecdf</string>
+          <string>f8adb5e6-546c-45fc-886f-babb5ddfb052</string>
+        </channelIds>
+        <backgroundColor>
+          <red>255</red>
+          <green>0</green>
+          <blue>0</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+      <channelTag>
+        <id>be59beff-589c-461b-afd0-1f65f5614096</id>
+        <name>Connectathon</name>
+        <channelIds>
+          <string>ba1e1fad-55f9-414d-9fdf-299bbb972f38</string>
+          <string>12d8ec02-b0fd-4925-bb09-fe9f83e2c7d0</string>
+          <string>dc877250-5c2d-478e-980e-c81577d5bb83</string>
+          <string>bd2d2918-e155-4b90-a0e5-e48e6d1eecdf</string>
+          <string>f8adb5e6-546c-45fc-886f-babb5ddfb052</string>
+        </channelIds>
+        <backgroundColor>
+          <red>128</red>
+          <green>0</green>
+          <blue>0</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+    </channelTags>
+  </exportData>
+</channel>
