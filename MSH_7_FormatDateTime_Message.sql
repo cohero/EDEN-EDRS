@@ -1,0 +1,21 @@
+-- Uses: SYSDATETIMEOFFSET()
+-- Purpose: Converts time to match DTM-S with timezoneoffset for MSH-7
+-- Date: 2.2.2018
+--
+--
+UPDATE edenmaster   
+	SET  [MSH_7_DateTimeofMessage] = 
+         CONVERT(char(4), YEAR(SYSDATETIMEOFFSET())) + 
+         RIGHT('00' + CONVERT(varchar(2),MONTH(SYSDATETIMEOFFSET())), 2) +
+		 RIGHT('00' + CONVERT(varchar(2),DAY(SYSDATETIMEOFFSET())), 2) +
+		 RIGHT('00' + CONVERT(VARCHAR(2),DATEPART(hour, SYSDATETIMEOFFSET())),2) +
+    	 RIGHT('00' + CONVERT(VARCHAR(2),DATEPART(minute, SYSDATETIMEOFFSET())),2) +
+		 RIGHT('00' + CONVERT(VARCHAR(2),DATEPART(second, SYSDATETIMEOFFSET())),2) +
+     	CASE
+			 WHEN LEN(RTRIM(DATEPART(TZoffset, SYSDATETIMEOFFSET()))) = 4  THEN 
+			      SUBSTRING(RTRIM(DATEPART(TZoffset, SYSDATETIMEOFFSET())),1,1) + '0'+
+				  SUBSTRING(RTRIM(DATEPART(TZoffset, SYSDATETIMEOFFSET())),2,3)
+             ELSE RIGHT('0000' + CONVERT(VARCHAR(4),DATEPART(TZoffset, SYSDATETIMEOFFSET())),4)
+         END -- AS msh9
+
+
