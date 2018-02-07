@@ -1,0 +1,2637 @@
+<channel version="3.5.1">
+  <id>4c5e4de3-a005-49af-9cca-674a132c16d7</id>
+  <nextMetaDataId>12</nextMetaDataId>
+  <name>IP_EDEN_to_VRDR_CDA</name>
+  <description></description>
+  <revision>15</revision>
+  <sourceConnector version="3.5.1">
+    <metaDataId>0</metaDataId>
+    <name>sourceConnector</name>
+    <properties class="com.mirth.connect.connectors.jdbc.DatabaseReceiverProperties" version="3.5.1">
+      <pluginProperties/>
+      <pollConnectorProperties version="3.5.1">
+        <pollingType>INTERVAL</pollingType>
+        <pollOnStart>true</pollOnStart>
+        <pollingFrequency>5000</pollingFrequency>
+        <pollingHour>0</pollingHour>
+        <pollingMinute>0</pollingMinute>
+        <cronJobs/>
+        <pollConnectorPropertiesAdvanced>
+          <weekly>true</weekly>
+          <inactiveDays>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+          </inactiveDays>
+          <dayOfMonth>1</dayOfMonth>
+          <allDay>true</allDay>
+          <startingHour>8</startingHour>
+          <startingMinute>0</startingMinute>
+          <endingHour>17</endingHour>
+          <endingMinute>0</endingMinute>
+        </pollConnectorPropertiesAdvanced>
+      </pollConnectorProperties>
+      <sourceConnectorProperties version="3.5.1">
+        <responseVariable>None</responseVariable>
+        <respondAfterProcessing>true</respondAfterProcessing>
+        <processBatch>false</processBatch>
+        <firstResponse>false</firstResponse>
+        <processingThreads>1</processingThreads>
+        <resourceIds class="linked-hash-map">
+          <entry>
+            <string>Default Resource</string>
+            <string>[Default Resource]</string>
+          </entry>
+        </resourceIds>
+        <queueBufferSize>1000</queueBufferSize>
+      </sourceConnectorProperties>
+      <driver>net.sourceforge.jtds.jdbc.Driver</driver>
+      <url>jdbc:jtds:sqlserver://localhost:1433/connectathon</url>
+      <username>ray</username>
+      <password>mss</password>
+      <select>--USE [eden]
+--GO
+
+SELECT Top 1 edenmaster.StateFileNumber AS hl7_export_StateFileNumber, edenmaster.CertifierLicense AS hl7_export_CertifierLicense, edenmaster.MRN AS hl7_export_MRN, edenmaster.DeceasedLast AS hl7_export_DeceasedLast, edenmaster.DeceasedFirst AS hl7_export_DeceasedFirst, edenmaster.DeceasedMiddle AS hl7_export_DeceasedMiddle, edenmaster.DeceasedSuffix AS hl7_export_DeceasedSuffix, edenmaster.SSN AS hl7_export_SSN, edenmaster.Gender AS hl7_export_Gender, edenmaster.BirthCity AS hl7_export_BirthCity, edenmaster.BirthCounty AS cda_export_BirthCounty, edenmaster.BirthState AS hl7_export_BirthState, edenmaster.BirthCountry AS hl7_export_BirthCountry, edenmaster.BirthCCYY AS hl7_export_BirthCCYY, edenmaster.BirthMM AS hl7_export_BirthMM, edenmaster.BirthDD AS hl7_export_BirthDD, edenmaster.RaceWhite AS hl7_export_RaceWhite, edenmaster.RaceBlack AS hl7_export_RaceBlack, edenmaster.RaceAmIndian AS hl7_export_RaceAmIndian, edenmaster.RaceTribeSpec AS hl7_export_RaceTribeSpec, edenmaster.RaceChinese AS hl7_export_RaceChinese, edenmaster.RaceJapanese AS hl7_export_RaceJapanese, edenmaster.RaceHawaiian AS hl7_export_RaceHawaiian, edenmaster.RaceFilipino AS hl7_export_RaceFilipino, edenmaster.RaceOtherAsian AS hl7_export_RaceOtherAsian, edenmaster.RaceAsianSpec AS hl7_export_RaceAsianSpec, edenmaster.RaceAsianIndian AS hl7_export_RaceAsianIndian, edenmaster.RaceKorean AS hl7_export_RaceKorean, edenmaster.RaceSamoan AS hl7_export_RaceSamoan, edenmaster.RaceVietnamese AS hl7_export_RaceVietnamese, edenmaster.RaceGuamanian AS hl7_export_RaceGuamanian, edenmaster.RacePacIslander AS hl7_export_RacePacIslander, edenmaster.RaceOther AS hl7_export_RaceOther, edenmaster.RaceUnknown AS hl7_export_RaceUnknown, edenmaster.Education AS hl7_export_Education, edenmaster.Occupation AS hl7_export_Occupation, edenmaster.Industry AS hl7_export_Industry, edenmaster.ArmedForces AS hl7_export_ArmedForces, edenmaster.Pregnant AS hl7_export_Pregnant, edenmaster.ResStreetAddress1 AS hl7_export_ResStreetAddress1, edenmaster.ResStreetAddress2 AS hl7_export_ResStreetAddress2, edenmaster.ResCity AS hl7_export_ResCity, edenmaster.ResCounty AS hl7_export_ResCounty, edenmaster.ResState AS hl7_export_ResState, edenmaster.ResCountry AS hl7_export_ResCountry, edenmaster.ResZip5 AS hl7_export_ResZip5, edenmaster.ResInCityLimits AS hl7_export_ResInCityLimits, edenmaster.DeathCCYY AS hl7_export_DeathCCYY, edenmaster.DeathMM AS hl7_export_DeathMM, edenmaster.DeathDD AS hl7_export_DeathDD, edenmaster.FoundDate AS hl7_export_FoundDate, edenmaster.TimeOfDeathHH AS hl7_export_TimeOfDeathHH, edenmaster.TimeOfDeathMM AS hl7_export_TimeOfDeathMM, edenmaster.FoundTime AS hl7_export_FoundTime, edenmaster.PlaceOfDeath AS hl7_export_PlaceOfDeath, edenmaster.FacilityName AS hl7_export_FacilityName, edenmaster.NursingHomeName AS hl7_export_NursingHomeName, edenmaster.POD_OtherSpec AS hl7_export_POD_OtherSpec, edenmaster.NonFacilityLocation AS hl7_export_NonFacilityLocation, edenmaster.CountyOfDeath AS hl7_export_CountyOfDeath, edenmaster.CityOfDeath AS hl7_export_CityOfDeath, edenmaster.CertifierFullName AS hl7_export_CertifierFullName, edenmaster.CertifierSignCCYY AS hl7_export_CertifierSignCCYY, edenmaster.CertifierSignMM AS hl7_export_CertifierSignMM, edenmaster.CertifierSignDD AS hl7_export_CertifierSignDD, edenmaster.CertifierAddress1 AS hl7_export_CertifierAddress1, edenmaster.CertifierAddress2 AS hl7_export_CertifierAddress2, edenmaster.CertifierCity AS hl7_export_CertifierCity, edenmaster.CertifierState AS hl7_export_CertifierState, edenmaster.CertifierCountry AS hl7_export_CertifierCountry, edenmaster.CertifierZip5 AS hl7_export_CertifierZip5, edenmaster.ME_Contacted AS hl7_export_ME_Contacted, edenmaster.AutopsyDone AS hl7_export_AutopsyDone, edenmaster.AutopsyAvailable AS hl7_export_AutopsyAvailable, edenmaster.LastSeenCCYY AS hl7_export_LastSeenCCYY, edenmaster.LastSeenMM AS hl7_export_LastSeenMM, edenmaster.LastSeenDD AS hl7_export_LastSeenDD, edenmaster.DaysLastSeenToDeath AS hl7_export_DaysLastSeenToDeath, edenmaster.ImmediateCause AS hl7_export_ImmediateCause, edenmaster.ImmediateInterval AS hl7_export_ImmediateInterval, edenmaster.ImmediateIntervalUnit AS ImmediateIntervalUnit, edenmaster.AdditionalCause1 AS hl7_export_AdditionalCause1, edenmaster.AdditionalInterval1 AS hl7_export_AdditionalInterval1, edenmaster.AdditionalIntervalUnit1 AS AdditionalIntervalUnit1, edenmaster.AdditionalCause2 AS hl7_export_AdditionalCause2, edenmaster.AdditionalInterval2 AS hl7_export_AdditionalInterval2, edenmaster.AdditionalIntervalUnit2 AS AdditionalIntervalUnit2, edenmaster.UnderlyingCause AS hl7_export_UnderlyingCause, edenmaster.UnderlyingInterval AS hl7_export_UnderlyingInterval, edenmaster.UnderlyingIntervalUnit AS hl7_export_UnderlyingIntervalUnit, edenmaster.OtherConditions AS hl7_export_OtherConditions, edenmaster.MannerOfDeath AS hl7_export_MannerOfDeath, edenmaster.Tobacco AS hl7_export_Tobacco, edenmaster.Injury AS hl7_export_Injury, edenmaster.InjuryCCYY AS hl7_export_InjuryCCYY, edenmaster.InjuryMM AS hl7_export_InjuryMM, edenmaster.InjuryDD AS hl7_export_InjuryDD, edenmaster.InjuryTimeHH AS hl7_export_InjuryTimeHH, edenmaster.InjuryTimeMM AS hl7_export_InjuryTimeMM, edenmaster.InjuryStreet AS hl7_export_InjuryStreet, edenmaster.InjuryCity AS hl7_export_InjuryCity, edenmaster.InjuryCounty AS hl7_export_InjuryCounty, edenmaster.InjuryState AS hl7_export_InjuryState, edenmaster.InjuryCountry AS hl7_export_InjuryCountry, edenmaster.InjuryPlace AS hl7_export_InjuryPlace, edenmaster.InjuryAtWork AS hl7_export_InjuryAtWork, edenmaster.InjuryMotorVehicle AS hl7_export_InjuryMotorVehicle, edenmaster.InjuryMotorSpec AS hl7_export_InjuryMotorSpec, edenmaster.InjuryDescription1 AS hl7_export_InjuryDescription1, edenmaster.InjuryDescription2 AS hl7_export_InjuryDescription2, edenmaster.MasterStatus AS hl7_export_MasterStatus
+FROM edenmaster WHERE cdaSend = 0 
+
+
+
+</select>
+      <update>--USE [eden]
+--GO
+
+update edenmaster set cdaSend = 1 where StateFileNumber = ${hl7_export_statefilenumber}
+</update>
+      <useScript>false</useScript>
+      <aggregateResults>false</aggregateResults>
+      <cacheResults>true</cacheResults>
+      <keepConnectionOpen>true</keepConnectionOpen>
+      <updateMode>3</updateMode>
+      <retryCount>3</retryCount>
+      <retryInterval>100000</retryInterval>
+      <fetchSize>1000</fetchSize>
+      <encoding>DEFAULT_ENCODING</encoding>
+    </properties>
+    <transformer version="3.5.1">
+      <elements>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>StateFileNumber</name>
+          <sequenceNumber>0</sequenceNumber>
+          <variable>StateFileNumber</variable>
+          <mapping>msg[&apos;hl7_export_statefilenumber&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>MRN</name>
+          <sequenceNumber>1</sequenceNumber>
+          <variable>MRN</variable>
+          <mapping>msg[&apos;hl7_export_mrn&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>LastName</name>
+          <sequenceNumber>2</sequenceNumber>
+          <variable>LastName</variable>
+          <mapping>msg[&apos;hl7_export_deceasedlast&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>FirstName</name>
+          <sequenceNumber>3</sequenceNumber>
+          <variable>FirstName</variable>
+          <mapping>msg[&apos;hl7_export_deceasedfirst&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>MiddleName</name>
+          <sequenceNumber>4</sequenceNumber>
+          <variable>MiddleName</variable>
+          <mapping>msg[&apos;hl7_export_deceasedmiddle&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>SSN</name>
+          <sequenceNumber>5</sequenceNumber>
+          <variable>SSN</variable>
+          <mapping>msg[&apos;hl7_export_ssn&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Gender</name>
+          <sequenceNumber>6</sequenceNumber>
+          <variable>Gender</variable>
+          <mapping>msg[&apos;hl7_export_gender&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ImmediateCause</name>
+          <sequenceNumber>7</sequenceNumber>
+          <variable>ImmediateCause</variable>
+          <mapping>msg[&apos;hl7_export_immediatecause&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Additional1</name>
+          <sequenceNumber>8</sequenceNumber>
+          <variable>Additional1</variable>
+          <mapping>msg[&apos;hl7_export_additionalcause1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Additional2</name>
+          <sequenceNumber>9</sequenceNumber>
+          <variable>Additional2</variable>
+          <mapping>msg[&apos;hl7_export_additionalcause2&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>UnderlyingCause</name>
+          <sequenceNumber>10</sequenceNumber>
+          <variable>UnderlyingCause</variable>
+          <mapping>msg[&apos;hl7_export_underlyingcause&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>msgDate</name>
+          <sequenceNumber>11</sequenceNumber>
+          <script>var dateString = DateUtil.getCurrentDate(&quot;yyyyMMddhhmmss&quot;);
+
+logger.debug(&quot;msgdate:&quot; + dateString);
+
+mDate = dateString + &quot;-0600&quot;;
+
+
+channelMap.put(&apos;msgDate&apos;,mDate);
+
+
+//var MasterStatus = hl7_export_MasterStatus;
+
+//logger.debug(&quot;master status:&quot; + MasterStatus);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>MasterStatus</name>
+          <sequenceNumber>12</sequenceNumber>
+          <variable>MasterStatus</variable>
+          <mapping>msg[&apos;hl7_export_masterstatus&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>birthYear</name>
+          <sequenceNumber>13</sequenceNumber>
+          <variable>birthYear</variable>
+          <mapping>msg[&apos;hl7_export_birthccyy&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>birthMonth</name>
+          <sequenceNumber>14</sequenceNumber>
+          <variable>birthMonth</variable>
+          <mapping>msg[&apos;hl7_export_birthmm&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>birthDay</name>
+          <sequenceNumber>15</sequenceNumber>
+          <variable>birthDay</variable>
+          <mapping>msg[&apos;hl7_export_birthdd&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>racewhite</name>
+          <sequenceNumber>16</sequenceNumber>
+          <variable>racewhite</variable>
+          <mapping>msg[&apos;hl7_export_racewhite&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>raceblack</name>
+          <sequenceNumber>17</sequenceNumber>
+          <variable>raceblack</variable>
+          <mapping>msg[&apos;hl7_export_raceblack&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>raceAmIndian</name>
+          <sequenceNumber>18</sequenceNumber>
+          <variable>raceAmIndian</variable>
+          <mapping>msg[&apos;hl7_export_raceamindian&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+      </elements>
+      <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVybGljZW5zZT52YWx1
+ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJsaWNlbnNlPg0KICAgIDxobDdfZXhwb3J0X21ybj52YWx1
+ZTwvaGw3X2V4cG9ydF9tcm4+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRsYXN0PnZhbHVlPC9o
+bDdfZXhwb3J0X2RlY2Vhc2VkbGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGZpcnN0PnZh
+bHVlPC9obDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRt
+aWRkbGU+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRtaWRkbGU+DQogICAgPGhsN19leHBvcnRf
+ZGVjZWFzZWRzdWZmaXg+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRzdWZmaXg+DQogICAgPGhs
+N19leHBvcnRfc3NuPnZhbHVlPC9obDdfZXhwb3J0X3Nzbj4NCiAgICA8aGw3X2V4cG9ydF9nZW5k
+ZXI+dmFsdWU8L2hsN19leHBvcnRfZ2VuZGVyPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY2l0eT52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNpdHk+DQogICAgPGNkYV9leHBvcnRfYmlydGhjb3VudHk+
+dmFsdWU8L2NkYV9leHBvcnRfYmlydGhjb3VudHk+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY291
+bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnk+DQogICAgPGhsN19leHBvcnRfYmly
+dGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aG1tPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRobW0+DQogICAgPGhsN19leHBvcnRfYmlydGhkZD52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGRkPg0KICAgIDxobDdfZXhwb3J0X3JhY2V3aGl0ZT52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNld2hpdGU+DQogICAgPGhsN19leHBvcnRfcmFjZWJsYWNrPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VibGFjaz4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYW1pbmRpYW4+dmFs
+dWU8L2hsN19leHBvcnRfcmFjZWFtaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V0cmliZXNw
+ZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZXRyaWJlc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+Y2hpbmVzZT52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlY2hpbmVzZT4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNlamFwYW5lc2U+dmFsdWU8L2hsN19leHBvcnRfcmFjZWphcGFuZXNlPg0KICAgIDxobDdfZXhw
+b3J0X3JhY2VoYXdhaWlhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlaGF3YWlpYW4+DQogICAgPGhs
+N19leHBvcnRfcmFjZWZpbGlwaW5vPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VmaWxpcGlubz4NCiAg
+ICA8aGw3X2V4cG9ydF9yYWNlb3RoZXJhc2lhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXJh
+c2lhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5zcGVjPnZhbHVlPC9obDdfZXhwb3J0X3Jh
+Y2Vhc2lhbnNwZWM+DQogICAgPGhsN19leHBvcnRfcmFjZWFzaWFuaW5kaWFuPnZhbHVlPC9obDdf
+ZXhwb3J0X3JhY2Vhc2lhbmluZGlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNla29yZWFuPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2Vrb3JlYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXNhbW9hbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlc2Ftb2FuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNl
+PnZhbHVlPC9obDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vn
+dWFtYW5pYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWd1YW1hbmlhbj4NCiAgICA8aGw3X2V4cG9y
+dF9yYWNlcGFjaXNsYW5kZXI+dmFsdWU8L2hsN19leHBvcnRfcmFjZXBhY2lzbGFuZGVyPg0KICAg
+IDxobDdfZXhwb3J0X3JhY2VvdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXI+DQogICAg
+PGhsN19leHBvcnRfcmFjZXVua25vd24+dmFsdWU8L2hsN19leHBvcnRfcmFjZXVua25vd24+DQog
+ICAgPGhsN19leHBvcnRfZWR1Y2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2VkdWNhdGlvbj4NCiAg
+ICA8aGw3X2V4cG9ydF9vY2N1cGF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X29jY3VwYXRpb24+DQog
+ICAgPGhsN19leHBvcnRfaW5kdXN0cnk+dmFsdWU8L2hsN19leHBvcnRfaW5kdXN0cnk+DQogICAg
+PGhsN19leHBvcnRfYXJtZWRmb3JjZXM+dmFsdWU8L2hsN19leHBvcnRfYXJtZWRmb3JjZXM+DQog
+ICAgPGhsN19leHBvcnRfcHJlZ25hbnQ+dmFsdWU8L2hsN19leHBvcnRfcHJlZ25hbnQ+DQogICAg
+PGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczE+dmFsdWU8L2hsN19leHBvcnRfcmVzc3RyZWV0
+YWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eT52YWx1ZTwv
+aGw3X2V4cG9ydF9yZXNjaXR5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc2NvdW50eT52YWx1ZTwvaGw3
+X2V4cG9ydF9yZXNjb3VudHk+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGU+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RhdGU+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeT52YWx1ZTwvaGw3X2V4
+cG9ydF9yZXNjb3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc3ppcDU+dmFsdWU8L2hsN19leHBv
+cnRfcmVzemlwNT4NCiAgICA8aGw3X2V4cG9ydF9yZXNpbmNpdHlsaW1pdHM+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzaW5jaXR5bGltaXRzPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoY2N5eT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWF0aGNjeXk+DQogICAgPGhsN19leHBvcnRfZGVhdGhtbT52YWx1ZTwvaGw3
+X2V4cG9ydF9kZWF0aG1tPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoZGQ+dmFsdWU8L2hsN19leHBv
+cnRfZGVhdGhkZD4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZGRhdGU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmRkYXRlPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRoaGg+dmFsdWU8L2hsN19leHBv
+cnRfdGltZW9mZGVhdGhoaD4NCiAgICA8aGw3X2V4cG9ydF90aW1lb2ZkZWF0aG1tPnZhbHVlPC9o
+bDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+DQogICAgPGhsN19leHBvcnRfZm91bmR0aW1lPnZhbHVl
+PC9obDdfZXhwb3J0X2ZvdW5kdGltZT4NCiAgICA8aGw3X2V4cG9ydF9wbGFjZW9mZGVhdGg+dmFs
+dWU8L2hsN19leHBvcnRfcGxhY2VvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2ZhY2lsaXR5bmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9mYWNpbGl0eW5hbWU+DQogICAgPGhsN19leHBvcnRfbnVyc2lu
+Z2hvbWVuYW1lPnZhbHVlPC9obDdfZXhwb3J0X251cnNpbmdob21lbmFtZT4NCiAgICA8aGw3X2V4
+cG9ydF9wb2Rfb3RoZXJzcGVjPnZhbHVlPC9obDdfZXhwb3J0X3BvZF9vdGhlcnNwZWM+DQogICAg
+PGhsN19leHBvcnRfbm9uZmFjaWxpdHlsb2NhdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9ub25mYWNp
+bGl0eWxvY2F0aW9uPg0KICAgIDxobDdfZXhwb3J0X2NvdW50eW9mZGVhdGg+dmFsdWU8L2hsN19l
+eHBvcnRfY291bnR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD52YWx1ZTwv
+aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFtZT4NCiAgICA8aGw3X2V4cG9ydF9j
+ZXJ0aWZpZXJzaWduY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbm1tPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25kZD52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJzaWduZGQ+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+dmFs
+dWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfY2VydGlm
+aWVyYWRkcmVzczI+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczI+DQogICAgPGhs
+N19leHBvcnRfY2VydGlmaWVyY2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJjaXR5Pg0K
+ICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnN0YXRlPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cnN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmNvdW50cnk+dmFsdWU8L2hsN19leHBv
+cnRfY2VydGlmaWVyY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJ6aXA1PnZhbHVl
+PC9obDdfZXhwb3J0X2NlcnRpZmllcnppcDU+DQogICAgPGhsN19leHBvcnRfbWVfY29udGFjdGVk
+PnZhbHVlPC9obDdfZXhwb3J0X21lX2NvbnRhY3RlZD4NCiAgICA8aGw3X2V4cG9ydF9hdXRvcHN5
+ZG9uZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5ZG9uZT4NCiAgICA8aGw3X2V4cG9ydF9hdXRv
+cHN5YXZhaWxhYmxlPnZhbHVlPC9obDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+DQogICAgPGhs
+N19leHBvcnRfbGFzdHNlZW5jY3l5PnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9sYXN0c2Vlbm1tPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVubW0+DQog
+ICAgPGhsN19leHBvcnRfbGFzdHNlZW5kZD52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmRkPg0K
+ICAgIDxobDdfZXhwb3J0X2RheXNsYXN0c2VlbnRvZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfZGF5
+c2xhc3RzZWVudG9kZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRl
+cnZhbD52YWx1ZTwvaGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRlcnZhbD4NCiAgICA8aW1tZWRpYXRl
+aW50ZXJ2YWx1bml0PnZhbHVlPC9pbW1lZGlhdGVpbnRlcnZhbHVuaXQ+DQogICAgPGhsN19leHBv
+cnRfYWRkaXRpb25hbGNhdXNlMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UxPg0K
+ICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDE+dmFsdWU8L2hsN19leHBvcnRfYWRk
+aXRpb25hbGludGVydmFsMT4NCiAgICA8YWRkaXRpb25hbGludGVydmFsdW5pdDE+dmFsdWU8L2Fk
+ZGl0aW9uYWxpbnRlcnZhbHVuaXQxPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+
+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj4NCiAgICA8aGw3X2V4cG9ydF9hZGRp
+dGlvbmFsaW50ZXJ2YWwyPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDI+DQog
+ICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPnZhbHVlPC9hZGRpdGlvbmFsaW50ZXJ2YWx1bml0
+Mj4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+dmFsdWU8L2hsN19leHBvcnRfdW5k
+ZXJseWluZ2NhdXNlPg0KICAgIDxobDdfZXhwb3J0X3VuZGVybHlpbmdpbnRlcnZhbD52YWx1ZTwv
+aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+DQogICAgPGhsN19leHBvcnRfdW5kZXJseWlu
+Z2ludGVydmFsdW5pdD52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0K
+ICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNv
+bmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVyb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X3RvYmFjY28+dmFsdWU8L2hsN19leHBv
+cnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnk+dmFsdWU8L2hsN19leHBvcnRfaW5q
+dXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5
+Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+bT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4N
+CiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGlt
+ZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVtbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1
+cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0
+X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5Y291bnR5PnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZh
+bHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5cGxh
+Y2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0d29yaz4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0K
+ICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+b3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlw
+dGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPg0KICAgIDxobDdfZXhw
+b3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+DQo8L3Jlc3Vs
+dD4NCg==</inboundTemplate>
+      <outboundTemplate encoding="base64"></outboundTemplate>
+      <inboundDataType>XML</inboundDataType>
+      <outboundDataType>XML</outboundDataType>
+      <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+          <stripNamespaces>true</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </inboundProperties>
+      <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+          <stripNamespaces>true</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </outboundProperties>
+    </transformer>
+    <filter version="3.5.1">
+      <elements/>
+    </filter>
+    <transportName>Database Reader</transportName>
+    <mode>SOURCE</mode>
+    <enabled>true</enabled>
+    <waitForPrevious>true</waitForPrevious>
+  </sourceConnector>
+  <destinationConnectors>
+    <connector version="3.5.1">
+      <metaDataId>10</metaDataId>
+      <name>UnderlyingCause</name>
+      <properties class="com.mirth.connect.connectors.vm.VmDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <channelId>none</channelId>
+        <channelTemplate>${message.encodedData}</channelTemplate>
+        <mapVariables/>
+      </properties>
+      <transformer version="3.5.1">
+        <elements>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>UnderlyingCause</name>
+            <sequenceNumber>0</sequenceNumber>
+            <script>///////////Additional Cause 2
+
+
+
+
+var SeqNum = 4;
+
+
+/////////Immediate Cause of Death--there must be an immediate cause per the IG////////////////////////////
+
+
+tmp[&apos;sequenceNumber&apos;][&apos;@value&apos;] = SeqNum;
+tmp.*::[&apos;observation&apos;].*::[&apos;value&apos;].*::[&apos;originalText&apos;]=msg[&apos;hl7_export_underlyingcause&apos;].toString();
+
+
+//Check for interval and write if included
+
+var Intvl = msg[&apos;hl7_export_underlyinginterval&apos;].toString() + &quot; &quot; + msg[&apos;underlyingintervalunit&apos;].toString();
+
+if (Intvl.length &gt; 0){
+	tmp.*::[&apos;observation&apos;].*::[&apos;entryRelationship&apos;].*::[&apos;observation&apos;].*::[&apos;value&apos;] = Intvl;
+}
+
+
+channelMap.put(&quot;Underlying_Section&quot;,tmp);
+
+
+
+var hasUnderlying = 0;
+if (msg[&apos;hl7_export_underlyingcause&apos;]){
+	hasUnderlying = 1;
+}
+
+channelMap.put(&quot;hasUnderlying&quot;,hasUnderlying);</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Namespaces</name>
+            <sequenceNumber>1</sequenceNumber>
+            <script>default xml namespace = &quot;urn:hl7-org:v3&quot;;</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        </elements>
+        <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVybGljZW5zZT52YWx1
+ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJsaWNlbnNlPg0KICAgIDxobDdfZXhwb3J0X21ybj52YWx1
+ZTwvaGw3X2V4cG9ydF9tcm4+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRsYXN0PnZhbHVlPC9o
+bDdfZXhwb3J0X2RlY2Vhc2VkbGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGZpcnN0PnZh
+bHVlPC9obDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRt
+aWRkbGU+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRtaWRkbGU+DQogICAgPGhsN19leHBvcnRf
+ZGVjZWFzZWRzdWZmaXg+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRzdWZmaXg+DQogICAgPGhs
+N19leHBvcnRfc3NuPnZhbHVlPC9obDdfZXhwb3J0X3Nzbj4NCiAgICA8aGw3X2V4cG9ydF9nZW5k
+ZXI+dmFsdWU8L2hsN19leHBvcnRfZ2VuZGVyPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY2l0eT52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNpdHk+DQogICAgPGNkYV9leHBvcnRfYmlydGhjb3VudHk+
+dmFsdWU8L2NkYV9leHBvcnRfYmlydGhjb3VudHk+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY291
+bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnk+DQogICAgPGhsN19leHBvcnRfYmly
+dGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aG1tPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRobW0+DQogICAgPGhsN19leHBvcnRfYmlydGhkZD52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGRkPg0KICAgIDxobDdfZXhwb3J0X3JhY2V3aGl0ZT52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNld2hpdGU+DQogICAgPGhsN19leHBvcnRfcmFjZWJsYWNrPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VibGFjaz4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYW1pbmRpYW4+dmFs
+dWU8L2hsN19leHBvcnRfcmFjZWFtaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V0cmliZXNw
+ZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZXRyaWJlc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+Y2hpbmVzZT52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlY2hpbmVzZT4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNlamFwYW5lc2U+dmFsdWU8L2hsN19leHBvcnRfcmFjZWphcGFuZXNlPg0KICAgIDxobDdfZXhw
+b3J0X3JhY2VoYXdhaWlhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlaGF3YWlpYW4+DQogICAgPGhs
+N19leHBvcnRfcmFjZWZpbGlwaW5vPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VmaWxpcGlubz4NCiAg
+ICA8aGw3X2V4cG9ydF9yYWNlb3RoZXJhc2lhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXJh
+c2lhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5zcGVjPnZhbHVlPC9obDdfZXhwb3J0X3Jh
+Y2Vhc2lhbnNwZWM+DQogICAgPGhsN19leHBvcnRfcmFjZWFzaWFuaW5kaWFuPnZhbHVlPC9obDdf
+ZXhwb3J0X3JhY2Vhc2lhbmluZGlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNla29yZWFuPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2Vrb3JlYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXNhbW9hbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlc2Ftb2FuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNl
+PnZhbHVlPC9obDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vn
+dWFtYW5pYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWd1YW1hbmlhbj4NCiAgICA8aGw3X2V4cG9y
+dF9yYWNlcGFjaXNsYW5kZXI+dmFsdWU8L2hsN19leHBvcnRfcmFjZXBhY2lzbGFuZGVyPg0KICAg
+IDxobDdfZXhwb3J0X3JhY2VvdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXI+DQogICAg
+PGhsN19leHBvcnRfcmFjZXVua25vd24+dmFsdWU8L2hsN19leHBvcnRfcmFjZXVua25vd24+DQog
+ICAgPGhsN19leHBvcnRfZWR1Y2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2VkdWNhdGlvbj4NCiAg
+ICA8aGw3X2V4cG9ydF9vY2N1cGF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X29jY3VwYXRpb24+DQog
+ICAgPGhsN19leHBvcnRfaW5kdXN0cnk+dmFsdWU8L2hsN19leHBvcnRfaW5kdXN0cnk+DQogICAg
+PGhsN19leHBvcnRfYXJtZWRmb3JjZXM+dmFsdWU8L2hsN19leHBvcnRfYXJtZWRmb3JjZXM+DQog
+ICAgPGhsN19leHBvcnRfcHJlZ25hbnQ+dmFsdWU8L2hsN19leHBvcnRfcHJlZ25hbnQ+DQogICAg
+PGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczE+dmFsdWU8L2hsN19leHBvcnRfcmVzc3RyZWV0
+YWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eT52YWx1ZTwv
+aGw3X2V4cG9ydF9yZXNjaXR5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc2NvdW50eT52YWx1ZTwvaGw3
+X2V4cG9ydF9yZXNjb3VudHk+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGU+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RhdGU+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeT52YWx1ZTwvaGw3X2V4
+cG9ydF9yZXNjb3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc3ppcDU+dmFsdWU8L2hsN19leHBv
+cnRfcmVzemlwNT4NCiAgICA8aGw3X2V4cG9ydF9yZXNpbmNpdHlsaW1pdHM+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzaW5jaXR5bGltaXRzPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoY2N5eT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWF0aGNjeXk+DQogICAgPGhsN19leHBvcnRfZGVhdGhtbT52YWx1ZTwvaGw3
+X2V4cG9ydF9kZWF0aG1tPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoZGQ+dmFsdWU8L2hsN19leHBv
+cnRfZGVhdGhkZD4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZGRhdGU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmRkYXRlPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRoaGg+dmFsdWU8L2hsN19leHBv
+cnRfdGltZW9mZGVhdGhoaD4NCiAgICA8aGw3X2V4cG9ydF90aW1lb2ZkZWF0aG1tPnZhbHVlPC9o
+bDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+DQogICAgPGhsN19leHBvcnRfZm91bmR0aW1lPnZhbHVl
+PC9obDdfZXhwb3J0X2ZvdW5kdGltZT4NCiAgICA8aGw3X2V4cG9ydF9wbGFjZW9mZGVhdGg+dmFs
+dWU8L2hsN19leHBvcnRfcGxhY2VvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2ZhY2lsaXR5bmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9mYWNpbGl0eW5hbWU+DQogICAgPGhsN19leHBvcnRfbnVyc2lu
+Z2hvbWVuYW1lPnZhbHVlPC9obDdfZXhwb3J0X251cnNpbmdob21lbmFtZT4NCiAgICA8aGw3X2V4
+cG9ydF9wb2Rfb3RoZXJzcGVjPnZhbHVlPC9obDdfZXhwb3J0X3BvZF9vdGhlcnNwZWM+DQogICAg
+PGhsN19leHBvcnRfbm9uZmFjaWxpdHlsb2NhdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9ub25mYWNp
+bGl0eWxvY2F0aW9uPg0KICAgIDxobDdfZXhwb3J0X2NvdW50eW9mZGVhdGg+dmFsdWU8L2hsN19l
+eHBvcnRfY291bnR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD52YWx1ZTwv
+aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFtZT4NCiAgICA8aGw3X2V4cG9ydF9j
+ZXJ0aWZpZXJzaWduY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbm1tPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25kZD52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJzaWduZGQ+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+dmFs
+dWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfY2VydGlm
+aWVyYWRkcmVzczI+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczI+DQogICAgPGhs
+N19leHBvcnRfY2VydGlmaWVyY2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJjaXR5Pg0K
+ICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnN0YXRlPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cnN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmNvdW50cnk+dmFsdWU8L2hsN19leHBv
+cnRfY2VydGlmaWVyY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJ6aXA1PnZhbHVl
+PC9obDdfZXhwb3J0X2NlcnRpZmllcnppcDU+DQogICAgPGhsN19leHBvcnRfbWVfY29udGFjdGVk
+PnZhbHVlPC9obDdfZXhwb3J0X21lX2NvbnRhY3RlZD4NCiAgICA8aGw3X2V4cG9ydF9hdXRvcHN5
+ZG9uZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5ZG9uZT4NCiAgICA8aGw3X2V4cG9ydF9hdXRv
+cHN5YXZhaWxhYmxlPnZhbHVlPC9obDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+DQogICAgPGhs
+N19leHBvcnRfbGFzdHNlZW5jY3l5PnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9sYXN0c2Vlbm1tPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVubW0+DQog
+ICAgPGhsN19leHBvcnRfbGFzdHNlZW5kZD52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmRkPg0K
+ICAgIDxobDdfZXhwb3J0X2RheXNsYXN0c2VlbnRvZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfZGF5
+c2xhc3RzZWVudG9kZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRl
+cnZhbD52YWx1ZTwvaGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRlcnZhbD4NCiAgICA8aW1tZWRpYXRl
+aW50ZXJ2YWx1bml0PnZhbHVlPC9pbW1lZGlhdGVpbnRlcnZhbHVuaXQ+DQogICAgPGhsN19leHBv
+cnRfYWRkaXRpb25hbGNhdXNlMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UxPg0K
+ICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDE+dmFsdWU8L2hsN19leHBvcnRfYWRk
+aXRpb25hbGludGVydmFsMT4NCiAgICA8YWRkaXRpb25hbGludGVydmFsdW5pdDE+dmFsdWU8L2Fk
+ZGl0aW9uYWxpbnRlcnZhbHVuaXQxPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+
+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj4NCiAgICA8aGw3X2V4cG9ydF9hZGRp
+dGlvbmFsaW50ZXJ2YWwyPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDI+DQog
+ICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPnZhbHVlPC9hZGRpdGlvbmFsaW50ZXJ2YWx1bml0
+Mj4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+dmFsdWU8L2hsN19leHBvcnRfdW5k
+ZXJseWluZ2NhdXNlPg0KICAgIDxobDdfZXhwb3J0X3VuZGVybHlpbmdpbnRlcnZhbD52YWx1ZTwv
+aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+DQogICAgPGhsN19leHBvcnRfdW5kZXJseWlu
+Z2ludGVydmFsdW5pdD52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0K
+ICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNv
+bmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVyb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X3RvYmFjY28+dmFsdWU8L2hsN19leHBv
+cnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnk+dmFsdWU8L2hsN19leHBvcnRfaW5q
+dXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5
+Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+bT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4N
+CiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGlt
+ZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVtbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1
+cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0
+X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5Y291bnR5PnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZh
+bHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5cGxh
+Y2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0d29yaz4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0K
+ICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+b3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlw
+dGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPg0KICAgIDxobDdfZXhw
+b3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+DQo8L3Jlc3Vs
+dD4NCg==</inboundTemplate>
+        <outboundTemplate encoding="base64">PGNvbXBvbmVudCB0eXBlQ29kZT0iQ09NUCI+CgkJCSAgICA8c2VxdWVuY2VOdW1iZXIgdmFsdWU9
+IjEiLz4KCQkJICAgIDxvYnNlcnZhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIw
+MDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxucz0idXJuOmhsNy1vcmc6djMiIGNsYXNzQ29kZT0i
+T0JTIiBtb29kQ29kZT0iRVZOIj4KCQkJICAgICAgIDxjb2RlIGNvZGU9IjIxOTg0LTAiIGNvZGVT
+eXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjYuMSIJY29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNw
+bGF5TmFtZT0iQ2F1c2Ugb2YgRGVhdGgiLz4KCQkJICAgICAgICA8dmFsdWUgeHNpOnR5cGU9IkNE
+Ij4KCQkJICAgICAgICA8b3JpZ2luYWxUZXh0Pjwvb3JpZ2luYWxUZXh0PgoJCQkgICAgPC92YWx1
+ZT4KCQkJPCEtLSBEZXNjcmlwdGl2ZSB0ZXh0IHRoYXQgaW5kaWNhdGVzIG9uZSBvciBtb3JlIGRp
+c2Vhc2VzLAoJCQlpbmp1cmllcywgb3IgY29tcGxpY2F0aW9ucyB0aGF0IHdlcmUgaW1wbGljYXRl
+ZCBhcyBhIGNhdXNlIG9mIHRoZSBwZXJzb24ncwoJCQlkZWF0aC4gLS0+CgkJCSAgICA8ZW50cnlS
+ZWxhdGlvbnNoaXAgdHlwZUNvZGU9IkNPTVAiPgoJCQkgICAgICAgPG9ic2VydmF0aW9uIHhtbG5z
+OnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zPSJ1
+cm46aGw3LW9yZzp2MyIgY2xhc3NDb2RlPSJPQlMiIG1vb2RDb2RlPSJFVk4iPgoJCQkgICAgICAg
+PGNvZGUgY29kZT0iNjk0NDAtNiIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi4xIgkJ
+Y29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNwbGF5TmFtZT0iRGlzZWFzZSBvbnNldCB0byBkZWF0
+aCBpbnRlcnZhbCIvPgoJCQkgICAgICAgPHZhbHVlIHhzaTp0eXBlPSJFRCI+PC92YWx1ZT4KCQkJ
+PCEtLSBBIG1lYXN1cmUgb2YgdGhlIHRpbWUgaW50ZXJ2YWwgYmV0d2VlbiB0aGUgb25zZXQgb2Yg
+dGhlCgkJCWRpc2Vhc2UsIGluanVyeSBvciBjb21wbGljYXRpb24sIGFuZCB0aGUgcGVyc29uJ3Mg
+ZGVhdGguIC0tPgoJCQkgICAgICAgIDwvb2JzZXJ2YXRpb24+CgkJCSAgICAgICAgPC9lbnRyeVJl
+bGF0aW9uc2hpcD4KCQkJICAgIDwvb2JzZXJ2YXRpb24+CjwvY29tcG9uZW50Pg==</outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>Channel Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+    <connector version="3.5.1">
+      <metaDataId>9</metaDataId>
+      <name>AdditionalCause2</name>
+      <properties class="com.mirth.connect.connectors.vm.VmDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <channelId>none</channelId>
+        <channelTemplate>${message.encodedData}</channelTemplate>
+        <mapVariables/>
+      </properties>
+      <transformer version="3.5.1">
+        <elements>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>AdditionalCause2</name>
+            <sequenceNumber>0</sequenceNumber>
+            <script>///////////Additional Cause 2
+
+
+
+
+var SeqNum = 3;
+
+
+/////////Immediate Cause of Death--there must be an immediate cause per the IG////////////////////////////
+
+
+tmp[&apos;sequenceNumber&apos;][&apos;@value&apos;] = SeqNum;
+tmp.*::[&apos;observation&apos;].*::[&apos;value&apos;].*::[&apos;originalText&apos;]=msg[&apos;hl7_export_additionalcause2&apos;].toString();
+
+
+//Check for interval and write if included
+
+var Intvl = msg[&apos;hl7_export_additionalinterval2&apos;].toString() + &quot; &quot; + msg[&apos;additionalintervalunit2&apos;].toString();
+
+if (Intvl.length &gt; 0){
+	tmp.*::[&apos;observation&apos;].*::[&apos;entryRelationship&apos;].*::[&apos;observation&apos;].*::[&apos;value&apos;] = Intvl;
+}
+
+
+channelMap.put(&quot;Additional_2_Section&quot;,tmp);
+
+var hasAdd2 = 0;
+if (msg[&apos;hl7_export_additionalcause2&apos;]){
+	hasAdd2 = 1;
+}
+
+channelMap.put(&quot;hasAdd2&quot;,hasAdd2);</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Namespaces</name>
+            <sequenceNumber>1</sequenceNumber>
+            <script>default xml namespace = &quot;urn:hl7-org:v3&quot;;</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        </elements>
+        <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVybGljZW5zZT52YWx1
+ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJsaWNlbnNlPg0KICAgIDxobDdfZXhwb3J0X21ybj52YWx1
+ZTwvaGw3X2V4cG9ydF9tcm4+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRsYXN0PnZhbHVlPC9o
+bDdfZXhwb3J0X2RlY2Vhc2VkbGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGZpcnN0PnZh
+bHVlPC9obDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRt
+aWRkbGU+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRtaWRkbGU+DQogICAgPGhsN19leHBvcnRf
+ZGVjZWFzZWRzdWZmaXg+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRzdWZmaXg+DQogICAgPGhs
+N19leHBvcnRfc3NuPnZhbHVlPC9obDdfZXhwb3J0X3Nzbj4NCiAgICA8aGw3X2V4cG9ydF9nZW5k
+ZXI+dmFsdWU8L2hsN19leHBvcnRfZ2VuZGVyPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY2l0eT52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNpdHk+DQogICAgPGNkYV9leHBvcnRfYmlydGhjb3VudHk+
+dmFsdWU8L2NkYV9leHBvcnRfYmlydGhjb3VudHk+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY291
+bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnk+DQogICAgPGhsN19leHBvcnRfYmly
+dGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aG1tPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRobW0+DQogICAgPGhsN19leHBvcnRfYmlydGhkZD52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGRkPg0KICAgIDxobDdfZXhwb3J0X3JhY2V3aGl0ZT52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNld2hpdGU+DQogICAgPGhsN19leHBvcnRfcmFjZWJsYWNrPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VibGFjaz4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYW1pbmRpYW4+dmFs
+dWU8L2hsN19leHBvcnRfcmFjZWFtaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V0cmliZXNw
+ZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZXRyaWJlc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+Y2hpbmVzZT52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlY2hpbmVzZT4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNlamFwYW5lc2U+dmFsdWU8L2hsN19leHBvcnRfcmFjZWphcGFuZXNlPg0KICAgIDxobDdfZXhw
+b3J0X3JhY2VoYXdhaWlhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlaGF3YWlpYW4+DQogICAgPGhs
+N19leHBvcnRfcmFjZWZpbGlwaW5vPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VmaWxpcGlubz4NCiAg
+ICA8aGw3X2V4cG9ydF9yYWNlb3RoZXJhc2lhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXJh
+c2lhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5zcGVjPnZhbHVlPC9obDdfZXhwb3J0X3Jh
+Y2Vhc2lhbnNwZWM+DQogICAgPGhsN19leHBvcnRfcmFjZWFzaWFuaW5kaWFuPnZhbHVlPC9obDdf
+ZXhwb3J0X3JhY2Vhc2lhbmluZGlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNla29yZWFuPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2Vrb3JlYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXNhbW9hbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlc2Ftb2FuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNl
+PnZhbHVlPC9obDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vn
+dWFtYW5pYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWd1YW1hbmlhbj4NCiAgICA8aGw3X2V4cG9y
+dF9yYWNlcGFjaXNsYW5kZXI+dmFsdWU8L2hsN19leHBvcnRfcmFjZXBhY2lzbGFuZGVyPg0KICAg
+IDxobDdfZXhwb3J0X3JhY2VvdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXI+DQogICAg
+PGhsN19leHBvcnRfcmFjZXVua25vd24+dmFsdWU8L2hsN19leHBvcnRfcmFjZXVua25vd24+DQog
+ICAgPGhsN19leHBvcnRfZWR1Y2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2VkdWNhdGlvbj4NCiAg
+ICA8aGw3X2V4cG9ydF9vY2N1cGF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X29jY3VwYXRpb24+DQog
+ICAgPGhsN19leHBvcnRfaW5kdXN0cnk+dmFsdWU8L2hsN19leHBvcnRfaW5kdXN0cnk+DQogICAg
+PGhsN19leHBvcnRfYXJtZWRmb3JjZXM+dmFsdWU8L2hsN19leHBvcnRfYXJtZWRmb3JjZXM+DQog
+ICAgPGhsN19leHBvcnRfcHJlZ25hbnQ+dmFsdWU8L2hsN19leHBvcnRfcHJlZ25hbnQ+DQogICAg
+PGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczE+dmFsdWU8L2hsN19leHBvcnRfcmVzc3RyZWV0
+YWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eT52YWx1ZTwv
+aGw3X2V4cG9ydF9yZXNjaXR5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc2NvdW50eT52YWx1ZTwvaGw3
+X2V4cG9ydF9yZXNjb3VudHk+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGU+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RhdGU+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeT52YWx1ZTwvaGw3X2V4
+cG9ydF9yZXNjb3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc3ppcDU+dmFsdWU8L2hsN19leHBv
+cnRfcmVzemlwNT4NCiAgICA8aGw3X2V4cG9ydF9yZXNpbmNpdHlsaW1pdHM+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzaW5jaXR5bGltaXRzPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoY2N5eT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWF0aGNjeXk+DQogICAgPGhsN19leHBvcnRfZGVhdGhtbT52YWx1ZTwvaGw3
+X2V4cG9ydF9kZWF0aG1tPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoZGQ+dmFsdWU8L2hsN19leHBv
+cnRfZGVhdGhkZD4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZGRhdGU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmRkYXRlPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRoaGg+dmFsdWU8L2hsN19leHBv
+cnRfdGltZW9mZGVhdGhoaD4NCiAgICA8aGw3X2V4cG9ydF90aW1lb2ZkZWF0aG1tPnZhbHVlPC9o
+bDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+DQogICAgPGhsN19leHBvcnRfZm91bmR0aW1lPnZhbHVl
+PC9obDdfZXhwb3J0X2ZvdW5kdGltZT4NCiAgICA8aGw3X2V4cG9ydF9wbGFjZW9mZGVhdGg+dmFs
+dWU8L2hsN19leHBvcnRfcGxhY2VvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2ZhY2lsaXR5bmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9mYWNpbGl0eW5hbWU+DQogICAgPGhsN19leHBvcnRfbnVyc2lu
+Z2hvbWVuYW1lPnZhbHVlPC9obDdfZXhwb3J0X251cnNpbmdob21lbmFtZT4NCiAgICA8aGw3X2V4
+cG9ydF9wb2Rfb3RoZXJzcGVjPnZhbHVlPC9obDdfZXhwb3J0X3BvZF9vdGhlcnNwZWM+DQogICAg
+PGhsN19leHBvcnRfbm9uZmFjaWxpdHlsb2NhdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9ub25mYWNp
+bGl0eWxvY2F0aW9uPg0KICAgIDxobDdfZXhwb3J0X2NvdW50eW9mZGVhdGg+dmFsdWU8L2hsN19l
+eHBvcnRfY291bnR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD52YWx1ZTwv
+aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFtZT4NCiAgICA8aGw3X2V4cG9ydF9j
+ZXJ0aWZpZXJzaWduY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbm1tPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25kZD52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJzaWduZGQ+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+dmFs
+dWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfY2VydGlm
+aWVyYWRkcmVzczI+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczI+DQogICAgPGhs
+N19leHBvcnRfY2VydGlmaWVyY2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJjaXR5Pg0K
+ICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnN0YXRlPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cnN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmNvdW50cnk+dmFsdWU8L2hsN19leHBv
+cnRfY2VydGlmaWVyY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJ6aXA1PnZhbHVl
+PC9obDdfZXhwb3J0X2NlcnRpZmllcnppcDU+DQogICAgPGhsN19leHBvcnRfbWVfY29udGFjdGVk
+PnZhbHVlPC9obDdfZXhwb3J0X21lX2NvbnRhY3RlZD4NCiAgICA8aGw3X2V4cG9ydF9hdXRvcHN5
+ZG9uZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5ZG9uZT4NCiAgICA8aGw3X2V4cG9ydF9hdXRv
+cHN5YXZhaWxhYmxlPnZhbHVlPC9obDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+DQogICAgPGhs
+N19leHBvcnRfbGFzdHNlZW5jY3l5PnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9sYXN0c2Vlbm1tPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVubW0+DQog
+ICAgPGhsN19leHBvcnRfbGFzdHNlZW5kZD52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmRkPg0K
+ICAgIDxobDdfZXhwb3J0X2RheXNsYXN0c2VlbnRvZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfZGF5
+c2xhc3RzZWVudG9kZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRl
+cnZhbD52YWx1ZTwvaGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRlcnZhbD4NCiAgICA8aW1tZWRpYXRl
+aW50ZXJ2YWx1bml0PnZhbHVlPC9pbW1lZGlhdGVpbnRlcnZhbHVuaXQ+DQogICAgPGhsN19leHBv
+cnRfYWRkaXRpb25hbGNhdXNlMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UxPg0K
+ICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDE+dmFsdWU8L2hsN19leHBvcnRfYWRk
+aXRpb25hbGludGVydmFsMT4NCiAgICA8YWRkaXRpb25hbGludGVydmFsdW5pdDE+dmFsdWU8L2Fk
+ZGl0aW9uYWxpbnRlcnZhbHVuaXQxPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+
+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj4NCiAgICA8aGw3X2V4cG9ydF9hZGRp
+dGlvbmFsaW50ZXJ2YWwyPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDI+DQog
+ICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPnZhbHVlPC9hZGRpdGlvbmFsaW50ZXJ2YWx1bml0
+Mj4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+dmFsdWU8L2hsN19leHBvcnRfdW5k
+ZXJseWluZ2NhdXNlPg0KICAgIDxobDdfZXhwb3J0X3VuZGVybHlpbmdpbnRlcnZhbD52YWx1ZTwv
+aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+DQogICAgPGhsN19leHBvcnRfdW5kZXJseWlu
+Z2ludGVydmFsdW5pdD52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0K
+ICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNv
+bmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVyb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X3RvYmFjY28+dmFsdWU8L2hsN19leHBv
+cnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnk+dmFsdWU8L2hsN19leHBvcnRfaW5q
+dXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5
+Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+bT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4N
+CiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGlt
+ZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVtbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1
+cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0
+X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5Y291bnR5PnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZh
+bHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5cGxh
+Y2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0d29yaz4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0K
+ICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+b3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlw
+dGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPg0KICAgIDxobDdfZXhw
+b3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+DQo8L3Jlc3Vs
+dD4NCg==</inboundTemplate>
+        <outboundTemplate encoding="base64">PGNvbXBvbmVudCB0eXBlQ29kZT0iQ09NUCI+CgkJCSAgICA8c2VxdWVuY2VOdW1iZXIgdmFsdWU9
+IjEiLz4KCQkJICAgIDxvYnNlcnZhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIw
+MDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxucz0idXJuOmhsNy1vcmc6djMiIGNsYXNzQ29kZT0i
+T0JTIiBtb29kQ29kZT0iRVZOIj4KCQkJICAgICAgIDxjb2RlIGNvZGU9IjIxOTg0LTAiIGNvZGVT
+eXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjYuMSIJY29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNw
+bGF5TmFtZT0iQ2F1c2Ugb2YgRGVhdGgiLz4KCQkJICAgICAgICA8dmFsdWUgeHNpOnR5cGU9IkNE
+Ij4KCQkJICAgICAgICA8b3JpZ2luYWxUZXh0Pjwvb3JpZ2luYWxUZXh0PgoJCQkgICAgPC92YWx1
+ZT4KCQkJPCEtLSBEZXNjcmlwdGl2ZSB0ZXh0IHRoYXQgaW5kaWNhdGVzIG9uZSBvciBtb3JlIGRp
+c2Vhc2VzLAoJCQlpbmp1cmllcywgb3IgY29tcGxpY2F0aW9ucyB0aGF0IHdlcmUgaW1wbGljYXRl
+ZCBhcyBhIGNhdXNlIG9mIHRoZSBwZXJzb24ncwoJCQlkZWF0aC4gLS0+CgkJCSAgICA8ZW50cnlS
+ZWxhdGlvbnNoaXAgdHlwZUNvZGU9IkNPTVAiPgoJCQkgICAgICAgPG9ic2VydmF0aW9uIHhtbG5z
+OnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zPSJ1
+cm46aGw3LW9yZzp2MyIgY2xhc3NDb2RlPSJPQlMiIG1vb2RDb2RlPSJFVk4iPgoJCQkgICAgICAg
+PGNvZGUgY29kZT0iNjk0NDAtNiIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi4xIgkJ
+Y29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNwbGF5TmFtZT0iRGlzZWFzZSBvbnNldCB0byBkZWF0
+aCBpbnRlcnZhbCIvPgoJCQkgICAgICAgPHZhbHVlIHhzaTp0eXBlPSJFRCI+PC92YWx1ZT4KCQkJ
+PCEtLSBBIG1lYXN1cmUgb2YgdGhlIHRpbWUgaW50ZXJ2YWwgYmV0d2VlbiB0aGUgb25zZXQgb2Yg
+dGhlCgkJCWRpc2Vhc2UsIGluanVyeSBvciBjb21wbGljYXRpb24sIGFuZCB0aGUgcGVyc29uJ3Mg
+ZGVhdGguIC0tPgoJCQkgICAgICAgIDwvb2JzZXJ2YXRpb24+CgkJCSAgICAgICAgPC9lbnRyeVJl
+bGF0aW9uc2hpcD4KCQkJICAgIDwvb2JzZXJ2YXRpb24+CjwvY29tcG9uZW50Pg==</outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>Channel Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+    <connector version="3.5.1">
+      <metaDataId>8</metaDataId>
+      <name>AdditionalCause1</name>
+      <properties class="com.mirth.connect.connectors.vm.VmDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <channelId>none</channelId>
+        <channelTemplate>${message.encodedData}</channelTemplate>
+        <mapVariables/>
+      </properties>
+      <transformer version="3.5.1">
+        <elements>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>AdditionalCause1</name>
+            <sequenceNumber>0</sequenceNumber>
+            <script>//First, determine how many causes there are. The spec requires an immediate and an underlying cause
+
+var SeqNum = 2;
+
+
+/////////Immediate Cause of Death--there must be an immediate cause per the IG////////////////////////////
+
+
+tmp[&apos;sequenceNumber&apos;][&apos;@value&apos;] = SeqNum;
+tmp.*::[&apos;observation&apos;].*::[&apos;value&apos;].*::[&apos;originalText&apos;]=msg[&apos;hl7_export_additionalcause1&apos;].toString();
+
+
+//Check for interval and write if included
+
+var Intvl = msg[&apos;hl7_export_additionalinterval1&apos;].toString() + &quot; &quot; + msg[&apos;additionalintervalunit1&apos;].toString();
+
+if (Intvl.length &gt; 0){
+	tmp.*::[&apos;observation&apos;].*::[&apos;entryRelationship&apos;].*::[&apos;observation&apos;].*::[&apos;value&apos;] = Intvl;
+}
+
+
+channelMap.put(&quot;Additional_1_Section&quot;,tmp);
+
+var hasAdd1 = 0;
+if (msg[&apos;hl7_export_additionalcause1&apos;]){
+	hasAdd1 = 1;
+}
+
+channelMap.put(&quot;hasAdd1&quot;,hasAdd1);</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Namespaces</name>
+            <sequenceNumber>1</sequenceNumber>
+            <script>default xml namespace = &quot;urn:hl7-org:v3&quot;;</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        </elements>
+        <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVybGljZW5zZT52YWx1
+ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJsaWNlbnNlPg0KICAgIDxobDdfZXhwb3J0X21ybj52YWx1
+ZTwvaGw3X2V4cG9ydF9tcm4+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRsYXN0PnZhbHVlPC9o
+bDdfZXhwb3J0X2RlY2Vhc2VkbGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGZpcnN0PnZh
+bHVlPC9obDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRt
+aWRkbGU+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRtaWRkbGU+DQogICAgPGhsN19leHBvcnRf
+ZGVjZWFzZWRzdWZmaXg+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRzdWZmaXg+DQogICAgPGhs
+N19leHBvcnRfc3NuPnZhbHVlPC9obDdfZXhwb3J0X3Nzbj4NCiAgICA8aGw3X2V4cG9ydF9nZW5k
+ZXI+dmFsdWU8L2hsN19leHBvcnRfZ2VuZGVyPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY2l0eT52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNpdHk+DQogICAgPGNkYV9leHBvcnRfYmlydGhjb3VudHk+
+dmFsdWU8L2NkYV9leHBvcnRfYmlydGhjb3VudHk+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY291
+bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnk+DQogICAgPGhsN19leHBvcnRfYmly
+dGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aG1tPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRobW0+DQogICAgPGhsN19leHBvcnRfYmlydGhkZD52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGRkPg0KICAgIDxobDdfZXhwb3J0X3JhY2V3aGl0ZT52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNld2hpdGU+DQogICAgPGhsN19leHBvcnRfcmFjZWJsYWNrPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VibGFjaz4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYW1pbmRpYW4+dmFs
+dWU8L2hsN19leHBvcnRfcmFjZWFtaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V0cmliZXNw
+ZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZXRyaWJlc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+Y2hpbmVzZT52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlY2hpbmVzZT4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNlamFwYW5lc2U+dmFsdWU8L2hsN19leHBvcnRfcmFjZWphcGFuZXNlPg0KICAgIDxobDdfZXhw
+b3J0X3JhY2VoYXdhaWlhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlaGF3YWlpYW4+DQogICAgPGhs
+N19leHBvcnRfcmFjZWZpbGlwaW5vPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VmaWxpcGlubz4NCiAg
+ICA8aGw3X2V4cG9ydF9yYWNlb3RoZXJhc2lhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXJh
+c2lhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5zcGVjPnZhbHVlPC9obDdfZXhwb3J0X3Jh
+Y2Vhc2lhbnNwZWM+DQogICAgPGhsN19leHBvcnRfcmFjZWFzaWFuaW5kaWFuPnZhbHVlPC9obDdf
+ZXhwb3J0X3JhY2Vhc2lhbmluZGlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNla29yZWFuPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2Vrb3JlYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXNhbW9hbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlc2Ftb2FuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNl
+PnZhbHVlPC9obDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vn
+dWFtYW5pYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWd1YW1hbmlhbj4NCiAgICA8aGw3X2V4cG9y
+dF9yYWNlcGFjaXNsYW5kZXI+dmFsdWU8L2hsN19leHBvcnRfcmFjZXBhY2lzbGFuZGVyPg0KICAg
+IDxobDdfZXhwb3J0X3JhY2VvdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXI+DQogICAg
+PGhsN19leHBvcnRfcmFjZXVua25vd24+dmFsdWU8L2hsN19leHBvcnRfcmFjZXVua25vd24+DQog
+ICAgPGhsN19leHBvcnRfZWR1Y2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2VkdWNhdGlvbj4NCiAg
+ICA8aGw3X2V4cG9ydF9vY2N1cGF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X29jY3VwYXRpb24+DQog
+ICAgPGhsN19leHBvcnRfaW5kdXN0cnk+dmFsdWU8L2hsN19leHBvcnRfaW5kdXN0cnk+DQogICAg
+PGhsN19leHBvcnRfYXJtZWRmb3JjZXM+dmFsdWU8L2hsN19leHBvcnRfYXJtZWRmb3JjZXM+DQog
+ICAgPGhsN19leHBvcnRfcHJlZ25hbnQ+dmFsdWU8L2hsN19leHBvcnRfcHJlZ25hbnQ+DQogICAg
+PGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczE+dmFsdWU8L2hsN19leHBvcnRfcmVzc3RyZWV0
+YWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eT52YWx1ZTwv
+aGw3X2V4cG9ydF9yZXNjaXR5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc2NvdW50eT52YWx1ZTwvaGw3
+X2V4cG9ydF9yZXNjb3VudHk+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGU+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RhdGU+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeT52YWx1ZTwvaGw3X2V4
+cG9ydF9yZXNjb3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc3ppcDU+dmFsdWU8L2hsN19leHBv
+cnRfcmVzemlwNT4NCiAgICA8aGw3X2V4cG9ydF9yZXNpbmNpdHlsaW1pdHM+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzaW5jaXR5bGltaXRzPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoY2N5eT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWF0aGNjeXk+DQogICAgPGhsN19leHBvcnRfZGVhdGhtbT52YWx1ZTwvaGw3
+X2V4cG9ydF9kZWF0aG1tPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoZGQ+dmFsdWU8L2hsN19leHBv
+cnRfZGVhdGhkZD4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZGRhdGU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmRkYXRlPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRoaGg+dmFsdWU8L2hsN19leHBv
+cnRfdGltZW9mZGVhdGhoaD4NCiAgICA8aGw3X2V4cG9ydF90aW1lb2ZkZWF0aG1tPnZhbHVlPC9o
+bDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+DQogICAgPGhsN19leHBvcnRfZm91bmR0aW1lPnZhbHVl
+PC9obDdfZXhwb3J0X2ZvdW5kdGltZT4NCiAgICA8aGw3X2V4cG9ydF9wbGFjZW9mZGVhdGg+dmFs
+dWU8L2hsN19leHBvcnRfcGxhY2VvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2ZhY2lsaXR5bmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9mYWNpbGl0eW5hbWU+DQogICAgPGhsN19leHBvcnRfbnVyc2lu
+Z2hvbWVuYW1lPnZhbHVlPC9obDdfZXhwb3J0X251cnNpbmdob21lbmFtZT4NCiAgICA8aGw3X2V4
+cG9ydF9wb2Rfb3RoZXJzcGVjPnZhbHVlPC9obDdfZXhwb3J0X3BvZF9vdGhlcnNwZWM+DQogICAg
+PGhsN19leHBvcnRfbm9uZmFjaWxpdHlsb2NhdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9ub25mYWNp
+bGl0eWxvY2F0aW9uPg0KICAgIDxobDdfZXhwb3J0X2NvdW50eW9mZGVhdGg+dmFsdWU8L2hsN19l
+eHBvcnRfY291bnR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD52YWx1ZTwv
+aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFtZT4NCiAgICA8aGw3X2V4cG9ydF9j
+ZXJ0aWZpZXJzaWduY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbm1tPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25kZD52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJzaWduZGQ+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+dmFs
+dWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfY2VydGlm
+aWVyYWRkcmVzczI+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczI+DQogICAgPGhs
+N19leHBvcnRfY2VydGlmaWVyY2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJjaXR5Pg0K
+ICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnN0YXRlPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cnN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmNvdW50cnk+dmFsdWU8L2hsN19leHBv
+cnRfY2VydGlmaWVyY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJ6aXA1PnZhbHVl
+PC9obDdfZXhwb3J0X2NlcnRpZmllcnppcDU+DQogICAgPGhsN19leHBvcnRfbWVfY29udGFjdGVk
+PnZhbHVlPC9obDdfZXhwb3J0X21lX2NvbnRhY3RlZD4NCiAgICA8aGw3X2V4cG9ydF9hdXRvcHN5
+ZG9uZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5ZG9uZT4NCiAgICA8aGw3X2V4cG9ydF9hdXRv
+cHN5YXZhaWxhYmxlPnZhbHVlPC9obDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+DQogICAgPGhs
+N19leHBvcnRfbGFzdHNlZW5jY3l5PnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9sYXN0c2Vlbm1tPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVubW0+DQog
+ICAgPGhsN19leHBvcnRfbGFzdHNlZW5kZD52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmRkPg0K
+ICAgIDxobDdfZXhwb3J0X2RheXNsYXN0c2VlbnRvZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfZGF5
+c2xhc3RzZWVudG9kZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRl
+cnZhbD52YWx1ZTwvaGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRlcnZhbD4NCiAgICA8aW1tZWRpYXRl
+aW50ZXJ2YWx1bml0PnZhbHVlPC9pbW1lZGlhdGVpbnRlcnZhbHVuaXQ+DQogICAgPGhsN19leHBv
+cnRfYWRkaXRpb25hbGNhdXNlMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UxPg0K
+ICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDE+dmFsdWU8L2hsN19leHBvcnRfYWRk
+aXRpb25hbGludGVydmFsMT4NCiAgICA8YWRkaXRpb25hbGludGVydmFsdW5pdDE+dmFsdWU8L2Fk
+ZGl0aW9uYWxpbnRlcnZhbHVuaXQxPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+
+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj4NCiAgICA8aGw3X2V4cG9ydF9hZGRp
+dGlvbmFsaW50ZXJ2YWwyPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDI+DQog
+ICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPnZhbHVlPC9hZGRpdGlvbmFsaW50ZXJ2YWx1bml0
+Mj4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+dmFsdWU8L2hsN19leHBvcnRfdW5k
+ZXJseWluZ2NhdXNlPg0KICAgIDxobDdfZXhwb3J0X3VuZGVybHlpbmdpbnRlcnZhbD52YWx1ZTwv
+aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+DQogICAgPGhsN19leHBvcnRfdW5kZXJseWlu
+Z2ludGVydmFsdW5pdD52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0K
+ICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNv
+bmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVyb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X3RvYmFjY28+dmFsdWU8L2hsN19leHBv
+cnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnk+dmFsdWU8L2hsN19leHBvcnRfaW5q
+dXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5
+Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+bT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4N
+CiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGlt
+ZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVtbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1
+cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0
+X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5Y291bnR5PnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZh
+bHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5cGxh
+Y2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0d29yaz4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0K
+ICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+b3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlw
+dGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPg0KICAgIDxobDdfZXhw
+b3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+DQo8L3Jlc3Vs
+dD4NCg==</inboundTemplate>
+        <outboundTemplate encoding="base64">PGNvbXBvbmVudCB0eXBlQ29kZT0iQ09NUCI+CgkJCSAgICA8c2VxdWVuY2VOdW1iZXIgdmFsdWU9
+IjEiLz4KCQkJICAgIDxvYnNlcnZhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIw
+MDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxucz0idXJuOmhsNy1vcmc6djMiIGNsYXNzQ29kZT0i
+T0JTIiBtb29kQ29kZT0iRVZOIj4KCQkJICAgICAgIDxjb2RlIGNvZGU9IjIxOTg0LTAiIGNvZGVT
+eXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjYuMSIJY29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNw
+bGF5TmFtZT0iQ2F1c2Ugb2YgRGVhdGgiLz4KCQkJICAgICAgICA8dmFsdWUgeHNpOnR5cGU9IkNE
+Ij4KCQkJICAgICAgICA8b3JpZ2luYWxUZXh0Pjwvb3JpZ2luYWxUZXh0PgoJCQkgICAgPC92YWx1
+ZT4KCQkJPCEtLSBEZXNjcmlwdGl2ZSB0ZXh0IHRoYXQgaW5kaWNhdGVzIG9uZSBvciBtb3JlIGRp
+c2Vhc2VzLAoJCQlpbmp1cmllcywgb3IgY29tcGxpY2F0aW9ucyB0aGF0IHdlcmUgaW1wbGljYXRl
+ZCBhcyBhIGNhdXNlIG9mIHRoZSBwZXJzb24ncwoJCQlkZWF0aC4gLS0+CgkJCSAgICA8ZW50cnlS
+ZWxhdGlvbnNoaXAgdHlwZUNvZGU9IkNPTVAiPgoJCQkgICAgICAgPG9ic2VydmF0aW9uIHhtbG5z
+OnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zPSJ1
+cm46aGw3LW9yZzp2MyIgY2xhc3NDb2RlPSJPQlMiIG1vb2RDb2RlPSJFVk4iPgoJCQkgICAgICAg
+PGNvZGUgY29kZT0iNjk0NDAtNiIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi4xIgkJ
+Y29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNwbGF5TmFtZT0iRGlzZWFzZSBvbnNldCB0byBkZWF0
+aCBpbnRlcnZhbCIvPgoJCQkgICAgICAgPHZhbHVlIHhzaTp0eXBlPSJFRCI+PC92YWx1ZT4KCQkJ
+PCEtLSBBIG1lYXN1cmUgb2YgdGhlIHRpbWUgaW50ZXJ2YWwgYmV0d2VlbiB0aGUgb25zZXQgb2Yg
+dGhlCgkJCWRpc2Vhc2UsIGluanVyeSBvciBjb21wbGljYXRpb24sIGFuZCB0aGUgcGVyc29uJ3Mg
+ZGVhdGguIC0tPgoJCQkgICAgICAgIDwvb2JzZXJ2YXRpb24+CgkJCSAgICAgICAgPC9lbnRyeVJl
+bGF0aW9uc2hpcD4KCQkJICAgIDwvb2JzZXJ2YXRpb24+CjwvY29tcG9uZW50Pg==</outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>Channel Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+    <connector version="3.5.1">
+      <metaDataId>7</metaDataId>
+      <name>Immediate CauseOfDeath</name>
+      <properties class="com.mirth.connect.connectors.vm.VmDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <channelId>none</channelId>
+        <channelTemplate>${message.encodedData}</channelTemplate>
+        <mapVariables/>
+      </properties>
+      <transformer version="3.5.1">
+        <elements>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Immediate Cause of Death Section</name>
+            <sequenceNumber>0</sequenceNumber>
+            <script>//First, determine how many causes there are. The spec requires an immediate and an underlying cause
+
+var SeqNum = 1;
+
+//var xsins = new Namespace(&quot;xsi&quot;, &quot;http://www.w3.org/2001/XMLSchema-instance&quot;);
+/////////Immediate Cause of Death--there must be an immediate cause per the IG////////////////////////////
+
+
+tmp[&apos;sequenceNumber&apos;][&apos;@value&apos;] = SeqNum;
+tmp.*::[&apos;observation&apos;].*::[&apos;value&apos;].*::[&apos;originalText&apos;]=msg[&apos;hl7_export_immediatecause&apos;].toString();
+
+
+//Check for interval and write if included
+
+var Intvl = msg[&apos;hl7_export_immediateinterval&apos;].toString() + &quot; &quot; + msg[&apos;immediateintervalunit&apos;].toString();
+
+
+if (Intvl.length &gt; 0){
+	tmp.*::[&apos;observation&apos;].*::[&apos;entryRelationship&apos;].*::[&apos;observation&apos;].*::[&apos;value&apos;] = Intvl;
+}
+
+
+channelMap.put(&quot;ImmediateCauseSection&quot;,tmp);</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Namespaces</name>
+            <sequenceNumber>1</sequenceNumber>
+            <script>default xml namespace = &quot;urn:hl7-org:v3&quot;; 
+
+//tmp = new XML( tmp.toString() ); 
+//tmp.addNamespace( new Namespace(&quot;sdtc&quot;, &quot;urn:hl7-org:sdtc&quot;) ); 
+//tmp.addNamespace( new Namespace(&quot;xsi&quot;, &quot;http://www.w3.org/2001/XMLSchema-instance&quot;) );</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        </elements>
+        <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVybGljZW5zZT52YWx1
+ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJsaWNlbnNlPg0KICAgIDxobDdfZXhwb3J0X21ybj52YWx1
+ZTwvaGw3X2V4cG9ydF9tcm4+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRsYXN0PnZhbHVlPC9o
+bDdfZXhwb3J0X2RlY2Vhc2VkbGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGZpcnN0PnZh
+bHVlPC9obDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRt
+aWRkbGU+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRtaWRkbGU+DQogICAgPGhsN19leHBvcnRf
+ZGVjZWFzZWRzdWZmaXg+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRzdWZmaXg+DQogICAgPGhs
+N19leHBvcnRfc3NuPnZhbHVlPC9obDdfZXhwb3J0X3Nzbj4NCiAgICA8aGw3X2V4cG9ydF9nZW5k
+ZXI+dmFsdWU8L2hsN19leHBvcnRfZ2VuZGVyPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY2l0eT52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNpdHk+DQogICAgPGNkYV9leHBvcnRfYmlydGhjb3VudHk+
+dmFsdWU8L2NkYV9leHBvcnRfYmlydGhjb3VudHk+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY291
+bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnk+DQogICAgPGhsN19leHBvcnRfYmly
+dGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aG1tPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRobW0+DQogICAgPGhsN19leHBvcnRfYmlydGhkZD52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGRkPg0KICAgIDxobDdfZXhwb3J0X3JhY2V3aGl0ZT52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNld2hpdGU+DQogICAgPGhsN19leHBvcnRfcmFjZWJsYWNrPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VibGFjaz4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYW1pbmRpYW4+dmFs
+dWU8L2hsN19leHBvcnRfcmFjZWFtaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V0cmliZXNw
+ZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZXRyaWJlc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+Y2hpbmVzZT52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlY2hpbmVzZT4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNlamFwYW5lc2U+dmFsdWU8L2hsN19leHBvcnRfcmFjZWphcGFuZXNlPg0KICAgIDxobDdfZXhw
+b3J0X3JhY2VoYXdhaWlhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlaGF3YWlpYW4+DQogICAgPGhs
+N19leHBvcnRfcmFjZWZpbGlwaW5vPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VmaWxpcGlubz4NCiAg
+ICA8aGw3X2V4cG9ydF9yYWNlb3RoZXJhc2lhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXJh
+c2lhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5zcGVjPnZhbHVlPC9obDdfZXhwb3J0X3Jh
+Y2Vhc2lhbnNwZWM+DQogICAgPGhsN19leHBvcnRfcmFjZWFzaWFuaW5kaWFuPnZhbHVlPC9obDdf
+ZXhwb3J0X3JhY2Vhc2lhbmluZGlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNla29yZWFuPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2Vrb3JlYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXNhbW9hbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlc2Ftb2FuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNl
+PnZhbHVlPC9obDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vn
+dWFtYW5pYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWd1YW1hbmlhbj4NCiAgICA8aGw3X2V4cG9y
+dF9yYWNlcGFjaXNsYW5kZXI+dmFsdWU8L2hsN19leHBvcnRfcmFjZXBhY2lzbGFuZGVyPg0KICAg
+IDxobDdfZXhwb3J0X3JhY2VvdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXI+DQogICAg
+PGhsN19leHBvcnRfcmFjZXVua25vd24+dmFsdWU8L2hsN19leHBvcnRfcmFjZXVua25vd24+DQog
+ICAgPGhsN19leHBvcnRfZWR1Y2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2VkdWNhdGlvbj4NCiAg
+ICA8aGw3X2V4cG9ydF9vY2N1cGF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X29jY3VwYXRpb24+DQog
+ICAgPGhsN19leHBvcnRfaW5kdXN0cnk+dmFsdWU8L2hsN19leHBvcnRfaW5kdXN0cnk+DQogICAg
+PGhsN19leHBvcnRfYXJtZWRmb3JjZXM+dmFsdWU8L2hsN19leHBvcnRfYXJtZWRmb3JjZXM+DQog
+ICAgPGhsN19leHBvcnRfcHJlZ25hbnQ+dmFsdWU8L2hsN19leHBvcnRfcHJlZ25hbnQ+DQogICAg
+PGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczE+dmFsdWU8L2hsN19leHBvcnRfcmVzc3RyZWV0
+YWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eT52YWx1ZTwv
+aGw3X2V4cG9ydF9yZXNjaXR5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc2NvdW50eT52YWx1ZTwvaGw3
+X2V4cG9ydF9yZXNjb3VudHk+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGU+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RhdGU+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeT52YWx1ZTwvaGw3X2V4
+cG9ydF9yZXNjb3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc3ppcDU+dmFsdWU8L2hsN19leHBv
+cnRfcmVzemlwNT4NCiAgICA8aGw3X2V4cG9ydF9yZXNpbmNpdHlsaW1pdHM+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzaW5jaXR5bGltaXRzPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoY2N5eT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWF0aGNjeXk+DQogICAgPGhsN19leHBvcnRfZGVhdGhtbT52YWx1ZTwvaGw3
+X2V4cG9ydF9kZWF0aG1tPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoZGQ+dmFsdWU8L2hsN19leHBv
+cnRfZGVhdGhkZD4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZGRhdGU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmRkYXRlPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRoaGg+dmFsdWU8L2hsN19leHBv
+cnRfdGltZW9mZGVhdGhoaD4NCiAgICA8aGw3X2V4cG9ydF90aW1lb2ZkZWF0aG1tPnZhbHVlPC9o
+bDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+DQogICAgPGhsN19leHBvcnRfZm91bmR0aW1lPnZhbHVl
+PC9obDdfZXhwb3J0X2ZvdW5kdGltZT4NCiAgICA8aGw3X2V4cG9ydF9wbGFjZW9mZGVhdGg+dmFs
+dWU8L2hsN19leHBvcnRfcGxhY2VvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2ZhY2lsaXR5bmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9mYWNpbGl0eW5hbWU+DQogICAgPGhsN19leHBvcnRfbnVyc2lu
+Z2hvbWVuYW1lPnZhbHVlPC9obDdfZXhwb3J0X251cnNpbmdob21lbmFtZT4NCiAgICA8aGw3X2V4
+cG9ydF9wb2Rfb3RoZXJzcGVjPnZhbHVlPC9obDdfZXhwb3J0X3BvZF9vdGhlcnNwZWM+DQogICAg
+PGhsN19leHBvcnRfbm9uZmFjaWxpdHlsb2NhdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9ub25mYWNp
+bGl0eWxvY2F0aW9uPg0KICAgIDxobDdfZXhwb3J0X2NvdW50eW9mZGVhdGg+dmFsdWU8L2hsN19l
+eHBvcnRfY291bnR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD52YWx1ZTwv
+aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFtZT4NCiAgICA8aGw3X2V4cG9ydF9j
+ZXJ0aWZpZXJzaWduY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbm1tPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25kZD52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJzaWduZGQ+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+dmFs
+dWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfY2VydGlm
+aWVyYWRkcmVzczI+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczI+DQogICAgPGhs
+N19leHBvcnRfY2VydGlmaWVyY2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJjaXR5Pg0K
+ICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnN0YXRlPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cnN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmNvdW50cnk+dmFsdWU8L2hsN19leHBv
+cnRfY2VydGlmaWVyY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJ6aXA1PnZhbHVl
+PC9obDdfZXhwb3J0X2NlcnRpZmllcnppcDU+DQogICAgPGhsN19leHBvcnRfbWVfY29udGFjdGVk
+PnZhbHVlPC9obDdfZXhwb3J0X21lX2NvbnRhY3RlZD4NCiAgICA8aGw3X2V4cG9ydF9hdXRvcHN5
+ZG9uZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5ZG9uZT4NCiAgICA8aGw3X2V4cG9ydF9hdXRv
+cHN5YXZhaWxhYmxlPnZhbHVlPC9obDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+DQogICAgPGhs
+N19leHBvcnRfbGFzdHNlZW5jY3l5PnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9sYXN0c2Vlbm1tPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVubW0+DQog
+ICAgPGhsN19leHBvcnRfbGFzdHNlZW5kZD52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmRkPg0K
+ICAgIDxobDdfZXhwb3J0X2RheXNsYXN0c2VlbnRvZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfZGF5
+c2xhc3RzZWVudG9kZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRl
+cnZhbD52YWx1ZTwvaGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRlcnZhbD4NCiAgICA8aW1tZWRpYXRl
+aW50ZXJ2YWx1bml0PnZhbHVlPC9pbW1lZGlhdGVpbnRlcnZhbHVuaXQ+DQogICAgPGhsN19leHBv
+cnRfYWRkaXRpb25hbGNhdXNlMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UxPg0K
+ICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDE+dmFsdWU8L2hsN19leHBvcnRfYWRk
+aXRpb25hbGludGVydmFsMT4NCiAgICA8YWRkaXRpb25hbGludGVydmFsdW5pdDE+dmFsdWU8L2Fk
+ZGl0aW9uYWxpbnRlcnZhbHVuaXQxPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+
+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj4NCiAgICA8aGw3X2V4cG9ydF9hZGRp
+dGlvbmFsaW50ZXJ2YWwyPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDI+DQog
+ICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPnZhbHVlPC9hZGRpdGlvbmFsaW50ZXJ2YWx1bml0
+Mj4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+dmFsdWU8L2hsN19leHBvcnRfdW5k
+ZXJseWluZ2NhdXNlPg0KICAgIDxobDdfZXhwb3J0X3VuZGVybHlpbmdpbnRlcnZhbD52YWx1ZTwv
+aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+DQogICAgPGhsN19leHBvcnRfdW5kZXJseWlu
+Z2ludGVydmFsdW5pdD52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0K
+ICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNv
+bmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVyb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X3RvYmFjY28+dmFsdWU8L2hsN19leHBv
+cnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnk+dmFsdWU8L2hsN19leHBvcnRfaW5q
+dXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5
+Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+bT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4N
+CiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGlt
+ZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVtbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1
+cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0
+X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5Y291bnR5PnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZh
+bHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5cGxh
+Y2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0d29yaz4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0K
+ICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+b3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlw
+dGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPg0KICAgIDxobDdfZXhw
+b3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+DQo8L3Jlc3Vs
+dD4NCg==</inboundTemplate>
+        <outboundTemplate encoding="base64">PGNvbXBvbmVudCB0eXBlQ29kZT0iQ09NUCI+CgkJCSAgICA8c2VxdWVuY2VOdW1iZXIgdmFsdWU9
+IjEiLz4KCQkJICAgIDxvYnNlcnZhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIw
+MDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxucz0idXJuOmhsNy1vcmc6djMiIGNsYXNzQ29kZT0i
+T0JTIiBtb29kQ29kZT0iRVZOIj4KCQkJICAgICAgIDxjb2RlIGNvZGU9IjIxOTg0LTAiIGNvZGVT
+eXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjYuMSIJY29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNw
+bGF5TmFtZT0iQ2F1c2Ugb2YgRGVhdGgiLz4KCQkJICAgICA8dmFsdWUgeHNpOnR5cGU9IkNEIj4K
+CQkJICAgICA8b3JpZ2luYWxUZXh0Pjwvb3JpZ2luYWxUZXh0PgoJCQkgICAgPC92YWx1ZT4KCQkJ
+PCEtLSBEZXNjcmlwdGl2ZSB0ZXh0IHRoYXQgaW5kaWNhdGVzIG9uZSBvciBtb3JlIGRpc2Vhc2Vz
+LAoJCQlpbmp1cmllcywgb3IgY29tcGxpY2F0aW9ucyB0aGF0IHdlcmUgaW1wbGljYXRlZCBhcyBh
+IGNhdXNlIG9mIHRoZSBwZXJzb24ncwoJCQlkZWF0aC4gLS0+CgkJCSAgICA8ZW50cnlSZWxhdGlv
+bnNoaXAgdHlwZUNvZGU9IkNPTVAiPgoJCQkgICAgICAgPG9ic2VydmF0aW9uIHhtbG5zOnhzaT0i
+aHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zPSJ1cm46aGw3
+LW9yZzp2MyIgY2xhc3NDb2RlPSJPQlMiIG1vb2RDb2RlPSJFVk4iPgoJCQkgICAgICAgPGNvZGUg
+Y29kZT0iNjk0NDAtNiIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi4xIiBjb2RlU3lz
+dGVtTmFtZT0iTE9JTkMiIGRpc3BsYXlOYW1lPSJEaXNlYXNlIG9uc2V0IHRvIGRlYXRoIGludGVy
+dmFsIi8+CgkJCSAgICAgICA8dmFsdWUgeHNpOnR5cGU9IkVEIj48L3ZhbHVlPgoJCQk8IS0tIEEg
+bWVhc3VyZSBvZiB0aGUgdGltZSBpbnRlcnZhbCBiZXR3ZWVuIHRoZSBvbnNldCBvZiB0aGUKCQkJ
+ZGlzZWFzZSwgaW5qdXJ5IG9yIGNvbXBsaWNhdGlvbiwgYW5kIHRoZSBwZXJzb24ncyBkZWF0aC4g
+LS0+CgkJCSAgICAgICAgPC9vYnNlcnZhdGlvbj4KCQkJICAgICAgICA8L2VudHJ5UmVsYXRpb25z
+aGlwPgoJCQkgICAgPC9vYnNlcnZhdGlvbj4KPC9jb21wb25lbnQ+Cg==</outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>Channel Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+    <connector version="3.5.1">
+      <metaDataId>11</metaDataId>
+      <name>CauseOfDeathSection</name>
+      <properties class="com.mirth.connect.connectors.vm.VmDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <channelId>none</channelId>
+        <channelTemplate>${message.encodedData}</channelTemplate>
+        <mapVariables/>
+      </properties>
+      <transformer version="3.5.1">
+        <elements>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Write COD section</name>
+            <sequenceNumber>0</sequenceNumber>
+            <script>var codCount = 1;
+
+
+
+
+var immx = new XML($(&apos;ImmediateCauseSection&apos;).toString());
+
+tmp[&apos;section&apos;][&apos;entry&apos;][&apos;organizer&apos;][&apos;component&apos;][0] = immx;
+
+if ( $(&apos;hasAdd1&apos;)==1 ) { 
+	codCount++;
+	var ax1 = new XML( $(&apos;Additional_1_Section&apos;).toString() ); 
+
+     tmp[&apos;section&apos;][&apos;entry&apos;][&apos;organizer&apos;][&apos;component&apos;][codCount] = ax1;
+
+
+
+}
+
+
+
+if ( $(&apos;hasAdd2&apos;)==1 ) { 
+	codCount++;
+	var ax2 = new XML( $(&apos;Additional_2_Section&apos;).toString() ); 
+
+     tmp[&apos;section&apos;][&apos;entry&apos;][&apos;organizer&apos;][&apos;component&apos;][codCount] = ax2;
+
+
+
+}
+
+
+
+if ( $(&apos;hasUnderlying&apos;)==1 ) { 
+	codCount++;
+	var underx = new XML( $(&apos;Underlying_Section&apos;).toString() ); 
+
+     tmp[&apos;section&apos;][&apos;entry&apos;][&apos;organizer&apos;][&apos;component&apos;][codCount] = underx;
+
+
+
+}
+
+
+channelMap.put(&quot;AllCauseX&quot;, tmp);</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Namespaces</name>
+            <sequenceNumber>1</sequenceNumber>
+            <script>default xml namespace = &quot;urn:hl7-org:v3&quot;;</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        </elements>
+        <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVybGljZW5zZT52YWx1
+ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJsaWNlbnNlPg0KICAgIDxobDdfZXhwb3J0X21ybj52YWx1
+ZTwvaGw3X2V4cG9ydF9tcm4+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRsYXN0PnZhbHVlPC9o
+bDdfZXhwb3J0X2RlY2Vhc2VkbGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGZpcnN0PnZh
+bHVlPC9obDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRt
+aWRkbGU+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRtaWRkbGU+DQogICAgPGhsN19leHBvcnRf
+ZGVjZWFzZWRzdWZmaXg+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRzdWZmaXg+DQogICAgPGhs
+N19leHBvcnRfc3NuPnZhbHVlPC9obDdfZXhwb3J0X3Nzbj4NCiAgICA8aGw3X2V4cG9ydF9nZW5k
+ZXI+dmFsdWU8L2hsN19leHBvcnRfZ2VuZGVyPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY2l0eT52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNpdHk+DQogICAgPGNkYV9leHBvcnRfYmlydGhjb3VudHk+
+dmFsdWU8L2NkYV9leHBvcnRfYmlydGhjb3VudHk+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY291
+bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnk+DQogICAgPGhsN19leHBvcnRfYmly
+dGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aG1tPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRobW0+DQogICAgPGhsN19leHBvcnRfYmlydGhkZD52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGRkPg0KICAgIDxobDdfZXhwb3J0X3JhY2V3aGl0ZT52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNld2hpdGU+DQogICAgPGhsN19leHBvcnRfcmFjZWJsYWNrPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VibGFjaz4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYW1pbmRpYW4+dmFs
+dWU8L2hsN19leHBvcnRfcmFjZWFtaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V0cmliZXNw
+ZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZXRyaWJlc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+Y2hpbmVzZT52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlY2hpbmVzZT4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNlamFwYW5lc2U+dmFsdWU8L2hsN19leHBvcnRfcmFjZWphcGFuZXNlPg0KICAgIDxobDdfZXhw
+b3J0X3JhY2VoYXdhaWlhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlaGF3YWlpYW4+DQogICAgPGhs
+N19leHBvcnRfcmFjZWZpbGlwaW5vPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VmaWxpcGlubz4NCiAg
+ICA8aGw3X2V4cG9ydF9yYWNlb3RoZXJhc2lhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXJh
+c2lhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5zcGVjPnZhbHVlPC9obDdfZXhwb3J0X3Jh
+Y2Vhc2lhbnNwZWM+DQogICAgPGhsN19leHBvcnRfcmFjZWFzaWFuaW5kaWFuPnZhbHVlPC9obDdf
+ZXhwb3J0X3JhY2Vhc2lhbmluZGlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNla29yZWFuPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2Vrb3JlYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXNhbW9hbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlc2Ftb2FuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNl
+PnZhbHVlPC9obDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vn
+dWFtYW5pYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWd1YW1hbmlhbj4NCiAgICA8aGw3X2V4cG9y
+dF9yYWNlcGFjaXNsYW5kZXI+dmFsdWU8L2hsN19leHBvcnRfcmFjZXBhY2lzbGFuZGVyPg0KICAg
+IDxobDdfZXhwb3J0X3JhY2VvdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXI+DQogICAg
+PGhsN19leHBvcnRfcmFjZXVua25vd24+dmFsdWU8L2hsN19leHBvcnRfcmFjZXVua25vd24+DQog
+ICAgPGhsN19leHBvcnRfZWR1Y2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2VkdWNhdGlvbj4NCiAg
+ICA8aGw3X2V4cG9ydF9vY2N1cGF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X29jY3VwYXRpb24+DQog
+ICAgPGhsN19leHBvcnRfaW5kdXN0cnk+dmFsdWU8L2hsN19leHBvcnRfaW5kdXN0cnk+DQogICAg
+PGhsN19leHBvcnRfYXJtZWRmb3JjZXM+dmFsdWU8L2hsN19leHBvcnRfYXJtZWRmb3JjZXM+DQog
+ICAgPGhsN19leHBvcnRfcHJlZ25hbnQ+dmFsdWU8L2hsN19leHBvcnRfcHJlZ25hbnQ+DQogICAg
+PGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczE+dmFsdWU8L2hsN19leHBvcnRfcmVzc3RyZWV0
+YWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eT52YWx1ZTwv
+aGw3X2V4cG9ydF9yZXNjaXR5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc2NvdW50eT52YWx1ZTwvaGw3
+X2V4cG9ydF9yZXNjb3VudHk+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGU+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RhdGU+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeT52YWx1ZTwvaGw3X2V4
+cG9ydF9yZXNjb3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc3ppcDU+dmFsdWU8L2hsN19leHBv
+cnRfcmVzemlwNT4NCiAgICA8aGw3X2V4cG9ydF9yZXNpbmNpdHlsaW1pdHM+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzaW5jaXR5bGltaXRzPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoY2N5eT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWF0aGNjeXk+DQogICAgPGhsN19leHBvcnRfZGVhdGhtbT52YWx1ZTwvaGw3
+X2V4cG9ydF9kZWF0aG1tPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoZGQ+dmFsdWU8L2hsN19leHBv
+cnRfZGVhdGhkZD4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZGRhdGU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmRkYXRlPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRoaGg+dmFsdWU8L2hsN19leHBv
+cnRfdGltZW9mZGVhdGhoaD4NCiAgICA8aGw3X2V4cG9ydF90aW1lb2ZkZWF0aG1tPnZhbHVlPC9o
+bDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+DQogICAgPGhsN19leHBvcnRfZm91bmR0aW1lPnZhbHVl
+PC9obDdfZXhwb3J0X2ZvdW5kdGltZT4NCiAgICA8aGw3X2V4cG9ydF9wbGFjZW9mZGVhdGg+dmFs
+dWU8L2hsN19leHBvcnRfcGxhY2VvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2ZhY2lsaXR5bmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9mYWNpbGl0eW5hbWU+DQogICAgPGhsN19leHBvcnRfbnVyc2lu
+Z2hvbWVuYW1lPnZhbHVlPC9obDdfZXhwb3J0X251cnNpbmdob21lbmFtZT4NCiAgICA8aGw3X2V4
+cG9ydF9wb2Rfb3RoZXJzcGVjPnZhbHVlPC9obDdfZXhwb3J0X3BvZF9vdGhlcnNwZWM+DQogICAg
+PGhsN19leHBvcnRfbm9uZmFjaWxpdHlsb2NhdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9ub25mYWNp
+bGl0eWxvY2F0aW9uPg0KICAgIDxobDdfZXhwb3J0X2NvdW50eW9mZGVhdGg+dmFsdWU8L2hsN19l
+eHBvcnRfY291bnR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD52YWx1ZTwv
+aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFtZT4NCiAgICA8aGw3X2V4cG9ydF9j
+ZXJ0aWZpZXJzaWduY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbm1tPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25kZD52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJzaWduZGQ+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+dmFs
+dWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfY2VydGlm
+aWVyYWRkcmVzczI+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczI+DQogICAgPGhs
+N19leHBvcnRfY2VydGlmaWVyY2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJjaXR5Pg0K
+ICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnN0YXRlPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cnN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmNvdW50cnk+dmFsdWU8L2hsN19leHBv
+cnRfY2VydGlmaWVyY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJ6aXA1PnZhbHVl
+PC9obDdfZXhwb3J0X2NlcnRpZmllcnppcDU+DQogICAgPGhsN19leHBvcnRfbWVfY29udGFjdGVk
+PnZhbHVlPC9obDdfZXhwb3J0X21lX2NvbnRhY3RlZD4NCiAgICA8aGw3X2V4cG9ydF9hdXRvcHN5
+ZG9uZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5ZG9uZT4NCiAgICA8aGw3X2V4cG9ydF9hdXRv
+cHN5YXZhaWxhYmxlPnZhbHVlPC9obDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+DQogICAgPGhs
+N19leHBvcnRfbGFzdHNlZW5jY3l5PnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9sYXN0c2Vlbm1tPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVubW0+DQog
+ICAgPGhsN19leHBvcnRfbGFzdHNlZW5kZD52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmRkPg0K
+ICAgIDxobDdfZXhwb3J0X2RheXNsYXN0c2VlbnRvZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfZGF5
+c2xhc3RzZWVudG9kZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRl
+cnZhbD52YWx1ZTwvaGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRlcnZhbD4NCiAgICA8aW1tZWRpYXRl
+aW50ZXJ2YWx1bml0PnZhbHVlPC9pbW1lZGlhdGVpbnRlcnZhbHVuaXQ+DQogICAgPGhsN19leHBv
+cnRfYWRkaXRpb25hbGNhdXNlMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UxPg0K
+ICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDE+dmFsdWU8L2hsN19leHBvcnRfYWRk
+aXRpb25hbGludGVydmFsMT4NCiAgICA8YWRkaXRpb25hbGludGVydmFsdW5pdDE+dmFsdWU8L2Fk
+ZGl0aW9uYWxpbnRlcnZhbHVuaXQxPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+
+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj4NCiAgICA8aGw3X2V4cG9ydF9hZGRp
+dGlvbmFsaW50ZXJ2YWwyPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDI+DQog
+ICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPnZhbHVlPC9hZGRpdGlvbmFsaW50ZXJ2YWx1bml0
+Mj4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+dmFsdWU8L2hsN19leHBvcnRfdW5k
+ZXJseWluZ2NhdXNlPg0KICAgIDxobDdfZXhwb3J0X3VuZGVybHlpbmdpbnRlcnZhbD52YWx1ZTwv
+aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+DQogICAgPGhsN19leHBvcnRfdW5kZXJseWlu
+Z2ludGVydmFsdW5pdD52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0K
+ICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNv
+bmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVyb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X3RvYmFjY28+dmFsdWU8L2hsN19leHBv
+cnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnk+dmFsdWU8L2hsN19leHBvcnRfaW5q
+dXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5
+Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+bT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4N
+CiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGlt
+ZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVtbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1
+cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0
+X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5Y291bnR5PnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZh
+bHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5cGxh
+Y2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0d29yaz4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0K
+ICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+b3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlw
+dGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPg0KICAgIDxobDdfZXhw
+b3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+DQo8L3Jlc3Vs
+dD4NCg==</inboundTemplate>
+        <outboundTemplate encoding="base64">PGNvbXBvbmVudD4KPHNlY3Rpb24+CjxlbnRyeT4KPCEtLSBDYXVzZSBvZiBEZWF0aCAtLT4KPG9y
+Z2FuaXplciBjbGFzc0NvZGU9IkNMVVNURVIiIG1vb2RDb2RlPSJFVk4iPgo8dGVtcGxhdGVJZCBy
+b290PSIyLjE2Ljg0MC4xLjExMzg4My4xMC4yMC4yNi4xLjYiLz4KPGNvZGUgY29kZT0iNjk0NTMt
+OSIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi4xIgpjb2RlU3lzdGVtTmFtZT0iTE9J
+TkMiIGRpc3BsYXlOYW1lPSJDYXVzZSBPZiBEZWF0aCAoVVMgU3RhbmRhcmQgQ2VydGlmaWNhdGUK
+b2YgRGVhdGgpIi8+Cgo8c3RhdHVzQ29kZSBjb2RlPSJjb21wbGV0ZWQiLz4KPCEtLSBOb3RlLCBh
+dCBsZWFzdCBvbmUgY29tcG9uZW50IGNvbnRhaW5pbmcgZGVhdGggY2F1c2UgaW5mb3JtYXRpb24K
+aXMgcmVxdWlyZWQgLS0+Cjxjb21wb25lbnQ+CjwvY29tcG9uZW50Pgo8Y29tcG9uZW50Pgo8L2Nv
+bXBvbmVudD4KPGNvbXBvbmVudD4KPC9jb21wb25lbnQ+Cjxjb21wb25lbnQ+CjwvY29tcG9uZW50
+Pgo8L29yZ2FuaXplcj4KPC9lbnRyeT4KPC9zZWN0aW9uPgo8L2NvbXBvbmVudD4=</outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>Channel Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+    <connector version="3.5.1">
+      <metaDataId>6</metaDataId>
+      <name>VRDR Death Section</name>
+      <properties class="com.mirth.connect.connectors.vm.VmDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <channelId>none</channelId>
+        <channelTemplate>${message.encodedData}</channelTemplate>
+        <mapVariables/>
+      </properties>
+      <transformer version="3.5.1">
+        <elements>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Create Death Section of CCD</name>
+            <sequenceNumber>0</sequenceNumber>
+            <script>//Document Body Section
+//Death Report Document Body
+//[Section: templateId 2.16.840.1.113883.10.20.24.1.2]
+
+
+
+//templateId 2.16.840.1.113883.10.20.26.1.1
+
+
+
+//Date and Time of Death
+//Observation: templateId: 2.16.840.1.113883.10.20.24.1.3
+
+ var dod = msg[&apos;hl7_export_deathccyy&apos;].toString() + msg[&apos;hl7_export_deathmm&apos;].toString() + msg[&apos;hl7_export_deathdd&apos;].toString();
+ var tod = msg[&apos;hl7_export_timeofdeathhh&apos;].toString() + msg[&apos;hl7_export_timeofdeathmm&apos;].toString();
+
+//tmp[&apos;component&apos;][0][&apos;section&apos;][&apos;entry&apos;][&apos;observation&apos;][&apos;effectiveTime&apos;][&apos;high&apos;][&apos;@value&apos;] = dod + tod;
+tmp[&apos;structuredBody&apos;][&apos;component&apos;][0][&apos;section&apos;][&apos;entry&apos;][&apos;observation&apos;][&apos;effectiveTime&apos;][&apos;high&apos;][&apos;@value&apos;]=dod+tod;
+
+
+
+
+//Location of death
+
+if (null != msg[&apos;hl7_export_facilityname&apos;].toString()){
+    tmp[&apos;structuredBody&apos;][&apos;component&apos;][1][&apos;section&apos;][&apos;entry&apos;][&apos;observation&apos;][&apos;value&apos;][&apos;streetAddressLine&apos;] = &quot; &quot;;
+    tmp[&apos;structuredBody&apos;][&apos;component&apos;][1][&apos;section&apos;][&apos;entry&apos;][&apos;observation&apos;][&apos;value&apos;][&apos;city&apos;] = msg[&apos;hl7_export_cityofdeath&apos;].toString();
+    tmp[&apos;structuredBody&apos;][&apos;component&apos;][1][&apos;section&apos;][&apos;entry&apos;][&apos;observation&apos;][&apos;value&apos;][&apos;state&apos;] = &quot;UT&quot;;
+    tmp[&apos;structuredBody&apos;][&apos;component&apos;][1][&apos;section&apos;][&apos;entry&apos;][&apos;observation&apos;][&apos;value&apos;][&apos;postalCode&apos;]= &quot; &quot;;
+
+
+
+}  
+
+
+
+//Age at Death
+//Observation: templateID: 2.16.840.1.113883.10.20.1.38
+
+//Manner of Death
+//1 = natural, 2 = Accident, 3 = Suicide, 4 = HOmicide, 5 = Pending Investigation, 6 = Unable to determin
+
+tmp[&apos;structuredBody&apos;][&apos;component&apos;][2][&apos;section&apos;][&apos;entry&apos;].*::[&apos;observation&apos;].*::[&apos;value&apos;][&apos;@code&apos;] = msg[&apos;hl7_export_mannerofdeath&apos;].toString();
+
+
+
+
+
+
+
+//Pregnancy Status 
+//If female
+if(msg[&apos;hl7_export_gender&apos;].toString()==&quot;F&quot;){
+tmp[&apos;structuredBody&apos;][&apos;component&apos;][3][&apos;section&apos;][&apos;entry&apos;].*::[&apos;observation&apos;].*::[&apos;value&apos;][&apos;@code&apos;] = &quot;x&quot;;
+	
+}
+
+
+
+
+//Cause of Death
+//templateId 2.16.840.1.113883.10.20.26.1.6
+//tmp[&apos;component&apos;][3][&apos;section&apos;][&apos;entry&apos;].*::[&apos;observation&apos;].*::[&apos;value&apos;][&apos;@code&apos;] = 
+
+
+tmp[&apos;structuredBody&apos;][&apos;component&apos;][4] = $(&apos;AllCauseX&apos;);
+
+
+
+
+
+//Tobacco Use
+
+
+
+
+//Injury
+
+
+
+
+
+
+
+
+logger.debug(&quot;Stuff: &quot; + tmp);
+
+
+channelMap.put(&quot;DeathBodySection&quot;,tmp);</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        </elements>
+        <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVybGljZW5zZT52YWx1
+ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJsaWNlbnNlPg0KICAgIDxobDdfZXhwb3J0X21ybj52YWx1
+ZTwvaGw3X2V4cG9ydF9tcm4+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRsYXN0PnZhbHVlPC9o
+bDdfZXhwb3J0X2RlY2Vhc2VkbGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGZpcnN0PnZh
+bHVlPC9obDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRt
+aWRkbGU+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRtaWRkbGU+DQogICAgPGhsN19leHBvcnRf
+ZGVjZWFzZWRzdWZmaXg+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRzdWZmaXg+DQogICAgPGhs
+N19leHBvcnRfc3NuPnZhbHVlPC9obDdfZXhwb3J0X3Nzbj4NCiAgICA8aGw3X2V4cG9ydF9nZW5k
+ZXI+dmFsdWU8L2hsN19leHBvcnRfZ2VuZGVyPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY2l0eT52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNpdHk+DQogICAgPGNkYV9leHBvcnRfYmlydGhjb3VudHk+
+dmFsdWU8L2NkYV9leHBvcnRfYmlydGhjb3VudHk+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY291
+bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnk+DQogICAgPGhsN19leHBvcnRfYmly
+dGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aG1tPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRobW0+DQogICAgPGhsN19leHBvcnRfYmlydGhkZD52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGRkPg0KICAgIDxobDdfZXhwb3J0X3JhY2V3aGl0ZT52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNld2hpdGU+DQogICAgPGhsN19leHBvcnRfcmFjZWJsYWNrPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VibGFjaz4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYW1pbmRpYW4+dmFs
+dWU8L2hsN19leHBvcnRfcmFjZWFtaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V0cmliZXNw
+ZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZXRyaWJlc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+Y2hpbmVzZT52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlY2hpbmVzZT4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNlamFwYW5lc2U+dmFsdWU8L2hsN19leHBvcnRfcmFjZWphcGFuZXNlPg0KICAgIDxobDdfZXhw
+b3J0X3JhY2VoYXdhaWlhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlaGF3YWlpYW4+DQogICAgPGhs
+N19leHBvcnRfcmFjZWZpbGlwaW5vPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VmaWxpcGlubz4NCiAg
+ICA8aGw3X2V4cG9ydF9yYWNlb3RoZXJhc2lhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXJh
+c2lhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5zcGVjPnZhbHVlPC9obDdfZXhwb3J0X3Jh
+Y2Vhc2lhbnNwZWM+DQogICAgPGhsN19leHBvcnRfcmFjZWFzaWFuaW5kaWFuPnZhbHVlPC9obDdf
+ZXhwb3J0X3JhY2Vhc2lhbmluZGlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNla29yZWFuPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2Vrb3JlYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXNhbW9hbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlc2Ftb2FuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNl
+PnZhbHVlPC9obDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vn
+dWFtYW5pYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWd1YW1hbmlhbj4NCiAgICA8aGw3X2V4cG9y
+dF9yYWNlcGFjaXNsYW5kZXI+dmFsdWU8L2hsN19leHBvcnRfcmFjZXBhY2lzbGFuZGVyPg0KICAg
+IDxobDdfZXhwb3J0X3JhY2VvdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXI+DQogICAg
+PGhsN19leHBvcnRfcmFjZXVua25vd24+dmFsdWU8L2hsN19leHBvcnRfcmFjZXVua25vd24+DQog
+ICAgPGhsN19leHBvcnRfZWR1Y2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2VkdWNhdGlvbj4NCiAg
+ICA8aGw3X2V4cG9ydF9vY2N1cGF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X29jY3VwYXRpb24+DQog
+ICAgPGhsN19leHBvcnRfaW5kdXN0cnk+dmFsdWU8L2hsN19leHBvcnRfaW5kdXN0cnk+DQogICAg
+PGhsN19leHBvcnRfYXJtZWRmb3JjZXM+dmFsdWU8L2hsN19leHBvcnRfYXJtZWRmb3JjZXM+DQog
+ICAgPGhsN19leHBvcnRfcHJlZ25hbnQ+dmFsdWU8L2hsN19leHBvcnRfcHJlZ25hbnQ+DQogICAg
+PGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczE+dmFsdWU8L2hsN19leHBvcnRfcmVzc3RyZWV0
+YWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eT52YWx1ZTwv
+aGw3X2V4cG9ydF9yZXNjaXR5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc2NvdW50eT52YWx1ZTwvaGw3
+X2V4cG9ydF9yZXNjb3VudHk+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGU+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RhdGU+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeT52YWx1ZTwvaGw3X2V4
+cG9ydF9yZXNjb3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc3ppcDU+dmFsdWU8L2hsN19leHBv
+cnRfcmVzemlwNT4NCiAgICA8aGw3X2V4cG9ydF9yZXNpbmNpdHlsaW1pdHM+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzaW5jaXR5bGltaXRzPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoY2N5eT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWF0aGNjeXk+DQogICAgPGhsN19leHBvcnRfZGVhdGhtbT52YWx1ZTwvaGw3
+X2V4cG9ydF9kZWF0aG1tPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoZGQ+dmFsdWU8L2hsN19leHBv
+cnRfZGVhdGhkZD4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZGRhdGU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmRkYXRlPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRoaGg+dmFsdWU8L2hsN19leHBv
+cnRfdGltZW9mZGVhdGhoaD4NCiAgICA8aGw3X2V4cG9ydF90aW1lb2ZkZWF0aG1tPnZhbHVlPC9o
+bDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+DQogICAgPGhsN19leHBvcnRfZm91bmR0aW1lPnZhbHVl
+PC9obDdfZXhwb3J0X2ZvdW5kdGltZT4NCiAgICA8aGw3X2V4cG9ydF9wbGFjZW9mZGVhdGg+dmFs
+dWU8L2hsN19leHBvcnRfcGxhY2VvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2ZhY2lsaXR5bmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9mYWNpbGl0eW5hbWU+DQogICAgPGhsN19leHBvcnRfbnVyc2lu
+Z2hvbWVuYW1lPnZhbHVlPC9obDdfZXhwb3J0X251cnNpbmdob21lbmFtZT4NCiAgICA8aGw3X2V4
+cG9ydF9wb2Rfb3RoZXJzcGVjPnZhbHVlPC9obDdfZXhwb3J0X3BvZF9vdGhlcnNwZWM+DQogICAg
+PGhsN19leHBvcnRfbm9uZmFjaWxpdHlsb2NhdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9ub25mYWNp
+bGl0eWxvY2F0aW9uPg0KICAgIDxobDdfZXhwb3J0X2NvdW50eW9mZGVhdGg+dmFsdWU8L2hsN19l
+eHBvcnRfY291bnR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD52YWx1ZTwv
+aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFtZT4NCiAgICA8aGw3X2V4cG9ydF9j
+ZXJ0aWZpZXJzaWduY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbm1tPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25kZD52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJzaWduZGQ+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+dmFs
+dWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfY2VydGlm
+aWVyYWRkcmVzczI+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczI+DQogICAgPGhs
+N19leHBvcnRfY2VydGlmaWVyY2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJjaXR5Pg0K
+ICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnN0YXRlPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cnN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmNvdW50cnk+dmFsdWU8L2hsN19leHBv
+cnRfY2VydGlmaWVyY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJ6aXA1PnZhbHVl
+PC9obDdfZXhwb3J0X2NlcnRpZmllcnppcDU+DQogICAgPGhsN19leHBvcnRfbWVfY29udGFjdGVk
+PnZhbHVlPC9obDdfZXhwb3J0X21lX2NvbnRhY3RlZD4NCiAgICA8aGw3X2V4cG9ydF9hdXRvcHN5
+ZG9uZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5ZG9uZT4NCiAgICA8aGw3X2V4cG9ydF9hdXRv
+cHN5YXZhaWxhYmxlPnZhbHVlPC9obDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+DQogICAgPGhs
+N19leHBvcnRfbGFzdHNlZW5jY3l5PnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9sYXN0c2Vlbm1tPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVubW0+DQog
+ICAgPGhsN19leHBvcnRfbGFzdHNlZW5kZD52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmRkPg0K
+ICAgIDxobDdfZXhwb3J0X2RheXNsYXN0c2VlbnRvZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfZGF5
+c2xhc3RzZWVudG9kZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRl
+cnZhbD52YWx1ZTwvaGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRlcnZhbD4NCiAgICA8aW1tZWRpYXRl
+aW50ZXJ2YWx1bml0PnZhbHVlPC9pbW1lZGlhdGVpbnRlcnZhbHVuaXQ+DQogICAgPGhsN19leHBv
+cnRfYWRkaXRpb25hbGNhdXNlMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UxPg0K
+ICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDE+dmFsdWU8L2hsN19leHBvcnRfYWRk
+aXRpb25hbGludGVydmFsMT4NCiAgICA8YWRkaXRpb25hbGludGVydmFsdW5pdDE+dmFsdWU8L2Fk
+ZGl0aW9uYWxpbnRlcnZhbHVuaXQxPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+
+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj4NCiAgICA8aGw3X2V4cG9ydF9hZGRp
+dGlvbmFsaW50ZXJ2YWwyPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDI+DQog
+ICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPnZhbHVlPC9hZGRpdGlvbmFsaW50ZXJ2YWx1bml0
+Mj4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+dmFsdWU8L2hsN19leHBvcnRfdW5k
+ZXJseWluZ2NhdXNlPg0KICAgIDxobDdfZXhwb3J0X3VuZGVybHlpbmdpbnRlcnZhbD52YWx1ZTwv
+aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+DQogICAgPGhsN19leHBvcnRfdW5kZXJseWlu
+Z2ludGVydmFsdW5pdD52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0K
+ICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNv
+bmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVyb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X3RvYmFjY28+dmFsdWU8L2hsN19leHBv
+cnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnk+dmFsdWU8L2hsN19leHBvcnRfaW5q
+dXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5
+Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+bT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4N
+CiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGlt
+ZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVtbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1
+cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0
+X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5Y291bnR5PnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZh
+bHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5cGxh
+Y2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0d29yaz4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0K
+ICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+b3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlw
+dGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPg0KICAgIDxobDdfZXhw
+b3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+DQo8L3Jlc3Vs
+dD4NCg==</inboundTemplate>
+        <outboundTemplate encoding="base64">PGNvbXBvbmVudD4KPHN0cnVjdHVyZWRCb2R5Pgo8Y29tcG9uZW50PgogICA8c2VjdGlvbj4KCSA8
+dGVtcGxhdGVJZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4xMC4yMC4yNC4xLjIiIC8+CiAgICAg
+PGNvZGUgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNi4xIiBjb2RlU3lzdGVtTmFtZT0i
+TE9JTkMiLz4KICAgICA8dGl0bGUvPgogICAgIDxlbnRyeT4KICAgICAgIDxvYnNlcnZhdGlvbiBj
+bGFzc0NvZGU9Ik9CUyIgbW9vZENvZGU9IkVWTiI+CiAgICAgICA8dGVtcGxhdGVJZCByb290PSIy
+LjE2Ljg0MC4xLjExMzg4My4xMC4yMC4yNi4xLjEzIi8+CiAgICAgICA8Y29kZSBjb2RlPSIzMTIx
+MS02IiBjb2RlU3lzdGVtPSIyLjE2Ljg0MC4xLjExMzg4My42LjEiCiAgICAgICAgICAgY29kZVN5
+c3RlbU5hbWU9IkxPSU5DIiBkaXNwbGF5TmFtZT0iRGF0ZSBvZiBEZWF0aCIvPgogICAgICAgICAg
+PGVmZmVjdGl2ZVRpbWU+CiAgICAgICAgICAgIDxsb3cgbnVsbEZsYXZvcj0iVU5LIi8+CiAgICAg
+ICAgICAgIDxoaWdoIHZhbHVlPSIiLz4KICAgICAgICAgIDwvZWZmZWN0aXZlVGltZT4KICAgICAg
+ICAgIDwvb2JzZXJ2YXRpb24+CiAgICAgIDwvZW50cnk+CiAgICA8L3NlY3Rpb24+CiAgPC9jb21w
+b25lbnQ+Cjxjb21wb25lbnQ+CiAgPHNlY3Rpb24+CiAgICAgIDxlbnRyeT4KPCEtLSBMb2NhdGlv
+biBvZiBEZWF0aCBPYnNlcnZhdGlvbi0tPgo8b2JzZXJ2YXRpb24gY2xhc3NDb2RlPSJPQlMiIG1v
+b2RDb2RlPSJFVk4iIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEt
+aW5zdGFuY2UiPgo8dGVtcGxhdGVJZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4xMC4yMC4yNi4x
+LjEwIi8+Cjxjb2RlIGNvZGU9IjU4MzMyLTgiIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgz
+LjYuMSIKY29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNwbGF5TmFtZT0iTG9jYXRpb24gb2YgRGVh
+dGgiLz4KPHZhbHVlIHhzaTp0eXBlPSJBRCIgdXNlPSJIUCI+CjxzdHJlZXRBZGRyZXNzTGluZT48
+L3N0cmVldEFkZHJlc3NMaW5lPgo8Y2l0eT48L2NpdHk+CjxzdGF0ZT48L3N0YXRlPgo8cG9zdGFs
+Q29kZT48L3Bvc3RhbENvZGU+CjwvdmFsdWU+Cjwvb2JzZXJ2YXRpb24+CjwvZW50cnk+Cjwvc2Vj
+dGlvbj4KPC9jb21wb25lbnQ+Cjxjb21wb25lbnQ+CiAgIDxzZWN0aW9uPgogICAgIDxlbnRyeT4K
+ICAgICA8b2JzZXJ2YXRpb24geG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNj
+aGVtYS1pbnN0YW5jZSIKICAgICAgeG1sbnM9InVybjpobDctb3JnOnYzIiB4c2k6c2NoZW1hTG9j
+YXRpb249InVybjpobDctb3JnOnYzIENEQS54c2QiCiAgICAgIGNsYXNzQ29kZT0iT0JTIiBtb29k
+Q29kZT0iRVZOIj4KICAgICAgPHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMTAu
+MjAuMjQuMS43Ii8+CiAgICAgIDxjb2RlIGNvZGU9IjY5NDQ5LTciIGNvZGVTeXN0ZW09IjIuMTYu
+ODQwLjEuMTEzODgzLjYuMSIgY29kZVN5c3RlbU5hbWU9IkxPSU5DIiBkaXNwbGF5TmFtZT0iTWFu
+bmVyIG9mIERlYXRoIi8+CiAgICAgIDx2YWx1ZSB4c2k6dHlwZT0iQ0UiLz4KICAgICA8L29ic2Vy
+dmF0aW9uPgogICAgIDwvZW50cnk+CiAgICA8L3NlY3Rpb24+CjwvY29tcG9uZW50Pgo8Y29tcG9u
+ZW50PgogIDxzZWN0aW9uPgogIDxlbnRyeT4KICAgIDxvYnNlcnZhdGlvbiB4bWxuczp4c2k9Imh0
+dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxucz0idXJuOmhsNy1v
+cmc6djMiIHhzaTpzY2hlbWFMb2NhdGlvbj0idXJuOmhsNy1vcmc6djMgQ0RBLnhzZCIgY2xhc3ND
+b2RlPSJPQlMiIG1vb2RDb2RlPSJFVk4iPgogICAgICA8dGVtcGxhdGVJZCByb290PSIyLjE2Ljg0
+MC4xLjExMzg4My4xMC4yMC4yNC4xLjgiLz4KICAgICAgICA8Y29kZSBjb2RlPSIxMTQ0OS02IiBj
+b2RlU3lzdGVtPSIyLjE2Ljg0MC4xLjExMzg4My42LjEiIGNvZGVTeXN0ZW1OYW1lPSJMT0lOQyIg
+ZGlzcGxheU5hbWU9IlByZWduYW5jeSBTdGF0dXMiLz4KICAgICAgICAgIDx2YWx1ZSB4c2k6dHlw
+ZT0iQ0UiIGNvZGU9IlZhbHVlIi8+CiAgICAgICAgPC9vYnNlcnZhdGlvbj4KICA8L2VudHJ5Pgog
+IDwvc2VjdGlvbj4KPC9jb21wb25lbnQ+IAo8Y29tcG9uZW50Pgo8L2NvbXBvbmVudD4JCjwvc3Ry
+dWN0dXJlZEJvZHk+CjwvY29tcG9uZW50Pg==</outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>false</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundTemplate encoding="base64"></inboundTemplate>
+        <outboundTemplate encoding="base64"></outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>Channel Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+    <connector version="3.5.1">
+      <metaDataId>4</metaDataId>
+      <name>CCD Header</name>
+      <properties class="com.mirth.connect.connectors.file.FileDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <scheme>FILE</scheme>
+        <host>f:/Mirth/Death/CDAOut</host>
+        <outputPattern>vrdrdoctest.xml</outputPattern>
+        <anonymous>true</anonymous>
+        <username>anonymous</username>
+        <password>anonymous</password>
+        <timeout>10000</timeout>
+        <secure>true</secure>
+        <passive>true</passive>
+        <validateConnection>true</validateConnection>
+        <outputAppend>false</outputAppend>
+        <errorOnExists>false</errorOnExists>
+        <temporary>false</temporary>
+        <binary>false</binary>
+        <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
+        <template>${message.encodedData}</template>
+      </properties>
+      <transformer version="3.5.1">
+        <elements>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Build CCD Header</name>
+            <sequenceNumber>0</sequenceNumber>
+            <script>var dateString = DateUtil.getCurrentDate(&quot;yyyyMMddhhmmss&quot;);
+
+
+var mDate = dateString + &quot;-0600&quot;;
+
+channelMap.put(&apos;msgDate&apos;,mDate);
+tmp[&apos;effectiveTime&apos;][&apos;@value&apos;] = mDate;
+
+
+
+
+//Patient IDS
+
+tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;id&apos;][0][&apos;@extension&apos;]=  $(&apos;SSN&apos;);//Social Security Number
+tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;id&apos;][1][&apos;@extension&apos;]=$(&apos;StateFileNumber&apos;); //State File Number
+
+tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;patient&apos;][&apos;name&apos;][&apos;family&apos;] = $(&apos;LastName&apos;);//family name
+tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;patient&apos;][&apos;name&apos;][&apos;given&apos;] = $(&apos;FirstName&apos;);//given name
+
+//////////////////////////Administrative Gender///////////////////////
+tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;patient&apos;][&apos;administrativeGenderCode&apos;][&apos;@code&apos;] = $(&apos;Gender&apos;);
+
+if ($(&apos;Gender&apos;)==&apos;M&apos;){
+	tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;patient&apos;][&apos;administrativeGenderCode&apos;][&apos;@displayName&apos;]=&quot;Male&quot;;
+} else if ($(&apos;Gender&apos;)==&quot;F&quot;){
+	tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;patient&apos;][&apos;administrativeGenderCode&apos;][&apos;@displayName&apos;]=&quot;Female&quot;;
+}
+
+
+////////////birthTime
+tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;patient&apos;][&apos;birthTime&apos;][&apos;@value&apos;] = msg[&apos;hl7_export_birthccyy&apos;].toString()+msg[&apos;hl7_export_birthmm&apos;].toString()+msg[&apos;hl7_export_birthdd&apos;].toString()+ &quot;00&quot; + &quot;00&quot; + &quot;00&quot; + &quot;-0500&quot;;
+
+
+///Patient Address
+tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;addr&apos;][&apos;streetAddressLine&apos;] = msg[&apos;hl7_export_resstreetaddress1&apos;].toString();
+tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;addr&apos;][&apos;city&apos;] = msg[&apos;hl7_export_rescity&apos;].toString();
+tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;addr&apos;][&apos;state&apos;] = msg[&apos;hl7_export_resstate&apos;].toString();
+tmp[&apos;recordTarget&apos;][&apos;patientRole&apos;][&apos;addr&apos;][&apos;postalCode&apos;] = msg[&apos;hl7_export_reszip5&apos;].toString();
+
+
+
+
+
+
+
+
+
+
+
+//Assigned Author--Name of Clinician who certified death
+tmp[&apos;author&apos;][&apos;assignedAuthor&apos;][&apos;id&apos;][&apos;@extension&apos;] = msg[&apos;hl7_export_certifierlicense&apos;].toString();
+
+var certFullName = msg[&apos;hl7_export_certifierfullname&apos;].toString();
+var certnames = certFullName.split(&quot;,&quot;);
+tmp[&apos;author&apos;][&apos;assignedAuthor&apos;][&apos;assignedPerson&apos;][&apos;name&apos;][&apos;family&apos;] = certnames[0];
+tmp[&apos;author&apos;][&apos;assignedAuthor&apos;][&apos;assignedPerson&apos;][&apos;name&apos;][&apos;given&apos;]= certnames[1];
+
+tmp[&apos;author&apos;][&apos;assignedAuthor&apos;][&apos;representedOrganization&apos;][&apos;name&apos;] = msg[&apos;hl7_export_facilityname&apos;].toString();
+
+//custodian ID and Name
+tmp[&apos;custodian&apos;][&apos;assignedCustodian&apos;][&apos;representedCustodianOrganization&apos;][&apos;id&apos;][&apos;@root&apos;] = &quot;2.16.840.1.113883.3.4397&quot;;
+tmp[&apos;custodian&apos;][&apos;assignedCustodian&apos;][&apos;representedCustodianOrganization&apos;][&apos;name&apos;] = &quot;Utah Department of Health&quot;;</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Combine Templates</name>
+            <sequenceNumber>1</sequenceNumber>
+            <script>//var compCount = 0; 
+logger.debug(&quot;DBSing &quot; + $(&apos;DeathBodySection&apos;));
+//logger.debug(&quot;COD: &quot; + $(&apos;CODSection&apos;));
+
+
+if ( null != $(&apos;DeathBodySection&apos;) ) { 
+	var dbs = new XML( $(&apos;DeathBodySection&apos;).toString() ); 
+
+tmp[&apos;component&apos;]= dbs; 
+
+//compCount++;
+
+}
+
+/*
+
+if ( null != $(&apos;DeathBodySection&apos;) ) { 
+	var cod = new XML( $(&apos;CODSection&apos;).toString() ); 
+
+tmp[&apos;component&apos;][&apos;structuredBody&apos;][&apos;component&apos;][&apos;compCount&apos;] = cod; 
+
+compCount++;
+
+}
+
+*/</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+            <name>Namespaces</name>
+            <sequenceNumber>2</sequenceNumber>
+            <script>default xml namespace = &quot;urn:hl7-org:v3&quot;; 
+
+tmp = new XML( tmp.toString() ); 
+tmp.addNamespace( new Namespace(&quot;sdtc&quot;, &quot;urn:hl7-org:sdtc&quot;) ); 
+tmp.addNamespace( new Namespace(&quot;xsi&quot;, &quot;http://www.w3.org/2001/XMLSchema-instance&quot;) );</script>
+          </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        </elements>
+        <inboundTemplate encoding="base64">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8
+cmVzdWx0Pg0KICAgIDxobDdfZXhwb3J0X3N0YXRlZmlsZW51bWJlcj52YWx1ZTwvaGw3X2V4cG9y
+dF9zdGF0ZWZpbGVudW1iZXI+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVybGljZW5zZT52YWx1
+ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJsaWNlbnNlPg0KICAgIDxobDdfZXhwb3J0X21ybj52YWx1
+ZTwvaGw3X2V4cG9ydF9tcm4+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRsYXN0PnZhbHVlPC9o
+bDdfZXhwb3J0X2RlY2Vhc2VkbGFzdD4NCiAgICA8aGw3X2V4cG9ydF9kZWNlYXNlZGZpcnN0PnZh
+bHVlPC9obDdfZXhwb3J0X2RlY2Vhc2VkZmlyc3Q+DQogICAgPGhsN19leHBvcnRfZGVjZWFzZWRt
+aWRkbGU+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRtaWRkbGU+DQogICAgPGhsN19leHBvcnRf
+ZGVjZWFzZWRzdWZmaXg+dmFsdWU8L2hsN19leHBvcnRfZGVjZWFzZWRzdWZmaXg+DQogICAgPGhs
+N19leHBvcnRfc3NuPnZhbHVlPC9obDdfZXhwb3J0X3Nzbj4NCiAgICA8aGw3X2V4cG9ydF9nZW5k
+ZXI+dmFsdWU8L2hsN19leHBvcnRfZ2VuZGVyPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY2l0eT52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNpdHk+DQogICAgPGNkYV9leHBvcnRfYmlydGhjb3VudHk+
+dmFsdWU8L2NkYV9leHBvcnRfYmlydGhjb3VudHk+DQogICAgPGhsN19leHBvcnRfYmlydGhzdGF0
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aHN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2JpcnRoY291
+bnRyeT52YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGNvdW50cnk+DQogICAgPGhsN19leHBvcnRfYmly
+dGhjY3l5PnZhbHVlPC9obDdfZXhwb3J0X2JpcnRoY2N5eT4NCiAgICA8aGw3X2V4cG9ydF9iaXJ0
+aG1tPnZhbHVlPC9obDdfZXhwb3J0X2JpcnRobW0+DQogICAgPGhsN19leHBvcnRfYmlydGhkZD52
+YWx1ZTwvaGw3X2V4cG9ydF9iaXJ0aGRkPg0KICAgIDxobDdfZXhwb3J0X3JhY2V3aGl0ZT52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNld2hpdGU+DQogICAgPGhsN19leHBvcnRfcmFjZWJsYWNrPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2VibGFjaz4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYW1pbmRpYW4+dmFs
+dWU8L2hsN19leHBvcnRfcmFjZWFtaW5kaWFuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V0cmliZXNw
+ZWM+dmFsdWU8L2hsN19leHBvcnRfcmFjZXRyaWJlc3BlYz4NCiAgICA8aGw3X2V4cG9ydF9yYWNl
+Y2hpbmVzZT52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlY2hpbmVzZT4NCiAgICA8aGw3X2V4cG9ydF9y
+YWNlamFwYW5lc2U+dmFsdWU8L2hsN19leHBvcnRfcmFjZWphcGFuZXNlPg0KICAgIDxobDdfZXhw
+b3J0X3JhY2VoYXdhaWlhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlaGF3YWlpYW4+DQogICAgPGhs
+N19leHBvcnRfcmFjZWZpbGlwaW5vPnZhbHVlPC9obDdfZXhwb3J0X3JhY2VmaWxpcGlubz4NCiAg
+ICA8aGw3X2V4cG9ydF9yYWNlb3RoZXJhc2lhbj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXJh
+c2lhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNlYXNpYW5zcGVjPnZhbHVlPC9obDdfZXhwb3J0X3Jh
+Y2Vhc2lhbnNwZWM+DQogICAgPGhsN19leHBvcnRfcmFjZWFzaWFuaW5kaWFuPnZhbHVlPC9obDdf
+ZXhwb3J0X3JhY2Vhc2lhbmluZGlhbj4NCiAgICA8aGw3X2V4cG9ydF9yYWNla29yZWFuPnZhbHVl
+PC9obDdfZXhwb3J0X3JhY2Vrb3JlYW4+DQogICAgPGhsN19leHBvcnRfcmFjZXNhbW9hbj52YWx1
+ZTwvaGw3X2V4cG9ydF9yYWNlc2Ftb2FuPg0KICAgIDxobDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNl
+PnZhbHVlPC9obDdfZXhwb3J0X3JhY2V2aWV0bmFtZXNlPg0KICAgIDxobDdfZXhwb3J0X3JhY2Vn
+dWFtYW5pYW4+dmFsdWU8L2hsN19leHBvcnRfcmFjZWd1YW1hbmlhbj4NCiAgICA8aGw3X2V4cG9y
+dF9yYWNlcGFjaXNsYW5kZXI+dmFsdWU8L2hsN19leHBvcnRfcmFjZXBhY2lzbGFuZGVyPg0KICAg
+IDxobDdfZXhwb3J0X3JhY2VvdGhlcj52YWx1ZTwvaGw3X2V4cG9ydF9yYWNlb3RoZXI+DQogICAg
+PGhsN19leHBvcnRfcmFjZXVua25vd24+dmFsdWU8L2hsN19leHBvcnRfcmFjZXVua25vd24+DQog
+ICAgPGhsN19leHBvcnRfZWR1Y2F0aW9uPnZhbHVlPC9obDdfZXhwb3J0X2VkdWNhdGlvbj4NCiAg
+ICA8aGw3X2V4cG9ydF9vY2N1cGF0aW9uPnZhbHVlPC9obDdfZXhwb3J0X29jY3VwYXRpb24+DQog
+ICAgPGhsN19leHBvcnRfaW5kdXN0cnk+dmFsdWU8L2hsN19leHBvcnRfaW5kdXN0cnk+DQogICAg
+PGhsN19leHBvcnRfYXJtZWRmb3JjZXM+dmFsdWU8L2hsN19leHBvcnRfYXJtZWRmb3JjZXM+DQog
+ICAgPGhsN19leHBvcnRfcHJlZ25hbnQ+dmFsdWU8L2hsN19leHBvcnRfcHJlZ25hbnQ+DQogICAg
+PGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczE+dmFsdWU8L2hsN19leHBvcnRfcmVzc3RyZWV0
+YWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RyZWV0YWRkcmVzczI+DQogICAgPGhsN19leHBvcnRfcmVzY2l0eT52YWx1ZTwv
+aGw3X2V4cG9ydF9yZXNjaXR5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc2NvdW50eT52YWx1ZTwvaGw3
+X2V4cG9ydF9yZXNjb3VudHk+DQogICAgPGhsN19leHBvcnRfcmVzc3RhdGU+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzc3RhdGU+DQogICAgPGhsN19leHBvcnRfcmVzY291bnRyeT52YWx1ZTwvaGw3X2V4
+cG9ydF9yZXNjb3VudHJ5Pg0KICAgIDxobDdfZXhwb3J0X3Jlc3ppcDU+dmFsdWU8L2hsN19leHBv
+cnRfcmVzemlwNT4NCiAgICA8aGw3X2V4cG9ydF9yZXNpbmNpdHlsaW1pdHM+dmFsdWU8L2hsN19l
+eHBvcnRfcmVzaW5jaXR5bGltaXRzPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoY2N5eT52YWx1ZTwv
+aGw3X2V4cG9ydF9kZWF0aGNjeXk+DQogICAgPGhsN19leHBvcnRfZGVhdGhtbT52YWx1ZTwvaGw3
+X2V4cG9ydF9kZWF0aG1tPg0KICAgIDxobDdfZXhwb3J0X2RlYXRoZGQ+dmFsdWU8L2hsN19leHBv
+cnRfZGVhdGhkZD4NCiAgICA8aGw3X2V4cG9ydF9mb3VuZGRhdGU+dmFsdWU8L2hsN19leHBvcnRf
+Zm91bmRkYXRlPg0KICAgIDxobDdfZXhwb3J0X3RpbWVvZmRlYXRoaGg+dmFsdWU8L2hsN19leHBv
+cnRfdGltZW9mZGVhdGhoaD4NCiAgICA8aGw3X2V4cG9ydF90aW1lb2ZkZWF0aG1tPnZhbHVlPC9o
+bDdfZXhwb3J0X3RpbWVvZmRlYXRobW0+DQogICAgPGhsN19leHBvcnRfZm91bmR0aW1lPnZhbHVl
+PC9obDdfZXhwb3J0X2ZvdW5kdGltZT4NCiAgICA8aGw3X2V4cG9ydF9wbGFjZW9mZGVhdGg+dmFs
+dWU8L2hsN19leHBvcnRfcGxhY2VvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X2ZhY2lsaXR5bmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9mYWNpbGl0eW5hbWU+DQogICAgPGhsN19leHBvcnRfbnVyc2lu
+Z2hvbWVuYW1lPnZhbHVlPC9obDdfZXhwb3J0X251cnNpbmdob21lbmFtZT4NCiAgICA8aGw3X2V4
+cG9ydF9wb2Rfb3RoZXJzcGVjPnZhbHVlPC9obDdfZXhwb3J0X3BvZF9vdGhlcnNwZWM+DQogICAg
+PGhsN19leHBvcnRfbm9uZmFjaWxpdHlsb2NhdGlvbj52YWx1ZTwvaGw3X2V4cG9ydF9ub25mYWNp
+bGl0eWxvY2F0aW9uPg0KICAgIDxobDdfZXhwb3J0X2NvdW50eW9mZGVhdGg+dmFsdWU8L2hsN19l
+eHBvcnRfY291bnR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD52YWx1ZTwv
+aGw3X2V4cG9ydF9jaXR5b2ZkZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFt
+ZT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJmdWxsbmFtZT4NCiAgICA8aGw3X2V4cG9ydF9j
+ZXJ0aWZpZXJzaWduY2N5eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWduY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJzaWdubW0+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVy
+c2lnbm1tPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnNpZ25kZD52YWx1ZTwvaGw3X2V4cG9y
+dF9jZXJ0aWZpZXJzaWduZGQ+DQogICAgPGhsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+dmFs
+dWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczE+DQogICAgPGhsN19leHBvcnRfY2VydGlm
+aWVyYWRkcmVzczI+dmFsdWU8L2hsN19leHBvcnRfY2VydGlmaWVyYWRkcmVzczI+DQogICAgPGhs
+N19leHBvcnRfY2VydGlmaWVyY2l0eT52YWx1ZTwvaGw3X2V4cG9ydF9jZXJ0aWZpZXJjaXR5Pg0K
+ICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcnN0YXRlPnZhbHVlPC9obDdfZXhwb3J0X2NlcnRpZmll
+cnN0YXRlPg0KICAgIDxobDdfZXhwb3J0X2NlcnRpZmllcmNvdW50cnk+dmFsdWU8L2hsN19leHBv
+cnRfY2VydGlmaWVyY291bnRyeT4NCiAgICA8aGw3X2V4cG9ydF9jZXJ0aWZpZXJ6aXA1PnZhbHVl
+PC9obDdfZXhwb3J0X2NlcnRpZmllcnppcDU+DQogICAgPGhsN19leHBvcnRfbWVfY29udGFjdGVk
+PnZhbHVlPC9obDdfZXhwb3J0X21lX2NvbnRhY3RlZD4NCiAgICA8aGw3X2V4cG9ydF9hdXRvcHN5
+ZG9uZT52YWx1ZTwvaGw3X2V4cG9ydF9hdXRvcHN5ZG9uZT4NCiAgICA8aGw3X2V4cG9ydF9hdXRv
+cHN5YXZhaWxhYmxlPnZhbHVlPC9obDdfZXhwb3J0X2F1dG9wc3lhdmFpbGFibGU+DQogICAgPGhs
+N19leHBvcnRfbGFzdHNlZW5jY3l5PnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVuY2N5eT4NCiAg
+ICA8aGw3X2V4cG9ydF9sYXN0c2Vlbm1tPnZhbHVlPC9obDdfZXhwb3J0X2xhc3RzZWVubW0+DQog
+ICAgPGhsN19leHBvcnRfbGFzdHNlZW5kZD52YWx1ZTwvaGw3X2V4cG9ydF9sYXN0c2VlbmRkPg0K
+ICAgIDxobDdfZXhwb3J0X2RheXNsYXN0c2VlbnRvZGVhdGg+dmFsdWU8L2hsN19leHBvcnRfZGF5
+c2xhc3RzZWVudG9kZWF0aD4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbW1lZGlhdGVjYXVzZT4NCiAgICA8aGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRl
+cnZhbD52YWx1ZTwvaGw3X2V4cG9ydF9pbW1lZGlhdGVpbnRlcnZhbD4NCiAgICA8aW1tZWRpYXRl
+aW50ZXJ2YWx1bml0PnZhbHVlPC9pbW1lZGlhdGVpbnRlcnZhbHVuaXQ+DQogICAgPGhsN19leHBv
+cnRfYWRkaXRpb25hbGNhdXNlMT52YWx1ZTwvaGw3X2V4cG9ydF9hZGRpdGlvbmFsY2F1c2UxPg0K
+ICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDE+dmFsdWU8L2hsN19leHBvcnRfYWRk
+aXRpb25hbGludGVydmFsMT4NCiAgICA8YWRkaXRpb25hbGludGVydmFsdW5pdDE+dmFsdWU8L2Fk
+ZGl0aW9uYWxpbnRlcnZhbHVuaXQxPg0KICAgIDxobDdfZXhwb3J0X2FkZGl0aW9uYWxjYXVzZTI+
+dmFsdWU8L2hsN19leHBvcnRfYWRkaXRpb25hbGNhdXNlMj4NCiAgICA8aGw3X2V4cG9ydF9hZGRp
+dGlvbmFsaW50ZXJ2YWwyPnZhbHVlPC9obDdfZXhwb3J0X2FkZGl0aW9uYWxpbnRlcnZhbDI+DQog
+ICAgPGFkZGl0aW9uYWxpbnRlcnZhbHVuaXQyPnZhbHVlPC9hZGRpdGlvbmFsaW50ZXJ2YWx1bml0
+Mj4NCiAgICA8aGw3X2V4cG9ydF91bmRlcmx5aW5nY2F1c2U+dmFsdWU8L2hsN19leHBvcnRfdW5k
+ZXJseWluZ2NhdXNlPg0KICAgIDxobDdfZXhwb3J0X3VuZGVybHlpbmdpbnRlcnZhbD52YWx1ZTwv
+aGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWw+DQogICAgPGhsN19leHBvcnRfdW5kZXJseWlu
+Z2ludGVydmFsdW5pdD52YWx1ZTwvaGw3X2V4cG9ydF91bmRlcmx5aW5naW50ZXJ2YWx1bml0Pg0K
+ICAgIDxobDdfZXhwb3J0X290aGVyY29uZGl0aW9ucz52YWx1ZTwvaGw3X2V4cG9ydF9vdGhlcmNv
+bmRpdGlvbnM+DQogICAgPGhsN19leHBvcnRfbWFubmVyb2ZkZWF0aD52YWx1ZTwvaGw3X2V4cG9y
+dF9tYW5uZXJvZmRlYXRoPg0KICAgIDxobDdfZXhwb3J0X3RvYmFjY28+dmFsdWU8L2hsN19leHBv
+cnRfdG9iYWNjbz4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnk+dmFsdWU8L2hsN19leHBvcnRfaW5q
+dXJ5Pg0KICAgIDxobDdfZXhwb3J0X2luanVyeWNjeXk+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5
+Y2N5eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnltbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+bT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZD52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlkZD4N
+CiAgICA8aGw3X2V4cG9ydF9pbmp1cnl0aW1laGg+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5dGlt
+ZWhoPg0KICAgIDxobDdfZXhwb3J0X2luanVyeXRpbWVtbT52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1
+cnl0aW1lbW0+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5c3RyZWV0PnZhbHVlPC9obDdfZXhwb3J0
+X2luanVyeXN0cmVldD4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljaXR5PnZhbHVlPC9obDdfZXhw
+b3J0X2luanVyeWNpdHk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5Y291bnR5PnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWNvdW50eT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT52YWx1ZTwv
+aGw3X2V4cG9ydF9pbmp1cnlzdGF0ZT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnljb3VudHJ5PnZh
+bHVlPC9obDdfZXhwb3J0X2luanVyeWNvdW50cnk+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5cGxh
+Y2U+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5cGxhY2U+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5
+YXR3b3JrPnZhbHVlPC9obDdfZXhwb3J0X2luanVyeWF0d29yaz4NCiAgICA8aGw3X2V4cG9ydF9p
+bmp1cnltb3RvcnZlaGljbGU+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5bW90b3J2ZWhpY2xlPg0K
+ICAgIDxobDdfZXhwb3J0X2luanVyeW1vdG9yc3BlYz52YWx1ZTwvaGw3X2V4cG9ydF9pbmp1cnlt
+b3RvcnNwZWM+DQogICAgPGhsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24xPnZhbHVlPC9obDdf
+ZXhwb3J0X2luanVyeWRlc2NyaXB0aW9uMT4NCiAgICA8aGw3X2V4cG9ydF9pbmp1cnlkZXNjcmlw
+dGlvbjI+dmFsdWU8L2hsN19leHBvcnRfaW5qdXJ5ZGVzY3JpcHRpb24yPg0KICAgIDxobDdfZXhw
+b3J0X21hc3RlcnN0YXR1cz52YWx1ZTwvaGw3X2V4cG9ydF9tYXN0ZXJzdGF0dXM+DQo8L3Jlc3Vs
+dD4NCg==</inboundTemplate>
+        <outboundTemplate encoding="base64">PENsaW5pY2FsRG9jdW1lbnQgY2xhc3NDb2RlPSJET0NDTElOIiBtb29kQ29kZT0iRVZOIiAgICAg
+ICAgPgogIDxyZWFsbUNvZGUvPgoJPHR5cGVJZCByb290PSIyLjE2Ljg0MC4xLjExMzg4My4xLjMi
+IGV4dGVuc2lvbj0iUE9DRF9NVDAwMDA0MCIvPgoJPHRlbXBsYXRlSWQgcm9vdD0iMi4xNi44NDAu
+MS4xMTM4ODMuMTAuMjAuMSIvPgogICAgPHRlbXBsYXRlSWQgcm9vdD0iMS4zLjYuMS40LjEuMTkz
+NzYuMS43LjMuMS4xLjIzLjEiIC8+Cgk8aWQgYXNzaWduaW5nQXV0aG9yaXR5TmFtZT0iVURIIiBy
+b290PSIxLjIuODQwLjExNDM1MC4xLjEzLjMyMS4xLjcuOC42ODg4ODMuMzM2Ii8+CiAgICA8Y29k
+ZSBjb2RlPSI2OTQwOS0xIiBjb2RlU3lzdGVtPSIyLjE2Ljg0MC4xLjExMzg4My42LjEiIGNvZGVT
+eXN0ZW1OYW1lPSJMT0lOQyIgZGlzcGxheU5hbWU9IlVTIFN0YW5kYXJkIGNlcnRpZmljYXRlIG9m
+IGRlYXRoIDIwMDMgcmV2aXNpb24iLz4KICAgIDx0aXRsZT5VUyBTdGFuZGFyZCBDZXJ0aWZpY2F0
+ZSBvZiBEZWF0aCAyMDAzIFZlcnNpb248L3RpdGxlPgoJPGVmZmVjdGl2ZVRpbWUvPgoJPGNvbmZp
+ZGVudGlhbGl0eUNvZGUgY29kZT0iTiIgY29kZVN5c3RlbT0iMi4xNi44NDAuMS4xMTM4ODMuNS4y
+NSIvPgoJPGxhbmd1YWdlQ29kZSBjb2RlPSJlbi1VUyIvPgoJPHJlY29yZFRhcmdldCB0eXBlQ29k
+ZT0iUkNUIj4KCQk8cGF0aWVudFJvbGUgY2xhc3NDb2RlPSJQQVQiPgoJCQk8aWQgYXNzaWduaW5n
+QXV0aG9yaXR5TmFtZT0iU29jaWFsIFNlY3VyaXR5IEFkbWluaXN0cmF0aW9uIiBleHRlbnNpb249
+IjExMS0xMS0xMTExIiByb290PSIyLjE2Ljg0MC4xLjExMzg4My40LjEiLz4KICAgICAgICAgICAg
+PGlkIGFzc2lnbmluZ0F1dGhvcml0eU5hbWU9IlVESCIgZXh0ZW5zaW9uPSJ4eHh4eHh4eHh4IiBy
+b290PSIxLjIuODQwLjExNDM1MC4xLjEzLjEuMS43LjIuNjk4MDg0Ii8+CiAgICAgICAgICAgIDxh
+ZGRyIHVzZT0iSFAiPgoJCQkJPHN0cmVldEFkZHJlc3NMaW5lPjMzMiBhZGRyZXNzIHN0cmVldDwv
+c3RyZWV0QWRkcmVzc0xpbmU+CgkJCQk8Y2l0eT5jaXR5PC9jaXR5PgoJCQkJPHN0YXRlPnN0YXRl
+PC9zdGF0ZT4KCQkJCTxwb3N0YWxDb2RlPnppcGNvZGU8L3Bvc3RhbENvZGU+CgkJCTwvYWRkcj4K
+ICAgICAgICAgICAgICAgIDxwYXRpZW50IGNsYXNzQ29kZT0iUFNOIiBkZXRlcm1pbmVyQ29kZT0i
+SU5TVEFOQ0UiPgoJCQkJPG5hbWUgdXNlPSJMIj4KCQkJCQk8ZmFtaWx5Lz4KCQkJCQk8Z2l2ZW4v
+PgoJCQkJPC9uYW1lPgogICAgICAgICAgICAgICAgPGFkbWluaXN0cmF0aXZlR2VuZGVyQ29kZSBj
+b2RlPSJ4IiBjb2RlU3lzdGVtPSIyLjE2Ljg0MC4xLjExMzg4My41LjEiIGNvZGVTeXN0ZW1OYW1l
+PSJBZG1pbmlzdHJhdGl2ZUdlbmRlckNvZGUiIGRpc3BsYXlOYW1lPSIiLz4KICAgICAgICAgICAg
+ICAgIDxiaXJ0aFRpbWUgdmFsdWU9IllZWVlNTUREIi8+CiAgICAgICAgICAgICAgICA8bWFyaXRh
+bFN0YXR1c0NvZGUgbnVsbEZsYXZvcj0iVU5LIi8+CiAgICAgICAgICAgICAgICA8cmFjZUNvZGUg
+bnVsbEZsYXZvcj0iVU5LIi8+CiAgICAgICAgICAgICAgICA8ZXRobmljR3JvdXBDb2RlIGNvZGVT
+eXN0ZW09IjIuMTYuODQwLjEuMTEzODgzLjYuMjM4IiBjb2RlU3lzdGVtTmFtZT0iQ0RDIFJhY2Ug
+YW5kIEV0aG5pY2l0eSIgbnVsbEZsYXZvcj0iVU5LIi8+CiAgICAgICAgICAgICAgICAgPGxhbmd1
+YWdlQ29tbXVuaWNhdGlvbj4KICAgICAgICAgICAgICAgICAgICAgIDxsYW5ndWFnZUNvZGUgbnVs
+bEZsYXZvcj0iVU5LIi8+CgkJCSAgICAgPC9sYW5ndWFnZUNvbW11bmljYXRpb24+CQoJCQk8L3Bh
+dGllbnQ+CgkJCTxwcm92aWRlck9yZ2FuaXphdGlvbj4KCQkJCTxpZCByb290PSIyLjE2Ljg0MC4x
+LjExMzg4My4xOS41LjEiLz4KCQkJCTxuYW1lLz4KCQkJPC9wcm92aWRlck9yZ2FuaXphdGlvbj4K
+CQk8L3BhdGllbnRSb2xlPgoJPC9yZWNvcmRUYXJnZXQ+Cgk8YXV0aG9yIHR5cGVDb2RlPSJBVVQi
+PgoJCTx0aW1lIHZhbHVlPSIwMDAwMDAwMDAwMDAwMC0wMDAwIi8+CgkJPGFzc2lnbmVkQXV0aG9y
+IGNsYXNzQ29kZT0iQVNTSUdORUQiPgoJCQk8aWQgZXh0ZW5zaW9uPSJ4eHh4eHh4eHgiIHJvb3Q9
+IjIuMTYuODQwLjEuMTEzODgzLjE5LjUiLz4KCQkJPGFzc2lnbmVkUGVyc29uIGRldGVybWluZXJD
+b2RlPSJJTlNUQU5DRSIgY2xhc3NDb2RlPSJQU04iPgoJCQkJPG5hbWUgdXNlPSJMIj4KCQkJCQk8
+ZmFtaWx5PkJyb2NrZXJ0PC9mYW1pbHk+CgkJCQkJPGdpdmVuPkpvaG48L2dpdmVuPgoJCQkJPC9u
+YW1lPgoJCQk8L2Fzc2lnbmVkUGVyc29uPgoJCQk8cmVwcmVzZW50ZWRPcmdhbml6YXRpb24+CgkJ
+CQk8aWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMTkuNS4xIi8+CgkJCQk8bmFtZT5VdGFoIE9m
+ZmljZSBvZiBWaXRhbCBSZWNvcmRzIGFuZCBTdGF0aXN0aWNzPC9uYW1lPgoJCQk8L3JlcHJlc2Vu
+dGVkT3JnYW5pemF0aW9uPgoJCTwvYXNzaWduZWRBdXRob3I+Cgk8L2F1dGhvcj4KCTxjdXN0b2Rp
+YW4+CgkJPGFzc2lnbmVkQ3VzdG9kaWFuPgoJCQk8cmVwcmVzZW50ZWRDdXN0b2RpYW5Pcmdhbml6
+YXRpb24+CgkJCQk8aWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMTkuNS4xIi8+CgkJCQk8bmFt
+ZS8+CgkJCTwvcmVwcmVzZW50ZWRDdXN0b2RpYW5Pcmdhbml6YXRpb24+CgkJPC9hc3NpZ25lZEN1
+c3RvZGlhbj4KCTwvY3VzdG9kaWFuPgoJPGxlZ2FsQXV0aGVudGljYXRvcj4KCQk8dGltZSB2YWx1
+ZT0iMDAwMDAwMDAwMDAwMDAtMDAwMCIvPgoJCTxzaWduYXR1cmVDb2RlIGNvZGU9IlMiLz4KCQk8
+YXNzaWduZWRFbnRpdHk+CgkJCTxpZCBudWxsRmxhdm9yPSJOSSIvPgoJCQk8cmVwcmVzZW50ZWRP
+cmdhbml6YXRpb24+CgkJCQk8aWQgcm9vdD0iMi4xNi44NDAuMS4xMTM4ODMuMTkuNS4xIi8+CgkJ
+CQk8bmFtZS8+CgkJCTwvcmVwcmVzZW50ZWRPcmdhbml6YXRpb24+CgkJPC9hc3NpZ25lZEVudGl0
+eT4KCTwvbGVnYWxBdXRoZW50aWNhdG9yPgoJPGRvY3VtZW50YXRpb25PZj4KCQk8c2VydmljZUV2
+ZW50IGNsYXNzQ29kZT0iUENQUiI+CgkJCTxlZmZlY3RpdmVUaW1lPgoJCQkJPGxvdyB2YWx1ZT0i
+MDAwMDAwMDAwMDAwMDAtMDAwMCIvPgoJCQkJPGhpZ2ggdmFsdWU9IjAwMDAwMDAwMDAwMDAwLTAw
+MDAiLz4KCQkJPC9lZmZlY3RpdmVUaW1lPgoJCQk8cGVyZm9ybWVyIHR5cGVDb2RlPSJQUkYiPgoJ
+CQkJPGZ1bmN0aW9uQ29kZSBjb2RlPSJ4eHgiIGNvZGVTeXN0ZW09IjIuMTYuODQwLjEuMTEzODgz
+LjUuODgiLz4KCQkJCTxhc3NpZ25lZEVudGl0eT4KCQkJCQk8aWQgZXh0ZW5zaW9uPSJ4eHh4eHh4
+eHgiIHJvb3Q9IjIuMTYuODQwLjEuMTEzODgzLjE5LjUiLz4KCQkJCQk8YXNzaWduZWRQZXJzb24+
+CgkJCQkJCTxuYW1lIHVzZT0iTCI+CgkJCQkJCQk8ZmFtaWx5Lz4KCQkJCQkJCTxnaXZlbi8+CgkJ
+CQkJCTwvbmFtZT4KCQkJCQk8L2Fzc2lnbmVkUGVyc29uPgoJCQkJPC9hc3NpZ25lZEVudGl0eT4K
+CQkJPC9wZXJmb3JtZXI+CgkJPC9zZXJ2aWNlRXZlbnQ+Cgk8L2RvY3VtZW50YXRpb25PZj4KCTxj
+b21wb25lbnQ+CiAKICAgIDwvY29tcG9uZW50Pgo8L0NsaW5pY2FsRG9jdW1lbnQ+</outboundTemplate>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>File Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+  </destinationConnectors>
+  <preprocessingScript>// Modify the message variable below to pre process data
+return message;</preprocessingScript>
+  <postprocessingScript>// This script executes once after a message has been processed
+// Responses returned from here will be stored as &quot;Postprocessor&quot; in the response map
+return;</postprocessingScript>
+  <deployScript>// This script executes once when the channel is deployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</deployScript>
+  <undeployScript>// This script executes once when the channel is undeployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</undeployScript>
+  <properties version="3.5.1">
+    <clearGlobalChannelMap>true</clearGlobalChannelMap>
+    <messageStorageMode>DEVELOPMENT</messageStorageMode>
+    <encryptData>false</encryptData>
+    <removeContentOnCompletion>false</removeContentOnCompletion>
+    <removeOnlyFilteredOnCompletion>false</removeOnlyFilteredOnCompletion>
+    <removeAttachmentsOnCompletion>false</removeAttachmentsOnCompletion>
+    <initialState>STARTED</initialState>
+    <storeAttachments>false</storeAttachments>
+    <metaDataColumns>
+      <metaDataColumn>
+        <name>SOURCE</name>
+        <type>STRING</type>
+        <mappingName>mirth_source</mappingName>
+      </metaDataColumn>
+      <metaDataColumn>
+        <name>TYPE</name>
+        <type>STRING</type>
+        <mappingName>mirth_type</mappingName>
+      </metaDataColumn>
+    </metaDataColumns>
+    <attachmentProperties version="3.5.1">
+      <type>None</type>
+      <properties/>
+    </attachmentProperties>
+    <resourceIds class="linked-hash-map">
+      <entry>
+        <string>Default Resource</string>
+        <string>[Default Resource]</string>
+      </entry>
+    </resourceIds>
+  </properties>
+  <exportData>
+    <metadata>
+      <enabled>false</enabled>
+      <lastModified>
+        <time>1516622616874</time>
+        <timezone>America/New_York</timezone>
+      </lastModified>
+      <pruningSettings>
+        <archiveEnabled>true</archiveEnabled>
+      </pruningSettings>
+    </metadata>
+  </exportData>
+</channel>

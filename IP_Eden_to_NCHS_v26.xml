@@ -1,9 +1,9 @@
 <channel version="3.5.1">
-  <id>f8adb5e6-546c-45fc-886f-babb5ddfb052</id>
+  <id>bd2d2918-e155-4b90-a0e5-e48e6d1eecdf</id>
   <nextMetaDataId>4</nextMetaDataId>
-  <name>Eden_to_NCHS_v26</name>
+  <name>IP_Eden_to_NCHS_v26</name>
   <description></description>
-  <revision>8</revision>
+  <revision>21</revision>
   <sourceConnector version="3.5.1">
     <metaDataId>0</metaDataId>
     <name>sourceConnector</name>
@@ -189,7 +189,7 @@
 		rtrim(edenmaster.ResCountryFips)  AS hl7_export_ResCountryFips, 
 		rtrim(edenmaster.BirthStateFips)  AS hl7_export_BirthStateFips, 
 		rtrim(edenmaster.BirthCountryFips)  AS hl7_export_birthcountryfips
-FROM   edenmaster WHERE hl7Send = 0 --  and edenmasterid = 35
+FROM   edenmaster WHERE hl7Send = 0 and edenmasterid = 34
 
 
 
@@ -1668,8 +1668,8 @@ tmp[&apos;PID&apos;][&apos;PID.3&apos;][0][&apos;PID.3.5&apos;] = &quot;SS&quot;
           <com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
             <name>DOB</name>
             <sequenceNumber>2</sequenceNumber>
-            <messageSegment>tmp[&apos;EVN&apos;][&apos;EVN.2&apos;][&apos;EVN.2.1&apos;]</messageSegment>
-            <mapping>$(&apos;RegisteredCCYY&apos;)+  $(&apos;RegisteredMM&apos;)+  $(&apos;RegisteredDD&apos;)+&quot;20180130100000-0400&quot;</mapping>
+            <messageSegment>tmp[&apos;PID&apos;][0][&apos;PID.7&apos;][&apos;PID.7.1&apos;]</messageSegment>
+            <mapping>msg[&apos;hl7_export_birthccyy&apos;].toString()+msg[&apos;hl7_export_birthmm&apos;].toString()+msg[&apos;hl7_export_birthdd&apos;].toString()</mapping>
             <defaultValue></defaultValue>
             <replacements/>
           </com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
@@ -1748,8 +1748,7 @@ tmp[&apos;MSH&apos;][&apos;MSH.15&apos;][&apos;MSH.15.1&apos;] = &quot;AL&quot;;
 tmp[&apos;MSH&apos;][&apos;MSH.16&apos;][&apos;MSH.16.1&apos;] = &quot;NE&quot;;
 tmp[&apos;MSH&apos;][&apos;MSH.17&apos;][&apos;MSH.17.1&apos;] = &quot;US&quot;;
 
-// JDIA04_V1.0 | CCODA04_V1.0
-tmp[&apos;MSH&apos;][&apos;MSH.21&apos;][&apos;MSH.21.1&apos;] = &quot;JDIA04_V1.0&quot;;
+tmp[&apos;MSH&apos;][&apos;MSH.21&apos;][&apos;MSH.21.1&apos;] = &quot;CCODA04_V1.0&quot;;
 
 tmp[&apos;MSH&apos;][&apos;MSH.21&apos;][&apos;MSH.21.2&apos;] = &quot;CDCPHINVS&quot;;
 
@@ -2355,7 +2354,7 @@ tmp[&apos;OBX&apos;][obxnum][&apos;OBX.11&apos;][&apos;OBX.11.1&apos;] = &quot;F
             <name>Date Registered--EVN Segment</name>
             <sequenceNumber>7</sequenceNumber>
             <messageSegment>tmp[&apos;EVN&apos;][&apos;EVN.2&apos;][&apos;EVN.2.1&apos;]</messageSegment>
-            <mapping>$(&apos;RegisteredCCYY&apos;)+  $(&apos;RegisteredMM&apos;)+  $(&apos;RegisteredDD&apos;)+&quot;20180130100000-0400&quot;</mapping>
+            <mapping>$(&apos;RegisteredCCYY&apos;)+  $(&apos;RegisteredMM&apos;)+  $(&apos;RegisteredDD&apos;)+&quot;120000&quot;</mapping>
             <defaultValue></defaultValue>
             <replacements/>
           </com.mirth.connect.plugins.messagebuilder.MessageBuilderStep>
@@ -3190,9 +3189,9 @@ return;</undeployScript>
   </properties>
   <exportData>
     <metadata>
-      <enabled>true</enabled>
+      <enabled>false</enabled>
       <lastModified>
-        <time>1518000496884</time>
+        <time>1516622656441</time>
         <timezone>America/New_York</timezone>
       </lastModified>
       <pruningSettings>
