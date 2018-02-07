@@ -1,0 +1,981 @@
+<channel version="3.5.1">
+  <id>12d8ec02-b0fd-4925-bb09-fe9f83e2c7d0</id>
+  <nextMetaDataId>4</nextMetaDataId>
+  <name>IP_EdenSubmitForm</name>
+  <description></description>
+  <revision>3</revision>
+  <sourceConnector version="3.5.1">
+    <metaDataId>0</metaDataId>
+    <name>sourceConnector</name>
+    <properties class="com.mirth.connect.connectors.ws.WebServiceReceiverProperties" version="3.5.1">
+      <pluginProperties>
+        <com.mirth.connect.plugins.httpauth.NoneHttpAuthProperties version="3.5.1">
+  <authType>NONE</authType>
+        </com.mirth.connect.plugins.httpauth.NoneHttpAuthProperties>
+      </pluginProperties>
+      <listenerConnectorProperties version="3.5.1">
+        <host>0.0.0.0</host>
+        <port>8081</port>
+      </listenerConnectorProperties>
+      <sourceConnectorProperties version="3.5.1">
+        <responseVariable>None</responseVariable>
+        <respondAfterProcessing>true</respondAfterProcessing>
+        <processBatch>false</processBatch>
+        <firstResponse>false</firstResponse>
+        <processingThreads>1</processingThreads>
+        <resourceIds class="linked-hash-map">
+          <entry>
+            <string>Default Resource</string>
+            <string>[Default Resource]</string>
+          </entry>
+        </resourceIds>
+        <queueBufferSize>1000</queueBufferSize>
+      </sourceConnectorProperties>
+      <className>com.mirth.connect.connectors.ws.DefaultAcceptMessage</className>
+      <serviceName>Mirth</serviceName>
+      <soapBinding>DEFAULT</soapBinding>
+    </properties>
+    <transformer version="3.5.1">
+      <elements>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>firstname</name>
+          <sequenceNumber>0</sequenceNumber>
+          <variable>firstname</variable>
+          <mapping>msg[&apos;person&apos;][&apos;firstname&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>lastname</name>
+          <sequenceNumber>1</sequenceNumber>
+          <variable>lastname</variable>
+          <mapping>msg[&apos;person&apos;][&apos;lastname&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ssn</name>
+          <sequenceNumber>2</sequenceNumber>
+          <variable>ssn</variable>
+          <mapping>msg[&apos;person&apos;][&apos;ssn&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>gender</name>
+          <sequenceNumber>3</sequenceNumber>
+          <variable>gender</variable>
+          <mapping>msg[&apos;person&apos;][&apos;gender&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>MRN</name>
+          <sequenceNumber>4</sequenceNumber>
+          <variable>MRN</variable>
+          <mapping>msg[&apos;person&apos;][&apos;MRN&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DOB_MM</name>
+          <sequenceNumber>5</sequenceNumber>
+          <variable>DOB_MM</variable>
+          <mapping>msg[&apos;person&apos;][&apos;DOB&apos;][&apos;Month&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DOB_DD</name>
+          <sequenceNumber>6</sequenceNumber>
+          <variable>DOB_DD</variable>
+          <mapping>msg[&apos;person&apos;][&apos;DOB&apos;][&apos;Day&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DOB_CCYY</name>
+          <sequenceNumber>7</sequenceNumber>
+          <variable>DOB_CCYY</variable>
+          <mapping>msg[&apos;person&apos;][&apos;DOB&apos;][&apos;Year&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DOD_MM</name>
+          <sequenceNumber>8</sequenceNumber>
+          <variable>DOD_MM</variable>
+          <mapping>msg[&apos;person&apos;][&apos;dod&apos;][&apos;dmonth&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DOD_DD</name>
+          <sequenceNumber>9</sequenceNumber>
+          <variable>DOD_DD</variable>
+          <mapping>msg[&apos;person&apos;][&apos;dod&apos;][&apos;dday&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DOD_CCYY</name>
+          <sequenceNumber>10</sequenceNumber>
+          <variable>DOD_CCYY</variable>
+          <mapping>msg[&apos;person&apos;][&apos;dod&apos;][&apos;dyear&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DOD_HR</name>
+          <sequenceNumber>11</sequenceNumber>
+          <variable>DOD_HR</variable>
+          <mapping>msg[&apos;person&apos;][&apos;dod&apos;][&apos;dhour&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>DOD_MIN</name>
+          <sequenceNumber>12</sequenceNumber>
+          <variable>DOD_MIN</variable>
+          <mapping>msg[&apos;person&apos;][&apos;dod&apos;][&apos;dmin&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ResAddress1</name>
+          <sequenceNumber>13</sequenceNumber>
+          <variable>ResAddress1</variable>
+          <mapping>msg[&apos;person&apos;][&apos;address&apos;][&apos;homeaddress&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>CertifierName</name>
+          <sequenceNumber>14</sequenceNumber>
+          <variable>CertifierName</variable>
+          <mapping>msg[&apos;certifier&apos;][&apos;certifierName&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>CertifierAddress</name>
+          <sequenceNumber>15</sequenceNumber>
+          <variable>CertifierAddress</variable>
+          <mapping>msg[&apos;certifier&apos;][&apos;certifierAddress&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>CertifierLicense</name>
+          <sequenceNumber>16</sequenceNumber>
+          <variable>CertifierLicense</variable>
+          <mapping>msg[&apos;certifier&apos;][&apos;certifierLicense&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>CertifierFacilityName</name>
+          <sequenceNumber>17</sequenceNumber>
+          <variable>CertifierFacilityName</variable>
+          <mapping>msg[&apos;facility&apos;][&apos;facilityName&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ImmediateCause</name>
+          <sequenceNumber>18</sequenceNumber>
+          <variable>ImmediateCause</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;ImmediateCauses&apos;][&apos;CauseLiteral&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ImmediateInterval</name>
+          <sequenceNumber>19</sequenceNumber>
+          <variable>ImmediateInterval</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;ImmediateCauses&apos;][&apos;Interval&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>ImmediateIntervalUnit</name>
+          <sequenceNumber>20</sequenceNumber>
+          <variable>ImmediateIntervalUnit</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;ImmediateCauses&apos;][&apos;IntervalUnit&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>AdditionalCause1</name>
+          <sequenceNumber>21</sequenceNumber>
+          <variable>AdditionalCause1</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;AdditionalCauses1&apos;][&apos;CauseLiteral&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>AdditionalInterval1</name>
+          <sequenceNumber>22</sequenceNumber>
+          <variable>AdditionalInterval1</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;AdditionalCauses1&apos;][&apos;Interval&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>AdditionalIntervalUnit1</name>
+          <sequenceNumber>23</sequenceNumber>
+          <variable>AdditionalIntervalUnit1</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;AdditionalCauses1&apos;][&apos;IntervalUnit&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>AdditionalCause2</name>
+          <sequenceNumber>24</sequenceNumber>
+          <variable>AdditionalCause2</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;AdditionalCauses2&apos;][&apos;CauseLiteral&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>AdditionalInterval2</name>
+          <sequenceNumber>25</sequenceNumber>
+          <variable>AdditionalInterval2</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;AdditionalCauses2&apos;][&apos;Interval&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>AdditionalIntervalUnit2</name>
+          <sequenceNumber>26</sequenceNumber>
+          <variable>AdditionalIntervalUnit2</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;AdditionalCauses2&apos;][&apos;IntervalUnit&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>UnderlyingCause</name>
+          <sequenceNumber>27</sequenceNumber>
+          <variable>UnderlyingCause</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;UnderlyingCauses&apos;][&apos;CauseLiteral&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>UnderlyingInterval</name>
+          <sequenceNumber>28</sequenceNumber>
+          <variable>UnderlyingInterval</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;UnderlyingCauses&apos;][&apos;Interval&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>UnderlyingIntervalUnit</name>
+          <sequenceNumber>29</sequenceNumber>
+          <variable>UnderlyingIntervalUnit</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;UnderlyingCauses&apos;][&apos;IntervalUnit&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>OtherConditions</name>
+          <sequenceNumber>30</sequenceNumber>
+          <variable>OtherConditions</variable>
+          <mapping>msg[&apos;dth_causes&apos;][&apos;OtherConditions&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>AutopsyDone</name>
+          <sequenceNumber>31</sequenceNumber>
+          <variable>AutopsyDone</variable>
+          <mapping>msg[&apos;Autopsy&apos;][&apos;AutopsyDone&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>AutopsyUsed</name>
+          <sequenceNumber>32</sequenceNumber>
+          <variable>AutopsyUsed</variable>
+          <mapping>msg[&apos;Autopsy&apos;][&apos;AutopsyAvailable&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>MannerOfDeath</name>
+          <sequenceNumber>33</sequenceNumber>
+          <variable>MannerOfDeath</variable>
+          <mapping>msg[&apos;MannerOfDeath&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Tobacco</name>
+          <sequenceNumber>34</sequenceNumber>
+          <variable>Tobacco</variable>
+          <mapping>msg[&apos;Tobacco&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>Pregnant</name>
+          <sequenceNumber>35</sequenceNumber>
+          <variable>Pregnant</variable>
+          <mapping>msg[&apos;Pregnant&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryYesNo</name>
+          <sequenceNumber>36</sequenceNumber>
+          <variable>InjuryYesNo</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjYesNo&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryAtWork</name>
+          <sequenceNumber>37</sequenceNumber>
+          <variable>InjuryAtWork</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryAtWork&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryCCYY</name>
+          <sequenceNumber>38</sequenceNumber>
+          <variable>InjuryCCYY</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryDate&apos;][&apos;InjuryYear&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryMM</name>
+          <sequenceNumber>39</sequenceNumber>
+          <variable>InjuryMM</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryDate&apos;][&apos;InjuryMonth&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryDD</name>
+          <sequenceNumber>40</sequenceNumber>
+          <variable>InjuryDD</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryDate&apos;][&apos;InjuryDay&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryTimeHH</name>
+          <sequenceNumber>41</sequenceNumber>
+          <variable>InjuryTimeHH</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryDate&apos;][&apos;InjuryHour&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryTimeMM</name>
+          <sequenceNumber>42</sequenceNumber>
+          <variable>InjuryTimeMM</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryDate&apos;][&apos;InjuryMinute&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryStreet</name>
+          <sequenceNumber>43</sequenceNumber>
+          <variable>InjuryStreet</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryLocation&apos;][&apos;InjuryStreet&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryCity</name>
+          <sequenceNumber>44</sequenceNumber>
+          <variable>InjuryCity</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryLocation&apos;][&apos;InjuryCity&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryCounty</name>
+          <sequenceNumber>45</sequenceNumber>
+          <variable>InjuryCounty</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryLocation&apos;][&apos;InjuryCounty&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryState</name>
+          <sequenceNumber>46</sequenceNumber>
+          <variable>InjuryState</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryLocation&apos;][&apos;InjuryState&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryCountry</name>
+          <sequenceNumber>47</sequenceNumber>
+          <variable>InjuryCountry</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryLocation&apos;][&apos;InjuryCountry&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryPlace</name>
+          <sequenceNumber>48</sequenceNumber>
+          <variable>InjuryPlace</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryLocation&apos;][&apos;InjuryPlace&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryMotorVehicle</name>
+          <sequenceNumber>49</sequenceNumber>
+          <variable>InjuryMotorVehicle</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryMotorVehicle&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryMotorSpec</name>
+          <sequenceNumber>50</sequenceNumber>
+          <variable>InjuryMotorSpec</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryMotorSpec&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryDescription1</name>
+          <sequenceNumber>51</sequenceNumber>
+          <variable>InjuryDescription1</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryDescription1&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>InjuryDescription2</name>
+          <sequenceNumber>52</sequenceNumber>
+          <variable>InjuryDescription2</variable>
+          <mapping>msg[&apos;Injury&apos;][&apos;InjuryDescription2&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>CertifierSignCCYY</name>
+          <sequenceNumber>53</sequenceNumber>
+          <variable>CertifierSignCCYY</variable>
+          <mapping>msg[&apos;certifier&apos;][&apos;CertifierSignDate&apos;][&apos;CertifierSignCCYY&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>CertifierSignMM</name>
+          <sequenceNumber>54</sequenceNumber>
+          <variable>CertifierSignMM</variable>
+          <mapping>msg[&apos;certifier&apos;][&apos;CertifierSignDate&apos;][&apos;CertifierSignMM&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>CertifierSignDD</name>
+          <sequenceNumber>55</sequenceNumber>
+          <variable>CertifierSignDD</variable>
+          <mapping>msg[&apos;certifier&apos;][&apos;CertifierSignDate&apos;][&apos;CertifierSignDD&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+        <com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+          <name>SFN</name>
+          <sequenceNumber>56</sequenceNumber>
+          <script>//Create StateFileNumber
+
+
+var sfnum = Math.floor(Math.random()*10000);
+
+var sfn = &apos;2018&apos; + sfnum;
+channelMap.put(&apos;SFN&apos;, sfn);
+
+logger.debug(&quot;SFN: &quot; + sfn);</script>
+        </com.mirth.connect.plugins.javascriptstep.JavaScriptStep>
+        <com.mirth.connect.plugins.mapper.MapperStep>
+          <name>middlename</name>
+          <sequenceNumber>57</sequenceNumber>
+          <variable>middlename</variable>
+          <mapping>msg[&apos;person&apos;][&apos;middlename&apos;].toString()</mapping>
+          <defaultValue></defaultValue>
+          <replacements/>
+          <scope>CHANNEL</scope>
+        </com.mirth.connect.plugins.mapper.MapperStep>
+      </elements>
+      <inboundTemplate encoding="base64">PGRlYXRoQ2VydGlmaWNhdGUgdmVyc2lvbj0iMS4wIj4NCiAgICA8ZGF0ZXRpbWU+MjAxOC0wMS0w
+OCAwMzozNDoxNzwvZGF0ZXRpbWU+DQogICAgPHBlcnNvbj4NCiAgICAgICAgPGZpcnN0bmFtZT5X
+aWxtYTwvZmlyc3RuYW1lPg0KICAgICAgICA8bGFzdG5hbWU+RmxpbnRzdG9uZTwvbGFzdG5hbWU+
+DQogICAgICAgIDxtaWRkbGVuYW1lPlJlbmVlPC9taWRkbGVuYW1lPg0KICAgICAgICA8c3NuPjU2
+NS02NS05ODc2PC9zc24+DQogICAgICAgIDxnZW5kZXI+RjwvZ2VuZGVyPg0KICAgICAgICA8TVJO
+PjIyMjI8L01STj4NCiAgICAgICAgPERPQj4NCiAgICAgICAgICAgIDxNb250aD4wMTwvTW9udGg+
+DQogICAgICAgICAgICA8RGF5PjAyPC9EYXk+DQogICAgICAgICAgICA8WWVhcj4xOTg5PC9ZZWFy
+Pg0KICAgICAgICA8L0RPQj4NCiAgICAgICAgPGFkZHJlc3M+DQogICAgICAgICAgICA8aG9tZWFk
+ZHJlc3M+QW5kZXJzZ2F0YW4gMiwgNDMyIDEwIEfDtnRlYm9yZzwvaG9tZWFkZHJlc3M+DQogICAg
+ICAgICAgICA8d29ya2FkZHJlc3M+QW5kZXJzZ2F0YW4gMywgNDMyIDEwIEfDtnRlYm9yZzwvd29y
+a2FkZHJlc3M+DQogICAgICAgIDwvYWRkcmVzcz4NCiAgICAgICAgPGRvZD4NCiAgICAgICAgICAg
+IDxkbW9udGg+MDE8L2Rtb250aD4NCiAgICAgICAgICAgIDxkZGF5PjEwPC9kZGF5Pg0KICAgICAg
+ICAgICAgPGR5ZWFyPjIwMTg8L2R5ZWFyPg0KICAgICAgICAgICAgPGRob3VyPjExPC9kaG91cj4N
+CiAgICAgICAgICAgIDxkbWluPjExPC9kbWluPg0KICAgICAgICA8L2RvZD4NCiAgICA8L3BlcnNv
+bj4NCiAgICA8ZHRoX2NhdXNlcz4NCiAgICAgICAgPEltbWVkaWF0ZUNhdXNlcz4NCiAgICAgICAg
+ICAgIDxDYXVzZUxpdGVyYWw+SW1tZWRpYXRlQ2F1c2VPZkRlYXRoPC9DYXVzZUxpdGVyYWw+DQog
+ICAgICAgICAgICA8SW50ZXJ2YWw+MTwvSW50ZXJ2YWw+DQogICAgICAgICAgICA8SW50ZXJ2YWxV
+bml0Pk1pbnV0ZXM8L0ludGVydmFsVW5pdD4NCiAgICAgICAgPC9JbW1lZGlhdGVDYXVzZXM+DQog
+ICAgICAgIDxBZGRpdGlvbmFsQ2F1c2VzMT4NCiAgICAgICAgICAgIDxDYXVzZUxpdGVyYWw+YWRk
+aXRpb25hbENhdXNlMTwvQ2F1c2VMaXRlcmFsPg0KICAgICAgICAgICAgPEludGVydmFsPjI8L0lu
+dGVydmFsPg0KICAgICAgICAgICAgPEludGVydmFsVW5pdD5Ib3VyczwvSW50ZXJ2YWxVbml0Pg0K
+ICAgICAgICA8L0FkZGl0aW9uYWxDYXVzZXMxPg0KICAgICAgICA8QWRkaXRpb25hbENhdXNlczI+
+DQogICAgICAgICAgICA8Q2F1c2VMaXRlcmFsPmFkZGl0aW9uYWxDYXVzZTI8L0NhdXNlTGl0ZXJh
+bD4NCiAgICAgICAgICAgIDxJbnRlcnZhbD4zPC9JbnRlcnZhbD4NCiAgICAgICAgICAgIDxJbnRl
+cnZhbFVuaXQ+RGF5czwvSW50ZXJ2YWxVbml0Pg0KICAgICAgICA8L0FkZGl0aW9uYWxDYXVzZXMy
+Pg0KICAgICAgICA8VW5kZXJseWluZ0NhdXNlcz4NCiAgICAgICAgICAgIDxDYXVzZUxpdGVyYWw+
+VW5kZXJseWluZ0NhdXNlT2ZEZWF0aDwvQ2F1c2VMaXRlcmFsPg0KICAgICAgICAgICAgPEludGVy
+dmFsPjQ8L0ludGVydmFsPg0KICAgICAgICAgICAgPEludGVydmFsVW5pdD5XZWVrczwvSW50ZXJ2
+YWxVbml0Pg0KICAgICAgICA8L1VuZGVybHlpbmdDYXVzZXM+DQogICAgICAgIDxPdGhlckNvbmRp
+dGlvbnM+YTwvT3RoZXJDb25kaXRpb25zPgogICAgPC9kdGhfY2F1c2VzPg0KICAgIDxBdXRvcHN5
+Pg0KICAgICAgICA8QXV0b3BzeURvbmU+WTwvQXV0b3BzeURvbmU+DQogICAgICAgIDxBdXRvcHN5
+QXZhaWxhYmxlPlk8L0F1dG9wc3lBdmFpbGFibGU+DQogICAgPC9BdXRvcHN5Pg0KICAgIDxNYW5u
+ZXJPZkRlYXRoPjE8L01hbm5lck9mRGVhdGg+DQogICAgPFRvYmFjY28+NTwvVG9iYWNjbz4NCiAg
+ICA8UHJlZ25hbnQ+MTwvUHJlZ25hbnQ+DQogICAgPEluanVyeT4NCiAgICAgICAgPElualllc05v
+Plk8L0lualllc05vPg0KICAgICAgICA8SW5qdXJ5QXRXb3JrPlllczwvSW5qdXJ5QXRXb3JrPg0K
+ICAgICAgICA8SW5qdXJ5RGF0ZT4NCiAgICAgICAgICAgIDxJbmp1cnlNb250aC8+DQogICAgICAg
+ICAgICA8SW5qdXJ5RGF5Lz4NCiAgICAgICAgICAgIDxJbmp1cnlZZWFyLz4NCiAgICAgICAgICAg
+IDxJbmp1cnlIb3VyLz4NCiAgICAgICAgICAgIDxJbmp1cnlNaW51dGUvPg0KICAgICAgICA8L0lu
+anVyeURhdGU+DQogICAgICAgIDxJbmp1cnlMb2NhdGlvbj4NCiAgICAgICAgICAgIDxJbmp1cnlT
+dHJlZXQ+aW5qdXJ5IGFkZHJlc3M8L0luanVyeVN0cmVldD4NCiAgICAgICAgICAgIDxJbmp1cnlD
+aXR5PlJveTwvSW5qdXJ5Q2l0eT4NCiAgICAgICAgICAgIDxJbmp1cnlDb3VudHk+V2ViZXI8L0lu
+anVyeUNvdW50eT4NCiAgICAgICAgICAgIDxJbmp1cnlTdGF0ZT5VVDwvSW5qdXJ5U3RhdGU+DQog
+ICAgICAgICAgICA8SW5qdXJ5Q291bnRyeT5VU0E8L0luanVyeUNvdW50cnk+DQogICAgICAgICAg
+ICA8SW5qdXJ5UGxhY2UvPg0KICAgICAgICA8L0luanVyeUxvY2F0aW9uPg0KICAgICAgICA8SW5q
+dXJ5TW90b3JWZWhpY2xlPjI8L0luanVyeU1vdG9yVmVoaWNsZT4NCiAgICAgICAgPEluanVyeU1v
+dG9yU3BlYy8+DQogICAgICAgIDxJbmp1cnlEZXNjcmlwdGlvbjE+aGUgZmVsbCBvdXQgb2YgYSB0
+cmVlPC9Jbmp1cnlEZXNjcmlwdGlvbjE+DQogICAgICAgIDxJbmp1cnlEZXNjcmlwdGlvbjI+YW5k
+IGJyb2tlIGhpcyBidXR0PC9Jbmp1cnlEZXNjcmlwdGlvbjI+DQogICAgPC9Jbmp1cnk+DQogICAg
+PGNlcnRpZmllcj4NCiAgICAgICAgPGNlcnRpZmllck5hbWU+Um9iZXJ0IEZhY3RvcjwvY2VydGlm
+aWVyTmFtZT4NCiAgICAgICAgPGNlcnRpZmllckZhY2lsaXR5PkVwaWMgTWVkaWNhbCBDZW50ZXI8
+L2NlcnRpZmllckZhY2lsaXR5Pg0KICAgICAgICA8Y2VydGlmaWVyQWRkcmVzcy8+DQogICAgICAg
+IDxjZXJ0aWZpZXJMaWNlbnNlLz4NCiAgICAgICAgPENlcnRpZmllclNpZ25EYXRlPg0KICAgICAg
+ICAgICAgPENlcnRpZmllclNpZ25DQ1lZLz4NCiAgICAgICAgICAgIDxDZXJ0aWZpZXJTaWduTU0v
+Pg0KICAgICAgICAgICAgPENlcnRpZmllclNpZ25ERC8+DQogICAgICAgIDwvQ2VydGlmaWVyU2ln
+bkRhdGU+DQogICAgPC9jZXJ0aWZpZXI+DQogICAgPGZhY2lsaXR5Pg0KICAgICAgICA8ZmFjaWxp
+dHlOYW1lLz4NCiAgICA8L2ZhY2lsaXR5Pg0KPC9kZWF0aENlcnRpZmljYXRlPg0K</inboundTemplate>
+      <outboundTemplate encoding="base64"></outboundTemplate>
+      <inboundDataType>XML</inboundDataType>
+      <outboundDataType>XML</outboundDataType>
+      <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+          <stripNamespaces>true</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </inboundProperties>
+      <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+          <stripNamespaces>true</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </outboundProperties>
+    </transformer>
+    <filter version="3.5.1">
+      <elements/>
+    </filter>
+    <transportName>Web Service Listener</transportName>
+    <mode>SOURCE</mode>
+    <enabled>true</enabled>
+    <waitForPrevious>true</waitForPrevious>
+  </sourceConnector>
+  <destinationConnectors>
+    <connector version="3.5.1">
+      <metaDataId>1</metaDataId>
+      <name>Destination 1</name>
+      <properties class="com.mirth.connect.connectors.file.FileDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <scheme>FILE</scheme>
+        <host>c:/mirth</host>
+        <outputPattern>rfdtest.txt</outputPattern>
+        <anonymous>true</anonymous>
+        <username>anonymous</username>
+        <password>anonymous</password>
+        <timeout>10000</timeout>
+        <secure>true</secure>
+        <passive>true</passive>
+        <validateConnection>true</validateConnection>
+        <outputAppend>false</outputAppend>
+        <errorOnExists>false</errorOnExists>
+        <temporary>false</temporary>
+        <binary>false</binary>
+        <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
+        <template>${message.encodedData}</template>
+      </properties>
+      <transformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>File Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+    <connector version="3.5.1">
+      <metaDataId>2</metaDataId>
+      <name>EdenDatabase</name>
+      <properties class="com.mirth.connect.connectors.jdbc.DatabaseDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <driver>net.sourceforge.jtds.jdbc.Driver</driver>
+        <url>jdbc:jtds:sqlserver://localhost:1433/connectathon</url>
+        <username>ray</username>
+        <password>mss</password>
+        <query>
+
+INSERT INTO edenmaster (StateFileNumber, CertifierLicense, MRN,DeceasedLast, DeceasedFirst, DeceasedMiddle,
+                        SSN, Gender, BirthCCYY, BirthMM, BirthDD, Pregnant,DeathCCYY, DeathMM, DeathDD, TimeOfDeathHH, TimeOfDeathMM, 
+                        FacilityName, CertifierFullName, CertifierSignature, CertifierSignCCYY, CertifierSignMM, CertifierSignDD,
+                        AutopsyDone, AutopsyAvailable, ImmediateCause, ImmediateInterval, ImmediateIntervalUnit, AdditionalCause1, 
+                        AdditionalInterval1, AdditionalIntervalUnit1, AdditionalCause2, AdditionalInterval2, AdditionalIntervalUnit2, UnderlyingCause, 
+                        UnderlyingInterval, UnderlyingIntervalUnit, OtherConditions, MannerOfDeath, Tobacco, Injury, InjuryCCYY, InjuryMM, 
+                        InjuryDD, InjuryTimeHH, InjuryTimeMM, InjuryStreet, InjuryCity, InjuryCounty, InjuryState, InjuryCountry, InjuryPlace, 
+                        InjuryMotorVehicle, InjuryMotorSpec, InjuryDescription1, InjuryDescription2, MasterStatus)
+VALUES (${SFN},${CertifierLicense} , ${MRN},${lastname},${firstname},${middlename},
+        ${ssn},${gender},${DOB_CCYY},${DOB_MM},${DOB_DD},${Pregnant},${DOD_CCYY},${DOD_MM},${DOD_DD},${DOD_HR},${DOD_MIN},
+        ${CertifierFacilityName},${CertifierName},${CertifierName},${CertifierSignCCYY},${CertifierSignMM},${CertifierSignDD},
+        ${AutopsyDone},${AutopsyUsed},${ImmediateCause},${ImmediateInterval},${ImmediateIntervalUnit},${AdditionalCause1},
+        ${AdditionalInterval1},${AdditionalIntervalUnit1},${AdditionalCause2},${AdditionalInterval2},${AdditionalIntervalUnit2},${UnderlyingCause},
+        ${UnderlyingInterval},${UnderlyingIntervalUnit},${OtherConditions},${MannerOfDeath},${Tobacco},${InjuryYesNo},${InjuryCCYY},${InjuryMM},
+        ${InjuryDD},${InjuryTimeHH},${InjuryTimeMM},${InjuryStreet},${InjuryCity},${InjuryCounty},${InjuryState},${InjuryCountry},${InjuryPlace},
+        ${InjuryMotorVehicle},${InjuryMotorSpec},${InjuryDescription1},${InjuryDescription2},&apos;Certified&apos;)</query>
+        <useScript>false</useScript>
+      </properties>
+      <transformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>Database Writer</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+  </destinationConnectors>
+  <preprocessingScript>// Modify the message variable below to pre process data
+return message;</preprocessingScript>
+  <postprocessingScript>// This script executes once after a message has been processed
+// Responses returned from here will be stored as &quot;Postprocessor&quot; in the response map
+return;</postprocessingScript>
+  <deployScript>// This script executes once when the channel is deployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</deployScript>
+  <undeployScript>// This script executes once when the channel is undeployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</undeployScript>
+  <properties version="3.5.1">
+    <clearGlobalChannelMap>true</clearGlobalChannelMap>
+    <messageStorageMode>DEVELOPMENT</messageStorageMode>
+    <encryptData>false</encryptData>
+    <removeContentOnCompletion>false</removeContentOnCompletion>
+    <removeOnlyFilteredOnCompletion>false</removeOnlyFilteredOnCompletion>
+    <removeAttachmentsOnCompletion>false</removeAttachmentsOnCompletion>
+    <initialState>STARTED</initialState>
+    <storeAttachments>false</storeAttachments>
+    <metaDataColumns>
+      <metaDataColumn>
+        <name>SOURCE</name>
+        <type>STRING</type>
+        <mappingName>mirth_source</mappingName>
+      </metaDataColumn>
+      <metaDataColumn>
+        <name>TYPE</name>
+        <type>STRING</type>
+        <mappingName>mirth_type</mappingName>
+      </metaDataColumn>
+    </metaDataColumns>
+    <attachmentProperties version="3.5.1">
+      <type>None</type>
+      <properties/>
+    </attachmentProperties>
+    <resourceIds class="linked-hash-map">
+      <entry>
+        <string>Default Resource</string>
+        <string>[Default Resource]</string>
+      </entry>
+    </resourceIds>
+  </properties>
+  <exportData>
+    <metadata>
+      <enabled>false</enabled>
+      <lastModified>
+        <time>1516622551981</time>
+        <timezone>America/New_York</timezone>
+      </lastModified>
+      <pruningSettings>
+        <archiveEnabled>true</archiveEnabled>
+      </pruningSettings>
+    </metadata>
+    <channelTags>
+      <channelTag>
+        <id>1318feb3-a2da-447f-ad80-a70cf7bd64d3</id>
+        <name>2018</name>
+        <channelIds>
+          <string>ba1e1fad-55f9-414d-9fdf-299bbb972f38</string>
+          <string>12d8ec02-b0fd-4925-bb09-fe9f83e2c7d0</string>
+          <string>b09e35ad-4fc5-4dc0-9909-80ae22c0900f</string>
+          <string>f6304de6-71f5-464d-be4d-3c3cabe33dc6</string>
+          <string>ec01f9a8-7f8e-418b-8fe0-15afb1eb1c42</string>
+          <string>6196759c-940f-40cb-94a8-ab7e17d32e19</string>
+          <string>e3a88c51-a15e-4152-b064-a80f8b976199</string>
+          <string>26998c34-8105-4ec1-ae92-f3e9fed1912c</string>
+          <string>189068f6-2833-4646-b74e-f46a988202c1</string>
+          <string>bd2d2918-e155-4b90-a0e5-e48e6d1eecdf</string>
+          <string>f8adb5e6-546c-45fc-886f-babb5ddfb052</string>
+        </channelIds>
+        <backgroundColor>
+          <red>255</red>
+          <green>0</green>
+          <blue>0</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+      <channelTag>
+        <id>be59beff-589c-461b-afd0-1f65f5614096</id>
+        <name>Connectathon</name>
+        <channelIds>
+          <string>ba1e1fad-55f9-414d-9fdf-299bbb972f38</string>
+          <string>12d8ec02-b0fd-4925-bb09-fe9f83e2c7d0</string>
+          <string>dc877250-5c2d-478e-980e-c81577d5bb83</string>
+          <string>bd2d2918-e155-4b90-a0e5-e48e6d1eecdf</string>
+          <string>f8adb5e6-546c-45fc-886f-babb5ddfb052</string>
+        </channelIds>
+        <backgroundColor>
+          <red>128</red>
+          <green>0</green>
+          <blue>0</blue>
+          <alpha>255</alpha>
+        </backgroundColor>
+      </channelTag>
+    </channelTags>
+  </exportData>
+</channel>
