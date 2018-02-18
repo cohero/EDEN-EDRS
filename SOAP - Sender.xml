@@ -1,0 +1,321 @@
+<channel version="3.5.1">
+  <id>129cfe0a-0d25-4bc1-8d28-80fcccbd28ae</id>
+  <nextMetaDataId>2</nextMetaDataId>
+  <name>SOAP - Sender</name>
+  <description>Source: Local directory
+Connector Type: File Reader
+Directory: F:\HIMSS 2018\output
+
+Destination: 1: webservice sender
+Port: 9010
+URL: http://localhost:9010/services/Mirth?wsdl
+
+</description>
+  <revision>21</revision>
+  <sourceConnector version="3.5.1">
+    <metaDataId>0</metaDataId>
+    <name>sourceConnector</name>
+    <properties class="com.mirth.connect.connectors.file.FileReceiverProperties" version="3.5.1">
+      <pluginProperties/>
+      <pollConnectorProperties version="3.5.1">
+        <pollingType>INTERVAL</pollingType>
+        <pollOnStart>true</pollOnStart>
+        <pollingFrequency>5000</pollingFrequency>
+        <pollingHour>0</pollingHour>
+        <pollingMinute>0</pollingMinute>
+        <cronJobs/>
+        <pollConnectorPropertiesAdvanced>
+          <weekly>true</weekly>
+          <inactiveDays>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+            <boolean>false</boolean>
+          </inactiveDays>
+          <dayOfMonth>1</dayOfMonth>
+          <allDay>true</allDay>
+          <startingHour>8</startingHour>
+          <startingMinute>0</startingMinute>
+          <endingHour>17</endingHour>
+          <endingMinute>0</endingMinute>
+        </pollConnectorPropertiesAdvanced>
+      </pollConnectorProperties>
+      <sourceConnectorProperties version="3.5.1">
+        <responseVariable>None</responseVariable>
+        <respondAfterProcessing>true</respondAfterProcessing>
+        <processBatch>false</processBatch>
+        <firstResponse>false</firstResponse>
+        <processingThreads>1</processingThreads>
+        <resourceIds class="linked-hash-map">
+          <entry>
+            <string>Default Resource</string>
+            <string>[Default Resource]</string>
+          </entry>
+        </resourceIds>
+        <queueBufferSize>1000</queueBufferSize>
+      </sourceConnectorProperties>
+      <scheme>FILE</scheme>
+      <host>F:/HIMSS2018/OUTPUT</host>
+      <fileFilter>*.xml</fileFilter>
+      <regex>false</regex>
+      <directoryRecursion>false</directoryRecursion>
+      <ignoreDot>true</ignoreDot>
+      <anonymous>true</anonymous>
+      <username>anonymous</username>
+      <password>anonymous</password>
+      <timeout>10000</timeout>
+      <secure>true</secure>
+      <passive>true</passive>
+      <validateConnection>true</validateConnection>
+      <afterProcessingAction>MOVE</afterProcessingAction>
+      <moveToDirectory>F:/HIMSS 2018/processed</moveToDirectory>
+      <moveToFileName>${originalFilename}</moveToFileName>
+      <errorReadingAction>NONE</errorReadingAction>
+      <errorResponseAction>AFTER_PROCESSING</errorResponseAction>
+      <errorMoveToDirectory></errorMoveToDirectory>
+      <errorMoveToFileName></errorMoveToFileName>
+      <checkFileAge>true</checkFileAge>
+      <fileAge>1000</fileAge>
+      <fileSizeMinimum>0</fileSizeMinimum>
+      <fileSizeMaximum></fileSizeMaximum>
+      <ignoreFileSizeMaximum>true</ignoreFileSizeMaximum>
+      <sortBy>date</sortBy>
+      <binary>false</binary>
+      <charsetEncoding>DEFAULT_ENCODING</charsetEncoding>
+    </properties>
+    <transformer version="3.5.1">
+      <elements/>
+      <inboundDataType>XML</inboundDataType>
+      <outboundDataType>XML</outboundDataType>
+      <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+          <stripNamespaces>true</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </inboundProperties>
+      <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+        <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+          <stripNamespaces>true</stripNamespaces>
+        </serializationProperties>
+        <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+          <splitType>Element_Name</splitType>
+          <elementName></elementName>
+          <level>1</level>
+          <query></query>
+          <batchScript></batchScript>
+        </batchProperties>
+      </outboundProperties>
+    </transformer>
+    <filter version="3.5.1">
+      <elements/>
+    </filter>
+    <transportName>File Reader</transportName>
+    <mode>SOURCE</mode>
+    <enabled>true</enabled>
+    <waitForPrevious>true</waitForPrevious>
+  </sourceConnector>
+  <destinationConnectors>
+    <connector version="3.5.1">
+      <metaDataId>1</metaDataId>
+      <name>Destination 1</name>
+      <properties class="com.mirth.connect.connectors.ws.WebServiceDispatcherProperties" version="3.5.1">
+        <pluginProperties/>
+        <destinationConnectorProperties version="3.5.1">
+          <queueEnabled>false</queueEnabled>
+          <sendFirst>false</sendFirst>
+          <retryIntervalMillis>10000</retryIntervalMillis>
+          <regenerateTemplate>false</regenerateTemplate>
+          <retryCount>0</retryCount>
+          <rotate>false</rotate>
+          <includeFilterTransformer>false</includeFilterTransformer>
+          <threadCount>1</threadCount>
+          <threadAssignmentVariable></threadAssignmentVariable>
+          <validateResponse>false</validateResponse>
+          <resourceIds class="linked-hash-map">
+            <entry>
+              <string>Default Resource</string>
+              <string>[Default Resource]</string>
+            </entry>
+          </resourceIds>
+          <queueBufferSize>1000</queueBufferSize>
+          <reattachAttachments>true</reattachAttachments>
+        </destinationConnectorProperties>
+        <wsdlUrl>http://localhost:9010/services/Mirth?wsdl</wsdlUrl>
+        <service>{http://ws.connectors.connect.mirth.com/}DefaultAcceptMessageService</service>
+        <port>{http://ws.connectors.connect.mirth.com/}DefaultAcceptMessagePort</port>
+        <operation>acceptMessage</operation>
+        <locationURI>http://localhost:9010/services/Mirth</locationURI>
+        <socketTimeout>30000</socketTimeout>
+        <useAuthentication>false</useAuthentication>
+        <username></username>
+        <password></password>
+        <envelope>&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; xmlns:ws=&quot;http://ws.connectors.connect.mirth.com/&quot;&gt;&#xd;
+   &lt;soapenv:Header/&gt;&#xd;
+   &lt;soapenv:Body&gt;&#xd;
+      &lt;ws:acceptMessage&gt;&#xd;
+         &lt;!--Optional:--&gt;&#xd;
+         &lt;arg0&gt;${XmlUtil.encode(${message.encodedData})}&lt;/arg0&gt;&#xd;
+      &lt;/ws:acceptMessage&gt;&#xd;
+   &lt;/soapenv:Body&gt;&#xd;
+&lt;/soapenv:Envelope&gt;</envelope>
+        <oneWay>false</oneWay>
+        <headers/>
+        <useMtom>true</useMtom>
+        <attachmentNames/>
+        <attachmentContents/>
+        <attachmentTypes/>
+        <soapAction></soapAction>
+        <wsdlDefinitionMap>
+          <map class="linked-hash-map">
+            <entry>
+              <string>{http://ws.connectors.connect.mirth.com/}DefaultAcceptMessageService</string>
+              <com.mirth.connect.connectors.ws.DefinitionServiceMap_-DefinitionPortMap>
+                <map class="linked-hash-map">
+                  <entry>
+                    <string>{http://ws.connectors.connect.mirth.com/}DefaultAcceptMessagePort</string>
+                    <com.mirth.connect.connectors.ws.DefinitionServiceMap_-PortInformation>
+                      <operations>
+                        <string>acceptMessage</string>
+                      </operations>
+                      <locationURI>http://localhost:9010/services/Mirth</locationURI>
+                    </com.mirth.connect.connectors.ws.DefinitionServiceMap_-PortInformation>
+                  </entry>
+                </map>
+              </com.mirth.connect.connectors.ws.DefinitionServiceMap_-DefinitionPortMap>
+            </entry>
+          </map>
+        </wsdlDefinitionMap>
+      </properties>
+      <transformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </transformer>
+      <responseTransformer version="3.5.1">
+        <elements/>
+        <inboundDataType>XML</inboundDataType>
+        <outboundDataType>XML</outboundDataType>
+        <inboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </inboundProperties>
+        <outboundProperties class="com.mirth.connect.plugins.datatypes.xml.XMLDataTypeProperties" version="3.5.1">
+          <serializationProperties class="com.mirth.connect.plugins.datatypes.xml.XMLSerializationProperties" version="3.5.1">
+            <stripNamespaces>true</stripNamespaces>
+          </serializationProperties>
+          <batchProperties class="com.mirth.connect.plugins.datatypes.xml.XMLBatchProperties" version="3.5.1">
+            <splitType>Element_Name</splitType>
+            <elementName></elementName>
+            <level>1</level>
+            <query></query>
+            <batchScript></batchScript>
+          </batchProperties>
+        </outboundProperties>
+      </responseTransformer>
+      <filter version="3.5.1">
+        <elements/>
+      </filter>
+      <transportName>Web Service Sender</transportName>
+      <mode>DESTINATION</mode>
+      <enabled>true</enabled>
+      <waitForPrevious>true</waitForPrevious>
+    </connector>
+  </destinationConnectors>
+  <preprocessingScript>// Modify the message variable below to pre process data
+return message;</preprocessingScript>
+  <postprocessingScript>// This script executes once after a message has been processed
+// Responses returned from here will be stored as &quot;Postprocessor&quot; in the response map
+return;</postprocessingScript>
+  <deployScript>// This script executes once when the channel is deployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</deployScript>
+  <undeployScript>// This script executes once when the channel is undeployed
+// You only have access to the globalMap and globalChannelMap here to persist data
+return;</undeployScript>
+  <properties version="3.5.1">
+    <clearGlobalChannelMap>true</clearGlobalChannelMap>
+    <messageStorageMode>DEVELOPMENT</messageStorageMode>
+    <encryptData>false</encryptData>
+    <removeContentOnCompletion>false</removeContentOnCompletion>
+    <removeOnlyFilteredOnCompletion>false</removeOnlyFilteredOnCompletion>
+    <removeAttachmentsOnCompletion>false</removeAttachmentsOnCompletion>
+    <initialState>STARTED</initialState>
+    <storeAttachments>false</storeAttachments>
+    <metaDataColumns>
+      <metaDataColumn>
+        <name>SOURCE</name>
+        <type>STRING</type>
+        <mappingName>mirth_source</mappingName>
+      </metaDataColumn>
+      <metaDataColumn>
+        <name>TYPE</name>
+        <type>STRING</type>
+        <mappingName>mirth_type</mappingName>
+      </metaDataColumn>
+    </metaDataColumns>
+    <attachmentProperties version="3.5.1">
+      <type>None</type>
+      <properties/>
+    </attachmentProperties>
+    <resourceIds class="linked-hash-map">
+      <entry>
+        <string>Default Resource</string>
+        <string>[Default Resource]</string>
+      </entry>
+    </resourceIds>
+  </properties>
+  <exportData>
+    <metadata>
+      <enabled>true</enabled>
+      <lastModified>
+        <time>1518778308782</time>
+        <timezone>America/New_York</timezone>
+      </lastModified>
+      <pruningSettings>
+        <archiveEnabled>true</archiveEnabled>
+      </pruningSettings>
+    </metadata>
+  </exportData>
+</channel>
